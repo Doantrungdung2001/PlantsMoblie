@@ -15,3 +15,5 @@ npm install @react-navigation/native react-native-reanimated react-native-gestur
 ```
 npm install expo-linear-gradient
 ```
+npm install react-native-svg
+```

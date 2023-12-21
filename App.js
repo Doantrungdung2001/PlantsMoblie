@@ -5,6 +5,8 @@ import { StyleSheet, Text, View } from "react-native";
 
 import SignUp from "./screens/SignUp";
 
+import Tabs from "./navigation/tabs";
+
 const theme = {
   ...DefaultTheme,
   colors: {
@@ -25,6 +27,9 @@ export default function App() {
         initialRouteName={"SignUp"}
       >
         <Stack.Screen name="SignUp" component={SignUp} />
+
+        {/*Tab*/}
+        <Stack.Screen name="Home" component={Tabs} />
       </Stack.Navigator>
     </NavigationContainer>
   );
