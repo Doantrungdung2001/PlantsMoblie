@@ -108,7 +108,7 @@ const Tabs = () => {
               }}
             />
           ),
-          tabBarButton: (props) => <TabBarCustomButton {...props} />,
+          // tabBarButton: (props) => <TabBarCustomButton {...props} />,
         }}
       />
       <Tab.Screen
