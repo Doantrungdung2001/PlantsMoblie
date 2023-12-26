@@ -17,3 +17,6 @@ npm install expo-linear-gradient
 ```
 npm install react-native-svg
 ```
+```
+npx expo install expo-camera
+```
