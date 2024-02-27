@@ -23,3 +23,6 @@ npx expo install expo-camera
 ```
 npx expo install expo-splash-screen
 ```
+```
+npm install react-native-safe-area-context
+```
