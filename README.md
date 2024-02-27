@@ -20,3 +20,6 @@ npm install react-native-svg
 ```
 npx expo install expo-camera
 ```
+```
+npx expo install expo-splash-screen
+```
