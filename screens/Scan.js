@@ -10,7 +10,7 @@ import {
 import { COLORS, FONTS, SIZES, icons, images } from "../constants";
 import { Camera, CameraType } from "expo-camera";
 
-const Scan = () => {
+const Scan = ({ navigation }) => {
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
 
@@ -19,8 +19,9 @@ const Scan = () => {
       <View
         style={{
           flexDirection: "row",
-          marginTop: SIZES.padding * 4,
-          paddingHorizontal: SIZES.padding * 3,
+          position: "absolute",
+          top: 100,
+          paddingHorizontal: SIZES.padding * 3
         }}
       >
         <TouchableOpacity
@@ -34,8 +35,8 @@ const Scan = () => {
           <Image
             source={icons.close}
             style={{
-              height: 20,
-              width: 20,
+              height: 30,
+              width: 30,
               tintColor: COLORS.white,
             }}
           />
@@ -44,13 +45,13 @@ const Scan = () => {
         <View
           style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
         >
-          <Text style={{ color: COLORS.white, ...FONTS.body3 }}>Scan</Text>
+          {/* <Text style={{ color: COLORS.white, ...FONTS.body3 }}>Scan</Text> */}
         </View>
 
         <TouchableOpacity
           style={{
-            height: 45,
-            width: 45,
+            height: 35,
+            width: 35,
             backgroundColor: COLORS.green,
             borderRadius: 10,
             alignItems: "center",
@@ -60,8 +61,8 @@ const Scan = () => {
           <Image
             source={icons.info}
             style={{
-              height: 25,
-              width: 25,
+              height: 30,
+              width: 30,
               tintColor: COLORS.white,
             }}
           />
@@ -78,20 +79,20 @@ const Scan = () => {
           bottom: 0,
           left: 0,
           right: 0,
-          height: 220,
+          height: 150,
           padding: SIZES.padding * 3,
           borderTopLeftRadius: SIZES.radius,
           borderTopRightRadius: SIZES.radius,
           backgroundColor: COLORS.white,
         }}
       >
-        <Text style={{ ...FONTS.h4 }}>Another</Text>
+        {/* <Text style={{ ...FONTS.h4 }}>Another</Text> */}
         <View
           style={{
             flex: 1,
             flexDirection: "row",
             alignItems: "flex-start",
-            marginTop: SIZES.padding * 2,
+            marginTop: SIZES.padding * 1,
           }}
         >
           <TouchableOpacity
@@ -176,8 +177,8 @@ const Scan = () => {
           source={images.focus}
           resizeMode="stretch"
           style={{
-            marginTop: "-55%",
-            width: 200,
+            marginTop: "-120%",
+            width: 300,
             height: 300,
           }}
         />
@@ -232,7 +233,7 @@ const Scan = () => {
       <Camera style={styles.camera} type={type}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-            <Text style={styles.text}>Flip Camera</Text>
+            <Text style={styles.text}>Scan</Text>
           </TouchableOpacity>
         </View>
         {renderHeader()}
