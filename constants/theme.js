@@ -6,6 +6,7 @@ export const COLORS = {
   primary: "#24C16B", // green
   secondary: "#0C381F", // dark green
   tertiary: "#FF7754",
+  secondary2: "#98FB98",
 
   gray: "#83829A",
   gray2: "#C1C0C8",

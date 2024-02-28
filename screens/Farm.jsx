@@ -15,13 +15,15 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../constants";
+import Welcoms from "../components/farm/Welcoms";
+
 const Farm = () => {
   return (
     <SafeAreaView>
       <View
         style={{
-          marginHorizontal: 25,
-          marginTop: SIZES.small,
+          marginHorizontal: 40,
+          marginTop: -15,
         }}
       >
         <View
@@ -31,18 +33,25 @@ const Farm = () => {
             alignItems: "center",
           }}
         >
-          <Ionicons name="location-outline" size={30} />
+          <Ionicons name="location-outline" size={25} />
 
-          <Text 
-          style={{
-            fontFamily: "regular",
-            fontSize: SIZES.medium,
-            color: COLORS.gray,
-            justifyContent: "center",
-          }}
-          >Ha noi</Text>
+          <Text
+            style={{
+              fontFamily: "regular",
+              fontSize: SIZES.medium,
+              color: COLORS.gray,
+              justifyContent: "center",
+              marginRight: 130,
+            }}
+          >
+            Hai Bà Trưng, Hà Nội
+          </Text>
         </View>
       </View>
+
+      <ScrollView>
+        <Welcoms />
+      </ScrollView>
     </SafeAreaView>
   );
 };

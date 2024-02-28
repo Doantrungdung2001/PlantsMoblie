@@ -5,8 +5,7 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { StyleSheet, Text, View } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import SignUp from "./screens/SignUp";
-
-import Tabs from "./navigation/tabs";
+import TabScren from "./navigation/TabScren";
 
 const theme = {
   ...DefaultTheme,
@@ -47,7 +46,7 @@ export default function App() {
         <Stack.Screen name="SignUp" component={SignUp} />
 
         {/*Tab*/}
-        <Stack.Screen name="Home" component={Tabs} />
+        <Stack.Screen name="Home" component={TabScren} />
       </Stack.Navigator>
     </NavigationContainer>
   );
