@@ -1,18 +1,14 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+//rnfes
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
-import { COLORS, SIZES } from "../../constants";
+import { COLORS, SIZES } from "../constants";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import { TextInput } from "react-native-gesture-handler";
-import { useNavigation } from "@react-navigation/native";
 
-const Welcoms = () => {
-  const navigation = useNavigation();
+const Search = () => {
   return (
-    <View>
-      {/* <View style={styles.container}>
-        <Text style={styles.welcomTxt}>Tìm kiếm nhiều nhất</Text>
-      </View> */}
-
+    <SafeAreaView>
       <View style={styles.serchContainer}>
         <TouchableOpacity>
           <Feather name="search" size={30} style={styles.serchIcon} />
@@ -21,14 +17,16 @@ const Welcoms = () => {
           <TextInput
             style={styles.searchInput}
             value=""
-            onPressIn={() => navigation.navigate('Search')}
+            onPressIn={() => navigation.navigate("Search")}
             placeholder="Tên nông trại bạn muốn tìm ...."
           />
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
+
+export default Search;
 
 const styles = StyleSheet.create({
   container: {
@@ -73,4 +71,3 @@ const styles = StyleSheet.create({
     color: "white",
   },
 });
-export default Welcoms;

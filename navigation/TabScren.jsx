@@ -10,6 +10,8 @@ import { Svg } from "react-native-svg";
 import Scan from "../screens/Scan";
 import Home from "../screens/Home";
 import Farm from "../screens/Farm";
+import Search from "../screens/Search";
+
 import { COLORS, icons } from "../constants";
 
 const Tab = createBottomTabNavigator();
