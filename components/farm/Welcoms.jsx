@@ -6,9 +6,9 @@ import { TextInput } from "react-native-gesture-handler";
 const Welcoms = () => {
   return (
     <View>
-      <View style={styles.container}>
+      {/* <View style={styles.container}>
         <Text style={styles.welcomTxt}>Tìm kiếm nhiều nhất</Text>
-      </View>
+      </View> */}
 
       <View style={styles.serchContainer}>
         <TouchableOpacity>
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
   welcomTxt: {
     fontFamily: "boldltalic",
-    fontSize: SIZES.xxLarge - 10,
+    fontSize: SIZES.xxLarge -10,
     marginTop: 2,
     color: COLORS.black,
   },
@@ -49,16 +49,20 @@ const styles = StyleSheet.create({
   },
   serchIcon: {
     marginHorizontal: 15,
-    color: COLORS.gray
+    color: COLORS.gray,
   },
   searchWrapper: {
     flex: 1,
     backgroundColor: COLORS.secondary2,
     marginRight: SIZES.small,
-    borderRadius: SIZES.small,
+    borderRadius: SIZES.xxSamll,
+    height: 35  ,
   },
   searchInput: {
     fontFamily: "regular",
+    marginHorizontal : SIZES.small,
+    width: "100%",
+    height: "100%",
   },
   text: {
     fontSize: 24,

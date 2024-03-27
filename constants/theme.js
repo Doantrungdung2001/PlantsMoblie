@@ -39,6 +39,7 @@ export const COLORS = {
 
 export const SIZES = {
   //base
+  xxSamll: 8,
   xSmall: 10,
   small: 12,
   medium: 16,

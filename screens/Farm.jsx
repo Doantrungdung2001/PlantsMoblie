@@ -29,11 +29,14 @@ const Farm = () => {
         <View
           style={{
             flexDirection: "row",
-            justifyContent: "space-between",
             alignItems: "center",
           }}
         >
-          <Ionicons name="location-outline" size={25} />
+          <Ionicons
+            style={{ marginLeft: -30 }}
+            name="location-outline"
+            size={25}
+          />
 
           <Text
             style={{
@@ -41,7 +44,7 @@ const Farm = () => {
               fontSize: SIZES.medium,
               color: COLORS.gray,
               justifyContent: "center",
-              marginRight: 130,
+              marginLeft: 35,
             }}
           >
             Hai Bà Trưng, Hà Nội
