@@ -17,7 +17,7 @@ const Carousel = () => {
         dotColor={COLORS.primary}
         inactiveDotColor={COLORS.secondary}
         ImageCocomponentStyle={{
-          borderRaduis: 15,
+          borderRadius: 15, 
           width: "95%",
           marginTop: 15,
         }}
