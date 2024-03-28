@@ -26,3 +26,6 @@ npx expo install expo-splash-screen
 ```
 npm install react-native-safe-area-context
 ```
+```
+npm i react-native-image-slider-box
+```

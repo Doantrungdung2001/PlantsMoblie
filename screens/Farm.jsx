@@ -16,7 +16,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../constants";
 import Welcoms from "../components/farm/Welcoms";
-
+import Carousel from "../components/farm/Carousel";
 const Farm = () => {
   return (
     <SafeAreaView>
@@ -54,6 +54,7 @@ const Farm = () => {
 
       <ScrollView>
         <Welcoms />
+        <Carousel />
       </ScrollView>
     </SafeAreaView>
   );
