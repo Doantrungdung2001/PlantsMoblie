@@ -18,6 +18,7 @@ import { COLORS, SIZES } from "../constants";
 import Welcoms from "../components/farm/Welcoms";
 import Carousel from "../components/farm/Carousel";
 import Heading from "../components/farm/Heading";
+import ListFarm from "../components/farm/ListFarm";
 const Farm = () => {
   return (
     <SafeAreaView>
@@ -57,6 +58,7 @@ const Farm = () => {
         <Welcoms />
         <Carousel />
         <Heading />
+        <ListFarm />
       </ScrollView>
     </SafeAreaView>
   );
