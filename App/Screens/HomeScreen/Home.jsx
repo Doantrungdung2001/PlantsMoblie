@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
-import { COLORS, SIZES, FONTS, images, icons } from "../constants";
+import { COLORS, SIZES, FONTS, images, icons } from "../../Constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FlatList } from "react-native-gesture-handler";
 import { SliderBox } from "react-native-image-slider-box";

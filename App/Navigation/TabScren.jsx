@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Image, TouchableOpacity, StyleSheet, Text } from "react-native";
 import {
   createBottomTabNavigator,
   BottomTabBar,
@@ -7,12 +7,15 @@ import {
 
 import { Svg } from "react-native-svg";
 
-import Scan from "../screens/Scan";
-import Home from "../screens/Home";
-import User from "../screens/User";
+import Scan from "../Screens/ScanScreen/Scan";
+import Home from "../Screens/HomeScreen/Home";
+import ProflieUser from "../Screens/ProfileUserScreen/ProfileUser";
 
-import { COLORS, icons } from "../constants";
+import { COLORS, icons } from "../Constants";
 
+import { FontAwesome } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 const Tab = createBottomTabNavigator();
 
 const TabBarCustomButton = ({
@@ -89,59 +92,52 @@ const TabScren = () => {
           elevation: 0,
         },
       }}
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: COLORS.green
+      }}
     >
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: ({ focused }) => (
-            <Image
-              source={icons.more}
-              resizeMode="contain"
-              style={{
-                width: 25,
-                height: 25,
-                tintColor: focused ? COLORS.white : COLORS.secondary,
-              }}
-            />
+          tabBarLabel: ({ color }) => (
+            <Text style={{ color: color, fontSize: 12, marginTop: -7 }}>
+              Trang chủ
+            </Text>
           ),
-          tabBarButton: (props) => <TabBarCustomButton {...props} />,
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="home" size={size} color={color} />
+          ),
         }}
       />
       <Tab.Screen
         name="Scan"
         component={Scan}
         options={{
-          tabBarIcon: ({ focused }) => (
-            <Image
-              source={icons.scan}
-              resizeMode="contain"
-              style={{
-                width: 25,
-                height: 25,
-                tintColor: focused ? COLORS.white : COLORS.secondary,
-              }}
-            />
+          tabBarLabel: ({ color }) => (
+            <Text style={{ color: color, fontSize: 12, marginTop: -7 }}>
+              Quét mã
+            </Text>
           ),
-          tabBarButton: (props) => <TabBarCustomButton {...props} />,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="scan-sharp" size={size} color={color} />
+          ),
         }}
       />
       <Tab.Screen
-        name="User"
-        component={User}
+        name="ProflieUser"
+        component={ProflieUser}
         options={{
-          tabBarIcon: ({ focused }) => (
-            <Image
-              source={icons.user}
-              resizeMode="contain"
-              style={{
-                width: 25,
-                height: 25,
-                tintColor: focused ? COLORS.white : COLORS.secondary,
-              }}
-            />
+          tabBarLabel: ({ color }) => (
+            <Text style={{ color: color, fontSize: 14, marginTop: -7 }}>
+              Tôi
+            </Text>
           ),
-          tabBarButton: (props) => <TabBarCustomButton {...props} />,
+          tabBarIcon: ({ color, size }) => (
+            <AntDesign name="user" size={size} color={color} />
+          ),
+          // tabBarButton: (props) => <TabBarCustomButton {...props} />,
         }}
       />
     </Tab.Navigator>

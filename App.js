@@ -4,9 +4,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { StyleSheet, Text, View } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
-import SignUp from "./screens/SignUp";
-import TabScren from "./navigation/TabScren";
-import GrowVegetables from "./screens/serviceapp/GrowVegetables";
+import SignUp from "./App/Screens/SignUp";
+import TabScren from "./App/Navigation/TabScren";
+import GrowVegetables from "./App/Screens/ServiceScreen/GrowVegetables/GrowVegetables";
 
 const theme = {
   ...DefaultTheme,

@@ -2,7 +2,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const User = () => {
+const ProflieUser = () => {
   return (
     <View>
       <Text>User</Text>
@@ -10,4 +10,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default ProflieUser;

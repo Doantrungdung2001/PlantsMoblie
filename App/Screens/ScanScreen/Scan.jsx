@@ -7,7 +7,7 @@ import {
   Button,
   StyleSheet,
 } from "react-native";
-import { COLORS, FONTS, SIZES, icons, images } from "../constants";
+import { COLORS, FONTS, SIZES, icons, images } from "../../Constants";
 import { Camera, CameraType } from "expo-camera";
 
 const Scan = ({ navigation }) => {
@@ -21,7 +21,7 @@ const Scan = ({ navigation }) => {
           flexDirection: "row",
           position: "absolute",
           top: 100,
-          paddingHorizontal: SIZES.padding * 3
+          paddingHorizontal: SIZES.padding * 3,
         }}
       >
         <TouchableOpacity
@@ -185,7 +185,6 @@ const Scan = ({ navigation }) => {
       </View>
     );
   }
-
 
   if (!permission) {
     // Camera permissions are still loading

@@ -13,36 +13,12 @@ import {
   Platform,
 } from "react-native";
 
-import { COLORS, SIZES, FONTS, icons, images } from "../constants";
+import { COLORS, SIZES, FONTS, icons, images } from "../Constants";
 import { LinearGradient } from "expo-linear-gradient";
 
 const SignUp = ({navigation}) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  // const [areas, setAreas] = useState([]);
-  // const [selectArea, setSelectdArea] = useState(null);
-  // const [modalVisible, setModalVisible] = useState(false);
-
-  // useEffect(() => {
-  //   fetch("https://restcountries.com/v3.1/all")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       let areaData = data.map((item) => {
-  //         return {
-  //           code: item.alpha2Code,
-  //           name: item.name,
-  //           callingCode: `+${item.callingCodes[0]}`,
-  //           flag: `https://www.countryflags.io/${item.alpha2Code}/flat/64.png`,
-  //         };
-  //       });
-
-  //       setAreas(areaData);
-
-  //       if (areaData.length > 0) {
-  //         setSelectdArea(defaultData[0]);
-  //       }
-  //     });
-  // }, []);
 
   function renderHeader() {
     return (
