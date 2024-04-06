@@ -3,59 +3,39 @@ import { Text, TouchableOpacity, View, Image } from "react-native";
 import { COLORS, SIZES, FONTS, images, icons } from "../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FlatList } from "react-native-gesture-handler";
-const Home = () => {
+import { SliderBox } from "react-native-image-slider-box";
+const Home = ({ navigation }) => {
   const featureData = [
     {
       id: 1,
-      icon: icons.reload,
-      color: COLORS.purple,
-      backgroundColor: COLORS.lightpurple,
-      description: "Top Up",
-    },
-    {
-      id: 2,
       icon: icons.send,
       color: COLORS.yellow,
       backgroundColor: COLORS.lightyellow,
       description: "Transfer",
     },
     {
-      id: 3,
+      id: 2,
       icon: icons.internet,
       color: COLORS.primary,
       backgroundColor: COLORS.lightGreen,
       description: "Internet",
     },
     {
-      id: 4,
+      id: 3,
       icon: icons.wallet,
       color: COLORS.red,
       backgroundColor: COLORS.lightRed,
       description: "Wallet",
     },
     {
-      id: 5,
+      id: 4,
       icon: icons.bill,
       color: COLORS.yellow,
       backgroundColor: COLORS.lightyellow,
       description: "Bill",
     },
     {
-      id: 6,
-      icon: icons.game,
-      color: COLORS.primary,
-      backgroundColor: COLORS.lightGreen,
-      description: "Games",
-    },
-    {
-      id: 7,
-      icon: icons.phone,
-      color: COLORS.red,
-      backgroundColor: COLORS.lightRed,
-      description: "Moblie",
-    },
-    {
-      id: 8,
+      id: 5,
       icon: icons.more,
       color: COLORS.purple,
       backgroundColor: COLORS.lightpurple,
@@ -136,21 +116,25 @@ const Home = () => {
   }
 
   function renderBanner() {
+    const Slides = [
+      "https://www.veteransunited.com/assets/craft/images/blog/_blogHero/farm.jpg",
+      "https://montereybayfarmers.org/wp-content/uploads/2014/03/farm-fields-with-clouds21.jpg",
+      "https://wallpapercave.com/wp/wp8778108.jpg",
+      "https://cdn.wallpapersafari.com/26/87/16h8re.jpg",
+    ];
     return (
-      <View
-        style={{
-          height: 120,
-          borderRadius: 20,
-        }}
-      >
-        <Image
-          source={images.banner}
-          resizeMethod="cover"
-          style={{
-            width: "100%",
-            height: "100%",
-            borderRadius: 20,
+      <View style={{ flex: 1, alignItems: "center" }}>
+        <SliderBox
+          images={Slides}
+          dotColor={COLORS.primary}
+          inactiveDotColor={COLORS.secondary}
+          ImageCocomponentStyle={{
+            borderRadius: 15,
+            width: "95%",
+            marginTop: 15,
           }}
+          autoplay
+          circleLoop
         />
       </View>
     );
@@ -159,7 +143,12 @@ const Home = () => {
   function renderFeatures() {
     const Header = () => (
       <View style={{ marginBottom: SIZES.padding * 2 }}>
-        <Text style={{ ...FONTS.h3 }}>feature</Text>
+        <Text
+          onPress={() => navigation.navigate("GrowVegetables")}
+          style={{ ...FONTS.h3 }}
+        >
+          feature
+        </Text>
       </View>
     );
 
@@ -170,7 +159,9 @@ const Home = () => {
           width: 60,
           alignItems: "center",
         }}
-        onPress={() => console.log(item.description)}
+        onPress={() => {
+          console.log(item.description);
+        }}
       >
         <View
           style={{

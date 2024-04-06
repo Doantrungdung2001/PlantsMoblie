@@ -106,6 +106,9 @@ export const FONTS = {
     fontSize: SIZES.body5,
     lineHeight: 22,
   },
+  regular: "DMRegular",
+  medium: "DMMedium",
+  bold: "DMBold",
 };
 
 const SHADOWS = {

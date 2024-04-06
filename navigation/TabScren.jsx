@@ -9,8 +9,7 @@ import { Svg } from "react-native-svg";
 
 import Scan from "../screens/Scan";
 import Home from "../screens/Home";
-import Farm from "../screens/Farm";
-import Search from "../screens/Search";
+import User from "../screens/User";
 
 import { COLORS, icons } from "../constants";
 
@@ -129,7 +128,7 @@ const TabScren = () => {
       />
       <Tab.Screen
         name="User"
-        component={Farm}
+        component={User}
         options={{
           tabBarIcon: ({ focused }) => (
             <Image

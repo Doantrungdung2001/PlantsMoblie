@@ -6,7 +6,8 @@ import { StyleSheet, Text, View } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import SignUp from "./screens/SignUp";
 import TabScren from "./navigation/TabScren";
-import Search from "./screens/Search";
+import GrowVegetables from "./screens/serviceapp/GrowVegetables";
+
 const theme = {
   ...DefaultTheme,
   colors: {
@@ -49,7 +50,7 @@ export default function App() {
         <Stack.Screen name="Home" component={TabScren} />
 
         {/*Screen */}
-        <Stack.Screen name="Search" component={Search}/>
+        <Stack.Screen name="GrowVegetables" component={GrowVegetables} />
       </Stack.Navigator>
     </NavigationContainer>
   );
