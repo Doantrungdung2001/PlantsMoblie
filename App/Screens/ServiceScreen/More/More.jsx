@@ -30,7 +30,6 @@ const More = () => {
       <View>
         <Text
           style={{
-            fontFamily: "Roboto-BoldItalic",
             color: COLORS.gray,
             fontSize: 30,
             textAlign: "center",
