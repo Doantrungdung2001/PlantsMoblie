@@ -6,7 +6,6 @@ import { StyleSheet, Text, View } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import SignUp from "./App/Screens/SignUp";
 import TabScren from "./App/Navigation/TabScren";
-import GrowVegetables from "./App/Screens/ServiceScreen/GrowVegetables/GrowVegetables";
 
 const theme = {
   ...DefaultTheme,
@@ -20,11 +19,10 @@ const Stack = createStackNavigator();
 
 export default function App() {
   const [fontLoaded] = useFonts({
-    regular: require("./assets/fonts/Roboto-Regular.ttf"),
-    ltalic: require("./assets/fonts/Roboto-Italic.ttf"),
-    light: require("./assets/fonts/Roboto-Light.ttf"),
-    thin: require("./assets/fonts/Roboto-Thin.ttf"),
-    boldltalic: require("./assets/fonts/Roboto-BoldItalic.ttf"),
+    "regular": require("./assets/fonts/Roboto-Regular.ttf"),
+    "ltalic": require("./assets/fonts/Roboto-Italic.ttf"),
+    "light": require("./assets/fonts/Roboto-Light.ttf"),
+    "thin": require("./assets/fonts/Roboto-Thin.ttf"),
   });
 
   const onLayOutRootView = useCallback(async () => {
@@ -48,9 +46,6 @@ export default function App() {
 
         {/*Tab*/}
         <Stack.Screen name="Home" component={TabScren} />
-
-        {/*Screen */}
-        <Stack.Screen name="GrowVegetables" component={GrowVegetables} />
       </Stack.Navigator>
     </NavigationContainer>
   );

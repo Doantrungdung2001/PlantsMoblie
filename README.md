@@ -29,3 +29,9 @@ npm install react-native-safe-area-context
 ```
 npm i react-native-image-slider-box
 ```
+```
+npm i @clerk/clerk-expo
+```
+```
+npm install @react-navigation/stack
+```

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
 import { COLORS, SIZES, FONTS, images, icons } from "../../Constants";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FlatList } from "react-native-gesture-handler";
+import { FlatList, TextInput } from "react-native-gesture-handler";
 import { SliderBox } from "react-native-image-slider-box";
-const Home = ({ navigation }) => {
+import { useNavigation } from "@react-navigation/native";
+const Home = () => {
   const featureData = [
     {
       id: 1,
@@ -72,44 +73,57 @@ const Home = ({ navigation }) => {
 
   const [feature, setFeatures] = useState(featureData);
   const [specialPromo, setSpecialPromo] = useState(specialPromoData);
-
+  const navigation = useNavigation();
   function renderHeader() {
     return (
-      <View style={{ flexDirection: "row", marginVertical: SIZES.padding * 2 }}>
-        <View style={{ flex: 1 }}>
-          <Text style={{ ...FONTS.h1 }}>Hello</Text>
-          <Text style={{ ...FONTS.body2, color: COLORS.gray }}>ByProgram</Text>
-        </View>
-        <View>
-          <TouchableOpacity
-            style={{
-              height: 40,
-              width: 40,
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: COLORS.lightGray,
-            }}
-          >
-            <Image
-              source={icons.bell}
+      <View>
+        <View
+          style={{
+            flexDirection: "row",
+            marginVertical: SIZES.padding * 2,
+            padding: 20,
+            backgroundColor: COLORS.green,
+            borderBottomLeftRadius: 25,
+            borderBottomRightRadius: 25,
+          }}
+        >
+          <View style={{ flex: 1 }}>
+            <Text style={{ ...FONTS.h1 }}>Hello</Text>
+            <Text style={{ ...FONTS.body2, color: COLORS.gray }}>
+              ByProgram
+            </Text>
+          </View>
+          <View>
+            <TouchableOpacity
               style={{
-                width: 20,
-                height: 20,
-                tintColor: COLORS.secondary,
+                height: 40,
+                width: 40,
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: COLORS.lightGray,
               }}
-            />
-            <View
-              style={{
-                position: "absolute",
-                top: -5,
-                right: -5,
-                height: 10,
-                width: 10,
-                backgroundColor: COLORS.red,
-                borderRadius: 5,
-              }}
-            ></View>
-          </TouchableOpacity>
+            >
+              <Image
+                source={icons.bell}
+                style={{
+                  width: 20,
+                  height: 20,
+                  tintColor: COLORS.secondary,
+                }}
+              />
+              <View
+                style={{
+                  position: "absolute",
+                  top: -5,
+                  right: -5,
+                  height: 10,
+                  width: 10,
+                  backgroundColor: COLORS.red,
+                  borderRadius: 5,
+                }}
+              ></View>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -143,25 +157,22 @@ const Home = ({ navigation }) => {
   function renderFeatures() {
     const Header = () => (
       <View style={{ marginBottom: SIZES.padding * 2 }}>
-        <Text
-          onPress={() => navigation.navigate("GrowVegetables")}
-          style={{ ...FONTS.h3 }}
-        >
-          feature
-        </Text>
+        <Text style={{ ...FONTS.h3 }}>feature</Text>
       </View>
     );
 
-    const renderItem = ({ item }) => (
+    const renderItem = ({ item, index }) => (
       <TouchableOpacity
         style={{
           marginBottom: SIZES.padding * 2,
           width: 60,
           alignItems: "center",
         }}
-        onPress={() => {
-          console.log(item.description);
-        }}
+        onPress={() =>
+          navigation.push(`service-screen/${item.description}`, {
+            category: item.description,
+          })
+        }
       >
         <View
           style={{

@@ -8,8 +8,8 @@ import {
 import { Svg } from "react-native-svg";
 
 import Scan from "../Screens/ScanScreen/Scan";
-import Home from "../Screens/HomeScreen/Home";
 import ProflieUser from "../Screens/ProfileUserScreen/ProfileUser";
+import HomeNavigation from "./HomeNavigation";
 
 import { COLORS, icons } from "../Constants";
 
@@ -94,12 +94,12 @@ const TabScren = () => {
       }}
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: COLORS.green
+        tabBarActiveTintColor: COLORS.green,
       }}
     >
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="HomeNavigation"
+        component={HomeNavigation}
         options={{
           tabBarLabel: ({ color }) => (
             <Text style={{ color: color, fontSize: 12, marginTop: -7 }}>
