@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import Search from "../../../Components/Search";
-import ListFarmGrowVegetable from "./ListFarmGrowVegetable";
+import ListProjectGrowVegetable from "./ListProjectGrowVegetable";
 
 listfarm = [
   {
@@ -90,7 +90,7 @@ const GrowVegetables = () => {
       <FlatList
         style={{ marginTop: 10 }}
         data={listfarm}
-        renderItem={({ item, index }) => <ListFarmGrowVegetable farm={item} />}
+        renderItem={({ item, index }) => <ListProjectGrowVegetable farm={item} />}
       />
     </View>
   );
