@@ -7,6 +7,7 @@ import Internet from "../Screens/ServiceScreen/Internet/Internet";
 import Bill from "../Screens/ServiceScreen/Bill/Bill";
 import More from "../Screens/ServiceScreen/More/More";
 import Wallet from "../Screens/ServiceScreen/Wallet/Wallet";
+import DetailFarmGrowVegetables from "../Screens/ServiceScreen/GrowVegetables/DetailFarmGrowVegetables";
 const Stack = createStackNavigator();
 
 const HomeNavigation = () => {
@@ -22,6 +23,7 @@ const HomeNavigation = () => {
       <Stack.Screen name="service-screen/Wallet" component={Wallet} />
       <Stack.Screen name="service-screen/Bill" component={Bill} />
       <Stack.Screen name="service-screen/More" component={More} />
+      <Stack.Screen name="farm-detail" component={DetailFarmGrowVegetables} />
     </Stack.Navigator>
   );
 };

@@ -21,6 +21,7 @@ export default function App() {
   const [fontLoaded] = useFonts({
     "regular": require("./assets/fonts/Roboto-Regular.ttf"),
     "ltalic": require("./assets/fonts/Roboto-Italic.ttf"),
+    "Roboto-BoldItalic": require("./assets/fonts/Roboto-BoldItalic.ttf"),
     "light": require("./assets/fonts/Roboto-Light.ttf"),
     "thin": require("./assets/fonts/Roboto-Thin.ttf"),
   });

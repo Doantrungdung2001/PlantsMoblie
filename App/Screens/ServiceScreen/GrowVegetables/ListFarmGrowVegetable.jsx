@@ -1,10 +1,15 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { COLORS } from "../../../Constants";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 const ListFarmGrowVegetable = ({ farm }) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.push("farm-detail", { farmInfo: farm })}
+    >
       <Image source={{ uri: farm?.image }} style={styles.image} />
       <View style={styles.subContainer}>
         <Text
@@ -40,7 +45,7 @@ const ListFarmGrowVegetable = ({ farm }) => {
           {farm.distance} km
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
