@@ -30,7 +30,7 @@ const Scan = ({ navigation }) => {
             alignItems: "center",
             justifyContent: "center",
           }}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("HomeNavigation")}
         >
           <Image
             source={icons.close}
