@@ -83,7 +83,7 @@ const DetailProjectGrowVegetables = () => {
           <Text
             style={{
               textAlign: "center",
-              fontFamily: "Roboto-BoldItalic",
+              fontFamily: "RobotoCondensed-Bold",
               color: COLORS.white,
               fontSize: 18,
             }}

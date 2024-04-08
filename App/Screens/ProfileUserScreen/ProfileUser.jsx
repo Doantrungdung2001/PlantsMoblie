@@ -1,11 +1,110 @@
 // rnfe
-import { View, Text } from "react-native";
+import { View, Text, Image, FlatList, Touchable, TouchableOpacity } from "react-native";
 import React from "react";
+import { COLORS } from "../../Constants";
+import { Ionicons } from "@expo/vector-icons";
+data = [
+  {
+    id: 1,
+    name: "Chỉnh sửa thông tin",
+    icon: "settings",
+  },
+  {
+    id: 2,
+    name: "Ưu đãi",
+    icon: "card-sharp",
+  },
+  {
+    id: 3,
+    name: "Vườn của tôi",
+    icon: "cart-sharp",
+  },
+  {
+    id: 4,
+    name: "Lịch sử",
+    icon: "film",
+  },
+  {
+    id: 5,
+    name: "Đăng xuất",
+    icon: "log-out",
+  },
+];
 
+const user = {
+  avatar: "https://image.pngaaa.com/764/3043764-middle.png",
+  name: "Doan Trung Dung",
+  gmail: "doantrungdung2001@gmail.com",
+};
 const ProflieUser = () => {
   return (
     <View>
-      <Text>User</Text>
+      <View
+        style={{ padding: 20, paddingTop: 50, backgroundColor: COLORS.primary }}
+      >
+        <Text style={{ fontSize: 30, fontFamily: "Roboto-Medium" }}>Hồ sơ</Text>
+        <View
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 20,
+            backgroundColor: COLORS.primary,
+          }}
+        >
+          <Image
+            source={{ uri: user.avatar }}
+            style={{ width: 90, height: 90, borderRadius: 99 }}
+          />
+          <Text
+            style={{
+              fontSize: 26,
+              marginTop: 8,
+              fontFamily: "Roboto-Medium",
+              color: COLORS.white,
+            }}
+          >
+            {user.name}
+          </Text>
+          <Text
+            style={{
+              fontSize: 15,
+              marginTop: 8,
+              fontFamily: "Roboto-Medium",
+              color: COLORS.white,
+            }}
+          >
+            {user.gmail}
+          </Text>
+        </View>
+      </View>
+      <View style={{ paddingTop: 50 }}>
+        <FlatList
+          data={data}
+          renderItem={({ item, index }) => (
+            <TouchableOpacity
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 10,
+                marginBottom: 30,
+                paddingHorizontal: 70,
+              }}
+            >
+              <Ionicons name={item.icon} size={44} color={COLORS.primary} />
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontFamily: "Roboto-Medium",
+                }}
+              >
+                {item.name}
+              </Text>
+            </TouchableOpacity>
+          )}
+        />
+      </View>
     </View>
   );
 };

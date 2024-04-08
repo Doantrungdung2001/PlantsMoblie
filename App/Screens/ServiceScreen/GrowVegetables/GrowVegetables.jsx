@@ -90,7 +90,9 @@ const GrowVegetables = () => {
       <FlatList
         style={{ marginTop: 10 }}
         data={listfarm}
-        renderItem={({ item, index }) => <ListProjectGrowVegetable farm={item} />}
+        renderItem={({ item, index }) => (
+          <ListProjectGrowVegetable farm={item} />
+        )}
       />
     </View>
   );

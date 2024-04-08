@@ -14,7 +14,7 @@ const ListFarmGrowVegetable = ({ farm }) => {
       <View style={styles.subContainer}>
         <Text
           style={{
-            fontFamily: "Roboto-BoldItalic",
+            fontFamily: "RobotoCondensed-Bold",
             fontSize: 25,
           }}
         >
