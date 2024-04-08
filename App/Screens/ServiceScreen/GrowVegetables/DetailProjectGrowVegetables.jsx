@@ -5,15 +5,18 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  Modal,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../Constants";
 import IntruductionProject from "./IntruductionProject";
+import RegistrationGrowVegetables from "./RegistrationGrowVegetables";
 const DetailProjectGrowVegetables = () => {
   const param = useRoute().params;
   const [farmInformation, setFarmInformation] = useState(param.farmInfo);
+  const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     console.log(param?.farmInfo);
   });
@@ -73,7 +76,10 @@ const DetailProjectGrowVegetables = () => {
         </View>
       </ScrollView>
       <View>
-        <TouchableOpacity style={styles.bookingBtn}>
+        <TouchableOpacity
+          style={styles.bookingBtn}
+          onPress={() => setShowModal(!showModal)}
+        >
           <Text
             style={{
               textAlign: "center",
@@ -86,6 +92,10 @@ const DetailProjectGrowVegetables = () => {
           </Text>
         </TouchableOpacity>
       </View>
+      {/* Đăng ký */}
+      <Modal animationType="slide" visible={showModal}>
+        <RegistrationGrowVegetables />
+      </Modal>
     </View>
   );
 };
