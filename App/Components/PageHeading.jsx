@@ -16,7 +16,7 @@ const PageHeading = ({ title }) => {
         onPress={() => navigation.goBack()}
       >
         <Ionicons name="arrow-back-outline" size={24} color="black" />
-        <Text style={{ fontSize: 25, fontFamily: "Roboto-BoldItalic" }}>
+        <Text style={{ fontSize: 25, fontFamily: "RobotoCondensed-Bold" }}>
           {title}
         </Text>
       </TouchableOpacity>

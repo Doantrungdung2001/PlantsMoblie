@@ -1,37 +1,39 @@
 import { FlatList, Image, StyleSheet, Text, Button, View } from "react-native";
 import React from "react";
-import Heading from "./Heading";
-import { COLORS, images } from "../Constants";
+import Heading from "../../../Components/Heading";
+import { COLORS } from "../../../Constants";
+import { useNavigation } from "@react-navigation/native";
 
 const data = [
   {
     id: 1,
-    name: "Rau ăn lá",
+    name: "Combo1",
     image: "https://bloganchoi.com/wp-content/uploads/2021/03/rau-cu.jpg",
   },
   {
     id: 2,
-    name: "Rau ăn củ",
+    name: "Combo2",
     image:
       "https://media.doisongvietnam.vn/u/rootimage/editor/2017/08/22/12/22/w825/11503357754_5582.jpg",
   },
   {
     id: 3,
-    name: "Rau ăn fads",
+    name: "Combo3",
     image:
       "https://giamcanthai.com/wp-content/uploads/2018/02/rau-cu-qua-1.jpg",
   },
   {
     id: 1,
-    name: "Rau ăn fasd",
+    name: "Combo4",
     image:
       "http://favri.org.vn/images/anh_tin_tuc/Rau_duoc_chia_lam_2_loai.jpg",
   },
 ];
 
 const Slider = () => {
+  const navigation = useNavigation();
   return (
-    <View style={{ marginTop: 20 }}>
+    <View style={{ marginTop: 20 , marginLeft: 10 }}>
       <Heading text={"Dịch vụ trồng rau"} />
 
       <FlatList
@@ -53,7 +55,9 @@ const Slider = () => {
               </Text>
               <View style={styles.buttonBtn}>
                 <Button
-                  // onPress={}
+                  onPress={() =>
+                    navigation.push("service-detail", { serviceInfo: item })
+                  }
                   title="Chi tiết"
                   color={COLORS.white}
                   accessibilityLabel="Learn more about this purple button"

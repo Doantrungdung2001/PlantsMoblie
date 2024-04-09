@@ -13,7 +13,7 @@ export default Heading;
 
 const styles = StyleSheet.create({
   heading: {
-    fontSize: 30,
+    fontSize: 25,
     fontFamily: "RobotoCondensed-Bold",
     marginBottom: 10,
   },

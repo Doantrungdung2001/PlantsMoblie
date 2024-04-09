@@ -16,7 +16,7 @@ const RegistrationGrowVegetables = () => {
   return (
     <View style={{ padding: 20 }}>
       <PageHeading title={"Đăng ký"} />
-      <View style={{ paddingTop: 20 }}>
+      {/* <View style={{ paddingTop: 20 }}>
         <Heading text={"Thời gian"} />
         <TextInput
           placeholder="90 ngày,..."
@@ -36,10 +36,9 @@ const RegistrationGrowVegetables = () => {
           onChange={(text) => setNote(text)}
         />
       </View>
-      {/* Bottom Confirm */}
       <TouchableOpacity style={{ marginTop: 15 }}>
         <Text style={styles.confirmBtn}>Gửi đăng ký</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };

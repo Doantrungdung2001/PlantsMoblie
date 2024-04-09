@@ -12,19 +12,15 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../Constants";
 import IntruductionProject from "./IntruductionProject";
-import RegistrationGrowVegetables from "./RegistrationGrowVegetables";
-import Slider from "../../../Components/Slider";
+import SliderService from "./SliderService";
+
 const DetailProjectGrowVegetables = () => {
   const param = useRoute().params;
   const [farmInformation, setFarmInformation] = useState(param.farmInfo);
-  const [showModal, setShowModal] = useState(false);
-  useEffect(() => {
-    console.log(param?.farmInfo);
-  });
   const navigation = useNavigation();
   return (
     <View>
-      <ScrollView style={{ height: "93%" }}>
+      <ScrollView>
         <TouchableOpacity
           style={styles.backBtnContainer}
           onPress={() => navigation.goBack()}
@@ -75,29 +71,9 @@ const DetailProjectGrowVegetables = () => {
             }}
           ></View>
         </View>
-        <Slider />
+        {/* slider service */}
+        <SliderService />
       </ScrollView>
-      <View>
-        <TouchableOpacity
-          style={styles.bookingBtn}
-          onPress={() => setShowModal(!showModal)}
-        >
-          <Text
-            style={{
-              textAlign: "center",
-              fontFamily: "RobotoCondensed-Bold",
-              color: COLORS.white,
-              fontSize: 18,
-            }}
-          >
-            Đăng ký
-          </Text>
-        </TouchableOpacity>
-      </View>
-      {/* Đăng ký */}
-      <Modal animationType="slide" visible={showModal}>
-        <RegistrationGrowVegetables />
-      </Modal>
     </View>
   );
 };
@@ -118,12 +94,5 @@ const styles = StyleSheet.create({
   },
   subContainer: {
     textAlign: "center",
-  },
-  bookingBtn: {
-    padding: 15,
-    backgroundColor: COLORS.green,
-    borderWidth: 1,
-    borderColor: COLORS.primary,
-    borderRadius: 99,
   },
 });
