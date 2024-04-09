@@ -13,6 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../Constants";
 import IntruductionProject from "./IntruductionProject";
 import RegistrationGrowVegetables from "./RegistrationGrowVegetables";
+import Slider from "../../../Components/Slider";
 const DetailProjectGrowVegetables = () => {
   const param = useRoute().params;
   const [farmInformation, setFarmInformation] = useState(param.farmInfo);
@@ -74,6 +75,7 @@ const DetailProjectGrowVegetables = () => {
             }}
           ></View>
         </View>
+        <Slider />
       </ScrollView>
       <View>
         <TouchableOpacity

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const Heading = ({text}) => {
+const Heading = ({ text }) => {
   return (
     <View>
       <Text style={styles.heading}>{text}</Text>
@@ -13,8 +13,8 @@ export default Heading;
 
 const styles = StyleSheet.create({
   heading: {
-    fontSize: 20,
-    fontFamily: "Roboto-BoldItalic",
+    fontSize: 30,
+    fontFamily: "RobotoCondensed-Bold",
     marginBottom: 10,
   },
 });
