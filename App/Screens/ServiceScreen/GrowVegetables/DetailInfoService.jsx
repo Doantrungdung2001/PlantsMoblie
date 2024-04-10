@@ -168,7 +168,8 @@ const DetailInfoService = () => {
       <View>
         <TouchableOpacity
           style={styles.bookingBtn}
-          onPress={() => setShowModal(!showModal)}
+        //   onPress={() => setShowModal(!showModal)}
+          onPress={() => navigation.push("select-vegestables")}
         >
           <Text
             style={{
@@ -178,13 +179,13 @@ const DetailInfoService = () => {
               fontSize: 18,
             }}
           >
-            Đăng ký
+            Lựa chọn rau trồng
           </Text>
         </TouchableOpacity>
       </View>
-      <Modal animationType="slide" visible={showModal}>
+      {/* <Modal animationType="slide" visible={showModal}>
         <RegistrationGrowVegetables />
-      </Modal>
+      </Modal> */}
     </View>
   );
 };

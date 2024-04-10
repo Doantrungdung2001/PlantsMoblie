@@ -1,4 +1,3 @@
-import { View, Text } from "react-native";
 import React from "react";
 import Home from "../Screens/HomeScreen/Home";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -9,7 +8,7 @@ import More from "../Screens/ServiceScreen/More/More";
 import Wallet from "../Screens/ServiceScreen/Wallet/Wallet";
 import DetailFarmGrowVegetables from "../Screens/ServiceScreen/GrowVegetables/DetailProjectGrowVegetables";
 import DetailInfoService from "../Screens/ServiceScreen/GrowVegetables/DetailInfoService";
-
+import SelectVegetables from "../Screens/ServiceScreen/GrowVegetables/SelectVegetables";
 const Stack = createStackNavigator();
 
 const HomeNavigation = () => {
@@ -27,6 +26,7 @@ const HomeNavigation = () => {
       <Stack.Screen name="service-screen/More" component={More} />
       <Stack.Screen name="farm-detail" component={DetailFarmGrowVegetables} />
       <Stack.Screen name="service-detail" component={DetailInfoService} />
+      <Stack.Screen name="select-vegestables" component={SelectVegetables} />
     </Stack.Navigator>
   );
 };
