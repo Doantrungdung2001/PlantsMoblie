@@ -33,16 +33,45 @@ const DetailFarmGrowVegetables = () => {
           style={{ width: "100%", height: 300 }}
         />
         <View style={styles.infoContainer}>
-          <Text style={{ fontSize: 25 }}>{farmInformation.name}</Text>
+          <Text
+            style={{
+              fontSize: 35,
+              textAlign: "center",
+              fontFamily: "RobotoCondensed-Bold",
+            }}
+          >
+            {farmInformation.name}
+          </Text>
           <View style={styles.subContainer}>
-            <Text style={{ color: "blue", fontSize: 20 }}>
+            <Text
+              style={{
+                color: "blue",
+                fontSize: 20,
+                textAlign: "center",
+                fontFamily: "Roboto-Medium",
+              }}
+            >
               {farmInformation.gmail}
             </Text>
-            <Text style={{ color: "blue", fontSize: 17 }}>
+            <Text
+              style={{
+                color: "blue",
+                fontSize: 17,
+                textAlign: "center",
+                fontFamily: "Roboto-Medium",
+              }}
+            >
               {farmInformation.phone}
             </Text>
           </View>
-          <Text style={{ color: COLORS.secondary, fontSize: 18 }}>
+          <Text
+            style={{
+              color: COLORS.secondary,
+              fontSize: 18,
+              fontFamily: "regular",
+              textAlign: "center",
+            }}
+          >
             <Ionicons
               name="ios-location-sharp"
               size={24}

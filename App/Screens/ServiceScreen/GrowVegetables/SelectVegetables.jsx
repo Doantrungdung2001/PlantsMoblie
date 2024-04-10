@@ -257,51 +257,52 @@ const SelectVegetables = () => {
           <FlatList
             data={cart}
             renderItem={({ item, key }) => (
-              <TouchableOpacity style={styles.containerModal}>
-                <Image
-                  source={{ uri: item?.image }}
-                  style={styles.imageModal}
-                />
-                <View style={styles.subContainerModal}>
-                  <Text
+              <ScrollView>
+                <TouchableOpacity style={styles.containerModal}>
+                  <Image
+                    source={{ uri: item?.image }}
+                    style={styles.imageModal}
+                  />
+                  <View style={styles.subContainerModal}>
+                    <Text
+                      style={{
+                        fontFamily: "RobotoCondensed-Bold",
+                        fontSize: 25,
+                      }}
+                    >
+                      {item.title}
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: "regular",
+                        color: COLORS.black,
+                        fontSize: 17,
+                      }}
+                    >
+                      afasd
+                    </Text>
+                    <Text
+                      style={{
+                        fontFamily: "regular",
+                        color: COLORS.gray,
+                        fontSize: 14,
+                      }}
+                    >
+                      km
+                    </Text>
+                  </View>
+                  <AntDesign
+                    name="delete"
+                    size={40}
+                    color="red"
                     style={{
-                      fontFamily: "RobotoCondensed-Bold",
-                      fontSize: 25,
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      paddingHorizontal: 90,
                     }}
-                  >
-                    {item.title}
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: "regular",
-                      color: COLORS.black,
-                      fontSize: 17,
-                    }}
-                  >
-                    afasd
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: "regular",
-                      color: COLORS.gray,
-                      fontSize: 14,
-                    }}
-                  >
-                    km
-                  </Text>
-                </View>
-                <AntDesign
-                  name="delete"
-                  size={40}
-                  color="red"
-                  style={{
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    paddingHorizontal: 90,
-
-                  }}
-                />
-              </TouchableOpacity>
+                  />
+                </TouchableOpacity>
+              </ScrollView>
             )}
           />
         </View>
@@ -421,13 +422,14 @@ const styles = StyleSheet.create({
 
   /**************** Modal *****************/
   containerModal: {
-    padding: 10,
+    marginTop: 30,
     backgroundColor: COLORS.white,
     borderRadius: 15,
-    marginBottom: 15,
     display: "flex",
     flexDirection: "row",
     gap: 10,
+    backgroundColor: COLORS.lightGray,
+    alignItems: "center",
   },
   subContainerModal: {
     display: "flex",

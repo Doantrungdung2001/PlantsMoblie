@@ -8,6 +8,7 @@ import {
   FlatList,
 } from "react-native";
 import Heading from "./Heading";
+import { COLORS } from "../Constants";
 
 const data = [
   {
@@ -97,7 +98,9 @@ const ListProject = () => {
               </View>
               <View style={styles.cardContent}>
                 <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.count}>({item.count} Photos)</Text>
+                <TouchableOpacity style={[styles.button, styles.google]}>
+                  <Text style={styles.buttonText}>Chi tiết</Text>
+                </TouchableOpacity>
               </View>
             </TouchableOpacity>
           );
@@ -161,5 +164,21 @@ const styles = StyleSheet.create({
     fontSize: 18,
     flex: 1,
     color: "#B0C4DE",
+  },
+
+  button: {
+    width: "90%",
+    height: 50,
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 10,
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
+  google: {
+    backgroundColor: COLORS.green,
   },
 });
