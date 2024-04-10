@@ -33,7 +33,7 @@ const data = [
 const Slider = () => {
   const navigation = useNavigation();
   return (
-    <View style={{ marginTop: 20 , marginLeft: 10 }}>
+    <View>
       <Heading text={"Dịch vụ trồng rau"} />
 
       <FlatList
@@ -75,7 +75,7 @@ export default Slider;
 
 const styles = StyleSheet.create({
   container: {
-    marginRight: 10,
+    margin: 15,
     padding: 10,
     backgroundColor: COLORS.white,
     borderRadius: 10,

@@ -16,5 +16,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontFamily: "RobotoCondensed-Bold",
     marginBottom: 10,
+    marginLeft: 15,
   },
 });

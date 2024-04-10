@@ -13,8 +13,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../Constants";
 import IntruductionProject from "./IntruductionProject";
 import SliderService from "./SliderService";
+import ListProject from "../../../Components/ListProject";
 
-const DetailProjectGrowVegetables = () => {
+const DetailFarmGrowVegetables = () => {
   const param = useRoute().params;
   const [farmInformation, setFarmInformation] = useState(param.farmInfo);
   const navigation = useNavigation();
@@ -73,12 +74,14 @@ const DetailProjectGrowVegetables = () => {
         </View>
         {/* slider service */}
         <SliderService />
+        {/*List project */}
+        <ListProject />
       </ScrollView>
     </View>
   );
 };
 
-export default DetailProjectGrowVegetables;
+export default DetailFarmGrowVegetables;
 
 const styles = StyleSheet.create({
   backBtnContainer: {

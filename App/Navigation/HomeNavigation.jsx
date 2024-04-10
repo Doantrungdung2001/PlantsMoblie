@@ -6,7 +6,7 @@ import Internet from "../Screens/ServiceScreen/Internet/Internet";
 import Bill from "../Screens/ServiceScreen/Bill/Bill";
 import More from "../Screens/ServiceScreen/More/More";
 import Wallet from "../Screens/ServiceScreen/Wallet/Wallet";
-import DetailFarmGrowVegetables from "../Screens/ServiceScreen/GrowVegetables/DetailProjectGrowVegetables";
+import DetailFarmGrowVegetables from "../Screens/ServiceScreen/GrowVegetables/DetailFarmGrowVegetables";
 import DetailInfoService from "../Screens/ServiceScreen/GrowVegetables/DetailInfoService";
 import SelectVegetables from "../Screens/ServiceScreen/GrowVegetables/SelectVegetables";
 const Stack = createStackNavigator();
