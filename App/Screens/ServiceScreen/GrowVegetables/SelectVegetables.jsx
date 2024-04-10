@@ -14,6 +14,7 @@ import PageHeading from "../../../Components/PageHeading";
 import { COLORS } from "../../../Constants";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
 const tabs = [
   {
@@ -128,6 +129,23 @@ const tabs = [
   },
 ];
 
+cart = [
+  {
+    id: 1,
+    title: "Option 1",
+    image: "https://img.icons8.com/color/70/000000/cottage.png",
+  },
+  {
+    id: 2,
+    title: "Option 2",
+    image: "https://img.icons8.com/color/70/000000/administrator-male.png",
+  },
+  {
+    id: 3,
+    title: "Option 3",
+    image: "https://img.icons8.com/color/70/000000/filled-like.png",
+  },
+];
 const SelectVegetables = () => {
   const [selectedHeader, setSelectedHeader] = useState(0);
   const [status, setStatus] = useState(tabs[0].name);
@@ -236,6 +254,56 @@ const SelectVegetables = () => {
           >
             <MaterialIcons name="cancel" size={30} color="red" />
           </TouchableOpacity>
+          <FlatList
+            data={cart}
+            renderItem={({ item, key }) => (
+              <TouchableOpacity style={styles.containerModal}>
+                <Image
+                  source={{ uri: item?.image }}
+                  style={styles.imageModal}
+                />
+                <View style={styles.subContainerModal}>
+                  <Text
+                    style={{
+                      fontFamily: "RobotoCondensed-Bold",
+                      fontSize: 25,
+                    }}
+                  >
+                    {item.title}
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: "regular",
+                      color: COLORS.black,
+                      fontSize: 17,
+                    }}
+                  >
+                    afasd
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: "regular",
+                      color: COLORS.gray,
+                      fontSize: 14,
+                    }}
+                  >
+                    km
+                  </Text>
+                </View>
+                <AntDesign
+                  name="delete"
+                  size={40}
+                  color="red"
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    paddingHorizontal: 90,
+
+                  }}
+                />
+              </TouchableOpacity>
+            )}
+          />
         </View>
       </Modal>
     </View>
@@ -349,5 +417,25 @@ const styles = StyleSheet.create({
     borderBlockColor: COLORS.white,
     paddingLeft: 25,
     elevation: 4, // Add elevation for shadow
+  },
+
+  /**************** Modal *****************/
+  containerModal: {
+    padding: 10,
+    backgroundColor: COLORS.white,
+    borderRadius: 15,
+    marginBottom: 15,
+    display: "flex",
+    flexDirection: "row",
+    gap: 10,
+  },
+  subContainerModal: {
+    display: "flex",
+    gap: 8,
+  },
+  imageModal: {
+    width: 100,
+    height: 100,
+    borderRadius: 15,
   },
 });
