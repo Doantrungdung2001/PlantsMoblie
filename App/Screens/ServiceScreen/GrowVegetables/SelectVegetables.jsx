@@ -1,5 +1,4 @@
 import {
-  Dimensions,
   FlatList,
   Pressable,
   StyleSheet,
@@ -8,11 +7,14 @@ import {
   View,
   Image,
   ScrollView,
+  Modal,
 } from "react-native";
 import React, { useState } from "react";
 import PageHeading from "../../../Components/PageHeading";
 import { COLORS } from "../../../Constants";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { MaterialIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+
 const tabs = [
   {
     name: "Rau ăn lá",
@@ -129,58 +131,114 @@ const tabs = [
 const SelectVegetables = () => {
   const [selectedHeader, setSelectedHeader] = useState(0);
   const [status, setStatus] = useState(tabs[0].name);
+  const [showModal, setShowModal] = useState(false);
+  const cartVegestable = [];
+  const addToCart = (vegestables) => {
+    console.log("Du lieu them vao", vegestables);
+    cartVegestable?.map((item, index) => {
+      if (item.id === vegestables.id) {
+        console.log("vegestables is exited !!");
+      } else {
+        cartVegestable.push(vegestables);
+      }
+    });
+    console.log(cartVegestable.length);
+  };
+
   return (
-    <SafeAreaView>
-      <View>
-        <PageHeading title={"Lựa chọn rau trồng"} />
-      </View>
-      <View style={styles.header}>
-        {tabs.map((data, index) => (
-          <Pressable onPress={() => setSelectedHeader(index)}>
-            <Text
-              style={[
-                styles.titleHeader,
-                selectedHeader == index && { color: COLORS.green },
-              ]}
-            >
-              {data.name}
-            </Text>
+    <View>
+      <ScrollView style={{ height: "93%" }}>
+        <View>
+          <PageHeading title={"Lựa chọn rau trồng"} />
+        </View>
+        <View style={styles.header}>
+          {tabs.map((data, index) => (
+            <Pressable onPress={() => setSelectedHeader(index)}>
+              <Text
+                style={[
+                  styles.titleHeader,
+                  selectedHeader == index && { color: COLORS.green },
+                ]}
+              >
+                {data.name}
+              </Text>
 
-            {selectedHeader == index && <View style={styles.line} />}
-          </Pressable>
-        ))}
-      </View>
-      <FlatList
-        style={styles.list}
-        contentContainerStyle={styles.listContainer}
-        data={tabs[selectedHeader].options}
-        horizontal={false}
-        numColumns={2}
-        keyExtractor={(item) => {
-          return item.id;
-        }}
-        renderItem={(item, index) => {
-          return (
-            <ScrollView>
-              <TouchableOpacity style={styles.card}>
-                <Image
-                  style={styles.cardImage}
-                  source={{ uri: item.item.image }}
-                />
-              </TouchableOpacity>
-
-              <View style={styles.cardHeader}>
-                <View
-                  style={{ alignItems: "center", justifyContent: "center" }}
+              {selectedHeader == index && <View style={styles.line} />}
+            </Pressable>
+          ))}
+        </View>
+        <FlatList
+          style={styles.list}
+          contentContainerStyle={styles.listContainer}
+          data={tabs[selectedHeader].options}
+          horizontal={false}
+          numColumns={2}
+          keyExtractor={(item) => {
+            return item.id;
+          }}
+          renderItem={(item, index) => {
+            return (
+              <ScrollView>
+                <TouchableOpacity
+                  style={styles.card}
+                  onPress={() => {
+                    addToCart(item.item);
+                  }}
                 >
-                  <Text style={styles.title}>{item.item.title}</Text>
+                  <Image
+                    style={styles.cardImage}
+                    source={{ uri: item.item.image }}
+                  />
+                </TouchableOpacity>
+
+                <View style={styles.cardHeader}>
+                  <View
+                    style={{ alignItems: "center", justifyContent: "center" }}
+                  >
+                    <Text style={styles.title}>{item.item.title}</Text>
+                  </View>
                 </View>
-              </View>
-            </ScrollView>
-          );
-        }}
-      />
-    </SafeAreaView>
+              </ScrollView>
+            );
+          }}
+        />
+      </ScrollView>
+      <View style={styles.footer}>
+        <Feather
+          name="shopping-cart"
+          size={45}
+          color="green"
+          onPress={() => setShowModal(!showModal)}
+        />
+        <TouchableOpacity style={styles.bookingBtn}>
+          <Text
+            style={{
+              textAlign: "center",
+              fontFamily: "RobotoCondensed-Bold",
+              color: COLORS.white,
+              fontSize: 20,
+            }}
+          >
+            Xác nhận
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <Modal animationType="slide" visible={showModal}>
+        <View style={{ padding: 20, paddingTop: 70 }}>
+          <TouchableOpacity
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: 10,
+              alignItems: "center",
+            }}
+            onPress={() => setShowModal(!showModal)}
+          >
+            <MaterialIcons name="cancel" size={30} color="red" />
+          </TouchableOpacity>
+        </View>
+      </Modal>
+    </View>
   );
 };
 
@@ -233,7 +291,6 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     marginHorizontal: 40,
     backgroundColor: "#e2e2e2",
-    //flexBasis: '42%',
     width: 120,
     height: 120,
     borderRadius: 60,
@@ -273,5 +330,24 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     alignSelf: "center",
     color: "#696969",
+  },
+  bookingBtn: {
+    width: "70%",
+    padding: 13,
+    backgroundColor: COLORS.green,
+    borderWidth: 1,
+    borderColor: COLORS.primary,
+    borderRadius: 99,
+  },
+  footer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 8,
+    alignItems: "center",
+    backgroundColor: COLORS.white,
+    borderRadius: 99,
+    borderBlockColor: COLORS.white,
+    paddingLeft: 25,
+    elevation: 4, // Add elevation for shadow
   },
 });

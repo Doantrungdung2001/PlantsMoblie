@@ -5,7 +5,7 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 const PageHeading = ({ title }) => {
   const navigation = useNavigation();
   return (
-    <View style={{ padding: 20, paddingTop: 30 }}>
+    <View style={{ padding: 20, paddingTop: 40 }}>
       <TouchableOpacity
         style={{
           display: "flex",
