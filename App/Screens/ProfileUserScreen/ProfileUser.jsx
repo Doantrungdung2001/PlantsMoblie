@@ -16,21 +16,25 @@ data = [
   {
     id: 1,
     name: "Chỉnh sửa thông tin",
+    param: "update-info",
     icon: "settings",
   },
   {
     id: 2,
     name: "Ưu đãi",
+    param: "points",
     icon: "card-sharp",
   },
   {
     id: 3,
     name: "Vườn của tôi",
+    param: "my-garden",
     icon: "cart-sharp",
   },
   {
     id: 4,
     name: "Lịch sử",
+    param: "history-grow-vegetables",
     icon: "film",
   },
   {
@@ -101,7 +105,7 @@ const ProflieUser = () => {
                 marginBottom: 30,
                 paddingHorizontal: 70,
               }}
-              onPress={() => navigation.push("mygarden")}
+              onPress={() => navigation.push(`profile/${item.param}`)}
             >
               <Ionicons name={item.icon} size={44} color={COLORS.primary} />
               <Text
