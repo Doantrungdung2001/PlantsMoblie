@@ -12,7 +12,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../Constants";
 import React, { useState } from "react";
 import Heading from "../../../Components/Heading";
-import RegistrationGrowVegetables from "./RegistrationGrowVegetables";
 
 const DetailInfoService = () => {
   const navigation = useNavigation();
@@ -168,7 +167,7 @@ const DetailInfoService = () => {
       <View>
         <TouchableOpacity
           style={styles.bookingBtn}
-        //   onPress={() => setShowModal(!showModal)}
+          //   onPress={() => setShowModal(!showModal)}
           onPress={() => navigation.push("select-vegestables")}
         >
           <Text

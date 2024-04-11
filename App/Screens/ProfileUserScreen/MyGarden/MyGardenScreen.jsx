@@ -1,54 +1,136 @@
-import { ScrollView, StyleSheet, Text, View, Pressable } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  TouchableOpacity,
+  Modal,
+} from "react-native";
 import React, { useState } from "react";
 import PageHeading from "../../../Components/PageHeading";
 import { COLORS } from "../../../Constants";
 import CultivationProcess from "./CultivationProcess";
 import CameraExtraction from "./CameraExtraction";
+import { AntDesign } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 const tabs = [
   {
-    name: "Quá trình nông trại",
+    name: "Thông tin",
     data: [],
   },
   {
-    name: "Trích xuất hệ thống",
+    name: "Quy trình",
+    data: [],
+  },
+  {
+    name: "Quá trình",
+    data: [],
+  },
+  {
+    name: "Trích xuất",
     data: [],
   },
 ];
 const MyGardenScreen = () => {
   const [selectedHeader, setSelectedHeader] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const navigation = useNavigation();
   return (
-    <ScrollView style={{ marginTop: 15 }}>
-      <View>
-        <PageHeading title={"Vườn của tôi"} />
-        <Text
-          style={{
-            fontSize: 30,
-            fontFamily: "RobotoCondensed-Bold",
-            textAlign: "center",
-          }}
-        >
-          Tên dự án{" "}
-        </Text>
-        <View style={styles.header}>
-          {tabs.map((data, index) => (
-            <Pressable onPress={() => setSelectedHeader(index)}>
-              <Text
-                style={[
-                  styles.titleHeader,
-                  selectedHeader == index && { color: COLORS.green },
-                ]}
-              >
-                {data.name}
-              </Text>
+    <View>
+      <ScrollView style={{ height: "93%" }}>
+        <View>
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 10,
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <PageHeading title={"Vườn của tôi"} />
+            <TouchableOpacity>
+              <AntDesign
+                name="camera"
+                size={50}
+                color={COLORS.green}
+                style={{
+                  alignItems: "center",
+                  marginTop: 30,
+                  paddingRight: 10,
+                }}
+              />
+            </TouchableOpacity>
+          </View>
 
-              {selectedHeader == index && <View style={styles.line} />}
-            </Pressable>
-          ))}
+          <View style={styles.header}>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              {tabs.map((data, index) => (
+                <View style={{ marginRight: 17 }}>
+                  <Pressable onPress={() => setSelectedHeader(index)}>
+                    <Text
+                      style={[
+                        styles.titleHeader,
+                        selectedHeader == index && {
+                          color: COLORS.green,
+                          fontSize: 20,
+                        },
+                      ]}
+                    >
+                      {data.name}
+                    </Text>
+
+                    {selectedHeader == index && <View style={styles.line} />}
+                  </Pressable>
+                </View>
+              ))}
+            </ScrollView>
+          </View>
+          {selectedHeader == 2 && <CultivationProcess />}
+          {selectedHeader == 3 && <CameraExtraction />}
         </View>
-        {selectedHeader == 0 && <CultivationProcess />}
-        {selectedHeader == 1 && <CameraExtraction />}
+      </ScrollView>
+      <View style={styles.footer}>
+        <MaterialCommunityIcons
+          name="truck-delivery"
+          size={45}
+          color="green"
+          onPress={() => setShowModal(!showModal)}
+        />
+        <TouchableOpacity
+          style={styles.bookingBtn}
+          onPress={() => navigation.push("profile/my-garden/request")}
+        >
+          <Text
+            style={{
+              textAlign: "center",
+              fontFamily: "RobotoCondensed-Bold",
+              color: COLORS.white,
+              fontSize: 20,
+            }}
+          >
+            Yêu cầu
+          </Text>
+        </TouchableOpacity>
       </View>
-    </ScrollView>
+      <Modal animationType="slide" visible={showModal}>
+        <View style={{ padding: 20 }}>
+          <TouchableOpacity
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: 10,
+              alignItems: "center",
+            }}
+            onPress={() => setShowModal(!showModal)}
+          >
+            <MaterialIcons name="cancel" size={35} color="red" />
+          </TouchableOpacity>
+        </View>
+      </Modal>
+    </View>
   );
 };
 
@@ -68,11 +150,42 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   line: {
-    width: 120,
+    width: 100,
     height: 5,
     backgroundColor: COLORS.green,
     alignSelf: "center",
     marginTop: 3,
     borderRadius: 10,
+  },
+  bookingBtn: {
+    width: "70%",
+    padding: 13,
+    backgroundColor: COLORS.green,
+    borderWidth: 1,
+    borderColor: COLORS.primary,
+    borderRadius: 99,
+  },
+  footer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 8,
+    alignItems: "center",
+    backgroundColor: COLORS.white,
+    borderRadius: 99,
+    borderBlockColor: COLORS.white,
+    paddingLeft: 25,
+    elevation: 4, // Add elevation for shadow
+  },
+
+  /**************** Modal *****************/
+  containerModal: {
+    marginTop: 30,
+    backgroundColor: COLORS.white,
+    borderRadius: 15,
+    display: "flex",
+    flexDirection: "row",
+    gap: 10,
+    backgroundColor: COLORS.lightGray,
+    alignItems: "center",
   },
 });

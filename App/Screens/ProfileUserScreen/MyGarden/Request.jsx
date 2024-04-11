@@ -1,22 +1,19 @@
 import {
   StyleSheet,
   Text,
-  TextInput,
-  TouchableOpacity,
   View,
+  TouchableOpacity,
+  TextInput,
 } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import PageHeading from "../../../Components/PageHeading";
 import Heading from "../../../Components/Heading";
 import { COLORS } from "../../../Constants";
-
-const RegistrationGrowVegetables = () => {
-  const [note, setNote] = useState();
-  const [time,setTime] = useState();
+const Request = () => {
   return (
     <View style={{ padding: 20 }}>
-      <PageHeading title={"Đăng ký"} />
-      {/* <View style={{ paddingTop: 20 }}>
+      <PageHeading title={" Yêu cầu "} />
+      <View style={{ paddingTop: 20 }}>
         <Heading text={"Thời gian"} />
         <TextInput
           placeholder="90 ngày,..."
@@ -37,13 +34,13 @@ const RegistrationGrowVegetables = () => {
         />
       </View>
       <TouchableOpacity style={{ marginTop: 15 }}>
-        <Text style={styles.confirmBtn}>Gửi đăng ký</Text>
-      </TouchableOpacity> */}
+        <Text style={styles.confirmBtn}>Gửi yêu cầu</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
-export default RegistrationGrowVegetables;
+export default Request;
 
 const styles = StyleSheet.create({
   noteTextArea: {
