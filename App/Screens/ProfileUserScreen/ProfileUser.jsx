@@ -1,8 +1,17 @@
 // rnfe
-import { View, Text, Image, FlatList, Touchable, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  FlatList,
+  Touchable,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { COLORS } from "../../Constants";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+
 data = [
   {
     id: 1,
@@ -37,6 +46,7 @@ const user = {
   gmail: "doantrungdung2001@gmail.com",
 };
 const ProflieUser = () => {
+  const navigation = useNavigation();
   return (
     <View>
       <View
@@ -91,6 +101,7 @@ const ProflieUser = () => {
                 marginBottom: 30,
                 paddingHorizontal: 70,
               }}
+              onPress={() => navigation.push("mygarden")}
             >
               <Ionicons name={item.icon} size={44} color={COLORS.primary} />
               <Text

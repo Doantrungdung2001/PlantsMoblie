@@ -8,9 +8,8 @@ import {
 import { Svg } from "react-native-svg";
 
 import Scan from "../Screens/ScanScreen/Scan";
-import ProflieUser from "../Screens/ProfileUserScreen/ProfileUser";
 import HomeNavigation from "./HomeNavigation";
-
+import UserNavigation from "./UserNavigation";
 import { COLORS, icons } from "../Constants";
 
 import { FontAwesome } from "@expo/vector-icons";
@@ -127,7 +126,7 @@ const TabScren = () => {
       />
       <Tab.Screen
         name="ProflieUser"
-        component={ProflieUser}
+        component={UserNavigation}
         options={{
           tabBarLabel: ({ color }) => (
             <Text style={{ color: color, fontSize: 14, marginTop: -7 }}>
