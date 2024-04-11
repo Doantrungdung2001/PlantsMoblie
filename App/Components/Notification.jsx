@@ -5,8 +5,10 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
+  ScrollView,
 } from "react-native";
 import React, { useState } from "react";
+import PageHeading from "./PageHeading";
 const data = [
   {
     id: 3,
@@ -61,46 +63,52 @@ const data = [
 const Notification = () => {
   const [comments, setComments] = useState(data);
   return (
-    <FlatList
-      style={styles.root}
-      data={comments}
-      ItemSeparatorComponent={() => {
-        return <View style={styles.separator} />;
-      }}
-      keyExtractor={(item) => {
-        return item.id;
-      }}
-      renderItem={(item) => {
-        const Notification = item.item;
-        let attachment = <View />;
+    <ScrollView style={{margin: 15}}>
+      <PageHeading title={"Thông báo"} />
+      <FlatList
+        style={styles.root}
+        data={comments}
+        ItemSeparatorComponent={() => {
+          return <View style={styles.separator} />;
+        }}
+        keyExtractor={(item) => {
+          return item.id;
+        }}
+        renderItem={(item) => {
+          const Notification = item.item;
+          let attachment = <View />;
 
-        let mainContentStyle;
-        if (Notification.attachment) {
-          mainContentStyle = styles.mainContent;
-          attachment = (
-            <Image
-              style={styles.attachment}
-              source={{ uri: Notification.attachment }}
-            />
-          );
-        }
-        return (
-          <TouchableOpacity style={styles.container}>
-            <Image source={{ uri: Notification.image }} style={styles.avatar} />
-            <View style={styles.content}>
-              <View style={mainContentStyle}>
-                <View style={styles.text}>
-                  <Text style={styles.name}>{Notification.name}</Text>
-                  <Text>{Notification.text}</Text>
+          let mainContentStyle;
+          if (Notification.attachment) {
+            mainContentStyle = styles.mainContent;
+            attachment = (
+              <Image
+                style={styles.attachment}
+                source={{ uri: Notification.attachment }}
+              />
+            );
+          }
+          return (
+            <TouchableOpacity style={styles.container}>
+              <Image
+                source={{ uri: Notification.image }}
+                style={styles.avatar}
+              />
+              <View style={styles.content}>
+                <View style={mainContentStyle}>
+                  <View style={styles.text}>
+                    <Text style={styles.name}>{Notification.name}</Text>
+                    <Text>{Notification.text}</Text>
+                  </View>
+                  <Text style={styles.timeAgo}>2 hours ago</Text>
                 </View>
-                <Text style={styles.timeAgo}>2 hours ago</Text>
+                {attachment}
               </View>
-              {attachment}
-            </View>
-          </TouchableOpacity>
-        );
-      }}
-    />
+            </TouchableOpacity>
+          );
+        }}
+      />
+    </ScrollView>
   );
 };
 

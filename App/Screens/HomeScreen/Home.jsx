@@ -102,6 +102,7 @@ const Home = () => {
                 alignItems: "center",
                 backgroundColor: COLORS.lightGray,
               }}
+              onPress={() => navigation.push("notification")}
             >
               <Image
                 source={icons.bell}

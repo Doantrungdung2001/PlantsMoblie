@@ -9,6 +9,7 @@ import Wallet from "../Screens/ServiceScreen/Wallet/Wallet";
 import DetailFarmGrowVegetables from "../Screens/ServiceScreen/GrowVegetables/DetailFarmGrowVegetables";
 import DetailInfoService from "../Screens/ServiceScreen/GrowVegetables/DetailInfoService";
 import SelectVegetables from "../Screens/ServiceScreen/GrowVegetables/SelectVegetables";
+import Notification from "../Components/Notification";
 const Stack = createStackNavigator();
 
 const HomeNavigation = () => {
@@ -27,6 +28,7 @@ const HomeNavigation = () => {
       <Stack.Screen name="farm-detail" component={DetailFarmGrowVegetables} />
       <Stack.Screen name="service-detail" component={DetailInfoService} />
       <Stack.Screen name="select-vegestables" component={SelectVegetables} />
+      <Stack.Screen name="notification" component={Notification} />
     </Stack.Navigator>
   );
 };
