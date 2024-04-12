@@ -76,12 +76,13 @@ const styles = StyleSheet.create({
   },
   login: {
     backgroundColor: COLORS.green,
-    shadowColor: COLORS.lightGreen,
+    shadowColor: COLORS.green,
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.3,
   },
   register: {
     backgroundColor: "#DB4437",
+    shadowColor: "#DB4437",
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.3,
   },
