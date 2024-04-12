@@ -6,7 +6,9 @@ import { StyleSheet, Text, View } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import SignUp from "./App/Screens/SignUp";
 import TabScren from "./App/Navigation/TabScren";
-
+import GetStart from "./App/Screens/GetStart";
+import Login from "./App/Screens/Login";
+import Register from "./App/Screens/Register";
 const theme = {
   ...DefaultTheme,
   colors: {
@@ -19,12 +21,12 @@ const Stack = createStackNavigator();
 
 export default function App() {
   const [fontLoaded] = useFonts({
-    "regular": require("./assets/fonts/Roboto-Regular.ttf"),
-    "ltalic": require("./assets/fonts/Roboto-Italic.ttf"),
+    regular: require("./assets/fonts/Roboto-Regular.ttf"),
+    ltalic: require("./assets/fonts/Roboto-Italic.ttf"),
     "Roboto-BoldItalic": require("./assets/fonts/Roboto-BoldItalic.ttf"),
     "RobotoCondensed-Bold": require("./assets/fonts/RobotoCondensed-Bold.ttf"),
     "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
-    "thin": require("./assets/fonts/Roboto-Thin.ttf"),
+    thin: require("./assets/fonts/Roboto-Thin.ttf"),
   });
 
   const onLayOutRootView = useCallback(async () => {
@@ -42,9 +44,11 @@ export default function App() {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName={"SignUp"}
+        initialRouteName={"GetStart"}
       >
-        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="GetStart" component={GetStart} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Register" component={Register} />
 
         {/*Tab*/}
         <Stack.Screen name="Home" component={TabScren} />

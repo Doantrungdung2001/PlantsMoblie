@@ -167,7 +167,6 @@ const DetailInfoService = () => {
       <View>
         <TouchableOpacity
           style={styles.bookingBtn}
-          //   onPress={() => setShowModal(!showModal)}
           onPress={() => navigation.push("select-vegestables")}
         >
           <Text
@@ -182,9 +181,6 @@ const DetailInfoService = () => {
           </Text>
         </TouchableOpacity>
       </View>
-      {/* <Modal animationType="slide" visible={showModal}>
-        <RegistrationGrowVegetables />
-      </Modal> */}
     </View>
   );
 };

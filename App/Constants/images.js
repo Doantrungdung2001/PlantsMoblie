@@ -1,18 +1,15 @@
 const wallieLogo = require("../../assets/images/wallie-logo.png");
-const banner = require("../../assets/images/banner.png");
-const promoBanner = require("../../assets/images/promo-banner.png");
-const focus = require("../../assets/images/focus.png");
 
+const focus = require("../../assets/images/focus.png");
+const leaves = require("../../assets/images/leaves.jpg");
+const getstart = require("../../assets/images/getstart.png");
 // Dummy
 const usFlag = require("../../assets/images/us-flag.jpg");
 
-
 export default {
-    wallieLogo,
-    banner,
-    promoBanner,
-    focus,
-
-    // Dummy
-    usFlag
-}
+  focus,
+  leaves,
+  getstart,
+  // Dummy
+  usFlag,
+};
