@@ -7,9 +7,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
-import { COLORS} from "../Constants";
-
+import { COLORS } from "../Constants";
+import { useNavigation } from "@react-navigation/native";
 const Login = () => {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={{ marginTop: 60 }}>
       <View style={{ padding: 20 }}>
@@ -74,6 +75,7 @@ const Login = () => {
             shadowOpacity: 0.3,
             shadowRadius: 10,
           }}
+          onPress={() => navigation.navigate("Home")}
         >
           <Text
             style={{
@@ -88,7 +90,7 @@ const Login = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={{
-            padding: 20,
+            padding: 10,
             backgroundColor: COLORS.white,
             borderRadius: 10,
             shadowColor: COLORS.green,
@@ -96,13 +98,14 @@ const Login = () => {
             shadowOpacity: 0.3,
             shadowRadius: 10,
           }}
+          onPress={() => navigation.push("Register")}
         >
           <Text
             style={{
               fontFamily: "RobotoCondensed-Bold",
               color: COLORS.black,
               textAlign: "center",
-              fontSize: 25,
+              fontSize: 19,
             }}
           >
             Bạn chưa có tài khoản?
@@ -113,5 +116,4 @@ const Login = () => {
   );
 };
 export default Login;
-const styles = StyleSheet.create({
-});
+const styles = StyleSheet.create({});
