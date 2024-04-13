@@ -3,11 +3,11 @@ import React from "react";
 import Heading from "./Heading";
 const PestAndDiseaseControlActivities = () => {
   return (
-    <ScrollView>
+    <View>
      <View>
         <Heading text={"Phòng ngừa sâu bệnh"} />
       </View>
-    </ScrollView>
+    </View>
   );
 };
 

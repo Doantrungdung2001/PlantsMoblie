@@ -57,15 +57,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#FFC0CB",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  textStyle: {
-    fontFamily: "boldltalic",
-    fontSize: 20,
-  },
-});

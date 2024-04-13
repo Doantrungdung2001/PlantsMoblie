@@ -3,11 +3,11 @@ import React from "react";
 import Heading from "./Heading";
 const FertilizationActivities = () => {
   return (
-    <ScrollView>
+    <View>
       <View>
         <Heading text={"Hoạt động bón phân"} />
       </View>
-    </ScrollView>
+    </View>
   );
 };
 

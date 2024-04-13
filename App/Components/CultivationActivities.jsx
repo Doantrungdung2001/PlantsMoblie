@@ -54,7 +54,7 @@ const CultivationActivities = () => {
     Alert.alert("alert", "event clicked " + viewId);
   };
   return (
-    <ScrollView>
+    <View>
       <View>
         <Heading text={"Hoạt động làm đất"} />
       </View>
@@ -156,7 +156,7 @@ const CultivationActivities = () => {
           </View>
         )}
       </Modal>
-    </ScrollView>
+    </View>
   );
 };
 
