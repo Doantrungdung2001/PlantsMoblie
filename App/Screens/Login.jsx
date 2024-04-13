@@ -6,11 +6,14 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { COLORS } from "../Constants";
 import { useNavigation } from "@react-navigation/native";
+import { Entypo } from "@expo/vector-icons";
+
 const Login = () => {
   const navigation = useNavigation();
+  const [selectDisplayPassword, setSelectDisplayPassowrd] = useState(false);
   return (
     <SafeAreaView style={{ marginTop: 60 }}>
       <View style={{ padding: 20 }}>
@@ -38,19 +41,42 @@ const Login = () => {
               marginVertical: 10,
             }}
           />
-          <TextInput
-            placeholder="Mật khẩu"
-            placeholderTextColor={COLORS.darkgray}
-            secureTextEntry
-            style={{
-              fontFamily: "Roboto-Medium",
-              fontSize: 20,
-              padding: 20,
-              backgroundColor: COLORS.white,
-              borderRadius: 10,
-              marginVertical: 10,
-            }}
-          />
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <TextInput
+              placeholder="Mật khẩu"
+              placeholderTextColor={COLORS.darkgray}
+              secureTextEntry={!selectDisplayPassword}
+              style={{
+                fontFamily: "Roboto-Medium",
+                fontSize: 20,
+                padding: 20,
+                backgroundColor: COLORS.white,
+                borderRadius: 10,
+                marginVertical: 10,
+                flex: 1,
+              }}
+            />
+            <TouchableOpacity
+              style={{ justifyContent: "center" }}
+              onPress={() => setSelectDisplayPassowrd(!selectDisplayPassword)}
+            >
+              {selectDisplayPassword ? (
+                <Entypo
+                  name="eye-with-line"
+                  size={24}
+                  color="black"
+                  style={{ position: "absolute", right: 20 }}
+                />
+              ) : (
+                <Entypo
+                  name="eye"
+                  size={24}
+                  color="black"
+                  style={{ position: "absolute", right: 20 }}
+                />
+              )}
+            </TouchableOpacity>
+          </View>
         </View>
         <TouchableOpacity>
           <Text

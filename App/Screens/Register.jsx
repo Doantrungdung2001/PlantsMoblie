@@ -6,11 +6,31 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { COLORS } from "../Constants";
 import { useNavigation } from "@react-navigation/native";
+import { Entypo } from "@expo/vector-icons";
 const Register = () => {
   const navigation = useNavigation();
+  const [selectDisplayPassword, setSelectDisplayPassowrd] = useState(false);
+  const [selectConfirmDisplayPassword, setSelectConfirmDisplayPassowrd] =
+    useState(false);
+
+  const [email, setEmail] = useState("");
+
+  const isValidEmail = (email) => {
+    // Biểu thức chính quy để kiểm tra định dạng email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleCheckEmail = () => {
+    if (isValidEmail(email)) {
+      Alert.alert("Email hợp lệ");
+    } else {
+      Alert.alert("Email không hợp lệ");
+    }
+  };
   return (
     <SafeAreaView style={{ marginTop: 60 }}>
       <View style={{ padding: 20 }}>
@@ -26,44 +46,98 @@ const Register = () => {
           </Text>
         </View>
         <View style={{ marginVertical: 30 }}>
-          <TextInput
-            placeholder="Email"
-            placeholderTextColor={COLORS.darkgray}
-            style={{
-              fontFamily: "Roboto-Medium",
-              fontSize: 20,
-              padding: 20,
-              backgroundColor: COLORS.white,
-              borderRadius: 10,
-              marginVertical: 10,
-            }}
-          />
-          <TextInput
-            placeholder="Mật khẩu"
-            placeholderTextColor={COLORS.darkgray}
-            secureTextEntry
-            style={{
-              fontFamily: "Roboto-Medium",
-              fontSize: 20,
-              padding: 20,
-              backgroundColor: COLORS.white,
-              borderRadius: 10,
-              marginVertical: 10,
-            }}
-          />
-          <TextInput
-            placeholder="Xác nhận mật khẩu"
-            placeholderTextColor={COLORS.darkgray}
-            secureTextEntry
-            style={{
-              fontFamily: "Roboto-Medium",
-              fontSize: 20,
-              padding: 20,
-              backgroundColor: COLORS.white,
-              borderRadius: 10,
-              marginVertical: 10,
-            }}
-          />
+          <View>
+            <TextInput
+              placeholder="Email"
+              placeholderTextColor={COLORS.darkgray}
+              style={{
+                fontFamily: "Roboto-Medium",
+                fontSize: 20,
+                padding: 20,
+                backgroundColor: COLORS.white,
+                borderRadius: 10,
+                marginVertical: 10,
+              }}
+              value={email}
+              onChangeText={setEmail}
+            />
+            {/* <Button title="Kiểm tra Email" onPress={handleCheckEmail} /> */}
+          </View>
+
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <TextInput
+              placeholder="Mật khẩu"
+              placeholderTextColor={COLORS.darkgray}
+              secureTextEntry={!selectDisplayPassword}
+              style={{
+                fontFamily: "Roboto-Medium",
+                fontSize: 20,
+                padding: 20,
+                backgroundColor: COLORS.white,
+                borderRadius: 10,
+                marginVertical: 10,
+                flex: 1,
+              }}
+            />
+            <TouchableOpacity
+              style={{ justifyContent: "center" }}
+              onPress={() => setSelectDisplayPassowrd(!selectDisplayPassword)}
+            >
+              {selectDisplayPassword ? (
+                <Entypo
+                  name="eye-with-line"
+                  size={24}
+                  color="black"
+                  style={{ position: "absolute", right: 20 }}
+                />
+              ) : (
+                <Entypo
+                  name="eye"
+                  size={24}
+                  color="black"
+                  style={{ position: "absolute", right: 20 }}
+                />
+              )}
+            </TouchableOpacity>
+          </View>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <TextInput
+              placeholder="Xác nhận mật khẩu"
+              placeholderTextColor={COLORS.darkgray}
+              secureTextEntry={!selectConfirmDisplayPassword}
+              style={{
+                fontFamily: "Roboto-Medium",
+                fontSize: 20,
+                padding: 20,
+                backgroundColor: COLORS.white,
+                borderRadius: 10,
+                marginVertical: 10,
+                flex: 1,
+              }}
+            />
+            <TouchableOpacity
+              style={{ justifyContent: "center" }}
+              onPress={() =>
+                setSelectConfirmDisplayPassowrd(!selectConfirmDisplayPassword)
+              }
+            >
+              {selectConfirmDisplayPassword ? (
+                <Entypo
+                  name="eye-with-line"
+                  size={24}
+                  color="black"
+                  style={{ position: "absolute", right: 20 }}
+                />
+              ) : (
+                <Entypo
+                  name="eye"
+                  size={24}
+                  color="black"
+                  style={{ position: "absolute", right: 20 }}
+                />
+              )}
+            </TouchableOpacity>
+          </View>
         </View>
         <TouchableOpacity
           style={{
