@@ -16,6 +16,8 @@ import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import FarmingProcess from "./FarmingProcess";
+import InfoMyGarden from "./InfoMyGarden";
 const tabs = [
   {
     name: "Thông tin",
@@ -88,6 +90,8 @@ const MyGardenScreen = () => {
               ))}
             </ScrollView>
           </View>
+          {selectedHeader == 0 && <InfoMyGarden />}
+          {selectedHeader == 1 && <FarmingProcess />}
           {selectedHeader == 2 && <CultivationProcess />}
           {selectedHeader == 3 && <CameraExtraction />}
         </View>
