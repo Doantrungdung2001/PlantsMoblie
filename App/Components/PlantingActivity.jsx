@@ -31,10 +31,11 @@ export default PlantingActivity;
 const styles = StyleSheet.create({
   detailInfo: {
     margin: 10,
-    padding: 10,
+    padding: 19,
     borderWidth: 3,
     borderColor: COLORS.green,
     borderRadius: 10,
+    backgroundColor: COLORS.white,
   },
   subject: {
     fontSize: 20,

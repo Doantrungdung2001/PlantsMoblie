@@ -164,9 +164,11 @@ export default CultivationActivities;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#DCDCDC",
+    backgroundColor: COLORS.white,
     margin: 10,
     borderRadius: 10,
+    borderWidth: 3,
+    borderColor: COLORS.green,
   },
   eventList: {
     marginTop: 20,
@@ -191,14 +193,14 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "flex-start",
     marginLeft: 10,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: COLORS.green,
     padding: 10,
     borderRadius: 10,
   },
   description: {
     fontSize: 18,
     fontWeight: "600",
-    color: "black",
+    color: COLORS.white,
   },
   detailInfo: {
     margin: 10,
