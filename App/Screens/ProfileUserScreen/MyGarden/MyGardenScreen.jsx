@@ -53,7 +53,9 @@ const MyGardenScreen = () => {
             }}
           >
             <PageHeading title={"Vườn của tôi"} />
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.push("profile/my-garden/livecamera")}
+            >
               <AntDesign
                 name="camera"
                 size={50}
