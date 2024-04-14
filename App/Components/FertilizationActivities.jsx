@@ -6,9 +6,13 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
+  Modal,
+  ScrollView,
 } from "react-native";
-
-data = [
+import { AntDesign } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import { COLORS } from "../Constants";
+fertilizationActivity = [
   {
     fertilizationTime: "Trước khi trồng (theo cách 1: phân đơn)",
     type: "baseFertilizer",
@@ -64,28 +68,107 @@ data = [
 ];
 
 const FertilizationActivities = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [selectActivity, setSelectActivity] = useState();
   return (
     <View>
       <View style={styles.container}>
         <FlatList
-          data={data}
+          data={fertilizationActivity}
           style={styles.productList}
           renderItem={(activity, index) => {
-            console.log(activity);
             return (
-              <View style={styles.productCard}>
-                <View style={styles.productInfo}>
+              <TouchableOpacity
+                style={styles.productCard}
+                onPress={() => {
+                  setShowModal(!showModal);
+                  setSelectActivity(activity);
+                }}
+              >
+                <View style={{ alignSelf: "flex-start" }}>
                   <Text style={styles.productName}>
                     {activity.item.fertilizationTime}
                   </Text>
                 </View>
-                <View style={styles.productAmount}></View>
-              </View>
+                <View
+                  style={{
+                    alignSelf: "flex-end",
+                    justifyContent: "center",
+                    alignContent: "center",
+                  }}
+                >
+                  <AntDesign name="infocirlce" size={24} color="black" />
+                </View>
+              </TouchableOpacity>
             );
           }}
           contentContainerStyle={{ paddingHorizontal: 16 }}
         />
       </View>
+      <Modal animationType="slide" visible={showModal}>
+        <View style={{ padding: 20, paddingTop: 70 }}>
+          <TouchableOpacity
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: 10,
+              alignItems: "center",
+            }}
+            onPress={() => setShowModal(!showModal)}
+          >
+            <Ionicons name="arrow-back" size={30} color="black" />
+            <Text
+              style={{
+                fontSize: 23,
+                fontWeight: "600",
+              }}
+            >
+              Thông tin hoạt động
+            </Text>
+          </TouchableOpacity>
+        </View>
+        {selectActivity ? (
+          <ScrollView>
+            <View
+              style={{
+                padding: 10,
+                justifyContent: "center",
+                borderRadius: 10,
+                backgroundColor: COLORS.green,
+                marginLeft: 10,
+                marginRight: 10,
+                marginBottom: 30,
+                marginBottom: 30,
+              }}
+            ></View>
+            <View style={styles.detailInfo}>
+              <Text style={styles.subject}>
+                {selectActivity.item.fertilizationTime}
+              </Text>
+              <View style={styles.body}>
+                <Text style={styles.bodyText}>
+                  {selectActivity.item.description}
+                </Text>
+              </View>
+            </View>
+            <View style={{ marginBottom: 30 }}></View>
+          </ScrollView>
+        ) : (
+          <View>
+            <Text
+              style={{
+                color: COLORS.gray,
+                fontSize: 30,
+                fontWeight: "600",
+                textAlign: "center",
+                marginTop: 40,
+              }}
+            >
+              Hoạt động chưa cập nhật
+            </Text>
+          </View>
+        )}
+      </Modal>
     </View>
   );
 };
@@ -129,56 +212,38 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 4,
+    flex: 1,
+    marginRight: 16,
+    justifyContent: "space-between",
   },
   productDescription: {
     fontSize: 14,
     color: "#666",
     marginBottom: 4,
   },
-  productPrice: {
-    fontSize: 16,
+  detailInfo: {
+    margin: 10,
+    padding: 10,
+    borderWidth: 2,
+    borderColor: COLORS.green,
+    borderRadius: 10,
+  },
+  subject: {
+    fontSize: 20,
     fontWeight: "bold",
-    color: "#4caf50",
+    marginTop: 20,
+    marginBottom: 20,
+    color: "#222",
   },
-  productPriceText: {
-    fontSize: 14,
-    fontWeight: "normal",
-    color: "#666",
+  body: {
+    marginTop: 5,
+    paddingTop: 10,
+    borderTopWidth: 0.5,
+    borderTopColor: "#b3b3b3",
   },
-  productAmount: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  amountButton: {
-    width: 30,
-    height: 30,
-    backgroundColor: "#ffa726",
-    borderRadius: 15,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  amountButtonText: {
-    color: "#fff",
-    fontSize: 18,
-  },
-  amountText: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginHorizontal: 16,
-  },
-  continueButton: {
-    position: "absolute",
-    bottom: 16,
-    left: 16,
-    right: 16,
-    backgroundColor: "#4caf50",
-    borderRadius: 8,
-    padding: 16,
-    alignItems: "center",
-  },
-  continueButtonText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "bold",
+  bodyText: {
+    fontSize: 19,
+    lineHeight: 24,
+    color: "black",
   },
 });

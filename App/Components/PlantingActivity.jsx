@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, ScrollView } from "react-native";
 import React from "react";
 import Heading from "./Heading";
 import { COLORS } from "../Constants";
-data = [
+planting = [
   {
     density:
       "hàng x hàng 45cm, cây x cây 35cm, mật độ trồng 33.000-35.000 cây/ha.",
@@ -14,9 +14,9 @@ const PlantingActivity = () => {
   return (
     <View>
       <View style={styles.detailInfo}>
-        <Text style={styles.subject}>{data[0].density}</Text>
+        <Text style={styles.subject}>{planting[0].density}</Text>
         <View style={styles.body}>
-          <Text style={styles.bodyText}>{data[0].description}</Text>
+          <Text style={styles.bodyText}>{planting[0].description}</Text>
         </View>
       </View>
     </View>

@@ -1,11 +1,5 @@
 // rnfe
-import {
-  View,
-  Text,
-  Image,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, Image, FlatList, TouchableOpacity } from "react-native";
 import React from "react";
 import { COLORS } from "../../Constants";
 import { Ionicons } from "@expo/vector-icons";
@@ -92,32 +86,29 @@ const ProflieUser = () => {
         </View>
       </View>
       <View style={{ paddingTop: 50 }}>
-        <FlatList
-          data={data}
-          renderItem={({ item, index }) => (
-            <TouchableOpacity
+        {data.map((item) => (
+          <TouchableOpacity
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 10,
+              marginBottom: 30,
+              paddingHorizontal: 70,
+            }}
+            onPress={() => navigation.push(`profile/${item.param}`)}
+          >
+            <Ionicons name={item.icon} size={44} color={COLORS.primary} />
+            <Text
               style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 10,
-                marginBottom: 30,
-                paddingHorizontal: 70,
+                fontSize: 20,
+                fontFamily: "Roboto-Medium",
               }}
-              onPress={() => navigation.push(`profile/${item.param}`)}
             >
-              <Ionicons name={item.icon} size={44} color={COLORS.primary} />
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontFamily: "Roboto-Medium",
-                }}
-              >
-                {item.name}
-              </Text>
-            </TouchableOpacity>
-          )}
-        />
+              {item.name}
+            </Text>
+          </TouchableOpacity>
+        ))}
       </View>
     </View>
   );

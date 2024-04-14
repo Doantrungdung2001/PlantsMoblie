@@ -179,7 +179,6 @@ const pestAndDiseaseControlActivities = [
 const PestAndDiseaseControlActivities = () => {
   const [selectActivity, setSelectActivity] = useState();
   const [showModal, setShowModal] = useState(false);
-  console.log(selectActivity);
   return (
     <View>
       <View style={styles.container}>
