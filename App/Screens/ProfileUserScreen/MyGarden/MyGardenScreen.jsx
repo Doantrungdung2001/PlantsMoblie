@@ -103,7 +103,7 @@ const MyGardenScreen = () => {
           name="truck-delivery"
           size={45}
           color="green"
-          onPress={() => setShowModal(!showModal)}
+          onPress={() => navigation.push("profile/my-garden/delivery")}
         />
         <TouchableOpacity
           style={styles.bookingBtn}
@@ -121,21 +121,7 @@ const MyGardenScreen = () => {
           </Text>
         </TouchableOpacity>
       </View>
-      <Modal animationType="slide" visible={showModal}>
-        <View style={{ padding: 20 }}>
-          <TouchableOpacity
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: 10,
-              alignItems: "center",
-            }}
-            onPress={() => setShowModal(!showModal)}
-          >
-            <MaterialIcons name="cancel" size={35} color="red" />
-          </TouchableOpacity>
-        </View>
-      </Modal>
+      
     </View>
   );
 };

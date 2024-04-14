@@ -7,6 +7,7 @@ import Points from "../Screens/ProfileUserScreen/Points/Points";
 import HistoryGrowVegetables from "../Screens/ProfileUserScreen/HistoryGrowVegetables/HistoryGrowVegetables";
 import Request from "../Screens/ProfileUserScreen/MyGarden/Request";
 import LiveCamera from "../Screens/ProfileUserScreen/MyGarden/LiveCamera";
+import Delivery from "../Screens/ProfileUserScreen/MyGarden/Delivery";
 const Stack = createStackNavigator();
 
 const UserNavigation = () => {
@@ -25,6 +26,7 @@ const UserNavigation = () => {
         component={HistoryGrowVegetables}
       />
       <Stack.Screen name="profile/my-garden/request" component={Request} />
+      <Stack.Screen name="profile/my-garden/delivery" component={Delivery} />
       <Stack.Screen name="profile/my-garden/livecamera" component={LiveCamera} />
     </Stack.Navigator>
   );
