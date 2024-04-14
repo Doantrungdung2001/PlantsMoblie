@@ -6,12 +6,9 @@ import {
   Alert,
   FlatList,
   TouchableOpacity,
-  ScrollView,
   Modal,
 } from "react-native";
-import Heading from "./Heading";
 import { COLORS } from "../Constants";
-import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 const data = [
   {
