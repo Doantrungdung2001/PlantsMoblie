@@ -1,7 +1,18 @@
-import { View, Text, Image, StyleSheet, FlatList } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
+import React, { useState } from "react";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { Fontisto } from "@expo/vector-icons";
 
 const CultivationProcess = () => {
+  const [date, setDate] = useState(new Date());
+  const [showPicker, setShowPicker] = useState(false);
   const classes = [
     {
       startTime: "09:00",
@@ -107,7 +118,6 @@ const CultivationProcess = () => {
     },
     // Add more classes as needed
   ];
-
   const renderClassItem = ({ item }) => (
     <View style={styles.classItem}>
       <View style={styles.timelineContainer}>
@@ -143,10 +153,17 @@ const CultivationProcess = () => {
   const renderHeader = () => (
     <View style={styles.card}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>History of Physics</Text>
-        <Text style={styles.headerSubtitle}>24 March, 18pm - 19pm</Text>
+        <View>
+          <Text style={styles.headerTitle}>History of Physics</Text>
+          <Text style={styles.headerSubtitle}>24 March, 18pm - 19pm</Text>
+        </View>
+        <TouchableOpacity onPress={() => setShowPicker(!showPicker)}>
+          <Fontisto name="date" size={30} color="white" />
+        </TouchableOpacity>
       </View>
-
+      {showPicker && (
+        <DateTimePicker mode="date" display="spinner" value={date} />
+      )}
       <View style={styles.body}>
         <Image
           source={{ uri: "https://bootdey.com/img/Content/avatar/avatar6.png" }}
@@ -201,6 +218,8 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 8,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   headerTitle: {
     color: "#ffffff",
