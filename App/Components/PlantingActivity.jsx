@@ -13,9 +13,6 @@ data = [
 const PlantingActivity = () => {
   return (
     <View>
-      <View>
-        <Heading text={"Hoạt động gieo trồng"} />
-      </View>
       <View style={styles.detailInfo}>
         <Text style={styles.subject}>{data[0].density}</Text>
         <View style={styles.body}>
@@ -38,11 +35,10 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
   },
   subject: {
-    fontSize: 20,
+    fontSize: 23,
     fontWeight: "bold",
     marginTop: 20,
     marginBottom: 20,
-    color: COLORS.primary,
   },
   body: {
     marginTop: 5,
@@ -51,7 +47,7 @@ const styles = StyleSheet.create({
     borderTopColor: "#b3b3b3",
   },
   bodyText: {
-    fontSize: 19,
+    fontSize: 17,
     lineHeight: 24,
     color: "black",
     fontFamily: "Roboto-Medium"

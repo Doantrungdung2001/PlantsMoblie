@@ -12,7 +12,7 @@ import {
 import Heading from "./Heading";
 import { COLORS } from "../Constants";
 import { MaterialIcons } from "@expo/vector-icons";
-
+import { Ionicons } from "@expo/vector-icons";
 const data = [
   {
     id: 1,
@@ -55,9 +55,6 @@ const CultivationActivities = () => {
   };
   return (
     <View>
-      <View>
-        <Heading text={"Hoạt động làm đất"} />
-      </View>
       <View style={styles.container}>
         <FlatList
           enableEmptySections={true}
@@ -106,7 +103,15 @@ const CultivationActivities = () => {
             }}
             onPress={() => setShowModal(!showModal)}
           >
-            <MaterialIcons name="cancel" size={30} color="red" />
+            <Ionicons name="arrow-back" size={30} color="black" />
+            <Text
+              style={{
+                fontSize: 23,
+                fontWeight: "600",
+              }}
+            >
+              Thông tin hoạt động
+            </Text>
           </TouchableOpacity>
         </View>
         {selectDetail ? (
@@ -122,17 +127,7 @@ const CultivationActivities = () => {
                 marginBottom: 30,
                 marginBottom: 30,
               }}
-            >
-              <Text
-                style={{
-                  color: COLORS.white,
-                  fontSize: 30,
-                  fontWeight: "600",
-                }}
-              >
-                Thông tin hoạt động
-              </Text>
-            </View>
+            ></View>
             <View style={styles.detailInfo}>
               <Text style={styles.subject}>{selectDetail.name}</Text>
               <View style={styles.body}>
