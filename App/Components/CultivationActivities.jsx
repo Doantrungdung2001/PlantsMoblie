@@ -10,7 +10,8 @@ import {
 } from "react-native";
 import { COLORS } from "../Constants";
 import { Ionicons } from "@expo/vector-icons";
-const data = [
+import { AntDesign } from "@expo/vector-icons";
+const dataCutivation = [
   {
     id: 1,
     name: "Vệ sinh vườn",
@@ -44,9 +45,9 @@ const data = [
 ];
 
 const CultivationActivities = () => {
-  const [eventList, setEventList] = useState(data);
   const [showModal, setShowModal] = useState(false);
   const [selectDetail, setSelectDeatil] = useState(false);
+  console.log(selectDetail);
   showAlert = (viewId) => {
     Alert.alert("alert", "event clicked " + viewId);
   };
@@ -54,39 +55,29 @@ const CultivationActivities = () => {
     <View>
       <View style={styles.container}>
         <FlatList
-          enableEmptySections={true}
-          style={styles.eventList}
-          data={eventList}
-          keyExtractor={(item) => {
-            return item.id;
-          }}
-          renderItem={({ item }) => {
+          data={dataCutivation}
+          style={styles.productList}
+          renderItem={(activity, index) => {
             return (
               <TouchableOpacity
+                style={styles.productCard}
                 onPress={() => {
-                  setShowModal(!showModal), setSelectDeatil(item);
+                  setSelectDeatil(activity);
+                  setShowModal(!showModal);
                 }}
               >
-                <View style={styles.eventBox}>
-                  <View style={styles.eventDate}>
-                    <Text style={styles.eventDay}>{item.id}</Text>
+                <View style={styles.productInfo}>
+                  <View style={{ alignSelf: "flex-start" }}>
+                    <Text style={styles.productName}>{activity.item.name}</Text>
                   </View>
-                  <View style={styles.eventContent}>
-                    <Text style={styles.description}>{item.name}</Text>
-                    <Text
-                      style={{
-                        color: "blue",
-                        marginTop: 6,
-                        alignSelf: "flex-end",
-                      }}
-                    >
-                      Chi tiết
-                    </Text>
+                  <View style={{ alignSelf: "flex-end" }}>
+                    <AntDesign name="infocirlce" size={24} color="black" />
                   </View>
                 </View>
               </TouchableOpacity>
             );
           }}
+          contentContainerStyle={{ paddingHorizontal: 16 }}
         />
       </View>
       <Modal animationType="slide" visible={showModal}>
@@ -126,9 +117,9 @@ const CultivationActivities = () => {
               }}
             ></View>
             <View style={styles.detailInfo}>
-              <Text style={styles.subject}>{selectDetail.name}</Text>
+              <Text style={styles.subject}>{selectDetail.item.name}</Text>
               <View style={styles.body}>
-                <Text style={styles.bodyText}>{selectDetail.description}</Text>
+                <Text style={styles.bodyText}>{selectDetail.item.description}</Text>
               </View>
             </View>
           </View>
@@ -156,11 +147,49 @@ export default CultivationActivities;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.white,
+    flex: 1,
+    backgroundColor: "#f7f7f7",
+    paddingTop: 20,
+  },
+  productList: {
+    flex: 1,
+    paddingTop: 16,
+  },
+  productCard: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    borderRadius: 8,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    padding: 16,
+    marginBottom: 16,
+  },
+  productInfo: {
+    flex: 1,
+    marginRight: 16,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  productName: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 4,
+  },
+  productDescription: {
+    fontSize: 14,
+    color: "#666",
+    marginBottom: 4,
+  },
+  detailInfo: {
     margin: 10,
-    borderRadius: 10,
-    borderWidth: 3,
+    padding: 10,
+    borderWidth: 2,
     borderColor: COLORS.green,
+    borderRadius: 10,
   },
   eventList: {
     marginTop: 20,
