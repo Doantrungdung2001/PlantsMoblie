@@ -35,6 +35,9 @@ npm i @clerk/clerk-expo
 ```
 npm install @react-navigation/stack
 ```
-``
+```
 npm i @react-native-community/datetimepicker
+```
+```
+npm install react-native-select-dropdown
 ```

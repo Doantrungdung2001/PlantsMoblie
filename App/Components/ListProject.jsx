@@ -95,7 +95,7 @@ const ListProject = () => {
             <TouchableOpacity style={styles.card}>
               <View style={styles.imageContainer}>
                 <Image style={styles.cardImage} source={{ uri: item.image }} />
-              </View>
+              </View> 
               <View style={styles.cardContent}>
                 <Text style={styles.title}>{item.title}</Text>
                 <TouchableOpacity style={[styles.button, styles.google]}>
