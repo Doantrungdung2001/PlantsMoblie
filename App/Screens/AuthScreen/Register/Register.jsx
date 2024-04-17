@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
-import { COLORS } from "../../Constants";
+import { COLORS } from "../../../Constants";
 import { useNavigation } from "@react-navigation/native";
 import { Entypo } from "@expo/vector-icons";
 const Register = () => {
@@ -32,8 +32,8 @@ const Register = () => {
     }
   };
   return (
-    <SafeAreaView style={styles.container}>
-      <View>
+    <SafeAreaView>
+      <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.textHeader}>Đăng ký tài khoản</Text>
         </View>

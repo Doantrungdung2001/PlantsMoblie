@@ -7,16 +7,63 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
-import { COLORS } from "../../Constants";
+import { COLORS } from "../../../Constants";
 import { useNavigation } from "@react-navigation/native";
 import { Entypo } from "@expo/vector-icons";
+import AUTH from "../../../Services/AuthService";
+import UserInfoAsyncStorage from "../../../Utils/UserInfoAsyncStorage";
 
 const Login = () => {
   const navigation = useNavigation();
-  const [selectDisplayPassword, setSelectDisplayPassowrd] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [selectDisplayPassword, setSelectDisplayPassowrd] = useState();
+  const [LoginStatus, setLoginStatus] = useState("");
+  const handleLogin = async (email, password) => {
+    try {
+      const res = await AUTH.login({
+        email: email,
+        password: password,
+      });
+      // setLoginSucces(true);
+      // console.log("res: ", res);
+      // const accessToken = res?.data?.metadata?.metadata?.tokens?.accessToken;
+      // const refreshToken = res?.data?.metadata?.metadata?.tokens?.refreshToken;
+      // if (accessToken) {
+      //   setAccessToken(accessToken);
+      // }
+      // if (refreshToken) {
+      //   setRefreshToken(refreshToken);
+      // }
+      // const id = res?.data?.metadata?.metadata?.farm?._id;
+      // if (id) {
+      //   localStorage.setItem("id", id);
+      // }
+      if (res.data.status === 200) {
+        setLoginStatus("succes");
+        // UserInfoAsyncStorage.storeUser("UserInfo", res.data.metadata.metadata);
+        UserInfoAsyncStorage.clearUserInfo();
+      }
+      console.log("Login success");
+
+      // UserInfoAsyncStorage.getUserInfo("UserInfo")
+      //   .then((result) => {
+      //     console.log("Data :", result);
+      //   })
+      //   .catch((error) => {
+      //     console.error("Error:", error);
+      //   });
+      // navigation.push("Home")
+    } catch (error) {
+      console.error(error?.response?.data);
+      if (error?.response?.data.code) {
+        setLoginStatus("false");
+      }
+    }
+  };
   return (
-    <SafeAreaView style={styles.container}>
-      <View>
+    <SafeAreaView>
+      <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.headerText}>Đăng nhập</Text>
         </View>
@@ -25,6 +72,7 @@ const Login = () => {
             placeholder="Email"
             placeholderTextColor={COLORS.darkgray}
             style={styles.textInputEmail}
+            onChangeText={(email) => setEmail(email)}
           />
           <View style={styles.password}>
             <TextInput
@@ -32,6 +80,7 @@ const Login = () => {
               placeholderTextColor={COLORS.darkgray}
               secureTextEntry={!selectDisplayPassword}
               style={styles.textInputPassword}
+              onChangeText={(password) => setPassword(password)}
             />
             <TouchableOpacity
               style={{ justifyContent: "center" }}
@@ -54,13 +103,18 @@ const Login = () => {
               )}
             </TouchableOpacity>
           </View>
+          {LoginStatus === "false" && (
+            <Text style={styles.alertLogin}>
+              Tài khoản hoặc mật khẩu đã sai
+            </Text>
+          )}
         </View>
         <TouchableOpacity>
           <Text style={styles.forgetPassword}>Bạn quên mật khẩu?</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.btnLogin}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => handleLogin(email, password)}
         >
           <Text style={styles.textBtnLogin}>Đăng nhập</Text>
         </TouchableOpacity>
@@ -152,5 +206,9 @@ const styles = StyleSheet.create({
     color: COLORS.black,
     textAlign: "center",
     fontSize: 19,
+  },
+  alertLogin: {
+    color: "red",
+    fontSize: 17,
   },
 });

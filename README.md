@@ -44,3 +44,6 @@ npm install react-native-select-dropdown
 ```
 npm i react-native-axios
 ```
+```
+npm install @react-native-async-storage/async-storage
+```

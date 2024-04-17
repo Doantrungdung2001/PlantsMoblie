@@ -7,8 +7,8 @@ import * as SplashScreen from "expo-splash-screen";
 import SignUp from "./App/Screens/SignUp";
 import TabScren from "./App/Navigation/TabScren";
 import GetStart from "./App/Screens/GetStart";
-import Login from "./App/Screens/Login";
-import Register from "./App/Screens/Register";
+import Login from "./App/Screens/AuthScreen/Login/Login";
+import Register from "./App/Screens/AuthScreen/Register/Register";
 const theme = {
   ...DefaultTheme,
   colors: {
@@ -56,4 +56,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
