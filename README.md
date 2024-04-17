@@ -41,3 +41,6 @@ npm i @react-native-community/datetimepicker
 ```
 npm install react-native-select-dropdown
 ```
+```
+npm i react-native-axios
+```

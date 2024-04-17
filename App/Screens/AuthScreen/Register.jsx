@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
-import { COLORS } from "../Constants";
+import { COLORS } from "../../Constants";
 import { useNavigation } from "@react-navigation/native";
 import { Entypo } from "@expo/vector-icons";
 const Register = () => {
@@ -32,52 +32,28 @@ const Register = () => {
     }
   };
   return (
-    <SafeAreaView style={{ marginTop: 60 }}>
-      <View style={{ padding: 20 }}>
-        <View style={{ alignItems: "center" }}>
-          <Text
-            style={{
-              fontSize: 40,
-              color: COLORS.primary,
-              fontFamily: "RobotoCondensed-Bold",
-            }}
-          >
-            Đăng ký tài khoản
-          </Text>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <View style={styles.header}>
+          <Text style={styles.textHeader}>Đăng ký tài khoản</Text>
         </View>
-        <View style={{ marginVertical: 30 }}>
+        <View style={styles.content}>
           <View>
             <TextInput
               placeholder="Email"
               placeholderTextColor={COLORS.darkgray}
-              style={{
-                fontFamily: "Roboto-Medium",
-                fontSize: 20,
-                padding: 20,
-                backgroundColor: COLORS.white,
-                borderRadius: 10,
-                marginVertical: 10,
-              }}
+              style={styles.textInputEmail}
               value={email}
               onChangeText={setEmail}
             />
-            {/* <Button title="Kiểm tra Email" onPress={handleCheckEmail} /> */}
           </View>
 
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <View style={styles.password}>
             <TextInput
               placeholder="Mật khẩu"
               placeholderTextColor={COLORS.darkgray}
               secureTextEntry={!selectDisplayPassword}
-              style={{
-                fontFamily: "Roboto-Medium",
-                fontSize: 20,
-                padding: 20,
-                backgroundColor: COLORS.white,
-                borderRadius: 10,
-                marginVertical: 10,
-                flex: 1,
-              }}
+              style={styles.textInputPassword}
             />
             <TouchableOpacity
               style={{ justifyContent: "center" }}
@@ -88,32 +64,24 @@ const Register = () => {
                   name="eye-with-line"
                   size={24}
                   color="black"
-                  style={{ position: "absolute", right: 20 }}
+                  style={styles.dispalyPassword}
                 />
               ) : (
                 <Entypo
                   name="eye"
                   size={24}
                   color="black"
-                  style={{ position: "absolute", right: 20 }}
+                  style={styles.dispalyPassword}
                 />
               )}
             </TouchableOpacity>
           </View>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <View style={styles.password}>
             <TextInput
               placeholder="Xác nhận mật khẩu"
               placeholderTextColor={COLORS.darkgray}
               secureTextEntry={!selectConfirmDisplayPassword}
-              style={{
-                fontFamily: "Roboto-Medium",
-                fontSize: 20,
-                padding: 20,
-                backgroundColor: COLORS.white,
-                borderRadius: 10,
-                marginVertical: 10,
-                flex: 1,
-              }}
+              style={styles.textInputPassword}
             />
             <TouchableOpacity
               style={{ justifyContent: "center" }}
@@ -126,65 +94,30 @@ const Register = () => {
                   name="eye-with-line"
                   size={24}
                   color="black"
-                  style={{ position: "absolute", right: 20 }}
+                  style={styles.dispalyPassword}
                 />
               ) : (
                 <Entypo
                   name="eye"
                   size={24}
                   color="black"
-                  style={{ position: "absolute", right: 20 }}
+                  style={styles.dispalyPassword}
                 />
               )}
             </TouchableOpacity>
           </View>
         </View>
         <TouchableOpacity
-          style={{
-            padding: 20,
-            backgroundColor: COLORS.primary,
-            marginVertical: 30,
-            borderRadius: 10,
-            shadowColor: COLORS.green,
-            shadowOffset: { width: 0, height: 10 },
-            shadowOpacity: 0.3,
-            shadowRadius: 10,
-          }}
+          style={styles.btnRegister}
           onPress={() => navigation.navigate("Home")}
         >
-          <Text
-            style={{
-              fontFamily: "RobotoCondensed-Bold",
-              color: COLORS.white,
-              textAlign: "center",
-              fontSize: 25,
-            }}
-          >
-            Đăng ký
-          </Text>
+          <Text style={styles.textBtnRegister}>Đăng ký</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={{
-            padding: 10,
-            backgroundColor: COLORS.white,
-            borderRadius: 10,
-            shadowColor: COLORS.green,
-            shadowOffset: { width: 0, height: 10 },
-            shadowOpacity: 0.3,
-            shadowRadius: 10,
-          }}
+          style={styles.btnLogin}
           onPress={() => navigation.navigate("Login")}
         >
-          <Text
-            style={{
-              fontFamily: "RobotoCondensed-Bold",
-              color: COLORS.black,
-              textAlign: "center",
-              fontSize: 19,
-            }}
-          >
-            Bạn đã có tài khoản?
-          </Text>
+          <Text style={styles.textBtnLogin}>Bạn đã có tài khoản?</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -193,4 +126,76 @@ const Register = () => {
 
 export default Register;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 60,
+    padding: 20,
+  },
+  header: {
+    alignItems: "center",
+  },
+  textHeader: {
+    fontSize: 40,
+    color: COLORS.primary,
+    fontFamily: "RobotoCondensed-Bold",
+  },
+  content: {
+    marginVertical: 30,
+  },
+  textInputEmail: {
+    fontFamily: "Roboto-Medium",
+    fontSize: 20,
+    padding: 20,
+    backgroundColor: COLORS.white,
+    borderRadius: 10,
+    marginVertical: 10,
+  },
+  password: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  textInputPassword: {
+    fontFamily: "Roboto-Medium",
+    fontSize: 20,
+    padding: 20,
+    backgroundColor: COLORS.white,
+    borderRadius: 10,
+    marginVertical: 10,
+    flex: 1,
+  },
+  dispalyPassword: {
+    position: "absolute",
+    right: 20,
+  },
+  btnRegister: {
+    padding: 20,
+    backgroundColor: COLORS.primary,
+    marginVertical: 30,
+    borderRadius: 10,
+    shadowColor: COLORS.green,
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+  },
+  textBtnRegister: {
+    fontFamily: "RobotoCondensed-Bold",
+    color: COLORS.white,
+    textAlign: "center",
+    fontSize: 25,
+  },
+  btnLogin: {
+    padding: 10,
+    backgroundColor: COLORS.white,
+    borderRadius: 10,
+    shadowColor: COLORS.green,
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+  },
+  textBtnLogin: {
+    fontFamily: "RobotoCondensed-Bold",
+    color: COLORS.black,
+    textAlign: "center",
+    fontSize: 19,
+  },
+});
