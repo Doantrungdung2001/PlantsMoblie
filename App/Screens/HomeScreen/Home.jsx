@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Text, TouchableOpacity, View, Image } from "react-native";
 import { COLORS, SIZES, FONTS, images, icons } from "../../Constants";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FlatList, TextInput } from "react-native-gesture-handler";
+import { FlatList } from "react-native-gesture-handler";
 import { SliderBox } from "react-native-image-slider-box";
 import { useNavigation } from "@react-navigation/native";
+import styles from "./Home.Style";
 const Home = () => {
   const featureData = [
     {
@@ -77,16 +78,7 @@ const Home = () => {
   function renderHeader() {
     return (
       <View>
-        <View
-          style={{
-            flexDirection: "row",
-            marginVertical: SIZES.padding * 2,
-            padding: 20,
-            backgroundColor: COLORS.green,
-            borderBottomLeftRadius: 25,
-            borderBottomRightRadius: 25,
-          }}
-        >
+        <View style={styles.headerContainer}>
           <View style={{ flex: 1 }}>
             <Text style={{ ...FONTS.h1 }}>Hello</Text>
             <Text style={{ ...FONTS.body2, color: COLORS.gray }}>
@@ -95,13 +87,7 @@ const Home = () => {
           </View>
           <View>
             <TouchableOpacity
-              style={{
-                height: 40,
-                width: 40,
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: COLORS.lightGray,
-              }}
+              style={styles.headerNotification}
               onPress={() => navigation.push("notification")}
             >
               <Image
@@ -138,16 +124,12 @@ const Home = () => {
       "https://cdn.wallpapersafari.com/26/87/16h8re.jpg",
     ];
     return (
-      <View style={{ flex: 1, alignItems: "center" }}>
+      <View style={styles.bannerContainer}>
         <SliderBox
           images={Slides}
           dotColor={COLORS.primary}
           inactiveDotColor={COLORS.secondary}
-          ImageCocomponentStyle={{
-            borderRadius: 15,
-            width: "95%",
-            marginTop: 15,
-          }}
+          ImageCocomponentStyle={styles.bannerSliderImage}
           autoplay
           circleLoop
         />
@@ -157,54 +139,29 @@ const Home = () => {
 
   function renderFeatures() {
     const Header = () => (
-      <View style={{ marginBottom: SIZES.padding * 2 }}>
-        <Text style={{ ...FONTS.h3 }}>feature</Text>
+      <View style={styles.featuresContainer}>
+        <Text style={styles.featuresText}>Dịch vụ</Text>
       </View>
     );
 
     const renderItem = ({ item, index }) => (
       <TouchableOpacity
-        style={{
-          marginBottom: SIZES.padding * 2,
-          width: 60,
-          alignItems: "center",
-        }}
+        style={styles.itemContainer}
+        key={index}
         onPress={() =>
           navigation.push(`service-screen/${item.description}`, {
             category: item.description,
           })
         }
       >
-        <View
-          style={{
-            height: 50,
-            width: 50,
-            marginBottom: 5,
-            borderRadius: 20,
-            backgroundColor: item.backgroundColor,
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        <View style={styles.itemCard}>
           <Image
             source={item.icon}
             resizeMode="contain"
-            style={{
-              height: 20,
-              width: 20,
-              tintColor: item.color,
-            }}
+            style={styles.itemImage}
           />
         </View>
-        <Text
-          style={{
-            textAlign: "center",
-            flexWrap: "wrap",
-            ...FONTS.body4,
-          }}
-        >
-          {item.description}
-        </Text>
+        <Text style={styles.itemText}>{item.description}</Text>
       </TouchableOpacity>
     );
 
@@ -216,7 +173,7 @@ const Home = () => {
         columnWrapperStyle={{ justifyContent: "space-between" }}
         keyExtractor={(item) => `${item.id}`}
         renderItem={renderItem}
-        style={{ marginTop: SIZES.padding * 2 }}
+        style={styles.renderFlast}
       />
     );
   }
@@ -232,57 +189,30 @@ const Home = () => {
     );
 
     const renderPromoHeader = () => (
-      <View
-        style={{
-          flexDirection: "row",
-          marginBottom: SIZES.padding,
-        }}
-      >
+      <View style={styles.renderPromoContainer}>
         <View style={{ flex: 1 }}>
           <Text>Special Promos</Text>
         </View>
         <TouchableOpacity onPress={() => console.log("View All")}>
-          <Text style={{ color: COLORS.gray, ...FONTS.body4 }}>View All</Text>
+          <Text style={styles.textViewAll}>View All</Text>
         </TouchableOpacity>
       </View>
     );
     const renderItem = ({ item }) => (
       <TouchableOpacity
-        style={{
-          marginVertical: SIZES.base,
-          width: SIZES.width / 2.5,
-        }}
+        style={styles.renderItemContainer}
         onPress={() => console.log(item.title)}
       >
-        <View
-          style={{
-            height: 80,
-            borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
-            backgroundColor: COLORS.primary,
-          }}
-        >
+        <View style={styles.renderItemCard}>
           <Image
             source={images.promoBanner}
             resizeMode="cover"
-            style={{
-              width: "100%",
-              height: "100%",
-              borderTopLeftRadius: 20,
-              borderTopRightRadius: 20,
-            }}
+            style={styles.renderItemImage}
           />
         </View>
 
-        <View
-          style={{
-            padding: SIZES.padding,
-            backgroundColor: COLORS.lightGray,
-            borderBottomLeftRadius: 20,
-            borderBottomRightRadius: 20,
-          }}
-        >
-          <Text style={{ ...FONTS.h4 }}>{item.title}</Text>
+        <View style={styles.renderItemContent}>
+          <Text style={styles.textTitle}>{item.title}</Text>
           <Text style={{ ...FONTS.body4 }}>{item.title}</Text>
         </View>
       </TouchableOpacity>
@@ -302,11 +232,7 @@ const Home = () => {
     );
   }
 
-  return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
-      {renderPromos()}
-    </SafeAreaView>
-  );
+  return <SafeAreaView style={styles.container}>{renderPromos()}</SafeAreaView>;
 };
 
 export default Home;

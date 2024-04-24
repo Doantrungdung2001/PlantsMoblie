@@ -54,7 +54,7 @@ const Login = () => {
       //   .catch((error) => {
       //     console.error("Error:", error);
       //   });
-      // navigation.push("Home")
+      navigation.push("Home")
     } catch (error) {
       console.error(error?.response?.data);
       if (error?.response?.data.code) {
