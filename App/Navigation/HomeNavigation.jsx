@@ -10,6 +10,7 @@ import DetailFarmGrowVegetables from "../Screens/ServiceScreen/GrowVegetables/De
 import DetailInfoService from "../Screens/ServiceScreen/GrowVegetables/DetailInfoService";
 import SelectVegetables from "../Screens/ServiceScreen/GrowVegetables/SelectVegetables";
 import Notification from "../Components/Notification";
+import HomeScreen from "../Screens/HomeScreen/HomeScreen";
 const Stack = createStackNavigator();
 
 const HomeNavigation = () => {
@@ -19,7 +20,7 @@ const HomeNavigation = () => {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="home" component={Home} />
+      <Stack.Screen name="home" component={HomeScreen} />
       <Stack.Screen name="service-screen/Transfer" component={GrowVegetables} />
       <Stack.Screen name="service-screen/Internet" component={Internet} />
       <Stack.Screen name="service-screen/Wallet" component={Wallet} />

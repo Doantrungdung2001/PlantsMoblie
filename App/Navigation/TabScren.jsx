@@ -1,16 +1,13 @@
 import React from "react";
-import { View, Image, TouchableOpacity, StyleSheet, Text } from "react-native";
-import {
-  createBottomTabNavigator,
-  BottomTabBar,
-} from "@react-navigation/bottom-tabs";
+import { View, TouchableOpacity, StyleSheet, Text } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { Svg } from "react-native-svg";
 
 import Scan from "../Screens/ScanScreen/Scan";
 import HomeNavigation from "./HomeNavigation";
 import UserNavigation from "./UserNavigation";
-import { COLORS, icons } from "../Constants";
+import { COLORS } from "../Constants";
 
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
