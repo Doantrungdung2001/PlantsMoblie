@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
-import Heading from "../../../Components/Heading";
+import Heading from "../../../Components/Heading/Heading";
 import { COLORS } from "../../../Constants";
 
 const IntruductionFarm = ({ Info }) => {

@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React from "react";
 import PageHeading from "../../../Components/PageHeading";
-import Heading from "../../../Components/Heading";
+import Heading from "../../../Components/Heading/Heading";
 import { COLORS } from "../../../Constants";
 const Request = () => {
   return (

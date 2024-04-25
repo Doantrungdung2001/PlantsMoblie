@@ -1,6 +1,6 @@
 import { FlatList, Image, StyleSheet, Text, Button, View } from "react-native";
 import React from "react";
-import Heading from "../../../Components/Heading";
+import Heading from "../../../Components/Heading/Heading";
 import { COLORS } from "../../../Constants";
 import { useNavigation } from "@react-navigation/native";
 

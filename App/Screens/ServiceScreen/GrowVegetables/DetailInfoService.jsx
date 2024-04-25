@@ -11,7 +11,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../Constants";
 import React, { useState } from "react";
-import Heading from "../../../Components/Heading";
+import Heading from "../../../Components/Heading/Heading";
 
 const DetailInfoService = () => {
   const navigation = useNavigation();

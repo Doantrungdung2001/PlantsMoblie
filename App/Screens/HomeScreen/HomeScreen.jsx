@@ -3,6 +3,7 @@ import React from "react";
 import ListService from "../../Components/ListSerivce/ListService";
 import HeaderComponents from "../../Components/HeaderComponents/HeaderComponents";
 import SliderComponents from "../../Components/SliderComponents/SliderComponents";
+import ListFarm from "../../Components/ListFarm/ListFarm";
 
 const HomeScreen = () => {
   return (
@@ -10,6 +11,7 @@ const HomeScreen = () => {
       <HeaderComponents />
       <SliderComponents />
       <ListService />
+      <ListFarm />
     </ScrollView>
   );
 };

@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import React from "react";
-import Heading from "./Heading";
 import { COLORS } from "../Constants";
 planting = [
   {

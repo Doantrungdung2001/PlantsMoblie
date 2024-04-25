@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   bannerContainer: {
     flex: 1,
     alignItems: "center",
+    margin: 2,
   },
   bannerSliderImage: {
     borderRadius: 15,
