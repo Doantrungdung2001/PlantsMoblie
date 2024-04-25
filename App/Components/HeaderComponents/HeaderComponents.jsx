@@ -1,12 +1,12 @@
-import { Text, View } from "react-native";
+import { Text, View, Image } from "react-native";
 import React from "react";
 import styles from "./Header.Styles";
-const Header = () => {
+const HeaderComponents = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>History of Physics</Text>
+          <Text style={styles.headerTitle}>Hà Nội- Hai Bà Trưng</Text>
           <Text style={styles.headerSubtitle}>24 March, 18pm - 19pm</Text>
         </View>
 
@@ -27,4 +27,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderComponents;

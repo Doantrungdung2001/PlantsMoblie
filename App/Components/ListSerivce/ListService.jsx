@@ -1,7 +1,8 @@
-import { Text, View, FlatList } from "react-native";
+import { Text, View, FlatList, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 import styles from "./Service.Styles";
 import { COLORS, icons } from "../../Constants";
+import { useNavigation } from "@react-navigation/native";
 const featureData = [
   {
     id: 1,
@@ -41,9 +42,10 @@ const featureData = [
 ];
 const ListService = () => {
   const [feature, setFeatures] = useState(featureData);
+  const navigation = useNavigation();
   const renderItem = ({ item, index }) => (
     <TouchableOpacity
-      style={styles.itemContainer}
+    style={{ ...styles.itemContainer, backgroundColor: item.backgroundColor }}
       key={index}
       onPress={() =>
         navigation.push(`service-screen/${item.description}`, {
@@ -68,7 +70,7 @@ const ListService = () => {
       </View>
       <View>
         <FlatList
-          ListHeaderComponent={Header}
+          // ListHeaderComponent={Header}
           data={feature}
           numColumns={4}
           columnWrapperStyle={{ justifyContent: "space-between" }}

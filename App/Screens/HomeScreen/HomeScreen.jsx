@@ -1,12 +1,14 @@
-import { StyleSheet } from "react-native";
+import { ScrollView } from "react-native";
 import React from "react";
-import Header from "../../Components/Header/Header";
 import ListService from "../../Components/ListSerivce/ListService";
+import HeaderComponents from "../../Components/HeaderComponents/HeaderComponents";
+import SliderComponents from "../../Components/SliderComponents/SliderComponents";
 
 const HomeScreen = () => {
   return (
     <ScrollView>
-      <Header />
+      <HeaderComponents />
+      <SliderComponents />
       <ListService />
     </ScrollView>
   );
