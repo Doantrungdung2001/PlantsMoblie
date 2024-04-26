@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
-import { COLORS, SIZES, FONT } from "../Constants";
+import { COLORS, SIZES, FONT } from "../../Constants";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Entypo } from "@expo/vector-icons";

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
-import CultivationActivities from "../../../Components/CultivationActivities";
+import CultivationActivities from "../../../Components/CultivationActivites/CultivationActivities";
 import PlantingActivity from "../../../Components/PlantingActivity";
 import FertilizationActivities from "../../../Components/FertilizationActivities";
 import PestAndDiseaseControlActivities from "../../../Components/PestAndDiseaseControlActivities";

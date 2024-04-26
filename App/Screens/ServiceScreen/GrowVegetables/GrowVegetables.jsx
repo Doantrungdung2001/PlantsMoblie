@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import React, { useEffect } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import Search from "../../../Components/Search";
+import Search from "../../../Components/Search/Search";
 import ListProjectGrowVegetable from "./ListProjectGrowVegetable";
 
 listfarm = [
