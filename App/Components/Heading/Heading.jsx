@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 import React from "react";
-import styles from "../HeaderComponents/Header.Styles";
+import styles from "./Heading.Styles";
 
 const Heading = ({ text }) => {
   return (
