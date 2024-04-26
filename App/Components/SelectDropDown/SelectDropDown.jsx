@@ -6,7 +6,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import CultivationActivities from "../CultivationActivites/CultivationActivities";
 import PlantingActivity from "../PlantingActivity/PlantingActivity";
 import FertilizationActivities from "../FertilizationActivities/FertilizationActivities";
-import PestAndDiseaseControlActivities from "./PestAndDiseaseControlActivities";
+import PestAndDiseaseControlActivities from "../PestAndDisease/PestAndDiseaseControlActivities";
 import styles from "./SelectDropDown.Styles";
 import Accordion from "../Accordion/Accordion";
 const emojisWithIcons = [

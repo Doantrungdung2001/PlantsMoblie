@@ -13,7 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../Constants";
 import IntruductionProject from "./IntruductionProject";
 import SliderService from "./SliderService";
-import ListProject from "../../../Components/ListProject";
+import ListProject from "../../../Components/ListProject/ListProject";
 
 const DetailFarmGrowVegetables = () => {
   const param = useRoute().params;

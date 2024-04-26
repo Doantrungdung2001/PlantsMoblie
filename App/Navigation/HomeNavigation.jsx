@@ -9,7 +9,7 @@ import Wallet from "../Screens/ServiceScreen/Wallet/Wallet";
 import DetailFarmGrowVegetables from "../Screens/ServiceScreen/GrowVegetables/DetailFarmGrowVegetables";
 import DetailInfoService from "../Screens/ServiceScreen/GrowVegetables/DetailInfoService";
 import SelectVegetables from "../Screens/ServiceScreen/GrowVegetables/SelectVegetables";
-import Notification from "../Components/Notification";
+import Notification from "../Components/NotificationsActivities/Notification";
 import HomeScreen from "../Screens/HomeScreen/HomeScreen";
 const Stack = createStackNavigator();
 

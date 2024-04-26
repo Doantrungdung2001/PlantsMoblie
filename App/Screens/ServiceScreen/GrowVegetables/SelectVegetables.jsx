@@ -10,7 +10,7 @@ import {
   Modal,
 } from "react-native";
 import React, { useState } from "react";
-import PageHeading from "../../../Components/PageHeading";
+import PageHeading from "../../../Components/PageHeading/PageHeading";
 import { COLORS } from "../../../Constants";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";

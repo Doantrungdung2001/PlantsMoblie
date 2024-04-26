@@ -6,7 +6,7 @@ import {
   TextInput,
 } from "react-native";
 import React from "react";
-import PageHeading from "../../../Components/PageHeading";
+import PageHeading from "../../../Components/PageHeading/PageHeading";
 import Heading from "../../../Components/Heading/Heading";
 import { COLORS } from "../../../Constants";
 const Request = () => {

@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../../Constants";
 const styles = StyleSheet.create({
   details: {
     opacity: 0.65,

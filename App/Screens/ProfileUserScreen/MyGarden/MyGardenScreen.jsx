@@ -5,16 +5,14 @@ import {
   View,
   Pressable,
   TouchableOpacity,
-  Modal,
 } from "react-native";
 import React, { useState } from "react";
-import PageHeading from "../../../Components/PageHeading";
+import PageHeading from "../../../Components/PageHeading/PageHeading";
 import { COLORS } from "../../../Constants";
 import CultivationProcess from "./CultivationProcess";
 import CameraExtraction from "./CameraExtraction";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import FarmingProcess from "./FarmingProcess";
 import InfoMyGarden from "./InfoMyGarden";
