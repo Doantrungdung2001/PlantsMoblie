@@ -5,9 +5,8 @@ import CultivationActivities from "../../../Components/CultivationActivities";
 import PlantingActivity from "../../../Components/PlantingActivity";
 import FertilizationActivities from "../../../Components/FertilizationActivities";
 import PestAndDiseaseControlActivities from "../../../Components/PestAndDiseaseControlActivities";
-import Accordion from "../../../Components/Accordion";
+import Accordion from "../../../Components/Accordion/Accordion";
 import SelectDropDown from "../../../Components/SelectDropDown";
-
 
 const FarmingProcess = () => {
   return (

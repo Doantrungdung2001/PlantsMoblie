@@ -1,17 +1,16 @@
 import {
-  StyleSheet,
   Text,
   TouchableWithoutFeedback,
   View,
   UIManager,
   Platform,
   LayoutAnimation,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
-import { COLORS } from "../Constants";
-
+import { COLORS } from "../../Constants";
+import styles from "./Accordion.Styles";
 const Accordion = ({ title, details }) => {
   const [opened, setOpened] = useState(false);
 
@@ -34,7 +33,11 @@ const Accordion = ({ title, details }) => {
       <TouchableWithoutFeedback onPress={toggleAccordion}>
         <View style={styles.header}>
           <Text style={styles.title}>{title}</Text>
-          <AntDesign name={opened ? "caretup" : "caretdown"} size={30} color={COLORS.green}/>
+          <AntDesign
+            name={opened ? "caretup" : "caretdown"}
+            size={30}
+            color={COLORS.green}
+          />
         </View>
       </TouchableWithoutFeedback>
 
@@ -48,27 +51,3 @@ const Accordion = ({ title, details }) => {
 };
 
 export default Accordion;
-
-const styles = StyleSheet.create({
-  details: {
-    opacity: 0.65,
-  },
-  title: {
-    fontFamily:"RobotoCondensed-Bold",
-    fontSize: 26,
-    color: COLORS.green,
-  },
-  content: {
-    marginTop: 8,
-  },
-  container: {
-    margin: 10,
-    padding: 15,
-    backgroundColor: COLORS.white,
-    borderRadius: 6,
-  },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-});

@@ -8,7 +8,7 @@ import CultivationActivities from ".//CultivationActivities";
 import PlantingActivity from "./PlantingActivity";
 import FertilizationActivities from "./FertilizationActivities";
 import PestAndDiseaseControlActivities from "./PestAndDiseaseControlActivities";
-import Accordion from "./Accordion";
+import Accordion from "./Accordion/Accordion";
 const emojisWithIcons = [
   { title: "happy", icon: "emoticon-happy-outline" },
   { title: "cool", icon: "emoticon-cool-outline" },
