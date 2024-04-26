@@ -47,3 +47,6 @@ npm i react-native-axios
 ```
 npm install @react-native-async-storage/async-storage
 ```
+```
+ npm i @tanstack/react-query
+```

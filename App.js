@@ -2,13 +2,12 @@ import React, { useCallback } from "react";
 import { useFonts } from "expo-font";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import { StyleSheet, Text, View } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
-import SignUp from "./App/Screens/SignUp";
 import TabScren from "./App/Navigation/TabScren";
 import GetStart from "./App/Screens/GetStart";
 import Login from "./App/Screens/AuthScreen/Login/Login";
 import Register from "./App/Screens/AuthScreen/Register/Register";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const theme = {
   ...DefaultTheme,
   colors: {
@@ -18,7 +17,7 @@ const theme = {
 };
 
 const Stack = createStackNavigator();
-
+const queryClient = new QueryClient();
 export default function App() {
   const [fontLoaded] = useFonts({
     regular: require("./assets/fonts/Roboto-Regular.ttf"),
@@ -39,20 +38,22 @@ export default function App() {
     return null;
   }
   return (
-    <NavigationContainer theme={theme}>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-        initialRouteName={"GetStart"}
-      >
-        <Stack.Screen name="GetStart" component={GetStart} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Register" component={Register} />
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer theme={theme}>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+          initialRouteName={"GetStart"}
+        >
+          <Stack.Screen name="GetStart" component={GetStart} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Register" component={Register} />
 
-        {/*Tab*/}
-        <Stack.Screen name="Home" component={TabScren} />
-      </Stack.Navigator>
-    </NavigationContainer>
+          {/*Tab*/}
+          <Stack.Screen name="Home" component={TabScren} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </QueryClientProvider>
   );
 }

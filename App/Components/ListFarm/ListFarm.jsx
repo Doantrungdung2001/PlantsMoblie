@@ -1,7 +1,15 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity, Image, FlatList } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  FlatList,
+  SafeAreaView,
+} from "react-native";
 import Heading from "../Heading/Heading";
 import styles from "./ListFarm.Styles";
+import useListFarm from "./useListFarm";
 
 export default Album = () => {
   const data = [
@@ -66,9 +74,10 @@ export default Album = () => {
       image: "https://bootdey.com/image/400x200/FA8072/000000",
     },
   ];
+  const { allFarm, isSuccessAllFarm, isLoadingAllFarm } = useListFarm();
+  // const [results, setResults] = useState(allFarm);
 
-  const [results, setResults] = useState(data);
-
+  console.log(allFarm);
   return (
     <View>
       <View>
@@ -77,38 +86,40 @@ export default Album = () => {
           <Text>Tất cả</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.container}>
-        <FlatList
-          style={styles.list}
-          contentContainerStyle={styles.listContainer}
-          data={results}
-          horizontal={false}
-          numColumns={2}
-          keyExtractor={(item) => {
-            return item.id;
-          }}
-          ItemSeparatorComponent={() => {
-            return <View style={styles.separator} />;
-          }}
-          renderItem={(post) => {
-            const item = post.item;
-            return (
-              <TouchableOpacity style={styles.card}>
-                <View style={styles.imageContainer}>
-                  <Image
-                    style={styles.cardImage}
-                    source={{ uri: item.image }}
-                  />
-                </View>
-                <View style={styles.cardContent}>
-                  <Text style={styles.title}>{item.title}</Text>
-                  <Text style={styles.count}>({item.count} Photos)</Text>
-                </View>
-              </TouchableOpacity>
-            );
-          }}
-        />
-      </View>
+      {isSuccessAllFarm && (
+        <SafeAreaView style={styles.container}>
+          <FlatList
+            style={styles.list}
+            contentContainerStyle={styles.listContainer}
+            data={allFarm.slice(0, 6)}
+            horizontal={false}
+            numColumns={2}
+            keyExtractor={(item) => {
+              return item.id;
+            }}
+            ItemSeparatorComponent={() => {
+              return <View style={styles.separator} />;
+            }}
+            renderItem={(post) => {
+              const item = post.item;
+              return (
+                <TouchableOpacity style={styles.card}>
+                  <View style={styles.imageContainer}>
+                    <Image
+                      style={styles.cardImage}
+                      source={{ uri: item.image }}
+                    />
+                  </View>
+                  <View style={styles.cardContent}>
+                    <Text style={styles.title}>{item.name}</Text>
+                    <Text style={styles.count}>{item.district}</Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            }}
+          />
+        </SafeAreaView>
+      )}
     </View>
   );
 };
