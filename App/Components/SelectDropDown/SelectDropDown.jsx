@@ -2,12 +2,12 @@ import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import React, { useState } from "react";
 import SelectDropdown from "react-native-select-dropdown";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { COLORS } from "../Constants";
-import CultivationActivities from "./CultivationActivites/CultivationActivities";
-import PlantingActivity from "./PlantingActivity/PlantingActivity";
-import FertilizationActivities from "./FertilizationActivities/FertilizationActivities";
+import { COLORS } from "../../Constants";
+import CultivationActivities from "../CultivationActivites/CultivationActivities";
+import PlantingActivity from "../PlantingActivity/PlantingActivity";
+import FertilizationActivities from "../FertilizationActivities/FertilizationActivities";
 import PestAndDiseaseControlActivities from "./PestAndDiseaseControlActivities";
-import Accordion from "./Accordion/Accordion";
+import Accordion from "../Accordion/Accordion";
 const emojisWithIcons = [
   { title: "happy", icon: "emoticon-happy-outline" },
   { title: "cool", icon: "emoticon-cool-outline" },

@@ -7,8 +7,8 @@ import {
   Image,
   FlatList,
 } from "react-native";
-import Heading from "./Heading/Heading";
-import { COLORS } from "../Constants";
+import Heading from "../Heading/Heading";
+import { COLORS } from "../../Constants";
 
 const data = [
   {

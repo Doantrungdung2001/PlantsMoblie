@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { COLORS } from "../Constants";
+import { COLORS } from "../../Constants";
 const pestAndDiseaseControlActivities = [
   {
     name: "Sâu tơ (Plutella xylostella)",
