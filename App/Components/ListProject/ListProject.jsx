@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  FlatList,
-} from "react-native";
+import { Text, View, TouchableOpacity, Image, FlatList } from "react-native";
 import Heading from "../Heading/Heading";
-import { COLORS } from "../../Constants";
-
+import styles from "./ListProject.Styles";
 const data = [
   {
     id: 1,
@@ -111,74 +103,3 @@ const ListProject = () => {
 };
 
 export default ListProject;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 20,
-  },
-  list: {
-    paddingHorizontal: 10,
-  },
-  listContainer: {
-    alignItems: "center",
-  },
-  separator: {
-    marginTop: 10,
-  },
-  /******** card **************/
-  card: {
-    marginVertical: 8,
-    backgroundColor: "white",
-    flexBasis: "45%",
-    marginHorizontal: 10,
-  },
-  cardContent: {
-    paddingVertical: 17,
-    paddingHorizontal: 10,
-    justifyContent: "space-between",
-  },
-  cardImage: {
-    flex: 1,
-    height: 150,
-    width: null,
-  },
-  imageContainer: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.32,
-    shadowRadius: 5.46,
-
-    elevation: 9,
-  },
-  /******** card components **************/
-  title: {
-    fontSize: 18,
-    flex: 1,
-    color: "#778899",
-  },
-  count: {
-    fontSize: 18,
-    flex: 1,
-    color: "#B0C4DE",
-  },
-
-  button: {
-    width: "90%",
-    height: 50,
-    borderRadius: 15,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 10,
-  },
-  buttonText: {
-    color: "#fff",
-    fontWeight: "bold",
-  },
-  google: {
-    backgroundColor: COLORS.green,
-  },
-});
