@@ -5,7 +5,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-  Modal,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -51,7 +50,7 @@ const DetailFarmGrowVegetables = () => {
                 fontFamily: "Roboto-Medium",
               }}
             >
-              {farmInformation.gmail}
+              {farmInformation?.email}
             </Text>
             <Text
               style={{
@@ -61,7 +60,7 @@ const DetailFarmGrowVegetables = () => {
                 fontFamily: "Roboto-Medium",
               }}
             >
-              {farmInformation.phone}
+              {farmInformation?.phone}
             </Text>
           </View>
           <Text

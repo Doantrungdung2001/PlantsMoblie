@@ -7,83 +7,26 @@ import {
   FlatList,
   SafeAreaView,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import Heading from "../Heading/Heading";
 import styles from "./ListFarm.Styles";
 import useListFarm from "./useListFarm";
 
 export default Album = () => {
-  const data = [
-    {
-      id: 1,
-      title: "Product 1",
-      count: 4,
-      image: "https://bootdey.com/image/400x200/FFB6C1/000000",
-    },
-    {
-      id: 2,
-      title: "Product 2",
-      count: 4,
-      image: "https://bootdey.com/image/400x200/87CEEB/000000",
-    },
-    {
-      id: 3,
-      title: "Product 3",
-      count: 4,
-      image: "https://bootdey.com/image/400x200/6A5ACD/000000",
-    },
-    {
-      id: 4,
-      title: "Product 4",
-      count: 4,
-      image: "https://bootdey.com/image/400x200/4682B4/000000",
-    },
-    {
-      id: 5,
-      title: "Product 5",
-      count: 4,
-      image: "https://bootdey.com/image/400x200/40E0D0/000000",
-    },
-    {
-      id: 6,
-      title: "Product 6",
-      count: 4,
-      image: "https://bootdey.com/image/400x200/008080/000000",
-    },
-    {
-      id: 7,
-      title: "Product 7",
-      count: 4,
-      image: "https://bootdey.com/image/400x200/FF6347/000000",
-    },
-    {
-      id: 8,
-      title: "Product 8",
-      count: 4,
-      image: "https://bootdey.com/image/400x200/4169E1/000000",
-    },
-    {
-      id: 9,
-      title: "Product 9",
-      count: 4,
-      image: "https://bootdey.com/image/400x200/6A5ACD/000000",
-    },
-    {
-      id: 9,
-      title: "Product 10",
-      count: 4,
-      image: "https://bootdey.com/image/400x200/FA8072/000000",
-    },
-  ];
+  const navigation = useNavigation();
   const { allFarm, isSuccessAllFarm, isLoadingAllFarm } = useListFarm();
   // const [results, setResults] = useState(allFarm);
-
-  console.log(allFarm);
   return (
-    <View>
+    <View style={styles.containerFarm}>
       <View>
         <Heading text={"Danh sách nông trại"} />
-        <TouchableOpacity>
-          <Text>Tất cả</Text>
+        <TouchableOpacity
+          style={{ alignSelf: "flex-end", marginRight: 10 }}
+          onPress={() => {
+            navigation.push("service-screen/Transfer");
+          }}
+        >
+          <Text style={{ color: "green"}}>Tất cả</Text>
         </TouchableOpacity>
       </View>
       {isSuccessAllFarm && (

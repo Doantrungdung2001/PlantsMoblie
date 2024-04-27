@@ -1,10 +1,17 @@
-import { View, Text, TouchableOpacity, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  FlatList,
+  SafeAreaView,
+} from "react-native";
 import React, { useEffect } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import Search from "../../../Components/Search/Search";
-import ListProjectGrowVegetable from "./ListProjectGrowVegetable";
-
+import Search from "../../../../Components/Search/Search";
+import ListProjectGrowVegetable from "../ListFarmGrowVegetable";
+import useListFarm from "../../../../Components/ListFarm/useListFarm";
+import PageHeading from "../../../../Components/PageHeading/PageHeading";
 listfarm = [
   {
     image:
@@ -60,15 +67,14 @@ listfarm = [
   },
 ];
 
-const GrowVegetables = () => {
+const ListFarmDetail = () => {
+  const { allFarm, isSuccessAllFarm, isLoadingAllFarm } = useListFarm();
+  console.log(allFarm);
   const param = useRoute().params;
   const navigation = useNavigation();
-  useEffect(() => {
-    console.log("category", param.category);
-  }, []);
   return (
-    <View>
-      <View style={{ padding: 20, paddingTop: 40 }}>
+    <SafeAreaView>
+      {/* <View style={{ padding: 20, paddingTop: 40 }}>
         <TouchableOpacity
           style={{
             display: "flex",
@@ -83,19 +89,22 @@ const GrowVegetables = () => {
             {param?.category}
           </Text>
         </TouchableOpacity>
-      </View>
-
+      </View> */}
+      <PageHeading title={"Danh sách nông trại"} />
       <Search />
-
-      <FlatList
-        style={{ marginTop: 10 }}
-        data={listfarm}
-        renderItem={({ item, index }) => (
-          <ListProjectGrowVegetable farm={item} />
-        )}
-      />
-    </View>
+      {isSuccessAllFarm && (
+        <SafeAreaView>
+          <FlatList
+            style={{ marginTop: 10 }}
+            data={allFarm}
+            renderItem={({ item, index }) => (
+              <ListProjectGrowVegetable farm={item} key={index} />
+            )}
+          />
+        </SafeAreaView>
+      )}
+    </SafeAreaView>
   );
 };
 
-export default GrowVegetables;
+export default ListFarmDetail;
