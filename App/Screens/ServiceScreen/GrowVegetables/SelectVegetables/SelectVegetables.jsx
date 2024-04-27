@@ -237,7 +237,7 @@ const SelectVegetables = () => {
       <Modal animationType="slide" visible={showModal}>
         <View style={styles.containerModal}>
           <TouchableOpacity
-            style={cancelBtn}
+            style={styles.cancelBtn}
             onPress={() => setShowModal(!showModal)}
           >
             <MaterialIcons name="cancel" size={30} color="red" />
@@ -252,11 +252,7 @@ const SelectVegetables = () => {
                     style={styles.imageModal}
                   />
                   <View style={styles.subContainerModal}>
-                    <Text
-                      style={styles.cardTitle}
-                    >
-                      {item.title}
-                    </Text>
+                    <Text style={styles.cardTitle}>{item.title}</Text>
                     <Text
                       style={{
                         fontFamily: "regular",
