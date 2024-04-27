@@ -1,9 +1,9 @@
 import { FlatList, Image, StyleSheet, Text, Button, View } from "react-native";
 import React from "react";
-import Heading from "../../../Components/Heading/Heading";
-import { COLORS } from "../../../Constants";
+import Heading from "../../../../Components/Heading/Heading";
+import { COLORS } from "../../../../Constants";
 import { useNavigation } from "@react-navigation/native";
-
+import styles from "./ListService.Styles";
 const data = [
   {
     id: 1,
@@ -30,7 +30,7 @@ const data = [
   },
 ];
 
-const Slider = () => {
+const ListService = () => {
   const navigation = useNavigation();
   return (
     <View>
@@ -41,18 +41,10 @@ const Slider = () => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item, index }) => (
-          <View style={styles.container}>
+          <View style={styles.container} key={index}>
             <Image source={{ uri: item.image }} style={styles.image} />
             <View>
-              <Text
-                style={{
-                  fontFamily: "Roboto-Medium",
-                  marginTop: 15,
-                  fontSize: 20,
-                }}
-              >
-                {item.name}
-              </Text>
+              <Text style={styles.name}>{item.name}</Text>
               <View style={styles.buttonBtn}>
                 <Button
                   onPress={() =>
@@ -71,23 +63,6 @@ const Slider = () => {
   );
 };
 
-export default Slider;
+export default ListService;
 
-const styles = StyleSheet.create({
-  container: {
-    margin: 15,
-    padding: 10,
-    backgroundColor: COLORS.white,
-    borderRadius: 10,
-  },
-  image: {
-    width: 160,
-    height: 100,
-    borderRadius: 10,
-  },
-  buttonBtn: {
-    marginTop: 10,
-    backgroundColor: COLORS.green,
-    borderRadius: 15,
-  },
-});
+

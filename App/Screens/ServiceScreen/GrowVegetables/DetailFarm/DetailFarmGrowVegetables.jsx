@@ -10,7 +10,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../../Constants";
 import IntruductionProject from "../IntruductionProject";
-import SliderService from "../SliderService";
+import SliderService from "../ListService/ListService";
 import ListProject from "../../../../Components/ListProject/ListProject";
 import styles from "./DetailFarm.Styles";
 const DetailFarmGrowVegetables = () => {

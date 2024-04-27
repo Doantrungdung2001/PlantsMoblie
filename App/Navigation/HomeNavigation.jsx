@@ -7,7 +7,7 @@ import Bill from "../Screens/ServiceScreen/Bill/Bill";
 import More from "../Screens/ServiceScreen/More/More";
 import Wallet from "../Screens/ServiceScreen/Wallet/Wallet";
 import DetailFarmGrowVegetables from "../Screens/ServiceScreen/GrowVegetables/DetailFarm/DetailFarmGrowVegetables";
-import DetailInfoService from "../Screens/ServiceScreen/GrowVegetables/DetailInfoService";
+import DetailInfoService from "../Screens/ServiceScreen/GrowVegetables/DetailInfoService/DetailInfoService";
 import SelectVegetables from "../Screens/ServiceScreen/GrowVegetables/SelectVegetables";
 import Notification from "../Components/NotificationsActivities/Notification";
 import HomeScreen from "../Screens/HomeScreen/HomeScreen";
