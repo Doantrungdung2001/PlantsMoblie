@@ -26,7 +26,7 @@ export default Album = () => {
             navigation.push("service-screen/Transfer");
           }}
         >
-          <Text style={{ color: "green"}}>Tất cả</Text>
+          <Text style={{ color: "green" }}>Tất cả</Text>
         </TouchableOpacity>
       </View>
       {isSuccessAllFarm && (
@@ -46,7 +46,12 @@ export default Album = () => {
             renderItem={(post) => {
               const item = post.item;
               return (
-                <TouchableOpacity style={styles.card}>
+                <TouchableOpacity
+                  style={styles.card}
+                  onPress={() =>
+                    navigation.push("farm-detail", { farmInfo: item })
+                  }
+                >
                   <View style={styles.imageContainer}>
                     <Image
                       style={styles.cardImage}
