@@ -3,7 +3,7 @@ import React from "react";
 import Heading from "../../../../Components/Heading/Heading";
 import { COLORS } from "../../../../Constants";
 import { useNavigation } from "@react-navigation/native";
-import styles from "./ListService.Styles";
+import styles from "./ListGardenService.Styles";
 const data = [
   {
     id: 1,
@@ -30,7 +30,7 @@ const data = [
   },
 ];
 
-const ListService = () => {
+const ListGardenService = () => {
   const navigation = useNavigation();
   return (
     <View>
@@ -63,6 +63,4 @@ const ListService = () => {
   );
 };
 
-export default ListService;
-
-
+export default ListGardenService;
