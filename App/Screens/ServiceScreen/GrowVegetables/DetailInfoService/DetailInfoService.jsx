@@ -35,27 +35,51 @@ const DetailInfoService = () => {
             </View>
             <View style={styles.information}>
               <Text style={styles.nameInformation}>Giá thành</Text>
-              <Text style={styles.detailInformation}>1tr500k/1m2</Text>
+              <Text style={styles.detailInformation}>
+                {serviceInformation.price}/1m2
+              </Text>
+            </View>
+            <View style={styles.information}>
+              <Text style={styles.nameInformation}>Diện tích</Text>
+              <Text style={styles.detailInformation}>
+                {serviceInformation.square}m2
+              </Text>
             </View>
             <View style={styles.information}>
               <Text style={styles.nameInformation}>Rau ăn lá</Text>
-              <Text style={styles.detailInformation}>4 loại</Text>
+              <Text style={styles.detailInformation}>
+                {serviceInformation.leafyMax} loại
+              </Text>
             </View>
             <View style={styles.information}>
               <Text style={styles.nameInformation}>Rau gia vị</Text>
-              <Text style={styles.detailInformation}>5 loại</Text>
+              <Text style={styles.detailInformation}>
+                {serviceInformation.herbMax} loại
+              </Text>
             </View>
             <View style={styles.information}>
               <Text style={styles.nameInformation}>Củ</Text>
-              <Text style={styles.detailInformation}>2 loại</Text>
+              <Text style={styles.detailInformation}>
+                {serviceInformation.rootMax} loại
+              </Text>
             </View>
             <View style={styles.information}>
               <Text style={styles.nameInformation}>Quả</Text>
-              <Text style={styles.detailInformation}>2 loại</Text>
+              <Text style={styles.detailInformation}>
+                {serviceInformation.fruitMax} loại
+              </Text>
             </View>
             <View style={styles.information}>
               <Text style={styles.nameInformation}>Số lần giao</Text>
-              <Text style={styles.detailInformation}>2 lần/tuần</Text>
+              <Text style={styles.detailInformation}>
+                {serviceInformation.expectDeliveryPerWeek} lần/tuần
+              </Text>
+            </View>
+            <View style={styles.information}>
+              <Text style={styles.nameInformation}>Đầu ra kỳ vọng</Text>
+              <Text style={styles.detailInformation}>
+                {serviceInformation.expectedOutput}kg
+              </Text>
             </View>
             <View style={styles.information}>
               <Text style={styles.nameInformation}>Thời lượng dịch vụ</Text>
@@ -70,11 +94,7 @@ const DetailInfoService = () => {
           style={styles.bookingBtn}
           onPress={() => navigation.push("select-vegestables")}
         >
-          <Text
-            style={styles.textBtn}
-          >
-            Lựa chọn rau trồng
-          </Text>
+          <Text style={styles.textBtn}>Lựa chọn rau trồng</Text>
         </TouchableOpacity>
       </View>
     </View>

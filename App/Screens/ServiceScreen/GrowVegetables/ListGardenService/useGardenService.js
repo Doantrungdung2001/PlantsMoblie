@@ -11,6 +11,7 @@ export default function useListGardenService({ farmId }) {
         gardenService.expectDeliveryPerWeek || "Chưa cập nhật",
       expectDeliveryAmount:
         gardenService.expectDeliveryAmount || "Chưa cập nhật",
+      expectedOutput: gardenService.expectedOutput || "Chưa cập nhật",
       price: gardenService.price || "Chưa cập nhật",
       leafyMax: gardenService.leafyMax || "Chưa cập nhật",
       herbMax: gardenService.herbMax || "Chưa cập nhật",
