@@ -1,16 +1,10 @@
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
+import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../../Constants";
 import IntruductionProject from "../IntruductionFarm/IntruductionFarm";
-import SliderService from "../ListService/ListService";
+import ListGardenService from "../ListGardenService/ListGardenService";
 import ListProject from "../../../../Components/ListProject/ListProject";
 import styles from "./DetailFarm.Styles";
 const DetailFarmGrowVegetables = () => {
@@ -52,7 +46,8 @@ const DetailFarmGrowVegetables = () => {
           <View style={styles.line}></View>
         </View>
         {/* slider service */}
-        <SliderService />
+        <ListGardenService farmId={farmInformation.id} />
+
         {/*List project */}
         <ListProject />
       </ScrollView>

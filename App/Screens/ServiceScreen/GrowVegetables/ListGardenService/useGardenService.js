@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import GARDEN_SERVICE_TEMPLATE from "../../../../Services/GardenServiceTemplate";
-export default function useListFarm() {
+export default function useListGardenService({ farmId }) {
   const parseDataGardenService = useCallback((data) => {
     const allGardenSerive = data.map((gardenService) => ({
       id: gardenService._id,
@@ -27,7 +27,7 @@ export default function useListFarm() {
     isLoading: isLoadingAllGardenService,
   } = useQuery({
     queryKey: ["getAllGardenService"],
-    queryFn: () => GARDEN_SERVICE_TEMPLATE.getServiceTemplate,
+    queryFn: () => GARDEN_SERVICE_TEMPLATE.getServiceTemplate(farmId),
     staleTime: 20 * 1000,
     select: (data) => parseDataGardenService(data.data.metadata),
   });

@@ -2,7 +2,7 @@ import { FlatList, SafeAreaView } from "react-native";
 import React, { useEffect } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import Search from "../../../../Components/Search/Search";
-import ListProjectGrowVegetable from "../../../../Components/CardFarm/CardFarm";
+import CardFarm from "../../../../Components/CardFarm/CardFarm";
 import useListFarm from "../../../../Components/ListFarm/useListFarm";
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
 import styles from "./ListFarmDetail.Styles";
@@ -21,7 +21,7 @@ const ListFarmDetail = () => {
             data={allFarm}
             keyExtractor={(item) => item.id}
             renderItem={({ item, index }) => (
-              <ListProjectGrowVegetable farm={item} key={index} />
+              <CardFarm farm={item} key={index} />
             )}
           />
         </SafeAreaView>
