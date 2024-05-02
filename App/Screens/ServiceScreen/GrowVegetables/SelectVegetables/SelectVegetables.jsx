@@ -153,21 +153,16 @@ const SelectVegetables = () => {
   const [showModal, setShowModal] = useState(false);
   const [cartItems, setCartItems] = useState(0);
 
-  const [selectVegetablesCart, setSelectVegetablesCart] =
-    useState(cartSelectVegetables);
   const addToCart = (vegestables) => {
-    console.log("Du lieu them vao", vegestables);
+    console.log("Insert into cart", vegestables);
     const isExisted = cartSelectVegetables.some(
       (item) => item.id === vegestables.id
     );
     if (!isExisted) {
-      // setSelectVegetablesCart((prevCart) => [
-      //   ...selectVegetablesCart,
-      //   vegestables,
-      // ]);
       cartSelectVegetables.push(vegestables);
+      setCartItems(cartItems + 1);
     } else {
-      console.log("Sản phẩm đã tồn tại trong giỏ hàng!!");
+      console.log("Item is existed in cart!!");
     }
     console.log(cartSelectVegetables);
   };
