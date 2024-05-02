@@ -4,7 +4,7 @@ import Animated, { FadeInUp, FadeOutUp } from "react-native-reanimated";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 const ToastMessage = forwardRef(
-  ({ type, text, description, timeout = 3500 }, ref) => {
+  ({ type, text, description, timeout = 4000 }, ref) => {
     const [isVisible, setIsVisible] = useState(false);
 
     const TOAST_TYPE = {
@@ -47,7 +47,7 @@ const ToastMessage = forwardRef(
           <Animated.View
             style={{
               position: "absolute",
-              top: 50,
+              top: 40,
               width: "100%",
               height: 100,
               backgroundColor: backgroundColor,
