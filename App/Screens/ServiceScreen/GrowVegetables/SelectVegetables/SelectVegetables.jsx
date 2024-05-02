@@ -147,21 +147,29 @@ cart = [
   },
 ];
 
+const cartSelectVegetables = [];
 const SelectVegetables = () => {
   const [selectedHeader, setSelectedHeader] = useState(0);
-  const [status, setStatus] = useState(tabs[0].name);
   const [showModal, setShowModal] = useState(false);
-  const cartVegestable = [];
+  const [cartItems, setCartItems] = useState(0);
+
+  const [selectVegetablesCart, setSelectVegetablesCart] =
+    useState(cartSelectVegetables);
   const addToCart = (vegestables) => {
     console.log("Du lieu them vao", vegestables);
-    cartVegestable?.map((item, index) => {
-      if (item.id === vegestables.id) {
-        console.log("vegestables is exited !!");
-      } else {
-        cartVegestable.push(vegestables);
-      }
-    });
-    console.log(cartVegestable.length);
+    const isExisted = cartSelectVegetables.some(
+      (item) => item.id === vegestables.id
+    );
+    if (!isExisted) {
+      // setSelectVegetablesCart((prevCart) => [
+      //   ...selectVegetablesCart,
+      //   vegestables,
+      // ]);
+      cartSelectVegetables.push(vegestables);
+    } else {
+      console.log("Sản phẩm đã tồn tại trong giỏ hàng!!");
+    }
+    console.log(cartSelectVegetables);
   };
 
   return (
@@ -224,12 +232,30 @@ const SelectVegetables = () => {
         />
       </ScrollView>
       <View style={styles.footer}>
-        <Feather
-          name="shopping-cart"
-          size={45}
-          color="green"
-          onPress={() => setShowModal(!showModal)}
-        />
+        <TouchableOpacity>
+          <Feather
+            name="shopping-cart"
+            size={45}
+            color="green"
+            onPress={() => setShowModal(!showModal)}
+          />
+          <View
+            style={{
+              position: "absolute",
+              top: -5,
+              right: -5,
+              backgroundColor: "red",
+              borderRadius: 10,
+              width: 20,
+              height: 20,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ color: "white" }}>{cartItems}</Text>
+          </View>
+        </TouchableOpacity>
+
         <TouchableOpacity style={styles.bookingBtn}>
           <Text style={styles.textBtn}>Xác nhận</Text>
         </TouchableOpacity>
