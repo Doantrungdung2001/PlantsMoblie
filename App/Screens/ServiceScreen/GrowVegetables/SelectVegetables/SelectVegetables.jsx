@@ -154,7 +154,9 @@ const SelectVegetables = () => {
   const [showModal, setShowModal] = useState(false);
   const [countItem, setCountItem] = useState(cartSelectVegetables.length);
   const toastRef = useRef(null);
-
+  const [typeToast, setTypeToast] = useState("success");
+  const [textToast, setTextToast] = useState();
+  const [descriptionToast, setDescriptionToast] = useState();
   const handleShowToast = () => {
     if (toastRef.current) {
       toastRef.current.show();
@@ -167,14 +169,22 @@ const SelectVegetables = () => {
       (item) => item.id === vegestables.id
     );
     if (!isExisted) {
-      if (cartSelectVegetables.length <= 4) {
+      if (cartSelectVegetables.length < 4) {
         cartSelectVegetables.push(vegestables);
         setCountItem(countItem + 1);
+        setTypeToast("success");
+        setTextToast("Thành công");
+        setDescriptionToast("Cây trồng đã được thêm vào");
         handleShowToast();
       } else {
         Alert.alert("Số cây trồng không được vượt quá 4");
       }
     } else {
+      setTypeToast("danger");
+      setTextToast("Không thành công");
+      setDescriptionToast("Cây trồng đã tồn tại");
+      handleShowToast();
+
       console.log("Item is existed in cart!!");
     }
     console.log(cartSelectVegetables);
@@ -184,9 +194,9 @@ const SelectVegetables = () => {
     <View>
       <View>
         <ToastMessage
-          type="success"
-          text="Lorem Ipsum Text"
-          description="Lorem Ipsum Description"
+          type={typeToast}
+          text={textToast}
+          description={descriptionToast}
           ref={toastRef}
         />
       </View>

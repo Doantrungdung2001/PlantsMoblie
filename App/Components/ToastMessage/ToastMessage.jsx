@@ -63,6 +63,7 @@ const ToastMessage = forwardRef(
               shadowOpacity: 0.25,
               shadowRadius: 3.84,
               elevation: 5,
+              zIndex: 10,
             }}
             entering={FadeInUp.delay(200)}
             exiting={FadeOutUp}
