@@ -50,3 +50,6 @@ npm install @react-native-async-storage/async-storage
 ```
  npm i @tanstack/react-query
 ```
+```
+npm install react-native-reanimated
+```

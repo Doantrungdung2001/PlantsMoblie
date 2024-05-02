@@ -1,21 +1,22 @@
 import {
   FlatList,
   Pressable,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
   Image,
   ScrollView,
   Modal,
+  Alert,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
 import { COLORS } from "../../../../Constants";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import styles from "./SelectVegetables.Styles";
+import ToastMessage from "../../../../Components/ToastMessage/ToastMessage";
 const tabs = [
   {
     name: "Rau ăn lá",
@@ -151,7 +152,14 @@ const cartSelectVegetables = [];
 const SelectVegetables = () => {
   const [selectedHeader, setSelectedHeader] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  const [cartItems, setCartItems] = useState(0);
+  const [countItem, setCountItem] = useState(cartSelectVegetables.length);
+  const toastRef = useRef(null);
+
+  const handleShowToast = () => {
+    if (toastRef.current) {
+      toastRef.current.show();
+    }
+  };
 
   const addToCart = (vegestables) => {
     console.log("Insert into cart", vegestables);
@@ -159,8 +167,13 @@ const SelectVegetables = () => {
       (item) => item.id === vegestables.id
     );
     if (!isExisted) {
-      cartSelectVegetables.push(vegestables);
-      setCartItems(cartItems + 1);
+      if (cartSelectVegetables.length <= 4) {
+        cartSelectVegetables.push(vegestables);
+        setCountItem(countItem + 1);
+        handleShowToast();
+      } else {
+        Alert.alert("Số cây trồng không được vượt quá 4");
+      }
     } else {
       console.log("Item is existed in cart!!");
     }
@@ -169,10 +182,19 @@ const SelectVegetables = () => {
 
   return (
     <View>
+      <View>
+        <ToastMessage
+          type="success"
+          text="Lorem Ipsum Text"
+          description="Lorem Ipsum Description"
+          ref={toastRef}
+        />
+      </View>
       <ScrollView style={{ height: "93%" }}>
         <View>
           <PageHeading title={"Lựa chọn rau trồng"} />
         </View>
+
         <View style={styles.header}>
           {tabs.map((data, index) => (
             <Pressable onPress={() => setSelectedHeader(index)}>
@@ -247,7 +269,7 @@ const SelectVegetables = () => {
               alignItems: "center",
             }}
           >
-            <Text style={{ color: "white" }}>{cartItems}</Text>
+            <Text style={{ color: "white" }}>{countItem}</Text>
           </View>
         </TouchableOpacity>
 
@@ -264,7 +286,7 @@ const SelectVegetables = () => {
             <MaterialIcons name="cancel" size={30} color="red" />
           </TouchableOpacity>
           <FlatList
-            data={cart}
+            data={cartSelectVegetables}
             renderItem={({ item, index }) => (
               <ScrollView>
                 <TouchableOpacity style={styles.cardContainerModal} key={index}>
