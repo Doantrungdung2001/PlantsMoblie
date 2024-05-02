@@ -192,14 +192,12 @@ const SelectVegetables = () => {
 
   return (
     <View>
-      <View>
-        <ToastMessage
-          type={typeToast}
-          text={textToast}
-          description={descriptionToast}
-          ref={toastRef}
-        />
-      </View>
+      <ToastMessage
+        type={typeToast}
+        text={textToast}
+        description={descriptionToast}
+        ref={toastRef}
+      />
       <ScrollView style={{ height: "93%" }}>
         <View>
           <PageHeading title={"Lựa chọn rau trồng"} />
