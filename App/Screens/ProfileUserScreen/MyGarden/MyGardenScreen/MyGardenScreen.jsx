@@ -104,7 +104,7 @@ const MyGardenScreen = () => {
           color="green"
           onPress={() =>
             navigation.push("profile/my-garden/delivery", {
-              delivery: dataGarden.deliveries,
+              garden: dataGarden,
             })
           }
         />

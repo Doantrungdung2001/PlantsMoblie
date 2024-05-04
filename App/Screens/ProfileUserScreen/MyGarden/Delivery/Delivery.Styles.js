@@ -1,9 +1,33 @@
 import { StyleSheet } from "react-native";
 import { COLORS } from "../../../../Constants";
 const styles = StyleSheet.create({
-  card: {
+  cardCanceled: {
     flex: 1,
     backgroundColor: "#ff7f50",
+    borderRadius: 15,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+    marginBottom: 16,
+    padding: 16,
+  },
+  cardDone: {
+    flex: 1,
+    backgroundColor: COLORS.primary,
+    borderRadius: 15,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+    marginBottom: 16,
+    padding: 16,
+  },
+  cardComming: {
+    flex: 1,
+    backgroundColor: COLORS.yellow,
     borderRadius: 15,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
@@ -24,8 +48,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   headerSubtitle: {
+    marginTop: 5,
     fontSize: 12,
     color: "#ffffff",
+  },
+  headerStatus: {
+    fontSize: 17,
+    color: "#ffffff",
+    fontFamily: "RobotoCondensed-Bold",
   },
   detailInfo: {
     margin: 10,

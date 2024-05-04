@@ -90,5 +90,15 @@ export function renderTypeProcessProject(type) {
       return "Đã hủy";
   }
 }
-
-
+export function renderTypeStatusDelivery(type) {
+  switch (type) {
+    case "cancel":
+      return "Đã hủy bỏ";
+    case "done":
+      return "Hoàn thành";
+    case "coming":
+      return "Đang giao hàng";
+    default:
+      return "Không có trạng thái";
+  }
+}

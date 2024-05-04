@@ -189,11 +189,25 @@ const GARDEN = {
       url: `garden/client/${clientId}`,
     })
       .then((res) => {
-        console.log("res;", res)
+        console.log("res;", res);
         return res;
       })
       .catch((err) => {
-        console.log("err: ", err)
+        console.log("err: ", err);
+        return err;
+      });
+  },
+  getAllDeliveryByGarden: async (gardenId) => {
+    return await publicHttp({
+      method: "GET",
+      url: `garden/${gardenId}/delivery`,
+    })
+      .then((res) => {
+        console.log("res;", res);
+        return res;
+      })
+      .catch((err) => {
+        console.log("err: ", err);
         return err;
       });
   },
