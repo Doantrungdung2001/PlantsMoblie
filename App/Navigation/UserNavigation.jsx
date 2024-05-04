@@ -7,7 +7,7 @@ import Points from "../Screens/ProfileUserScreen/Points/Points";
 import HistoryGrowVegetables from "../Screens/ProfileUserScreen/HistoryGrowVegetables/HistoryGrowVegetables";
 import Request from "../Screens/ProfileUserScreen/MyGarden/Request";
 import LiveCamera from "../Screens/ProfileUserScreen/MyGarden/LiveCamera";
-import Delivery from "../Screens/ProfileUserScreen/MyGarden/Delivery";
+import Delivery from "../Screens/ProfileUserScreen/MyGarden/Delivery/Delivery";
 import ListMyGarden from "../Screens/ProfileUserScreen/MyGarden/ListMyGarden/ListMyGarden";
 const Stack = createStackNavigator();
 

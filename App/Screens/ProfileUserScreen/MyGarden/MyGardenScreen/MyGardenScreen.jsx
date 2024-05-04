@@ -102,7 +102,11 @@ const MyGardenScreen = () => {
           name="truck-delivery"
           size={45}
           color="green"
-          onPress={() => navigation.push("profile/my-garden/delivery")}
+          onPress={() =>
+            navigation.push("profile/my-garden/delivery", {
+              delivery: dataGarden.deliveries,
+            })
+          }
         />
         <TouchableOpacity
           style={styles.bookingBtn}

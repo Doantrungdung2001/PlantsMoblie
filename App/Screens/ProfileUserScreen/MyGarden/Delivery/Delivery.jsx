@@ -7,40 +7,51 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
-import PageHeading from "../../../Components/PageHeading/PageHeading";
+import PageHeading from "../../../../Components/PageHeading/PageHeading";
 import { MaterialIcons } from "@expo/vector-icons";
-import { COLORS } from "../../../Constants";
-
+import { COLORS } from "../../../../Constants";
+import { useRoute, useNavigation } from "@react-navigation/native";
+import { formatDateTime } from "../../../../Utils/helper";
 const Delivery = () => {
   const [showModal, setShowModal] = useState(false);
+  const param = useRoute().params;
+  const [dataDelivery, setDataDelivery] = useState(param.delivery);
+  const [deleveryDetail, setDeleveryDetail] = useState(null);
   return (
     <ScrollView>
       <PageHeading title={"Thông tin giao hàng"} />
       <View style={{ padding: 10, marginTop: 10 }}>
-        <TouchableOpacity
-          style={styles.card}
-          onPress={() => setShowModal(!showModal)}
-        >
-          <View style={styles.header}>
-            <View>
-              <Text style={styles.headerTitle}>Giao hàng rau cải</Text>
-              <Text style={styles.headerSubtitle}>24 March, 18pm - 19pm</Text>
+        {dataDelivery.map((data, index) => (
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() => setShowModal(!showModal)}
+            key={index}
+          >
+            <View style={styles.header}>
+              <View>
+                <Text style={styles.headerTitle}>
+                  Giao hàng lần thứ {index + 1}
+                </Text>
+                <Text style={styles.headerSubtitle}>
+                  {formatDateTime(data.time)}
+                </Text>
+              </View>
             </View>
-          </View>
-          <TouchableOpacity>
-            <Text style={{ marginTop: 8, fontSize: 18 }}>Chi tiết</Text>
+            <TouchableOpacity>
+              <Text style={{ marginTop: 8, fontSize: 18 }}>Chi tiết</Text>
+            </TouchableOpacity>
           </TouchableOpacity>
-        </TouchableOpacity>
+        ))}
       </View>
       <Modal animationType="slide" visible={showModal}>
-        <View style={{ padding: 20, marginTop: 20}}>
+        <View style={{ padding: 20, marginTop: 20 }}>
           <TouchableOpacity
             style={{
               display: "flex",
               flexDirection: "row",
               gap: 10,
               alignItems: "center",
-              marginBottom: 40
+              marginBottom: 40,
             }}
             onPress={() => setShowModal(!showModal)}
           >
