@@ -12,7 +12,7 @@ import CultivationProcess from "../CultivationProcess";
 import CameraExtraction from "../CameraExtraction";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import FarmingProcess from "../FarmingProcess";
+import FarmingProcess from "../PlantFarming/PlantFarming";
 import InfoMyGarden from "../InforMyGarden/InfoMyGarden";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import styles from "./MyGardenScreen.Styles";

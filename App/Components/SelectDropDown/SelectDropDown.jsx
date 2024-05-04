@@ -65,7 +65,7 @@ const frequentlyAskedQuestions = [
     detail: <PestAndDiseaseControlActivities />,
   },
 ];
-const SelectDropDown = () => {
+const SelectDropDown = ({ dataPlants, dataFarming }) => {
   const [selectVegestable, setSelectVegestable] = useState();
   return (
     <View style={styles.contanier}>
@@ -129,5 +129,3 @@ const SelectDropDown = () => {
 };
 
 export default SelectDropDown;
-
-

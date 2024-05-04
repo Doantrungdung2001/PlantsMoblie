@@ -211,6 +211,20 @@ const GARDEN = {
         return err;
       });
   },
+  getPlanFarmingByGarden: async (gardenId) => {
+    return await publicHttp({
+      method: "GET",
+      url: `garden/${gardenId}/plantFarmingProjects`,
+    })
+      .then((res) => {
+        console.log("res;", res);
+        return res;
+      })
+      .catch((err) => {
+        console.log("err: ", err);
+        return err;
+      });
+  },
 };
 
 export default GARDEN;
