@@ -4,14 +4,11 @@ import GARDEN from "../../../../Services/GardenService";
 
 export default function usePlantFarming({ gardenId }) {
   const parseDataPlantFarming = useCallback((data) => {
-    let listPlant = [];
-    data.forEach((item) => {
-      listPlant.push(item.plant.plant_name);
-    });
-
     const farmingprocess = data.map((farming) => ({
       id: farming?._id,
       farm: farming?.farm,
+      name: farming?.plant.plant_name,
+      img: farming?.plant.plant_thumb,
       plant: farming?.plant,
       seed: farming?.seed,
       startDate: farming?.startDate,
@@ -25,7 +22,7 @@ export default function usePlantFarming({ gardenId }) {
       createdAtTime: farming?.createdAtTime,
       plantFarming: farming?.plantFarming,
     }));
-    return { listPlant, farmingprocess };
+    return { farmingprocess };
   }, []);
 
   const {
@@ -41,7 +38,6 @@ export default function usePlantFarming({ gardenId }) {
   });
 
   return {
-    listPlants: dataPlantFarming?.listPlant,
     farmingProcess: dataPlantFarming?.farmingprocess,
     isSuccessPlantFarming,
     isLoadingPlantFarming,

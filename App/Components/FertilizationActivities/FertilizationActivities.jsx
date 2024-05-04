@@ -11,69 +11,15 @@ import { AntDesign } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../Constants";
 import styles from "./Fertilization.Styles";
-fertilizationActivity = [
-  {
-    fertilizationTime: "Trước khi trồng (theo cách 1: phân đơn)",
-    type: "baseFertilizer",
-    description:
-      "Trên 1 ha, Phân chuồng: 40m3, Hữu cơ vi sinh: 1000kg, Vôi: 1000kg, Ure: 54kg, Lân Super: 337.5kg, Kali: 100kg",
-  },
-  {
-    fertilizationTime: "Trước khi trồng (theo cách 2: quy đổi NHK)",
-    type: "baseFertilizer",
-    description:
-      "Trên 1 ha, Phân chuồng: 40m3, Hữu cơ vi sinh: 1000kg, Vôi: 1000kg, Ure: 40kg, Lân Super: 203kg, Kali: 150kg",
-  },
-  {
-    fertilizationTime: "Bón thúc lần 1 10NST (theo cách 1: phân đơn)",
-    type: "topFertilizer",
-    description: "Trên 1 ha, Ure: 30kg, Lân Super: 100kg",
-  },
-  {
-    fertilizationTime: "Bón thúc lần 2 25NST (theo cách 1: phân đơn)",
-    type: "topFertilizer",
-    description: "Trên 1 ha, Ure: 50kg",
-  },
-  {
-    fertilizationTime: "Bón thúc lần 3 45NST (theo cách 1: phân đơn)",
-    type: "topFertilizer",
-    description: "Trên 1 ha, Ure: 70kg, Kali: 50kg",
-  },
-  {
-    fertilizationTime: "Bón thúc lần 4 65NST (theo cách 1: phân đơn)",
-    type: "topFertilizer",
-    description: "Trên 1 ha, Ure: 100kg, Kali: 100kg",
-  },
-  {
-    fertilizationTime: "Bón thúc lần 1 10NST (theo cách 2: NPK tương đương)",
-    type: "topFertilizer",
-    description: "Trên 1 ha, Ure: 20kg, NPK 15-5-20: 80kg",
-  },
-  {
-    fertilizationTime: "Bón thúc lần 2 25NST (theo cách 2: NPK tương đương)",
-    type: "topFertilizer",
-    description: "Trên 1 ha, NPK 15-5-20: 140kg",
-  },
-  {
-    fertilizationTime: "Bón thúc lần 3 45NST (theo cách 2: NPK tương đương)",
-    type: "topFertilizer",
-    description: "Trên 1 ha, NPK 15-5-20: 180kg",
-  },
-  {
-    fertilizationTime: "Bón thúc lần 4 65NST (theo cách 2: NPK tương đương)",
-    type: "topFertilizer",
-    description: "Trên 1 ha, NPK 15-5-20: 200kg",
-  },
-];
 
-const FertilizationActivities = () => {
+const FertilizationActivities = ({dataFertilizationActivity}) => {
   const [showModal, setShowModal] = useState(false);
   const [selectActivity, setSelectActivity] = useState();
   return (
     <View>
       <View style={styles.container}>
         <FlatList
-          data={fertilizationActivity}
+          data={dataFertilizationActivity}
           style={styles.productList}
           renderItem={(activity, index) => {
             return (
@@ -83,6 +29,7 @@ const FertilizationActivities = () => {
                   setShowModal(!showModal);
                   setSelectActivity(activity);
                 }}
+                key={index}
               >
                 <View style={{ alignSelf: "flex-start" }}>
                   <Text style={styles.productName}>

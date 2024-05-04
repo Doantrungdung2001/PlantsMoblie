@@ -12,7 +12,7 @@ import CultivationProcess from "../CultivationProcess";
 import CameraExtraction from "../CameraExtraction";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import FarmingProcess from "../PlantFarming/PlantFarming";
+import PlantFarming  from "../PlantFarming/PlantFarming";
 import InfoMyGarden from "../InforMyGarden/InfoMyGarden";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import styles from "./MyGardenScreen.Styles";
@@ -92,7 +92,7 @@ const MyGardenScreen = () => {
             </ScrollView>
           </View>
           {selectedHeader == 0 && <InfoMyGarden infor={dataGarden} />}
-          {selectedHeader == 1 && <FarmingProcess />}
+          {selectedHeader == 1 && <PlantFarming gardenId={dataGarden.id} />}
           {selectedHeader == 2 && <CultivationProcess />}
           {selectedHeader == 3 && <CameraExtraction />}
         </View>

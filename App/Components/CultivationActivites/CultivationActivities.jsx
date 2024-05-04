@@ -11,40 +11,8 @@ import { COLORS } from "../../Constants";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import styles from "./Cultivation.Styles";
-const dataCutivation = [
-  {
-    id: 1,
-    name: "Vệ sinh vườn",
-    description:
-      "Vệ sinh vườn, dọn sạch các tàn dư thực vật của vụ trước, rải vôi cày xới kỹ sâu khoảng 20-25cm. ",
-  },
-  {
-    id: 2,
-    name: "Xử lý đất bằng Nebijin 0.3DP ",
-    description:
-      "Ở những vườn các vụ trước đã trồng bắp cải cần xử lý đất bằng Nebijin 0.3DP để hạn chế bệnh sưng rễ.",
-  },
-  {
-    id: 3,
-    name: "Nhúng rễ cây vào dung dịch Sherpa 0,1-0,15%",
-    description:
-      "Trước khi trồng nhúng rễ cây vào dung dịch Sherpa 0,1-0,15%. Nếu sử dụng polietylen phủ đất, sau khi bón lót, phủ kín mặt luống, dùng đất chèn kỹ mép luống và đục lỗ trồng.",
-  },
-  {
-    id: 4,
-    name: "Nhúng rễ cây vào dung dịch Sherpa 0,1-0,15%",
-    description:
-      "Trước khi trồng nhúng rễ cây vào dung dịch Sherpa 0,1-0,15%. Nếu sử dụng polietylen phủ đất, sau khi bón lót, phủ kín mặt luống, dùng đất chèn kỹ mép luống và đục lỗ trồng.",
-  },
-  {
-    id: 5,
-    name: "Nhúng rễ cây vào dung dịch Sherpa 0,1-0,15%",
-    description:
-      "Trước khi trồng nhúng rễ cây vào dung dịch Sherpa 0,1-0,15%. Nếu sử dụng polietylen phủ đất, sau khi bón lót, phủ kín mặt luống, dùng đất chèn kỹ mép luống và đục lỗ trồng.",
-  },
-];
 
-const CultivationActivities = () => {
+const CultivationActivities = ({dataCutivations}) => {
   const [showModal, setShowModal] = useState(false);
   const [selectDetail, setSelectDeatil] = useState(false);
   console.log(selectDetail);
@@ -55,7 +23,7 @@ const CultivationActivities = () => {
     <View>
       <View style={styles.container}>
         <FlatList
-          data={dataCutivation}
+          data={dataCutivations}
           style={styles.productList}
           renderItem={(activity, index) => {
             return (
@@ -65,6 +33,7 @@ const CultivationActivities = () => {
                   setSelectDeatil(activity);
                   setShowModal(!showModal);
                 }}
+                key={index}
               >
                 <View style={styles.productInfo}>
                   <View style={{ alignSelf: "flex-start" }}>

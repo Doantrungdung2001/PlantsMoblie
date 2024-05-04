@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import { Text, View, Image, ScrollView } from "react-native";
 import React, { useState } from "react";
 import SelectDropdown from "react-native-select-dropdown";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -9,71 +9,57 @@ import FertilizationActivities from "../FertilizationActivities/FertilizationAct
 import PestAndDiseaseControlActivities from "../PestAndDisease/PestAndDiseaseControlActivities";
 import styles from "./SelectDropDown.Styles";
 import Accordion from "../Accordion/Accordion";
-const emojisWithIcons = [
-  { title: "happy", icon: "emoticon-happy-outline" },
-  { title: "cool", icon: "emoticon-cool-outline" },
-  { title: "lol", icon: "emoticon-lol-outline" },
-  { title: "sad", icon: "emoticon-sad-outline" },
-  { title: "cry", icon: "emoticon-cry-outline" },
-  { title: "angry", icon: "emoticon-angry-outline" },
-  { title: "confused", icon: "emoticon-confused-outline" },
-  { title: "excited", icon: "emoticon-excited-outline" },
-  { title: "kiss", icon: "emoticon-kiss-outline" },
-  { title: "devil", icon: "emoticon-devil-outline" },
-  { title: "dead", icon: "emoticon-dead-outline" },
-  { title: "wink", icon: "emoticon-wink-outline" },
-  { title: "sick", icon: "emoticon-sick-outline" },
-  { title: "frown", icon: "emoticon-frown-outline" },
-];
-const vegestable = [
-  {
-    name: "Rau cải thìa",
-    image:
-      "https://nongnghiepmoi.net/wp-content/uploads/2018/06/rau-cai-chip-1024x1024.jpg",
-  },
-  {
-    name: "Rau mùi",
-    image:
-      "http://static4.rongbaycdn.com/zoom/950_700/rb_up_mps/2020/05/07/0/rongbay-92244840_2831173646935688_2431494240258228224_n-fgkrja-20200507114141.jpg",
-  },
-  {
-    name: "Hành lá",
-    image:
-      "https://www.btaskee.com/wp-content/uploads/2022/07/hat-giong-hanh-la.jpg",
-  },
-  {
-    name: "Củ cải",
-    image:
-      "https://tse2.mm.bing.net/th?id=OIP.xscCaFnCwkE8G3-cLcHo_AHaEK&pid=Api&P=0&h=180",
-  },
-];
-const frequentlyAskedQuestions = [
-  {
-    nameAcitvity: "Hoạt động làm đất",
-    detail: <CultivationActivities />,
-  },
-  {
-    nameAcitvity: "Hoạt động gieo trồng",
-    detail: <PlantingActivity />,
-  },
-  {
-    nameAcitvity: "Hoạt động bón phân",
-    detail: <FertilizationActivities />,
-  },
-  {
-    nameAcitvity: "Phòng ngừa sâu bệnh",
-    detail: <PestAndDiseaseControlActivities />,
-  },
-];
-const SelectDropDown = ({ dataPlants, dataFarming }) => {
+
+const SelectDropDown = ({ dataFarming }) => {
   const [selectVegestable, setSelectVegestable] = useState();
+  const [frequentlyAskedQuestions, setFrequentlyAskedQuestions] = useState([]);
   return (
     <View style={styles.contanier}>
       <SelectDropdown
-        data={vegestable}
+        data={dataFarming}
         onSelect={(selectedItem, index) => {
-          console.log(selectedItem, index);
-          setSelectVegestable(index);
+          setSelectVegestable(index + 1);
+          const updatedFAQ = [
+            {
+              nameAcitvity: "Hoạt động làm đất",
+              detail: (
+                <CultivationActivities
+                  dataCutivations={
+                    selectedItem.plantFarming.cultivationActivities
+                  }
+                />
+              ),
+            },
+            {
+              nameAcitvity: "Hoạt động gieo trồng",
+              detail: (
+                <PlantingActivity
+                  dataPlanting={selectedItem.plantFarming.plantingActivity}
+                />
+              ),
+            },
+            {
+              nameAcitvity: "Hoạt động bón phân",
+              detail: (
+                <FertilizationActivities
+                  dataFertilizationActivity={
+                    selectedItem.plantFarming.fertilizationActivities
+                  }
+                />
+              ),
+            },
+            {
+              nameAcitvity: "Phòng ngừa sâu bệnh",
+              detail: (
+                <PestAndDiseaseControlActivities
+                  dataPestAndDiseaseControlActivities={
+                    selectedItem.plantFarming.pestAndDiseaseControlActivities
+                  }
+                />
+              ),
+            },
+          ];
+          setFrequentlyAskedQuestions(updatedFAQ);
         }}
         renderButton={(selectedItem, isOpened) => {
           return (
@@ -96,15 +82,14 @@ const SelectDropDown = ({ dataPlants, dataFarming }) => {
         }}
         renderItem={(item, index, isSelected) => {
           return (
-            <View>
+            <View key={index}>
               <View
                 style={{
                   ...styles.dropdownItemStyle,
                   ...(isSelected && { backgroundColor: "#D2D9DF" }),
                 }}
               >
-                {/* <Icon name={item.icon} style={styles.dropdownItemIconStyle} /> */}
-                {/* <Image style={styles.imageProduct} source={item.image} /> */}
+                <Image style={styles.imageProduct} source={item.img} />
                 <Text style={styles.dropdownItemTxtStyle}>{item.name}</Text>
               </View>
             </View>
@@ -117,7 +102,7 @@ const SelectDropDown = ({ dataPlants, dataFarming }) => {
         <View>
           {frequentlyAskedQuestions.map((faq, index) => (
             <Accordion
-              key={index.toString()}
+              key={index}
               title={faq.nameAcitvity}
               details={faq.detail}
             />
