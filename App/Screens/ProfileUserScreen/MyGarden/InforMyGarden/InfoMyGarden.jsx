@@ -58,6 +58,7 @@ const InfoMyGarden = ({ infor }) => {
               {infor.gardenServiceTemplate.expectedOutput}kg
             </Text>
           </View>
+        </View>
       </View>
       <View style={styles.postInfo}>
         <Heading text={"Thông tin cây trồng"} />
