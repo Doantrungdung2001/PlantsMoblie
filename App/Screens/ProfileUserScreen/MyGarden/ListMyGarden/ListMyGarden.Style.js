@@ -47,12 +47,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   itemName: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
+    marginBottom: 3,
   },
   itemPrice: {
-    fontSize: 16,
-    color: "#999",
+    marginTop: 3,
+    fontSize: 14,
+    color: "black",
   },
   buttons: {
     flexDirection: "row",

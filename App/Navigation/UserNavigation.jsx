@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import ProflieUser from "../Screens/ProfileUserScreen/ProfileUser/ProfileUser";
-import MyGardenScreen from "../Screens/ProfileUserScreen/MyGarden/MyGardenScreen";
+import MyGardenScreen from "../Screens/ProfileUserScreen/MyGarden/MyGardenScreen/MyGardenScreen";
 import UpdateInformation from "../Screens/ProfileUserScreen/UpdateInformation/UpdateInformation";
 import Points from "../Screens/ProfileUserScreen/Points/Points";
 import HistoryGrowVegetables from "../Screens/ProfileUserScreen/HistoryGrowVegetables/HistoryGrowVegetables";

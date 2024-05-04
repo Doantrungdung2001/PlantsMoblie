@@ -12,29 +12,10 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "./ListMyGarden.Style";
 import UserInfoAsyncStorage from "../../../../Utils/UserInfoAsyncStorage";
 import useListGarden from "./useListMyGarden";
-const items = [
-  {
-    id: 1,
-    name: "Apples",
-    price: 0.99,
-    image: "https://www.bootdey.com/image/280x280/FF00FF/000000",
-  },
-  {
-    id: 2,
-    name: "Bananas",
-    price: 0.79,
-    image: "https://www.bootdey.com/image/280x280/00BFFF/000000",
-  },
-  {
-    id: 3,
-    name: "Bread",
-    price: 2.99,
-    image: "https://www.bootdey.com/image/280x280/20B2AA/000000",
-  },
-];
+import { formatDate } from "../../../../Utils/helper";
 const ListMyGarden = () => {
   const navigation = useNavigation();
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState(null);
   UserInfoAsyncStorage.getUserInfo("UserInfo")
     .then((result) => {
       setUserId(result.farm._id);
@@ -54,30 +35,46 @@ const ListMyGarden = () => {
           <FlatList
             data={allGarden}
             renderItem={({ item }) => (
-              <View style={styles.card}>
+              <TouchableOpacity
+                style={styles.card}
+                onPress={() =>
+                  navigation.push("profile/my-garden/detail", {
+                    dataMyGarden: item,
+                  })
+                }
+              >
                 <View style={styles.item}>
                   <Image
-                    source={{ uri: item.image }}
+                    source={{ uri: item.farm.images[0] }}
                     style={styles.itemImage}
                   />
                   <View style={styles.itemContent}>
-                    <Text style={styles.itemName}>Tên dự án</Text>
-                    <Text style={styles.itemPrice}>Nông trại</Text>
-                    <Text style={styles.itemPrice}>11/04/2024</Text>
+                    <Text style={styles.itemName}>{item.farm.name}</Text>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <Text style={{ fontSize: 14, color: "gray" }}>
+                        Diện tích:
+                      </Text>
+                      <Text style={{ fontSize: 14, color: "gray" }}>
+                        {item.gardenServiceTemplate.square}(m2)
+                      </Text>
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", alignItems: "center" }}
+                    >
+                      <Text style={{ fontSize: 14, color: "gray" }}>Giá:</Text>
+                      <Text style={{ fontSize: 14, color: "gray" }}>
+                        {item.gardenServiceTemplate.price}(VND)
+                      </Text>
+                    </View>
+
+                    <Text style={styles.itemPrice}>
+                      {formatDate(item.startDate)}
+                    </Text>
                   </View>
                 </View>
-                <View style={styles.buttons}>
-                  <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Hủy bỏ</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={styles.registerButton}
-                    onPress={() => navigation.push("profile/my-garden/detail")}
-                  >
-                    <Text style={styles.buttonText}>Chi tiết</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
+              </TouchableOpacity>
             )}
             keyExtractor={(item) => item.id}
           />

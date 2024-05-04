@@ -86,7 +86,6 @@ const DetailInfoService = () => {
               <Text style={styles.detailInformation}>2 tháng</Text>
             </View>
           </View>
-          <Heading text={"Quy trình canh tác"} />
         </View>
       </ScrollView>
       <View>

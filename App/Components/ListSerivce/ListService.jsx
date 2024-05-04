@@ -70,7 +70,6 @@ const ListService = () => {
       </View>
       <View>
         <FlatList
-          // ListHeaderComponent={Header}
           data={feature}
           numColumns={4}
           columnWrapperStyle={{ justifyContent: "space-between" }}

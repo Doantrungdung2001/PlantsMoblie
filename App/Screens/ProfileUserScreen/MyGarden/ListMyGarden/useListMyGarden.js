@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import GARDEN from "../../../../Services/GardenService";
 export default function useListGarden({ clientId }) {
+
   const parseDataAllGarden = useCallback((data) => {
     const allgarden = data.map((garden) => ({
       id: garden?._id,
@@ -30,6 +31,7 @@ export default function useListGarden({ clientId }) {
     queryFn: () => GARDEN.getAllGardenByClient(clientId),
     staleTime: 20 * 1000,
     select: (data) => parseDataAllGarden(data?.data?.metadata),
+    enabled: !!clientId
   });
 
   return {
