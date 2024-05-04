@@ -1,5 +1,4 @@
 import {
-  StyleSheet,
   Text,
   View,
   SafeAreaView,
@@ -42,18 +41,9 @@ const Login = () => {
       // }
       if (res.data.status === 200) {
         setLoginStatus("succes");
-        // UserInfoAsyncStorage.storeUser("UserInfo", res.data.metadata.metadata);
-        UserInfoAsyncStorage.clearUserInfo();
+        UserInfoAsyncStorage.storeUser("UserInfo", res.data.metadata.metadata);
       }
       console.log("Login success");
-
-      // UserInfoAsyncStorage.getUserInfo("UserInfo")
-      //   .then((result) => {
-      //     console.log("Data :", result);
-      //   })
-      //   .catch((error) => {
-      //     console.error("Error:", error);
-      //   });
       navigation.push("Home")
     } catch (error) {
       console.error(error?.response?.data);

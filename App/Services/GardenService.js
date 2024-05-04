@@ -182,6 +182,21 @@ const GARDEN = {
         return err;
       });
   },
+
+  getAllGardenByClient: async (clientId) => {
+    return await publicHttp({
+      method: "GET",
+      url: `garden/client/${clientId}`,
+    })
+      .then((res) => {
+        console.log("res;", res)
+        return res;
+      })
+      .catch((err) => {
+        console.log("err: ", err)
+        return err;
+      });
+  },
 };
 
 export default GARDEN;
