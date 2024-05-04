@@ -1,10 +1,10 @@
 // rnfe
-import { View, Text, Image, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
-import { COLORS } from "../../Constants";
+import { COLORS } from "../../../Constants";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-
+import styles from "./ProfileUser.Style";
 data = [
   {
     id: 1,
@@ -21,7 +21,7 @@ data = [
   {
     id: 3,
     name: "Vườn của tôi",
-    param: "my-garden",
+    param: "my-garden/listgarden",
     icon: "cart-sharp",
   },
   {
@@ -42,60 +42,38 @@ const user = {
   name: "Doan Trung Dung",
   gmail: "doantrungdung2001@gmail.com",
 };
+
 const ProflieUser = () => {
   const navigation = useNavigation();
   return (
     <View>
       <View
-        style={{ padding: 20, paddingTop: 50, backgroundColor: COLORS.primary }}
+        style={styles.avatarContainer}
       >
-        <Text style={{ fontSize: 30, fontFamily: "Roboto-Medium" }}>Hồ sơ</Text>
+        <Text style={styles.avatarTitle}>Hồ sơ</Text>
         <View
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: 20,
-            backgroundColor: COLORS.primary,
-          }}
+          style={styles.avatarContent}
         >
           <Image
             source={{ uri: user.avatar }}
-            style={{ width: 90, height: 90, borderRadius: 99 }}
+            style={styles.avatarImg}
           />
           <Text
-            style={{
-              fontSize: 26,
-              marginTop: 8,
-              fontFamily: "Roboto-Medium",
-              color: COLORS.white,
-            }}
+            style={styles.nameText}
           >
             {user.name}
           </Text>
           <Text
-            style={{
-              fontSize: 15,
-              marginTop: 8,
-              fontFamily: "Roboto-Medium",
-              color: COLORS.white,
-            }}
+            style={styles.mailText}
           >
             {user.gmail}
           </Text>
         </View>
       </View>
-      <View style={{ paddingTop: 50 }}>
+      <View style={styles.content}>
         {data.map((item) => (
           <TouchableOpacity
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              gap: 10,
-              marginBottom: 30,
-              paddingHorizontal: 70,
-            }}
+            style={styles.service}
             onPress={() => navigation.push(`profile/${item.param}`)}
           >
             <Ionicons name={item.icon} size={44} color={COLORS.primary} />
