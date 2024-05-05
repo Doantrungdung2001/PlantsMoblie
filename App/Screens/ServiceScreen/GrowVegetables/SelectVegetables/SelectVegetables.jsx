@@ -8,9 +8,10 @@ import {
   ScrollView,
   Modal,
   Alert,
+  TextInput,
 } from "react-native";
 import React, { useState, useRef } from "react";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
 import { COLORS } from "../../../../Constants";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -23,17 +24,22 @@ import usePlant from "./UsePlant";
 const cartSelectVegetables = [];
 const SelectVegetables = () => {
   const param = useRoute().params;
-  const [farmId, setFarmId] = useState(param.farmId);
+  const [farmId, setFarmId] = useState(param.serviceInfo.farm);
   const { tabs, isSuccessAllPlant, isLoadingAllPlant } = usePlant({
     farmId: farmId,
   });
   const [selectedHeader, setSelectedHeader] = useState(0);
-  const [showModal, setShowModal] = useState(false);
+
+  const [showModalCart, setShowModalCart] = useState(false);
+  const [showModalBtn, setShowModalBtn] = useState(false);
   const [countItem, setCountItem] = useState(cartSelectVegetables.length);
   const toastRef = useRef(null);
   const [typeToast, setTypeToast] = useState("success");
   const [textToast, setTextToast] = useState();
+
   const [descriptionToast, setDescriptionToast] = useState();
+
+  const [note, setNote] = useState("");
   const handleShowToast = () => {
     if (toastRef.current) {
       toastRef.current.show();
@@ -143,7 +149,7 @@ const SelectVegetables = () => {
             name="shopping-cart"
             size={45}
             color="green"
-            onPress={() => setShowModal(!showModal)}
+            onPress={() => setShowModalCart(!showModalCart)}
           />
           <View
             style={{
@@ -162,15 +168,19 @@ const SelectVegetables = () => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.bookingBtn}>
+        <TouchableOpacity
+          style={styles.bookingBtn}
+          onPress={() => setShowModalBtn(!showModalBtn)}
+        >
           <Text style={styles.textBtn}>Xác nhận</Text>
         </TouchableOpacity>
       </View>
-      <Modal animationType="slide" visible={showModal}>
+      {/* Modal Cart */}
+      <Modal animationType="slide" visible={showModalCart}>
         <View style={styles.containerModal}>
           <TouchableOpacity
             style={styles.cancelBtn}
-            onPress={() => setShowModal(!showModal)}
+            onPress={() => setShowModalCart(!showModalCart)}
           >
             <MaterialIcons name="cancel" size={30} color="red" />
           </TouchableOpacity>
@@ -178,6 +188,7 @@ const SelectVegetables = () => {
             data={cartSelectVegetables}
             renderItem={({ item, index }) => (
               <ScrollView>
+                {console.log("danh sách cây trồng: ", item)}
                 <TouchableOpacity style={styles.cardContainerModal} key={index}>
                   <Image
                     source={{ uri: item?.image }}
@@ -214,6 +225,38 @@ const SelectVegetables = () => {
               </ScrollView>
             )}
           />
+        </View>
+      </Modal>
+      {/* Modal Btn */}
+      <Modal animationType="slide" visible={showModalBtn}>
+        <View style={styles.containerModal}>
+          <TouchableOpacity
+            style={styles.cancelBtn}
+            onPress={() => setShowModalBtn(!showModalBtn)}
+          >
+            <MaterialIcons name="cancel" size={30} color="red" />
+          </TouchableOpacity>
+          <View>
+            <View style={styles.detailInfo}>
+              <Text style={styles.subject}>Ghi chú</Text>
+              <View style={styles.body}>
+                <TextInput
+                  placeholder="Nhập ghi chú"
+                  placeholderTextColor={COLORS.darkgray}
+                  style={styles.bodyText}
+                  onChangeText={(note) => setNote(note)}
+                />
+              </View>
+            </View>
+            <View style={styles.buttonsContainer}>
+              <TouchableOpacity
+                style={[styles.button, styles.login]}
+                //   onPress={() => navigation.push("Login")}
+              >
+                <Text style={styles.buttonText}>Gửi đăng ký</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
       </Modal>
     </View>

@@ -89,7 +89,7 @@ const DetailInfoService = () => {
       <View>
         <TouchableOpacity
           style={styles.bookingBtn}
-          onPress={() => navigation.push("select-vegestables",{farmId: serviceInformation.farm})}
+          onPress={() => navigation.push("select-vegestables",{serviceInfo: serviceInformation})}
         >
           <Text style={styles.textBtn}>Lựa chọn rau trồng</Text>
         </TouchableOpacity>
