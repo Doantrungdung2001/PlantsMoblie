@@ -72,6 +72,14 @@ const data = [
 const CameraExtraction = () => {
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
+  const [selectedTime, setSelectedTime] = useState(null);
+
+  const handleTimeChange = (event, selectedDate) => {
+    setShowPicker(false); // Hide the picker after selecting a time
+    setSelectedTime(selectedDate); // Update the selected time
+    console.log("Selected time:", selectedDate); // Log the selected time
+  };
+
   const renderItem = ({ item }) => {
     return (
       <TouchableOpacity style={styles.video} onPress={() => {}}>
@@ -93,14 +101,25 @@ const CameraExtraction = () => {
       <View style={styles.header}>
         <View>
           <Text style={styles.headerTitle}>Video trích xuất từ hệ thống</Text>
-          <Text style={styles.headerSubtitle}>24 March, 18pm - 19pm</Text>
+          <Text style={styles.headerSubtitle}>
+            {selectedTime
+              ? `Thời gian: ${selectedTime.getDate()}/${
+                  selectedTime.getMonth() + 1
+                }/${selectedTime.getFullYear()} ${selectedTime.getHours()}:${selectedTime.getMinutes()}`
+              : "Chọn thời gian"}
+          </Text>
         </View>
         <TouchableOpacity onPress={() => setShowPicker(!showPicker)}>
           <Fontisto name="date" size={30} color="white" />
         </TouchableOpacity>
       </View>
       {showPicker && (
-        <DateTimePicker mode="date" display="spinner" value={date} />
+        <DateTimePicker
+          mode="date"
+          display="spinner"
+          value={selectedTime || date} // Pass the selected time or the current time
+          onChange={handleTimeChange}
+        />
       )}
       <View style={styles.body}>
         <Image
