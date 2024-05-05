@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "../../../../Constants";
+
 const styles = StyleSheet.create({
   //header
   card: {
@@ -93,6 +93,13 @@ const styles = StyleSheet.create({
     color: "#999",
     fontSize: 14,
     marginLeft: 10,
+  },
+  backgroundVideo: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   },
 });
 export default styles;

@@ -96,7 +96,7 @@ const MyGardenScreen = () => {
           {selectedHeader == 2 && (
             <CultivationProcess gardenId={dataGarden.id} />
           )}
-          {selectedHeader == 3 && <CameraExtraction />}
+          {selectedHeader == 3 && <CameraExtraction gardenId={dataGarden.id} />}
         </View>
       </ScrollView>
       <View style={styles.footer}>

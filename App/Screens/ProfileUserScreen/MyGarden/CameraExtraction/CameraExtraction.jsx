@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Fontisto } from "@expo/vector-icons";
 import styles from "./CameraExtraction.Styles";
+import useCameraExtraction from "./useCameraExtraction";
+// import VideoPlayer from "react-native-video-player";
 const data = [
   {
     id: "1",
@@ -69,7 +71,13 @@ const data = [
     duration: "15:03",
   },
 ];
-const CameraExtraction = () => {
+
+const CameraExtraction = ({ gardenId }) => {
+  const { allVideos, isSuccessCameraExtraction, isLoadingCameraExtraction } =
+    useCameraExtraction({
+      gardenId: gardenId,
+    });
+
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
@@ -83,14 +91,25 @@ const CameraExtraction = () => {
   const renderItem = ({ item }) => {
     return (
       <TouchableOpacity style={styles.video} onPress={() => {}}>
-        <Image style={styles.thumbnail} source={{ uri: item.thumbnail }} />
+        {console.log("Linh video: ", item.objectDetections[0].video_url)}
+        {/* <View>
+          <VideoPlayer
+            video={{
+              uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+            }}
+            videoWidth={1600}
+            videoHeight={900}
+            thumbnail={{ uri: "https://i.picsum.photos/id/866/1600/900.jpg" }}
+          />
+        </View> */}
+
         <View style={styles.details}>
-          <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.channel}>{item.channel}</Text>
+          <Text style={styles.title}>{item.date}</Text>
+          {/* <Text style={styles.channel}>{item.channel}</Text>
           <View style={styles.viewCount}>
             <Text style={styles.views}>{item.views}</Text>
             <Text style={styles.duration}>{item.duration}</Text>
-          </View>
+          </View> */}
         </View>
       </TouchableOpacity>
     );
@@ -134,13 +153,17 @@ const CameraExtraction = () => {
     </View>
   );
   return (
-    <FlatList
-      style={styles.container}
-      data={data}
-      ListHeaderComponent={renderHeader}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.id}
-    />
+    <View>
+      {isSuccessCameraExtraction && (
+        <FlatList
+          style={styles.container}
+          data={allVideos}
+          ListHeaderComponent={renderHeader}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
+      )}
+    </View>
   );
 };
 
