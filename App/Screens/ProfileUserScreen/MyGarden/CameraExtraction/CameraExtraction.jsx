@@ -1,12 +1,8 @@
-import {
-  View,
-  FlatList,
-  Image,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-} from "react-native";
-import React from "react";
+import { View, FlatList, Image, Text, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { Fontisto } from "@expo/vector-icons";
+import styles from "./CameraExtraction.Styles";
 const data = [
   {
     id: "1",
@@ -74,6 +70,8 @@ const data = [
   },
 ];
 const CameraExtraction = () => {
+  const [date, setDate] = useState(new Date());
+  const [showPicker, setShowPicker] = useState(false);
   const renderItem = ({ item }) => {
     return (
       <TouchableOpacity style={styles.video} onPress={() => {}}>
@@ -89,10 +87,38 @@ const CameraExtraction = () => {
       </TouchableOpacity>
     );
   };
+
+  const renderHeader = () => (
+    <View style={styles.card}>
+      <View style={styles.header}>
+        <View>
+          <Text style={styles.headerTitle}>Video trích xuất từ hệ thống</Text>
+          <Text style={styles.headerSubtitle}>24 March, 18pm - 19pm</Text>
+        </View>
+        <TouchableOpacity onPress={() => setShowPicker(!showPicker)}>
+          <Fontisto name="date" size={30} color="white" />
+        </TouchableOpacity>
+      </View>
+      {showPicker && (
+        <DateTimePicker mode="date" display="spinner" value={date} />
+      )}
+      <View style={styles.body}>
+        <Image
+          source={{ uri: "https://bootdey.com/img/Content/avatar/avatar6.png" }}
+          style={styles.avatar}
+        />
+        <View style={styles.userInfo}>
+          <Text style={styles.userName}>Mr. Cody Fisher</Text>
+          <Text style={styles.userRole}>Professor</Text>
+        </View>
+      </View>
+    </View>
+  );
   return (
     <FlatList
       style={styles.container}
       data={data}
+      ListHeaderComponent={renderHeader}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
     />
@@ -100,48 +126,3 @@ const CameraExtraction = () => {
 };
 
 export default CameraExtraction;
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#fff",
-    flex: 1,
-    margin:5,
-  },
-  video: {
-    flexDirection: "row",
-    marginBottom: 20,
-  },
-  thumbnail: {
-    width: "35%",
-    aspectRatio: 16 / 9,
-    borderRadius: 5,
-  },
-  details: {
-    padding: 10,
-    width: "65%",
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  channel: {
-    color: "#999",
-    fontSize: 14,
-    marginTop: 5,
-  },
-  viewCount: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: 5,
-  },
-
-  views: {
-    color: "#999",
-    fontSize: 14,
-  },
-  duration: {
-    color: "#999",
-    fontSize: 14,
-    marginLeft: 10,
-  },
-});

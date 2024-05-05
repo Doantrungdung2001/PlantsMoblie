@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
 import { COLORS } from "../../../../Constants";
 import CultivationProcess from "../CultivationProcess/CultivationProcess";
-import CameraExtraction from "../CameraExtraction";
+import CameraExtraction from "../CameraExtraction/CameraExtraction";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import PlantFarming from "../PlantFarming/PlantFarming";

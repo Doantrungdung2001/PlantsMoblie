@@ -3,18 +3,19 @@ import { useQuery } from "@tanstack/react-query";
 import GARDEN from "../../../../Services/GardenService";
 export default function useListProcess({ gardenId }) {
   const parseDataCultivation = useCallback((data) => {
-    const allprocss = data.map((process) => ({
-      id: process?._id,
-      plant: process?.plant,
-      seed: process?.seed,
-      status: process?.status,
-      process: process?.process,
-      startDate: process?.startDate,
+    const allprocss = data.map((processInfo) => ({
+      id: processInfo?._id,
+      plant: processInfo?.plant,
+      seed: processInfo?.seed,
+      status: processInfo?.status,
+      process: processInfo?.process,
+      startDate: processInfo?.startDate,
     }));
     allprocss.sort((a, b) => {
       // Sử dụng toán tử so sánh để sắp xếp từ cũ đến mới
       return new Date(b.startDate) - new Date(a.startDate);
     });
+
     return { allprocss };
   }, []);
 

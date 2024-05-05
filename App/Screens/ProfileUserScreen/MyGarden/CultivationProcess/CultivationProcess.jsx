@@ -1,20 +1,140 @@
 import {
   View,
   Text,
-  Image,
   FlatList,
   TouchableOpacity,
   Modal,
   ScrollView,
 } from "react-native";
 import React, { useState } from "react";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import { Fontisto } from "@expo/vector-icons";
+
 import styles from "./CultivationProcess.Styles";
 import useListProcess from "./useCultivationProcess";
 import { formatDate, formatTime } from "../../../../Utils/helper";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../../Constants";
+const data = [
+  {
+    id: "65d5f97d722b35d04cc226c2",
+    plant: {
+      __v: 0,
+      _id: "65d5c1b7722b35d04cc223b4",
+      createdAt: "2024-02-20T18:14:51.155Z",
+      farm: "65bf5424ee44e84e45cf30e1",
+      isActive: true,
+      isDeleted: false,
+      plant_description:
+        " Cà rốt là cây chịu lạnh. ở nhiệt độ 8oC hạt có thể nảy mầm sau 20-25 ngày, còn ở nhiệt độ thích hợp 20-25oC nảy mầm sau 5-7 ngày. Nhiệt độ trung bình cho cây sinh tr­ưởng và hình thành củ 20-22oC, ở nhiệt độ 25oC củ phát triển yếu, hàm l­ượng vitamin A giảm.",
+      plant_name: "Cà rốt",
+      plant_slug: "ca-rot",
+      plant_thumb:
+        "https://res.cloudinary.com/agritech/image/upload/c_fill,h_500,w_500/v1/image/65bf53967517b61da58eaaba/naqlxgyqib5vgl2alg0y.jpg?_a=BAMCcSca0",
+      plant_type: "root",
+      timeCultivates: [Array],
+      updatedAt: "2024-02-20T18:14:51.155Z",
+    },
+    process: [[Object], [Object], [Object], [Object], [Object], [Object]],
+    seed: "65d5c1b8722b35d04cc223bc",
+    startDate: "2024-02-21T13:24:13.863Z",
+    status: "inProgress",
+  },
+  {
+    id: "65d5f97d722b35d04cc226c0",
+    plant: {
+      __v: 0,
+      _id: "65d47de3b4c8b6de45c8845e",
+      createdAt: "2024-02-20T04:14:49.412Z",
+      farm: "65bf5424ee44e84e45cf30e1",
+      isActive: true,
+      isDeleted: false,
+      plant_description:
+        "Cải bắp có chỉ số diện tích lá cao, hệ số sử dụng nước rất lớn, có bộ rễ chùm phát triển mạnh. Đặc biệt ở cải bắp khả năng phục hồi bộ lá khá cao. Các thí nghiệm cho thấy, khi cắt 25% diện tích bề mặt lá ở giai đoạn trước cuốn bắp, năng suất vẫn đạt 97-98% so với không cắt. Điều đó khẳng định việc phun thuốc hoá hoá học trừ sâu tơ lứa 1 trong nhiều trường hợp là không cần thiết.",
+      plant_name: "Cây cải bắp",
+      plant_slug: "cay-cai-bap",
+      plant_thumb:
+        "https://res.cloudinary.com/agritech/image/upload/c_fill,h_500,w_500/v1/image/65bf53967517b61da58eaaba/vs9fegcwtbsqweypqhi2.jpg?_a=BAMCcSca0",
+      plant_type: "leafy",
+      timeCultivates: [Array],
+      updatedAt: "2024-02-23T08:38:50.898Z",
+    },
+    process: [[Object], [Object], [Object], [Object], [Object], [Object]],
+    seed: "65d47de4b4c8b6de45c88466",
+    startDate: "2024-02-21T13:24:13.863Z",
+    status: "inProgress",
+  },
+  {
+    id: "65d5f97d722b35d04cc226c1",
+    plant: {
+      __v: 0,
+      _id: "65d487b3b4c8b6de45c88529",
+      createdAt: "2024-02-19T18:36:22.472Z",
+      farm: "65bf5424ee44e84e45cf30e1",
+      isActive: true,
+      isDeleted: false,
+      plant_description:
+        "Cây bố xôi có tên khoa học Spinach oleraceac, lá hình Oval hoặc hình lưỡi mác tùy thuộc từng loại giống, dựa trên hình dạng lá đó mà kích thước cũng khác nhau, chiều dài lá trưởng thành khoảng 20-30cm và rộng 7-15cm. Rễ ăn nông, thuộc rễ cọc, có hệ thống rễ phụ phát triển mạnh. Hoa có màu vàng xanh lá cây, đường kính hoa 3-4mm, cứng, khô, sần.",
+      plant_name: "Cải bó xôi",
+      plant_slug: "cai-bo-xoi",
+      plant_thumb:
+        "https://res.cloudinary.com/agritech/image/upload/c_fill,h_500,w_500/v1/image/65bf53967517b61da58eaaba/h2yfivfsbttryfejllcq.jpg?_a=BAMCcSca0",
+      plant_type: "leafy",
+      timeCultivates: [Array],
+      updatedAt: "2024-02-19T18:36:22.472Z",
+    },
+    process: [],
+    seed: "65d487b3b4c8b6de45c88531",
+    startDate: "2024-02-21T13:24:13.863Z",
+    status: "inProgress",
+  },
+  {
+    id: "65d5f97d722b35d04cc226bf",
+    plant: {
+      __v: 0,
+      _id: "65d5c1ee722b35d04cc22424",
+      createdAt: "2024-02-21T08:40:21.696Z",
+      farm: "65bf5424ee44e84e45cf30e1",
+      isActive: true,
+      isDeleted: false,
+      plant_description:
+        "Ớt là một loại quả của các cây thuộc chi Capsicum của họ Cà (Solanaceae). Ớt là một loại quả gia vị cũng như loại quả làm rau (ớt Đà Lạt) phổ biển trên thế giới. Ớt có nguồn gốc từ châu Mỹ; ngày nay nó được trồng khắp nơi trên thế giới và được sử dụng làm gia vị, rau, và thuốc.",
+      plant_name: "Ớt cay",
+      plant_slug: "ot-cay",
+      plant_thumb:
+        "https://res.cloudinary.com/agritech/image/upload/c_fill,h_500,w_500/v1/image/65bf53967517b61da58eaaba/i7hc39ebdkdbhosmpwnm.jpg?_a=BAMCcSca0",
+      plant_type: "herb",
+      timeCultivates: [Array],
+      updatedAt: "2024-02-21T08:40:21.696Z",
+    },
+    process: [],
+    seed: "65d5c1ee722b35d04cc2242c",
+    startDate: "2024-02-21T13:24:13.863Z",
+    status: "inProgress",
+  },
+  {
+    id: "65d5f97d722b35d04cc226c3",
+    plant: {
+      __v: 0,
+      _id: "65d5c1db722b35d04cc223f1",
+      createdAt: "2024-02-21T04:09:40.547Z",
+      farm: "65bf5424ee44e84e45cf30e1",
+      isActive: true,
+      isDeleted: false,
+      plant_description:
+        "Cà chua là một loại rau quả làm thực phẩm. Quả ban đầu có màu xanh, chín ngả màu từ vàng đến đỏ. Cà chua có vị hơi chua và là một loại thực phẩm bổ dưỡng, tốt cho cơ thể, giàu vitamin C và A, đặc biệt là giàu lycopene tốt cho sức khỏe.",
+      plant_name: "Cà chua",
+      plant_slug: "ca-chua",
+      plant_thumb:
+        "https://res.cloudinary.com/agritech/image/upload/c_fill,h_500,w_500/v1/image/65bf53967517b61da58eaaba/e6ddghtgpitjdxsmijas.jpg?_a=BAMCcSca0",
+      plant_type: "fruit",
+      timeCultivates: [Array],
+      updatedAt: "2024-02-21T04:09:40.547Z",
+    },
+    process: [],
+    seed: "65d5c1db722b35d04cc223f9",
+    startDate: "2024-02-21T13:24:13.863Z",
+    status: "inProgress",
+  },
+];
 // const classes = [
 //   {
 //     startTime: "09:00",
@@ -125,10 +245,9 @@ const CultivationProcess = ({ gardenId }) => {
     useListProcess({
       gardenId: gardenId,
     });
-  const [date, setDate] = useState(new Date());
-  const [showPicker, setShowPicker] = useState(false);
+
   const [showModal, setShowModal] = useState(false);
-  const [detailProcess, setDetailProcess] = useState();
+  const [detailProcess, setDetailProcess] = useState([]);
 
   const renderClassItem = ({ item }) => (
     <View style={styles.classItem}>
@@ -168,32 +287,6 @@ const CultivationProcess = ({ gardenId }) => {
       </View>
     </View>
   );
-  const renderHeader = () => (
-    <View style={styles.card}>
-      <View style={styles.header}>
-        <View>
-          <Text style={styles.headerTitle}>Hoạt động canh tác</Text>
-          <Text style={styles.headerSubtitle}>24 March, 18pm - 19pm</Text>
-        </View>
-        <TouchableOpacity onPress={() => setShowPicker(!showPicker)}>
-          <Fontisto name="date" size={30} color="white" />
-        </TouchableOpacity>
-      </View>
-      {showPicker && (
-        <DateTimePicker mode="date" display="spinner" value={date} />
-      )}
-      <View style={styles.body}>
-        <Image
-          source={{ uri: "https://bootdey.com/img/Content/avatar/avatar6.png" }}
-          style={styles.avatar}
-        />
-        <View style={styles.userInfo}>
-          <Text style={styles.userName}>Mr. Cody Fisher</Text>
-          <Text style={styles.userRole}>Professor</Text>
-        </View>
-      </View>
-    </View>
-  );
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Hoạt động canh tác</Text>
@@ -201,7 +294,6 @@ const CultivationProcess = ({ gardenId }) => {
         <FlatList
           contentContainerStyle={{ paddingHorizontal: 16 }}
           data={allProcess}
-          ListHeaderComponent={renderHeader}
           renderItem={renderClassItem}
           keyExtractor={(item, index) => index.toString()}
         />
@@ -228,7 +320,7 @@ const CultivationProcess = ({ gardenId }) => {
             </Text>
           </TouchableOpacity>
         </View>
-        {detailProcess ? (
+        {detailProcess.length > 0 ? (
           <ScrollView>
             {console.log("detail process", detailProcess)}
             <View
@@ -243,9 +335,8 @@ const CultivationProcess = ({ gardenId }) => {
                 marginBottom: 30,
               }}
             ></View>
-            {detailProcess.map((info) => (
-              <View>
-                console.log("asfsdfdsfdf",info)
+            {detailProcess.map((info, index) => (
+              <View key={index}>
                 <View style={styles.detailInfo}>
                   <Text style={styles.subject}>
                     {info?.cultivationActivity?.name}
