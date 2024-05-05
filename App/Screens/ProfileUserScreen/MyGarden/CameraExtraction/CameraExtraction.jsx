@@ -105,7 +105,7 @@ const CameraExtraction = () => {
             {selectedTime
               ? `Thời gian: ${selectedTime.getDate()}/${
                   selectedTime.getMonth() + 1
-                }/${selectedTime.getFullYear()} ${selectedTime.getHours()}:${selectedTime.getMinutes()}`
+                }/${selectedTime.getFullYear()}`
               : "Chọn thời gian"}
           </Text>
         </View>

@@ -239,6 +239,21 @@ const GARDEN = {
         return err;
       });
   },
+
+  getCameraExtraction: async (gardenId) => {
+    return await publicHttp({
+      method: "GET",
+      url: `garden/${gardenId}/objectDetections`,
+    })
+      .then((res) => {
+        console.log("res;", res);
+        return res;
+      })
+      .catch((err) => {
+        console.log("err: ", err);
+        return err;
+      });
+  },
 };
 
 export default GARDEN;
