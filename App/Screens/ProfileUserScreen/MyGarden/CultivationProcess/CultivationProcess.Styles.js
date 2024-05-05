@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     padding: 16,
   },
-  
+
   classItem: {
     flex: 1,
     flexDirection: "row",
@@ -111,6 +111,15 @@ const styles = StyleSheet.create({
     fontSize: 19,
     lineHeight: 24,
     color: "black",
+  },
+  modalType: {
+    padding: 10,
+    justifyContent: "center",
+    borderRadius: 10,
+    backgroundColor: COLORS.green,
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 10,
   },
 });
 export default styles;

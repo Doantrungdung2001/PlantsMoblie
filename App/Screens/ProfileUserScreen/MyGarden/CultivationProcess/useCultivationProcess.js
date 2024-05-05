@@ -8,14 +8,15 @@ export default function useListProcess({ gardenId }) {
       plant: processInfo?.plant,
       seed: processInfo?.seed,
       status: processInfo?.status,
-      process: processInfo?.process,
+      process: processInfo?.process?.sort((a, b) => {
+        return new Date(b?.time) - new Date(a?.time);
+      }),
       startDate: processInfo?.startDate,
     }));
     allprocss.sort((a, b) => {
       // Sử dụng toán tử so sánh để sắp xếp từ cũ đến mới
       return new Date(b.startDate) - new Date(a.startDate);
     });
-
     return { allprocss };
   }, []);
 
