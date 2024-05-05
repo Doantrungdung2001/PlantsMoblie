@@ -10,6 +10,7 @@ import {
   Alert,
 } from "react-native";
 import React, { useState, useRef } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
 import { COLORS } from "../../../../Constants";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -17,139 +18,15 @@ import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import styles from "./SelectVegetables.Styles";
 import ToastMessage from "../../../../Components/ToastMessage/ToastMessage";
-const tabs = [
-  {
-    name: "Rau ăn lá",
-    options: [
-      {
-        id: 1,
-        title: "Option 1",
-        image: "https://img.icons8.com/color/70/000000/cottage.png",
-      },
-      {
-        id: 2,
-        title: "Option 2",
-        image: "https://img.icons8.com/color/70/000000/administrator-male.png",
-      },
-      {
-        id: 3,
-        title: "Option 3",
-        image: "https://img.icons8.com/color/70/000000/filled-like.png",
-      },
-    ],
-  },
-  {
-    name: "Rau thơm",
-    options: [
-      {
-        id: 1,
-        title: "Option 1",
-        image: "https://img.icons8.com/color/70/000000/cottage.png",
-      },
-      {
-        id: 2,
-        title: "Option 2",
-        image: "https://img.icons8.com/color/70/000000/administrator-male.png",
-      },
-      {
-        id: 3,
-        title: "Option 3",
-        image: "https://img.icons8.com/color/70/000000/filled-like.png",
-      },
-      {
-        id: 4,
-        title: "Option 4",
-        image: "https://img.icons8.com/color/70/000000/facebook-like.png",
-      },
-    ],
-  },
-  {
-    name: "Củ",
-    options: [
-      {
-        id: 1,
-        title: "Option 1",
-        image: "https://img.icons8.com/color/70/000000/cottage.png",
-      },
-      {
-        id: 2,
-        title: "Option 2",
-        image: "https://img.icons8.com/color/70/000000/administrator-male.png",
-      },
-      {
-        id: 3,
-        title: "Option 3",
-        image: "https://img.icons8.com/color/70/000000/filled-like.png",
-      },
-      {
-        id: 4,
-        title: "Option 4",
-        image: "https://img.icons8.com/color/70/000000/facebook-like.png",
-      },
-      {
-        id: 5,
-        title: "Option 5",
-        image: "https://img.icons8.com/color/70/000000/shutdown.png",
-      },
-    ],
-  },
-  {
-    name: "Quả",
-    options: [
-      {
-        id: 1,
-        title: "Option 1",
-        image: "https://img.icons8.com/color/70/000000/cottage.png",
-      },
-      {
-        id: 2,
-        title: "Option 2",
-        image: "https://img.icons8.com/color/70/000000/administrator-male.png",
-      },
-      {
-        id: 3,
-        title: "Option 3",
-        image: "https://img.icons8.com/color/70/000000/filled-like.png",
-      },
-      {
-        id: 4,
-        title: "Option 4",
-        image: "https://img.icons8.com/color/70/000000/facebook-like.png",
-      },
-      {
-        id: 5,
-        title: "Option 5",
-        image: "https://img.icons8.com/color/70/000000/shutdown.png",
-      },
-      {
-        id: 6,
-        title: "Option 6",
-        image: "https://img.icons8.com/color/70/000000/traffic-jam.png",
-      },
-    ],
-  },
-];
-
-cart = [
-  {
-    id: 1,
-    title: "Option 1",
-    image: "https://img.icons8.com/color/70/000000/cottage.png",
-  },
-  {
-    id: 2,
-    title: "Option 2",
-    image: "https://img.icons8.com/color/70/000000/administrator-male.png",
-  },
-  {
-    id: 3,
-    title: "Option 3",
-    image: "https://img.icons8.com/color/70/000000/filled-like.png",
-  },
-];
+import usePlant from "./UsePlant";
 
 const cartSelectVegetables = [];
 const SelectVegetables = () => {
+  const param = useRoute().params;
+  const [farmId, setFarmId] = useState(param.farmId);
+  const { tabs, isSuccessAllPlant, isLoadingAllPlant } = usePlant({
+    farmId: farmId,
+  });
   const [selectedHeader, setSelectedHeader] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [countItem, setCountItem] = useState(cartSelectVegetables.length);
@@ -202,59 +79,63 @@ const SelectVegetables = () => {
         <View>
           <PageHeading title={"Lựa chọn rau trồng"} />
         </View>
-
-        <View style={styles.header}>
-          {tabs.map((data, index) => (
-            <Pressable onPress={() => setSelectedHeader(index)}>
-              <Text
-                style={[
-                  styles.titleHeader,
-                  selectedHeader == index && { color: COLORS.green },
-                ]}
-              >
-                {data.name}
-              </Text>
-
-              {selectedHeader == index && <View style={styles.line} />}
-            </Pressable>
-          ))}
-        </View>
-        <FlatList
-          style={styles.list}
-          contentContainerStyle={styles.listContainer}
-          data={tabs[selectedHeader].options}
-          horizontal={false}
-          numColumns={2}
-          keyExtractor={(item) => {
-            return item.id;
-          }}
-          renderItem={(item, index) => {
-            return (
-              <ScrollView>
-                <TouchableOpacity
-                  style={styles.card}
-                  onPress={() => {
-                    addToCart(item.item);
-                  }}
-                  key={index}
+        {isSuccessAllPlant && (
+          <View style={styles.header}>
+            {tabs.map((data, index) => (
+              <Pressable onPress={() => setSelectedHeader(index)}>
+                <Text
+                  style={[
+                    styles.titleHeader,
+                    selectedHeader == index && { color: COLORS.green },
+                  ]}
                 >
-                  <Image
-                    style={styles.cardImage}
-                    source={{ uri: item.item.image }}
-                  />
-                </TouchableOpacity>
+                  {data.name}
+                </Text>
 
-                <View style={styles.cardHeader}>
-                  <View
-                    style={{ alignItems: "center", justifyContent: "center" }}
+                {selectedHeader == index && <View style={styles.line} />}
+              </Pressable>
+            ))}
+          </View>
+        )}
+
+        {isSuccessAllPlant && (
+          <FlatList
+            style={styles.list}
+            contentContainerStyle={styles.listContainer}
+            data={tabs[selectedHeader].options}
+            horizontal={false}
+            numColumns={2}
+            keyExtractor={(item) => {
+              return item.id;
+            }}
+            renderItem={(item, index) => {
+              return (
+                <ScrollView>
+                  <TouchableOpacity
+                    style={styles.card}
+                    onPress={() => {
+                      addToCart(item.item);
+                    }}
+                    key={index}
                   >
-                    <Text style={styles.title}>{item.item.title}</Text>
+                    <Image
+                      style={styles.cardImage}
+                      source={{ uri: item.item.image }}
+                    />
+                  </TouchableOpacity>
+
+                  <View style={styles.cardHeader}>
+                    <View
+                      style={{ alignItems: "center", justifyContent: "center" }}
+                    >
+                      <Text style={styles.title}>{item.item.title}</Text>
+                    </View>
                   </View>
-                </View>
-              </ScrollView>
-            );
-          }}
-        />
+                </ScrollView>
+              );
+            }}
+          />
+        )}
       </ScrollView>
       <View style={styles.footer}>
         <TouchableOpacity>

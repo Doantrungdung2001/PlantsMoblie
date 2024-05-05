@@ -4,16 +4,60 @@ import PLANT from "../../../../Services/PlantService";
 
 export default function usePlant({ farmId }) {
   const parseDataAllPlant = useCallback((data) => {
-    const allplant = data.map((plant) => ({
-      id: plant?._id,
-      name: plant?.plant_name,
-      img: plant?.plant_thumb,
-      plant_type: plant?.plant_type,
-      plant_description: plant?.plant_description,
-      plant_slug: plant?.plant_slug,
-    }));
+    let tabs = [
+      {
+        name: "Rau ăn lá",
+        options: [],
+      },
+      {
+        name: "Rau thơm",
+        options: [],
+      },
+      {
+        name: "Củ",
+        options: [],
+      },
+      {
+        name: "Quả",
+        options: [],
+      },
+    ];
+    data.forEach((item) => {
+      switch (item.plant_type) {
+        case "leafy":
+          tabs[0].options.push({
+            id: tabs[0].options.length + 1,
+            title: item.plant_name,
+            image: item.plant_thumb,
+          });
+          break;
+        case "herb":
+          tabs[1].options.push({
+            id: tabs[1].options.length + 1,
+            title: item.plant_name,
+            image: item.plant_thumb,
+          });
+          break;
+        case "root":
+          tabs[2].options.push({
+            id: tabs[2].options.length + 1,
+            title: item.plant_name,
+            image: item.plant_thumb,
+          });
+          break;
+        case "fruit":
+          tabs[3].options.push({
+            id: tabs[3].options.length + 1,
+            title: item.plant_name,
+            image: item.plant_thumb,
+          });
+          break;
+        default:
+          break;
+      }
+    });
 
-    return { allplant };
+    return { tabs };
   }, []);
 
   const {
@@ -25,11 +69,11 @@ export default function usePlant({ farmId }) {
     queryFn: () => PLANT.getPlantFromFarm(farmId),
     staleTime: 20 * 1000,
     select: (data) => parseDataAllPlant(data?.data?.metadata),
-    enabled: !!gardenId,
+    enabled: !!farmId,
   });
 
   return {
-    allPlants: dataAllPlant?.allplant,
+    tabs: dataAllPlant?.tabs,
     isSuccessAllPlant,
     isLoadingAllPlant,
   };
