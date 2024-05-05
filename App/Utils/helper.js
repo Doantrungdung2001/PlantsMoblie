@@ -15,7 +15,18 @@ export function formatDate(inputDateTime) {
   const formattedDateTime = `${day}/${month}/${year}`;
   return formattedDateTime;
 }
-
+//format Time
+export function formatTime(inputDateTime) {
+  // Tạo một đối tượng Date từ chuỗi đầu vào
+  const date = new Date(inputDateTime);
+  // Lấy ngày, tháng, năm, giờ và phút từ đối tượng Date
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+  // Tạo chuỗi định dạng "dd/mm/yyyy giờ:phút"
+  // const formattedDateTime = `${day}/${month}/${year} ${hours}:${minutes}`;
+  const formattedTime = `${hours}:${minutes}`;
+  return formattedTime;
+}
 //format datetime
 export function formatDateTime(inputDateTime) {
   // Tạo một đối tượng Date từ chuỗi đầu vào

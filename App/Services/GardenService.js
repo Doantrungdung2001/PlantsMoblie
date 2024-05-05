@@ -225,6 +225,20 @@ const GARDEN = {
         return err;
       });
   },
+  getAllProcessByGarden: async (gardenId) => {
+    return await publicHttp({
+      method: "GET",
+      url: `garden/${gardenId}/processProjects`,
+    })
+      .then((res) => {
+        console.log("res;", res);
+        return res;
+      })
+      .catch((err) => {
+        console.log("err: ", err);
+        return err;
+      });
+  },
 };
 
 export default GARDEN;

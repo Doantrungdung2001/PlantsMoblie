@@ -8,11 +8,11 @@ import {
 import React, { useState } from "react";
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
 import { COLORS } from "../../../../Constants";
-import CultivationProcess from "../CultivationProcess";
+import CultivationProcess from "../CultivationProcess/CultivationProcess";
 import CameraExtraction from "../CameraExtraction";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import PlantFarming  from "../PlantFarming/PlantFarming";
+import PlantFarming from "../PlantFarming/PlantFarming";
 import InfoMyGarden from "../InforMyGarden/InfoMyGarden";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import styles from "./MyGardenScreen.Styles";
@@ -93,7 +93,9 @@ const MyGardenScreen = () => {
           </View>
           {selectedHeader == 0 && <InfoMyGarden infor={dataGarden} />}
           {selectedHeader == 1 && <PlantFarming gardenId={dataGarden.id} />}
-          {selectedHeader == 2 && <CultivationProcess />}
+          {selectedHeader == 2 && (
+            <CultivationProcess gardenId={dataGarden.id} />
+          )}
           {selectedHeader == 3 && <CameraExtraction />}
         </View>
       </ScrollView>
