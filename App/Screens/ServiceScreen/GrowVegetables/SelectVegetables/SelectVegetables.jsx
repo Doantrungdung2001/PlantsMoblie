@@ -188,7 +188,6 @@ const SelectVegetables = () => {
             data={cartSelectVegetables}
             renderItem={({ item, index }) => (
               <ScrollView>
-                {console.log("danh sách cây trồng: ", item)}
                 <TouchableOpacity style={styles.cardContainerModal} key={index}>
                   <Image
                     source={{ uri: item?.image }}
@@ -196,24 +195,6 @@ const SelectVegetables = () => {
                   />
                   <View style={styles.subContainerModal}>
                     <Text style={styles.cardTitle}>{item.title}</Text>
-                    <Text
-                      style={{
-                        fontFamily: "regular",
-                        color: COLORS.black,
-                        fontSize: 17,
-                      }}
-                    >
-                      afasd
-                    </Text>
-                    <Text
-                      style={{
-                        fontFamily: "regular",
-                        color: COLORS.gray,
-                        fontSize: 14,
-                      }}
-                    >
-                      km
-                    </Text>
                   </View>
                   <AntDesign
                     name="delete"

@@ -126,12 +126,11 @@ const styles = StyleSheet.create({
   },
   cardContainerModal: {
     marginTop: 30,
-    backgroundColor: COLORS.white,
     borderRadius: 15,
     display: "flex",
     flexDirection: "row",
     gap: 10,
-    backgroundColor: COLORS.lightGray,
+    backgroundColor: COLORS.green,
     alignItems: "center",
   },
   subContainerModal: {
