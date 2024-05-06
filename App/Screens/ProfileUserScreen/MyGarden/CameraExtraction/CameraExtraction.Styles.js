@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   playvideo: {
-    width: 200,
+    width: 260,
     height: 150,
   },
   buttons: {

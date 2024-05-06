@@ -113,3 +113,13 @@ export function renderTypeStatusDelivery(type) {
       return "Không có trạng thái";
   }
 }
+
+export function formatLocaleDateStringToNormal(dateString) {
+  // Tạo đối tượng Date từ chuỗi ngày đầu vào
+  var dateParts = dateString.split("/");
+  var year = dateParts[2];
+  var month = dateParts[0];
+  var day = dateParts[1];
+  var formattedDate = day + "/" + month + "/" + year;
+  return formattedDate;
+}

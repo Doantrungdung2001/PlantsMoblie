@@ -1,18 +1,11 @@
-import {
-  View,
-  FlatList,
-  Image,
-  Text,
-  TouchableOpacity,
-  Button,
-} from "react-native";
+import { View, FlatList, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Fontisto } from "@expo/vector-icons";
 import styles from "./CameraExtraction.Styles";
 import useCameraExtraction from "./useCameraExtraction";
 import { Video, ResizeMode } from "expo-av";
-
+import { formatDateTime } from "../../../../Utils/helper";
 const CameraExtraction = ({ gardenId }) => {
   const { allVideos, isSuccessCameraExtraction, isLoadingCameraExtraction } =
     useCameraExtraction({
@@ -23,7 +16,6 @@ const CameraExtraction = ({ gardenId }) => {
   const [showPicker, setShowPicker] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
   const video = React.useRef(null);
-  const [status, setStatus] = React.useState({});
 
   const handleTimeChange = (event, selectedDate) => {
     setShowPicker(false); // Hide the picker after selecting a time
@@ -32,7 +24,6 @@ const CameraExtraction = ({ gardenId }) => {
   };
 
   const renderItem = ({ item }) => {
-    console.log("Du lieu video : ", item);
     return (
       <TouchableOpacity style={styles.video} onPress={() => {}}>
         <View>
@@ -45,17 +36,13 @@ const CameraExtraction = ({ gardenId }) => {
             useNativeControls
             resizeMode={ResizeMode.CONTAIN}
             isLooping
-            onPlaybackStatusUpdate={(status) => setStatus(() => status)}
           />
         </View>
 
         <View style={styles.details}>
           <Text style={styles.title}>{item.date}</Text>
-          {/* <Text style={styles.channel}>{item.channel}</Text>
-          <View style={styles.viewCount}>
-            <Text style={styles.views}>{item.views}</Text>
-            <Text style={styles.duration}>{item.duration}</Text>
-          </View> */}
+          <Text style={styles.channel}>{formatDateTime(item.start_time)}</Text>
+          <Text style={styles.channel}>{formatDateTime(item.end_time)}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -86,16 +73,6 @@ const CameraExtraction = ({ gardenId }) => {
           onChange={handleTimeChange}
         />
       )}
-      <View style={styles.body}>
-        <Image
-          source={{ uri: "https://bootdey.com/img/Content/avatar/avatar6.png" }}
-          style={styles.avatar}
-        />
-        <View style={styles.userInfo}>
-          <Text style={styles.userName}>Mr. Cody Fisher</Text>
-          <Text style={styles.userRole}>Professor</Text>
-        </View>
-      </View>
     </View>
   );
   return (

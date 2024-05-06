@@ -1,16 +1,18 @@
 import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { formatLocaleDateStringToNormal } from "../../../../Utils/helper";
 import GARDEN from "../../../../Services/GardenService";
 
 export default function useCameraExtraction({ gardenId }) {
   const parseDataAllCameraExtraction = useCallback((data) => {
     let allvideo = [];
+
     data.forEach((objectDetec) => {
       let date = objectDetec?.date || "";
 
       objectDetec.objectDetections.forEach((videos) => {
         var newData = {
-          date: date,
+          date: formatLocaleDateStringToNormal(date),
           id: videos?._id || "",
           camera_id: videos?.camera_id || "",
           start_time: videos.start_time || "",
