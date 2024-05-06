@@ -1,26 +1,30 @@
 import { View, FlatList, Text, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Fontisto } from "@expo/vector-icons";
 import styles from "./CameraExtraction.Styles";
 import useCameraExtraction from "./useCameraExtraction";
 import { Video, ResizeMode } from "expo-av";
-import { formatDateTime } from "../../../../Utils/helper";
+import { formatDateTime, formatDate } from "../../../../Utils/helper";
 const CameraExtraction = ({ gardenId }) => {
   const { allVideos, isSuccessCameraExtraction, isLoadingCameraExtraction } =
     useCameraExtraction({
       gardenId: gardenId,
     });
-
+  const [fillterVideos, setFillterVideos] = useState(allVideos);
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
   const video = React.useRef(null);
 
+  useEffect(() => {
+    setFillterVideos(allVideos);
+  }, [allVideos]);
   const handleTimeChange = (event, selectedDate) => {
     setShowPicker(false); // Hide the picker after selecting a time
-    setSelectedTime(selectedDate); // Update the selected time
-    console.log("Selected time:", selectedDate); // Log the selected time
+    setSelectedTime(selectedDate);
+    const formatTime = formatDate(selectedDate);
+    setFillterVideos(allVideos.filter(video => video.date === formatTime))
   };
 
   const renderItem = ({ item }) => {
@@ -80,7 +84,7 @@ const CameraExtraction = ({ gardenId }) => {
       {isSuccessCameraExtraction && (
         <FlatList
           style={styles.container}
-          data={allVideos}
+          data={fillterVideos}
           ListHeaderComponent={renderHeader}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
