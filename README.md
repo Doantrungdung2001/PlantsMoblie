@@ -53,3 +53,6 @@ npm install @react-native-async-storage/async-storage
 ```
 npm install react-native-reanimated
 ```
+```
+expo install expo-av
+```

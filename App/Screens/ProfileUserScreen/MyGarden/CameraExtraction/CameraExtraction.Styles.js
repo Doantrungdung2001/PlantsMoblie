@@ -101,5 +101,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
   },
+  playvideo: {
+    width: 200,
+    height: 150,
+  },
+  buttons: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 export default styles;

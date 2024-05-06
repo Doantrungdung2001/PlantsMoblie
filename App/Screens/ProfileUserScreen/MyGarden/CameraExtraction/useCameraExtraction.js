@@ -4,10 +4,22 @@ import GARDEN from "../../../../Services/GardenService";
 
 export default function useCameraExtraction({ gardenId }) {
   const parseDataAllCameraExtraction = useCallback((data) => {
-    const allvideo = data.map((videos) => ({
-      date: videos?.date,
-      objectDetections: videos?.objectDetections,
-    }));
+    let allvideo = [];
+    data.forEach((objectDetec) => {
+      let date = objectDetec?.date || "";
+
+      objectDetec.objectDetections.forEach((videos) => {
+        var newData = {
+          date: date,
+          id: videos?._id || "",
+          camera_id: videos?.camera_id || "",
+          start_time: videos.start_time || "",
+          end_time: videos.end_time || "",
+          video_url: videos.video_url.replace(/\.webm$/, ".mp4"),
+        };
+        allvideo.push(newData);
+      });
+    });
     allvideo.sort((a, b) => {
       // Sử dụng toán tử so sánh để sắp xếp từ cũ đến mới
       return new Date(b.date) - new Date(a.date);

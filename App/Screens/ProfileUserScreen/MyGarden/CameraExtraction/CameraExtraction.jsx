@@ -1,76 +1,17 @@
-import { View, FlatList, Image, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  FlatList,
+  Image,
+  Text,
+  TouchableOpacity,
+  Button,
+} from "react-native";
 import React, { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Fontisto } from "@expo/vector-icons";
 import styles from "./CameraExtraction.Styles";
 import useCameraExtraction from "./useCameraExtraction";
-// import VideoPlayer from "react-native-video-player";
-const data = [
-  {
-    id: "1",
-    thumbnail: "https://via.placeholder.com/640x360",
-    title: "Video 1",
-    channel: "Channel 1",
-    views: "1.2M views",
-    duration: "5:01",
-  },
-  {
-    id: "2",
-    thumbnail: "https://via.placeholder.com/640x360",
-    title: "Video 2",
-    channel: "Channel 2",
-    views: "2.3M views",
-    duration: "10:02",
-  },
-  {
-    id: "3",
-    thumbnail: "https://via.placeholder.com/640x360",
-    title: "Video 3",
-    channel: "Channel 3",
-    views: "3.4M views",
-    duration: "15:03",
-  },
-  {
-    id: "4",
-    thumbnail: "https://via.placeholder.com/640x360",
-    title: "Video 3",
-    channel: "Channel 3",
-    views: "3.4M views",
-    duration: "15:03",
-  },
-  {
-    id: "5",
-    thumbnail: "https://via.placeholder.com/640x360",
-    title: "Video 3 ",
-    channel: "Channel 3",
-    views: "3.4M views",
-    duration: "15:03",
-  },
-  {
-    id: "6",
-    thumbnail: "https://via.placeholder.com/640x360",
-    title: "Video 3",
-    channel: "Channel 3",
-    views: "3.4M views",
-    duration: "15:03",
-  },
-  {
-    id: "7",
-    thumbnail: "https://via.placeholder.com/640x360",
-    title: "Video 3",
-    channel: "Channel 3",
-    views: "3.4M views",
-    duration: "15:03",
-  },
-  {
-    id: "8",
-    thumbnail: "https://via.placeholder.com/640x360",
-    title: "Video 3",
-    channel: "Channel 3",
-    views: "3.4M views",
-    duration: "15:03",
-  },
-];
+import { Video, ResizeMode } from "expo-av";
 
 const CameraExtraction = ({ gardenId }) => {
   const { allVideos, isSuccessCameraExtraction, isLoadingCameraExtraction } =
@@ -81,6 +22,8 @@ const CameraExtraction = ({ gardenId }) => {
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
+  const video = React.useRef(null);
+  const [status, setStatus] = React.useState({});
 
   const handleTimeChange = (event, selectedDate) => {
     setShowPicker(false); // Hide the picker after selecting a time
@@ -89,19 +32,22 @@ const CameraExtraction = ({ gardenId }) => {
   };
 
   const renderItem = ({ item }) => {
+    console.log("Du lieu video : ", item);
     return (
       <TouchableOpacity style={styles.video} onPress={() => {}}>
-        {console.log("Linh video: ", item.objectDetections[0].video_url)}
-        {/* <View>
-          <VideoPlayer
-            video={{
-              uri: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        <View>
+          <Video
+            ref={video}
+            style={styles.playvideo}
+            source={{
+              uri: item.video_url,
             }}
-            videoWidth={1600}
-            videoHeight={900}
-            thumbnail={{ uri: "https://i.picsum.photos/id/866/1600/900.jpg" }}
+            useNativeControls
+            resizeMode={ResizeMode.CONTAIN}
+            isLooping
+            onPlaybackStatusUpdate={(status) => setStatus(() => status)}
           />
-        </View> */}
+        </View>
 
         <View style={styles.details}>
           <Text style={styles.title}>{item.date}</Text>

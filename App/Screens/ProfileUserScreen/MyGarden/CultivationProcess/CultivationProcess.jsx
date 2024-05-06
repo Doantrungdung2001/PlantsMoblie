@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Modal,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 
@@ -178,9 +179,10 @@ const CultivationProcess = ({ gardenId }) => {
 
   const [showModal, setShowModal] = useState(false);
   const [detailProcess, setDetailProcess] = useState([]);
-
+  console.log("chi tiet: ", detailProcess);
   const renderClassItem = ({ item }) => (
     <View style={styles.classItem}>
+      {console.log("du lieu item: ", item)}
       <View style={styles.timelineContainer}>
         <View style={styles.timelineDot} />
         <View style={styles.timelineLine} />
@@ -195,8 +197,9 @@ const CultivationProcess = ({ gardenId }) => {
         <TouchableOpacity
           style={styles.cardProcess}
           onPress={() => {
+            setDetailProcess(item?.process);
+            console.log("Chat vao day");
             setShowModal(!showModal);
-            setDetailProcess(item.process);
           }}
         >
           <Text style={styles.cardTitle}>{item.plant.plant_name}</Text>
@@ -214,7 +217,11 @@ const CultivationProcess = ({ gardenId }) => {
           data={allProcess}
           renderItem={renderClassItem}
           keyExtractor={(index) => index.toString()}
+          key={(index) => index.toString()}
         />
+      )}
+      {isLoadingAllProcess && (
+        <ActivityIndicator size="large" color="#00ff00" />
       )}
       <Modal animationType="slide" visible={showModal}>
         <View style={{ padding: 20, paddingTop: 70 }}>
@@ -238,7 +245,7 @@ const CultivationProcess = ({ gardenId }) => {
             </Text>
           </TouchableOpacity>
         </View>
-        {detailProcess.length > 0 ? (
+        {detailProcess?.length > 0 ? (
           <ScrollView>
             {detailProcess.map((info, index) => (
               <View key={index}>
