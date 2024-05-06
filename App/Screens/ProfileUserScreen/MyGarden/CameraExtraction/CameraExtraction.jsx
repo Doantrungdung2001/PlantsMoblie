@@ -1,4 +1,10 @@
-import { View, FlatList, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Fontisto } from "@expo/vector-icons";
@@ -24,7 +30,7 @@ const CameraExtraction = ({ gardenId }) => {
     setShowPicker(false); // Hide the picker after selecting a time
     setSelectedTime(selectedDate);
     const formatTime = formatDate(selectedDate);
-    setFillterVideos(allVideos.filter(video => video.date === formatTime))
+    setFillterVideos(allVideos.filter((video) => video.date === formatTime));
   };
 
   const renderItem = ({ item }) => {
@@ -89,6 +95,9 @@ const CameraExtraction = ({ gardenId }) => {
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
         />
+      )}
+      {isLoadingCameraExtraction && (
+        <ActivityIndicator size="large" color="#00ff00" />
       )}
     </View>
   );

@@ -5,6 +5,7 @@ import {
   FlatList,
   TouchableOpacity,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
@@ -78,6 +79,9 @@ const ListMyGarden = () => {
             )}
             keyExtractor={(item) => item.id}
           />
+        )}
+        {isLoadingAllGarden && (
+          <ActivityIndicator size="large" color="#00ff00" />
         )}
       </View>
     </ScrollView>

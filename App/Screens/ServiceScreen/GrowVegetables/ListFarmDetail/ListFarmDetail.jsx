@@ -1,4 +1,4 @@
-import { FlatList, SafeAreaView } from "react-native";
+import { FlatList, SafeAreaView, ActivityIndicator } from "react-native";
 import React, { useEffect } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import Search from "../../../../Components/Search/Search";
@@ -26,6 +26,7 @@ const ListFarmDetail = () => {
           />
         </SafeAreaView>
       )}
+      {isLoadingAllFarm && <ActivityIndicator size="large" color="#00ff00" />}
     </SafeAreaView>
   );
 };

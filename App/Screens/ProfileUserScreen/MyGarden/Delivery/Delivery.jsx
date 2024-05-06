@@ -1,4 +1,11 @@
-import { View, Text, Modal, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Modal,
+  ScrollView,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import React, { useState } from "react";
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -57,7 +64,9 @@ const Delivery = () => {
           ))}
         </View>
       )}
-
+      {isLoadingAllDelivery && (
+        <ActivityIndicator size="large" color="#00ff00" />
+      )}
       <Modal animationType="slide" visible={showModal}>
         <View style={{ padding: 20, marginTop: 20 }}>
           <TouchableOpacity

@@ -1,4 +1,11 @@
-import { FlatList, Image, StyleSheet, Text, Button, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  Text,
+  Button,
+  View,
+  ActivityIndicator,
+} from "react-native";
 import React from "react";
 import Heading from "../../../../Components/Heading/Heading";
 import { COLORS } from "../../../../Constants";
@@ -43,6 +50,9 @@ const ListGardenService = ({ farmId }) => {
             </View>
           )}
         />
+      )}
+      {isLoadingAllGardenService && (
+        <ActivityIndicator size="large" color="#00ff00" />
       )}
     </View>
   );

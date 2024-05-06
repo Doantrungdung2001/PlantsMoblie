@@ -9,6 +9,7 @@ import {
   Modal,
   Alert,
   TextInput,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState, useRef } from "react";
 import { useRoute } from "@react-navigation/native";
@@ -103,7 +104,9 @@ const SelectVegetables = () => {
             ))}
           </View>
         )}
-
+        {isLoadingAllPlant && (
+          <ActivityIndicator size="large" color="#00ff00" />
+        )}
         {isSuccessAllPlant && (
           <FlatList
             style={styles.list}
@@ -141,6 +144,9 @@ const SelectVegetables = () => {
               );
             }}
           />
+        )}
+        {isLoadingAllPlant && (
+          <ActivityIndicator size="large" color="#00ff00" />
         )}
       </ScrollView>
       <View style={styles.footer}>
