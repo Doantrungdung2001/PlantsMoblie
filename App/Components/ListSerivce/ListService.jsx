@@ -1,7 +1,7 @@
 import { Text, View, FlatList, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 import styles from "./Service.Styles";
-import { COLORS, icons } from "../../Constants";
+import { COLORS, icons, SIZES,FONTS } from "../../Constants";
 import { useNavigation } from "@react-navigation/native";
 const featureData = [
   {
@@ -43,9 +43,14 @@ const featureData = [
 const ListService = () => {
   const [feature, setFeatures] = useState(featureData);
   const navigation = useNavigation();
+
   const renderItem = ({ item, index }) => (
     <TouchableOpacity
-    style={{ ...styles.itemContainer, backgroundColor: item.backgroundColor }}
+      style={{
+        marginBottom: SIZES.padding * 2,
+        width: 60,
+        alignItems: "center",
+      }}
       key={index}
       onPress={() =>
         navigation.push(`service-screen/${item.description}`, {
@@ -53,22 +58,44 @@ const ListService = () => {
         })
       }
     >
-      <View style={styles.itemCard}>
+      <View
+        style={{
+          height: 50,
+          width: 50,
+          marginBottom: 5,
+          borderRadius: 20,
+          backgroundColor: item.backgroundColor,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Image
           source={item.icon}
           resizeMode="contain"
-          style={styles.itemImage}
+          style={{
+            height: 20,
+            width: 20,
+            tintColor: item.color,
+          }}
         />
       </View>
-      <Text style={styles.itemText}>{item.description}</Text>
+      <Text
+        style={{
+          textAlign: "center",
+          flexWrap: "wrap",
+          ...FONTS.body4,
+        }}
+      >
+        {item.description}
+      </Text>
     </TouchableOpacity>
   );
   return (
     <View>
-      <View style={styles.featuresContainer}>
-        <Text style={styles.featuresText}>Dịch vụ</Text>
-      </View>
-      <View>
+      <View style={{margin: 20}}>
+        <View style={{ marginBottom: SIZES.padding * 2 }}>
+          <Text style={{ ...FONTS.h3 }}>Dịch vụ</Text>
+        </View>
         <FlatList
           data={feature}
           numColumns={4}
