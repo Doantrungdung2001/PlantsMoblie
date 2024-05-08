@@ -1,6 +1,6 @@
 import publicHttp from "./Http/publicHttp.config";
 const GARDEN = {
-  getGardens: async (farmId) => {
+  getAllGardensByFarmId: async (farmId) => {
     return await publicHttp({
       method: "GET",
       url: `garden/farm/${farmId}`,

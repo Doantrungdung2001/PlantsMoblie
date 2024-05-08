@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../../Constants";
 import IntruductionProject from "../IntruductionFarm/IntruductionFarm";
 import ListGardenService from "../ListGardenService/ListGardenService";
-import ListProject from "../../../../Components/ListProject/ListProject";
+import ListGarden from "../../../../Components/ListGarden/ListGarden";
 import styles from "./DetailFarm.Styles";
 const DetailFarmGrowVegetables = () => {
   const param = useRoute().params;
@@ -20,7 +20,10 @@ const DetailFarmGrowVegetables = () => {
         >
           <Ionicons name="arrow-back-outline" size={40} color="white" />
         </TouchableOpacity>
-        <Image source={{ uri: farmInformation?.avatar }} style={styles.avatar} />
+        <Image
+          source={{ uri: farmInformation?.avatar }}
+          style={styles.avatar}
+        />
         <View style={styles.infoContainer}>
           <Text style={styles.nameFarm}>{farmInformation.name}</Text>
           <View style={styles.subContainer}>
@@ -46,10 +49,13 @@ const DetailFarmGrowVegetables = () => {
           <View style={styles.line}></View>
         </View>
         {/* slider service */}
-        <ListGardenService farmId={farmInformation.id} farmInfo={farmInformation} />
+        <ListGardenService
+          farmId={farmInformation.id}
+          farmInfo={farmInformation}
+        />
 
         {/*List project */}
-        <ListProject />
+        <ListGarden farmId={farmInformation.id} />
       </ScrollView>
     </View>
   );
