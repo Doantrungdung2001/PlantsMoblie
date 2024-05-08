@@ -7,6 +7,9 @@ export default function useListGardenService({ farmId }) {
       id: gardenService._id,
       farm: gardenService.farm || "Chưa cập nhật",
       square: gardenService.square || "Chưa cập nhật",
+      status: gardenService.status || "Chưa cập nhật",
+      quantity: gardenService.quantity || "",
+      avatarGarden: gardenService.avatarGarden || "",
       expectDeliveryPerWeek:
         gardenService.expectDeliveryPerWeek || "Chưa cập nhật",
       expectDeliveryAmount:

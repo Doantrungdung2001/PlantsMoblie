@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../../Constants";
@@ -20,7 +20,7 @@ const DetailFarmGrowVegetables = () => {
         >
           <Ionicons name="arrow-back-outline" size={40} color="white" />
         </TouchableOpacity>
-        <Image source={{ uri: farmInformation?.image }} style={styles.avatar} />
+        <Image source={{ uri: farmInformation?.avatar }} style={styles.avatar} />
         <View style={styles.infoContainer}>
           <Text style={styles.nameFarm}>{farmInformation.name}</Text>
           <View style={styles.subContainer}>
@@ -46,7 +46,7 @@ const DetailFarmGrowVegetables = () => {
           <View style={styles.line}></View>
         </View>
         {/* slider service */}
-        <ListGardenService farmId={farmInformation.id} />
+        <ListGardenService farmId={farmInformation.id} farmInfo={farmInformation} />
 
         {/*List project */}
         <ListProject />

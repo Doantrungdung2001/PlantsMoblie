@@ -55,7 +55,7 @@ export default Album = () => {
                   <View style={styles.imageContainer}>
                     <Image
                       style={styles.cardImage}
-                      source={{ uri: item.image }}
+                      source={{ uri: item.avatar }}
                     />
                   </View>
                   <View style={styles.cardContent}>

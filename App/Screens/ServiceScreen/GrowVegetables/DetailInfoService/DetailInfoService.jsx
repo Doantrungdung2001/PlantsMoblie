@@ -10,6 +10,7 @@ const DetailInfoService = () => {
   const [serviceInformation, setServiceInformation] = useState(
     param.serviceInfo
   );
+  const [farmInformation, setFarmInformation] = useState(param.farmInfo);
   return (
     <View>
       <ScrollView style={{ height: "93%" }}>
@@ -20,7 +21,7 @@ const DetailInfoService = () => {
           <Ionicons name="arrow-back-outline" size={40} color="white" />
         </TouchableOpacity>
         <Image
-          source={{ uri: serviceInformation?.image }}
+          source={{ uri: farmInformation?.avatar }}
           style={styles.avatar}
         />
         <Text style={styles.name}>{serviceInformation.name}</Text>
@@ -89,7 +90,11 @@ const DetailInfoService = () => {
       <View>
         <TouchableOpacity
           style={styles.bookingBtn}
-          onPress={() => navigation.push("select-vegestables",{serviceInfo: serviceInformation})}
+          onPress={() =>
+            navigation.push("select-vegestables", {
+              serviceInfo: serviceInformation,
+            })
+          }
         >
           <Text style={styles.textBtn}>Lựa chọn rau trồng</Text>
         </TouchableOpacity>

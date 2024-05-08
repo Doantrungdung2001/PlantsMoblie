@@ -4,15 +4,17 @@ import FARM from "../../Services/FarmService";
 export default function useListFarm() {
   const parseDataAllFarm = useCallback((data) => {
     const allfarm = data.map((farm) => ({
-      id: farm._id,
-      name: farm.name || "Chưa cập nhật",
-      status: farm.status || "Chưa cập nhật",
-      district: farm.district || "Chưa cập nhật",
-      address: farm.address || "Chưa cập nhật",
-      email: farm.email || "Chưa cập nhật",
-      walletAddress: farm.walletAddress || "Chưa cập nhật",
-      description: farm.description || "Chưa cập nhật",
+      id: farm?._id,
+      name: farm?.name || "Chưa cập nhật",
+      status: farm?.status || "Chưa cập nhật",
+      district: farm?.district || "Chưa cập nhật",
+      address: farm?.address || "Chưa cập nhật",
+      email: farm?.email || "Chưa cập nhật",
+      description: farm?.description || "Chưa cập nhật",
       createdAt: farm.createdAt || "Chưa cập nhật",
+      lat: farm?.lat || "",
+      lng: farm?.lng || "",
+      avatar: farm?.avatar || "",
     }));
     return { allfarm };
   }, []);

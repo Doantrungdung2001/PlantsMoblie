@@ -17,6 +17,11 @@ const styles = StyleSheet.create({
     marginTop: 15,
     fontSize: 20,
   },
+  count: {
+    fontSize: 18,
+    flex: 1,
+    color: "#B0C4DE",
+  },
   buttonBtn: {
     marginTop: 10,
     backgroundColor: COLORS.green,
