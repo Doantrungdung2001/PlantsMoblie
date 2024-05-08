@@ -13,7 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Entypo } from "@expo/vector-icons";
 
 const typeSearch = ["Nearest", "All", "Bac", "Trung", "Nam"];
-const Search = () => {
+const SearchFarm = () => {
   const [activeJobSearch, setActiveJobSearch] = useState("All");
   const navigation = useNavigation();
   return (
@@ -57,7 +57,7 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SearchFarm;
 const styles = StyleSheet.create({
   container: {
     padding: 20,

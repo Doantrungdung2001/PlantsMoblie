@@ -7,6 +7,8 @@ import { Svg } from "react-native-svg";
 import Scan from "../Screens/ScanScreen/Scan";
 import HomeNavigation from "./HomeNavigation";
 import UserNavigation from "./UserNavigation";
+import SearchNavigation from "./SearchNavigation";
+
 import { COLORS } from "../Constants";
 
 import { FontAwesome } from "@expo/vector-icons";
@@ -107,13 +109,27 @@ const TabScren = () => {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Scan"
         component={Scan}
         options={{
           tabBarLabel: ({ color }) => (
             <Text style={{ color: color, fontSize: 12, marginTop: -7 }}>
               Quét mã
+            </Text>
+          ),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="scan-sharp" size={size} color={color} />
+          ),
+        }}
+      /> */}
+      <Tab.Screen
+        name="SearchNavigation"
+        component={SearchNavigation}
+        options={{
+          tabBarLabel: ({ color }) => (
+            <Text style={{ color: color, fontSize: 12, marginTop: -7 }}>
+              Tìm kiếm cây trồng
             </Text>
           ),
           tabBarIcon: ({ color, size }) => (
@@ -139,17 +155,4 @@ const TabScren = () => {
     </Tab.Navigator>
   );
 };
-const styles = StyleSheet.create({
-  shadow: {
-    shadowColor: COLORS.primary,
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
-  },
-});
 export default TabScren;
