@@ -17,6 +17,7 @@ import { COLORS } from "../../../Constants";
 import useAllPlantsRecommend from "./useAllPlantsRecommend";
 import { MaterialIcons } from "@expo/vector-icons";
 import { renderTypePlant } from "../../../Utils/helper";
+import ListFarmResult from "../Result/ListFarmResult";
 const dataFilter = [
   {
     title: "Gần nhất",
@@ -60,6 +61,7 @@ const SearchPlants = () => {
 
   const [selectedPlants, setSelectedPlants] = useState([]);
 
+  const [showListFarmResult, setShowListFarmResult] = useState(false);
   const handleFilterPress = (index) => {
     setSelectedFilterLocation(index);
   };
@@ -88,7 +90,11 @@ const SearchPlants = () => {
     );
     setSelectedPlants(updatedPlants);
   };
-
+  const handleSearchResult = () => {
+    setSearchText("");
+    setDisplayFilterPlants(false);
+    setShowListFarmResult(true);
+  };
   return (
     <ScrollView>
       <PageHeading title={"Tìm kiếm rau trồng"} />
@@ -105,11 +111,15 @@ const SearchPlants = () => {
             onFocus={() => setDisplayFilterPlants(true)}
           />
         </View>
-        <TouchableOpacity onPress={() => {}} style={styles.filterBtn}>
+        <TouchableOpacity
+          onPress={() => {
+            handleSearchResult();
+          }}
+          style={styles.filterBtn}
+        >
           <AntDesign name="search1" size={25} color="black" />
         </TouchableOpacity>
       </View>
-
       {/* display plants selected */}
       {selectedPlants.length > 0 && (
         <View>
@@ -134,7 +144,6 @@ const SearchPlants = () => {
           </ScrollView>
         </View>
       )}
-
       {/* Filter */}
       {displayFilterLocation && (
         <View style={{ margin: 5 }}>
@@ -172,7 +181,6 @@ const SearchPlants = () => {
           </ScrollView>
         </View>
       )}
-
       {/* List plants */}
       {isSuccessAllPlantsRecommned && (
         <View>
@@ -200,7 +208,9 @@ const SearchPlants = () => {
                       />
                       <View style={styles.textContainer}>
                         <Text style={styles.nameText}>{item.plant_name}</Text>
-                        <Text style={styles.phoneText}>{renderTypePlant(item.plant_type)}</Text>
+                        <Text style={styles.phoneText}>
+                          {renderTypePlant(item.plant_type)}
+                        </Text>
                       </View>
                     </TouchableOpacity>
                   ) : (
@@ -218,6 +228,7 @@ const SearchPlants = () => {
       {isLoadingAllPlantsRecommned && (
         <ActivityIndicator size="large" color="#00ff00" />
       )}
+      {showListFarmResult && <ListFarmResult />}
     </ScrollView>
   );
 };
