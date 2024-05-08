@@ -63,7 +63,7 @@ const ListFarmDetail = () => {
             gap: 10,
             paddingVertical: 10,
             marginBottom: 10,
-          }}
+          }}  
         >
           {dataFilter.map((item, index) => (
             <TouchableOpacity

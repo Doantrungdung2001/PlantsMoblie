@@ -14,5 +14,17 @@ const PLANT = {
         return err;
       });
   },
+  getAllPlantsRecommend: async () => {
+    return await publicHttp({
+      method: "GET",
+      url: `/plant/recommend`,
+    })
+      .then((res) => {
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      });
+  },
 };
 export default PLANT;
