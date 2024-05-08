@@ -37,5 +37,44 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 3,
   },
+
+  // all plants
+  result: {
+    flexDirection: "row",
+    alignItems: "center", // Optional: align items vertically in the center
+    justifyContent: "space-between", // Optional: adjust spacing between elements
+    backgroundColor: COLORS.white,
+    borderRadius: 10,
+    padding: 10,
+    marginLeft: 8,
+    marginRight: 8,
+  },
+  textResult: {
+    marginRight: 10, // Optional: add spacing between text and icon
+  },
+  itemContainer: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: "#eee",
+  },
+  image: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+  },
+  textContainer: {
+    marginLeft: 16,
+  },
+  nameText: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  phoneText: {
+    fontSize: 16,
+    color: "#999",
+  },
 });
 export default styles;
