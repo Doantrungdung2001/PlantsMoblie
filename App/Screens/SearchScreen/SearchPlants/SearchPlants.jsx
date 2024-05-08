@@ -59,7 +59,7 @@ const SearchPlants = () => {
         <ScrollView
           horizontal
           contentContainerStyle={{
-            gap: 20,
+            gap: 10,
             paddingVertical: 10,
             marginBottom: 10,
           }}
