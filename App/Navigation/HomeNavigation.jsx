@@ -1,5 +1,4 @@
 import React from "react";
-import Home from "../Screens/HomeScreen/Home";
 import { createStackNavigator } from "@react-navigation/stack";
 import ListFarmDetail from "../Screens/ServiceScreen/GrowVegetables/ListFarmDetail/ListFarmDetail";
 import Internet from "../Screens/ServiceScreen/Internet/Internet";
@@ -11,6 +10,7 @@ import DetailInfoService from "../Screens/ServiceScreen/GrowVegetables/DetailInf
 import SelectVegetables from "../Screens/ServiceScreen/GrowVegetables/SelectVegetables/SelectVegetables";
 import Notification from "../Components/NotificationsActivities/Notification";
 import HomeScreen from "../Screens/HomeScreen/HomeScreen";
+import SearchPlants from "../Screens/SearchScreen/SearchPlants/SearchPlants";
 const Stack = createStackNavigator();
 
 const HomeNavigation = () => {
@@ -30,6 +30,7 @@ const HomeNavigation = () => {
       <Stack.Screen name="service-detail" component={DetailInfoService} />
       <Stack.Screen name="select-vegestables" component={SelectVegetables} />
       <Stack.Screen name="notification" component={Notification} />
+      <Stack.Screen name="search-plants" component={SearchPlants} />
     </Stack.Navigator>
   );
 };

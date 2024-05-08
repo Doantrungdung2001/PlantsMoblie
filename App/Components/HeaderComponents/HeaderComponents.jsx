@@ -1,7 +1,10 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, TouchableOpacity, TextInput } from "react-native";
 import React from "react";
 import styles from "./Header.Styles";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import { useNavigation } from "@react-navigation/native";
 const HeaderComponents = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -23,6 +26,24 @@ const HeaderComponents = () => {
           </View>
         </View>
       </View>
+
+      <View style={styles.titleSearch}>
+        <Text style={styles.headingText}>Bạn muốn trồng rau gì?</Text>
+      </View>
+      <TouchableOpacity
+        style={styles.searchSectionWrapper}
+        onPress={() => navigation.push("search-plants")}
+      >
+        <View style={styles.searchBar}>
+          <AntDesign
+            name="search1"
+            size={25}
+            color="black"
+            style={{ marginRight: 5 }}
+          />
+          <TextInput placeholder="Nhập cây muốn trồng" />
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };

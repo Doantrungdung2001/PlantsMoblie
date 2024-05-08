@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../../Constants";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -50,6 +51,29 @@ const styles = StyleSheet.create({
   userRole: {
     fontSize: 12,
     color: "#ffffff",
+  },
+  titleSearch: {
+    marginTop: 20,
+    flex: 1,
+    paddingHorizontal: 20,
+  },
+  headingText: {
+    fontSize: 28,
+    fontWeight: "800",
+    color: COLORS.black,
+    marginTop: 10,
+  },
+  searchSectionWrapper: {
+    flexDirection: "row",
+    marginVertical: 20,
+  },
+  searchBar: {
+    flex: 1,
+    flexDirection: "row",
+    backgroundColor: COLORS.white,
+    padding: 16,
+    borderRadius: 10,
+    marginLeft: 4,
   },
 });
 export default styles;
