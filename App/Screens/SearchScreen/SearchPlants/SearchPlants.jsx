@@ -38,7 +38,7 @@ const SearchPlants = () => {
   };
   return (
     <ScrollView>
-      {/* <PageHeading title={"Tìm kiếm rau trồng"} /> */}
+      <PageHeading title={"Tìm kiếm rau trồng"} />
       <View style={styles.searchSectionWrapper}>
         <View style={styles.searchBar}>
           <AntDesign

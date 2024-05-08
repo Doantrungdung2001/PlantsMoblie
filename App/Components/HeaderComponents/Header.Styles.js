@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     color: "#ffffff",
   },
   titleSearch: {
-    marginTop: 20,
+    marginTop: 5,
     flex: 1,
     paddingHorizontal: 20,
   },
@@ -66,6 +66,8 @@ const styles = StyleSheet.create({
   searchSectionWrapper: {
     flexDirection: "row",
     marginVertical: 20,
+    marginLeft: 3,
+    marginRight: 7,
   },
   searchBar: {
     flex: 1,

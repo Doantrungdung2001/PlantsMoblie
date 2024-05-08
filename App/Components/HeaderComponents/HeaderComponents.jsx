@@ -41,7 +41,10 @@ const HeaderComponents = () => {
             color="black"
             style={{ marginRight: 5 }}
           />
-          <TextInput placeholder="Nhập cây muốn trồng" />
+          <TextInput
+            placeholder="Nhập cây muốn trồng"
+            onFocus={() => navigation.push("search-plants")}
+          />
         </View>
       </TouchableOpacity>
     </View>
