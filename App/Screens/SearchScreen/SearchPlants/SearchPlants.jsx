@@ -16,6 +16,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../Constants";
 import useAllPlantsRecommend from "./useAllPlantsRecommend";
 import { MaterialIcons } from "@expo/vector-icons";
+import { renderTypePlant } from "../../../Utils/helper";
 const dataFilter = [
   {
     title: "Gần nhất",
@@ -93,12 +94,10 @@ const SearchPlants = () => {
       <PageHeading title={"Tìm kiếm rau trồng"} />
       <View style={styles.searchSectionWrapper}>
         <View style={styles.searchBar}>
-          <AntDesign
-            name="search1"
-            size={25}
-            color="black"
-            style={{ marginRight: 5 }}
-          />
+          <TouchableOpacity onPress={() => setDisplayFilterLocation(true)}>
+            <Ionicons name="options" size={25} color="black" />
+          </TouchableOpacity>
+
           <TextInput
             placeholder="Chọn cây muốn trồng(Có thể chọn nhiều)"
             value={searchText}
@@ -106,11 +105,8 @@ const SearchPlants = () => {
             onFocus={() => setDisplayFilterPlants(true)}
           />
         </View>
-        <TouchableOpacity
-          onPress={() => setDisplayFilterLocation(true)}
-          style={styles.filterBtn}
-        >
-          <Ionicons name="options" size={28} color="white" />
+        <TouchableOpacity onPress={() => {}} style={styles.filterBtn}>
+          <AntDesign name="search1" size={25} color="black" />
         </TouchableOpacity>
       </View>
 
@@ -138,10 +134,17 @@ const SearchPlants = () => {
           </ScrollView>
         </View>
       )}
+
       {/* Filter */}
       {displayFilterLocation && (
         <View style={{ margin: 5 }}>
-          <Text style={styles.filterTitle}>Lọc</Text>
+          <View style={styles.filterUnDisplay}>
+            <Text style={styles.filterTitle}>Lọc</Text>
+            <TouchableOpacity onPress={() => setDisplayFilterLocation(false)}>
+              <MaterialIcons name="cancel" size={20} color="black" />
+            </TouchableOpacity>
+          </View>
+
           <ScrollView
             horizontal
             contentContainerStyle={{
@@ -197,7 +200,7 @@ const SearchPlants = () => {
                       />
                       <View style={styles.textContainer}>
                         <Text style={styles.nameText}>{item.plant_name}</Text>
-                        <Text style={styles.phoneText}>{item.plant_type}</Text>
+                        <Text style={styles.phoneText}>{renderTypePlant(item.plant_type)}</Text>
                       </View>
                     </TouchableOpacity>
                   ) : (

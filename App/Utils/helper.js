@@ -87,6 +87,14 @@ export function renderTypePlant(type) {
       return "Củ";
     case "fruitList":
       return "Quả";
+    case "fruit":
+      return "Quả";
+    case "herb":
+      return "Rau gia vị";
+    case "leafy":
+      return "Rau ăn lá";
+    case "root":
+      return "Củ";
   }
 }
 export function renderTypeProcessProject(type) {

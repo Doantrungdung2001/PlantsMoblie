@@ -20,6 +20,12 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 8,
   },
+  filterUnDisplay: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between", // Add this line to distribute space evenly between children
+    paddingHorizontal: 10, // Add padding horizontally to create space around children
+  },
   filterTitle: {
     fontSize: 22,
     fontWeight: "700",
