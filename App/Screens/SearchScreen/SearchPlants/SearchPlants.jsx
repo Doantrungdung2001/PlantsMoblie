@@ -50,11 +50,15 @@ const SearchPlants = () => {
   }, [dataAllPlantsRecommned]);
   const [searchText, setSearchText] = useState("");
   // display filter
-  const [displayFilter, setDisplayFilter] = useState(false);
+  const [displayFilterLocation, setDisplayFilterLocation] = useState(false);
   // selected filter location
   const [selectedFilterLocation, setSelectedFilterLocation] = useState(null);
+
   // select plants
-  const [selectedPlants, setSelectedPlants] = useState(false);
+  const [displayFilterPlants, setDisplayFilterPlants] = useState(false);
+
+  const [selectedPlants, setSelectedPlants] = useState([]);
+
   const handleFilterPress = (index) => {
     setSelectedFilterLocation(index);
   };
@@ -64,6 +68,24 @@ const SearchPlants = () => {
       return plants.plant_name.toLowerCase().includes(text.toLowerCase());
     });
     setFilteredContacts(filtered);
+  };
+
+  const handlePlantSelect = (plant) => {
+    setSearchText("");
+    const isAlreadySelected = selectedPlants.some(
+      (selectedPlant) => selectedPlant.id === plant.id
+    );
+    if (!isAlreadySelected) {
+      // If the plant is not already selected, add it to the selectedPlants array
+      setSelectedPlants([...selectedPlants, plant]);
+    }
+  };
+
+  const handleRemovePlant = (plant) => {
+    const updatedPlants = selectedPlants.filter(
+      (selectedPlant) => selectedPlant.id !== plant.id
+    );
+    setSelectedPlants(updatedPlants);
   };
 
   return (
@@ -81,18 +103,43 @@ const SearchPlants = () => {
             placeholder="Chọn cây muốn trồng(Có thể chọn nhiều)"
             value={searchText}
             onChangeText={handleSearch}
-            onFocus={() => setSelectedPlants(true)}
+            onFocus={() => setDisplayFilterPlants(true)}
           />
         </View>
         <TouchableOpacity
-          onPress={() => setDisplayFilter(true)}
+          onPress={() => setDisplayFilterLocation(true)}
           style={styles.filterBtn}
         >
           <Ionicons name="options" size={28} color="white" />
         </TouchableOpacity>
       </View>
+
+      {/* display plants selected */}
+      {selectedPlants.length > 0 && (
+        <View>
+          <ScrollView
+            horizontal
+            contentContainerStyle={{
+              gap: 5,
+              paddingVertical: 10,
+              marginBottom: 10,
+            }}
+          >
+            {selectedPlants.map((plant, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() => handleRemovePlant(plant)}
+                style={styles.filterContainer}
+              >
+                <Text style={styles.selectedPlantText}>{plant.plant_name}</Text>
+                <MaterialIcons name="cancel" size={20} color="black" />
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
+      )}
       {/* Filter */}
-      {displayFilter && (
+      {displayFilterLocation && (
         <View style={{ margin: 5 }}>
           <Text style={styles.filterTitle}>Lọc</Text>
           <ScrollView
@@ -126,13 +173,13 @@ const SearchPlants = () => {
       {/* List plants */}
       {isSuccessAllPlantsRecommned && (
         <View>
-          {selectedPlants && (
+          {displayFilterPlants && (
             <ScrollView>
               <View style={styles.result}>
                 <Text text={styles.textResult}>
                   Có {filteredContacts.length} kết quả
                 </Text>
-                <TouchableOpacity onPress={() => setSelectedPlants(false)}>
+                <TouchableOpacity onPress={() => setDisplayFilterPlants(false)}>
                   <MaterialIcons name="cancel" size={24} color="black" />
                 </TouchableOpacity>
               </View>
@@ -140,7 +187,10 @@ const SearchPlants = () => {
                 data={filteredContacts}
                 renderItem={({ item }) =>
                   item ? (
-                    <View style={styles.itemContainer}>
+                    <TouchableOpacity
+                      style={styles.itemContainer}
+                      onPress={() => handlePlantSelect(item)}
+                    >
                       <Image
                         style={styles.image}
                         source={{ uri: item.plant_thumb }}
@@ -149,7 +199,7 @@ const SearchPlants = () => {
                         <Text style={styles.nameText}>{item.plant_name}</Text>
                         <Text style={styles.phoneText}>{item.plant_type}</Text>
                       </View>
-                    </View>
+                    </TouchableOpacity>
                   ) : (
                     <View style={{ marginTop: 20 }}>
                       <Text>Không tìm thấy cây trồng </Text>
