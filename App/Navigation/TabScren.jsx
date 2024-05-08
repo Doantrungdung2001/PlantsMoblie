@@ -133,7 +133,7 @@ const TabScren = () => {
             </Text>
           ),
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="scan-sharp" size={size} color={color} />
+            <AntDesign name="search1" size={size} color={color} />
           ),
         }}
       />

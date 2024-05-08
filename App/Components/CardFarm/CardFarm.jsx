@@ -11,7 +11,7 @@ const CardFarm = ({ farm }) => {
       style={styles.container}
       onPress={() => navigation.push("farm-detail", { farmInfo: farm })}
     >
-      <Image source={{ uri: farm?.image }} style={styles.image} />
+      <Image source={{ uri: farm?.avatar }} style={styles.image} />
       <View style={styles.subContainer}>
         <Text style={styles.nameFarm}>{farm.name}</Text>
         <Text style={styles.districtFarm}>

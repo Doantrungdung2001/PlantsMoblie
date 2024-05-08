@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   containerFarm: {
-    margin: 10,
+    margin: 5,
   },
   container: {
     flex: 1,
