@@ -1,15 +1,9 @@
 import { StyleSheet } from "react-native";
 import { COLORS } from "../../../Constants";
 const styles = StyleSheet.create({
-  headingText: {
-    fontSize: 28,
-    fontWeight: "800",
-    color: COLORS.black,
-    marginTop: 10,
-  },
   searchSectionWrapper: {
     flexDirection: "row",
-    marginVertical: 20,
+    marginVertical: 10,
   },
   searchBar: {
     flex: 1,

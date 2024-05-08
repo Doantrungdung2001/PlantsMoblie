@@ -15,6 +15,7 @@ export default function useAllPlantsRecommend() {
       isDeleted: plants?.isDeleted,
       plant_slug: plants.plant_slug || "",
     }));
+    
     return { allPlantsReccommned };
   }, []);
 

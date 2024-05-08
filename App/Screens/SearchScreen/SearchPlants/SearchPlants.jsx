@@ -12,6 +12,7 @@ import PageHeading from "../../../Components/PageHeading/PageHeading";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../Constants";
+import useAllPlantsRecommend from "./useAllPlantsRecommend";
 const dataFilter = [
   {
     title: "Gần nhất",
@@ -31,8 +32,13 @@ const dataFilter = [
   },
 ];
 const SearchPlants = () => {
+  const {
+    dataAllPlantsRecommned,
+    isSuccessAllPlantsRecommned,
+    isLoadingAllPlantsRecommned,
+  } = useAllPlantsRecommend();
+  const [displayFilter, setDisplayFilter] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(null);
-
   const handleFilterPress = (index) => {
     setSelectedFilter(index);
   };
@@ -49,36 +55,50 @@ const SearchPlants = () => {
           />
           <TextInput placeholder="Nhập cây muốn trồng" />
         </View>
-        <TouchableOpacity onPress={() => {}} style={styles.filterBtn}>
+        <TouchableOpacity
+          onPress={() => setDisplayFilter(true)}
+          style={styles.filterBtn}
+        >
           <Ionicons name="options" size={28} color="white" />
         </TouchableOpacity>
       </View>
       {/* Filter */}
-      <View style={{ margin: 5 }}>
-        <Text style={styles.filterTitle}>Lọc</Text>
-        <ScrollView
-          horizontal
-          contentContainerStyle={{
-            gap: 10,
-            paddingVertical: 10,
-            marginBottom: 10,
-          }}
-        >
-          {dataFilter.map((item, index) => (
-            <TouchableOpacity
-              onPress={() => {
-                handleFilterPress(index);
-              }}
-              style={[
-                styles.filterContainer,
-                selectedFilter === index && { backgroundColor: COLORS.primary },
-              ]}
-              key={index}
-            >
-              <Text>{item.title}</Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+      {displayFilter && (
+        <View style={{ margin: 5 }}>
+          <Text style={styles.filterTitle}>Lọc</Text>
+          <ScrollView
+            horizontal
+            contentContainerStyle={{
+              gap: 10,
+              paddingVertical: 10,
+              marginBottom: 10,
+            }}
+          >
+            {dataFilter.map((item, index) => (
+              <TouchableOpacity
+                onPress={() => {
+                  handleFilterPress(index);
+                }}
+                style={[
+                  styles.filterContainer,
+                  selectedFilter === index && {
+                    backgroundColor: COLORS.primary,
+                  },
+                ]}
+                key={index}
+              >
+                <Text>{item.title}</Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
+      )}
+
+      {/* Result */}
+      <View>
+        {dataAllPlantsRecommned?.map((plants, index) => (
+          <Text key={index}>{plants.plant_name}</Text>
+        ))}
       </View>
     </ScrollView>
   );
