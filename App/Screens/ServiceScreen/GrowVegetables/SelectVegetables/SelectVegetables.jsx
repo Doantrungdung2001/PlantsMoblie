@@ -11,7 +11,7 @@ import {
   TextInput,
   ActivityIndicator,
 } from "react-native";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useRoute } from "@react-navigation/native";
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
 import { COLORS } from "../../../../Constants";
@@ -22,10 +22,11 @@ import styles from "./SelectVegetables.Styles";
 import ToastMessage from "../../../../Components/ToastMessage/ToastMessage";
 import usePlant from "./UsePlant";
 
-const cartSelectVegetables = [];
 const SelectVegetables = () => {
+  const cartSelectVegetables = [];
   const param = useRoute().params;
   const [farmId, setFarmId] = useState(param.serviceInfo.farm);
+  
   const { tabs, isSuccessAllPlant, isLoadingAllPlant } = usePlant({
     farmId: farmId,
   });
@@ -89,7 +90,7 @@ const SelectVegetables = () => {
         {isSuccessAllPlant && (
           <View style={styles.header}>
             {tabs.map((data, index) => (
-              <Pressable onPress={() => setSelectedHeader(index)}>
+              <Pressable onPress={() => setSelectedHeader(index)} key={index}>
                 <Text
                   style={[
                     styles.titleHeader,
