@@ -6,7 +6,8 @@
         {
           "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
         }
-      ]
+      ],
+      "expo-font"
     ],
     "name": "Moblie",
     "slug": "plants",

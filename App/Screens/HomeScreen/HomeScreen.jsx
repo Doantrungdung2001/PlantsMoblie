@@ -9,7 +9,7 @@ const HomeScreen = () => {
   return (
     <ScrollView>
       <HeaderComponents />
-      <SliderComponents />
+      {/* <SliderComponents /> */}
       <ListService />
       <ListFarm />
     </ScrollView>
