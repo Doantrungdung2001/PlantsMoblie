@@ -9,7 +9,7 @@
       ]
     ],
     "name": "Moblie",
-    "slug": "Moblie",
+    "slug": "plants",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -29,10 +29,20 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "747124cc-be25-41b7-acff-0ccb20b5d98b"
+      }
+    },
+    "owner": "doantrungdung"
   }
 }

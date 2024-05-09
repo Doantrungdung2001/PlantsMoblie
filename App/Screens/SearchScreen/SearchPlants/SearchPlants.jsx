@@ -7,6 +7,7 @@ import {
   Image,
   FlatList,
   ActivityIndicator,
+  Button,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import styles from "./SearchPlants.Styles";
@@ -58,10 +59,15 @@ const SearchPlants = () => {
 
   // select plants
   const [displayFilterPlants, setDisplayFilterPlants] = useState(false);
-
   const [selectedPlants, setSelectedPlants] = useState([]);
 
   const [showListFarmResult, setShowListFarmResult] = useState(false);
+
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [minArea, setMinArea] = useState("");
+  const [maxArea, setMaxArea] = useState("");
+
   const handleFilterPress = (index) => {
     setSelectedFilterLocation(index);
   };
@@ -153,6 +159,56 @@ const SearchPlants = () => {
               <MaterialIcons name="cancel" size={20} color="black" />
             </TouchableOpacity>
           </View>
+          <View>
+            <View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                {/* Price */}
+                <Text>Giá từ</Text>
+                <TextInput
+                  placeholder="0"
+                  value={minPrice}
+                  onChangeText={(text) => setMinPrice(text)}
+                  keyboardType="numeric"
+                />
+                <Text>Đến</Text>
+                <TextInput
+                  placeholder="10000"
+                  value={maxPrice}
+                  onChangeText={(text) => setMaxPrice(text)}
+                  keyboardType="numeric"
+                />
+              </View>
+              {/* Area */}
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Text>Diện tích từ</Text>
+                <TextInput
+                  placeholder="0"
+                  value={minArea}
+                  onChangeText={(text) => setMinArea(text)}
+                  keyboardType="numeric"
+                />
+                <Text>Đến</Text>
+                <TextInput
+                  placeholder="0"
+                  value={maxArea}
+                  onChangeText={(text) => setMaxArea(text)}
+                  keyboardType="numeric"
+                />
+              </View>
+            </View>
+          </View>
 
           <ScrollView
             horizontal
@@ -179,6 +235,7 @@ const SearchPlants = () => {
               </TouchableOpacity>
             ))}
           </ScrollView>
+          <Button title="Lọc" onPress={() => {}} />
         </View>
       )}
       {/* List plants */}
