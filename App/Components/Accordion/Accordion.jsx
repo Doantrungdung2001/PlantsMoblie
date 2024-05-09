@@ -42,7 +42,7 @@ const Accordion = ({ title, details }) => {
       </TouchableWithoutFeedback>
 
       {opened && (
-        <View style={[styles.content]}>
+        <View style={styles.content}>
           <ScrollView>{details}</ScrollView>
         </View>
       )}
