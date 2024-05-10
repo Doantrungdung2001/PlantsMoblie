@@ -136,19 +136,6 @@ const UpdateInformation = () => {
         /> */}
 
         <CustomButton label={"Cập nhật"} onPress={() => {}} />
-
-        {/* <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "center",
-            marginBottom: 30,
-          }}
-        >
-          <Text>Already registered?</Text>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Text style={{ color: "#AD40AF", fontWeight: "700" }}> Login</Text>
-          </TouchableOpacity>
-        </View> */}
       </ScrollView>
     </SafeAreaView>
   );

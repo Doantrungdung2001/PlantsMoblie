@@ -9,7 +9,7 @@ data = [
   {
     id: 1,
     name: "Chỉnh sửa thông tin",
-    param: "update-info",
+    param: "info-view",
     icon: "settings",
   },
   {
