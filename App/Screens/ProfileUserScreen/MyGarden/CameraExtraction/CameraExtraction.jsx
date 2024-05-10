@@ -21,11 +21,13 @@ const CameraExtraction = ({ gardenId }) => {
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
+  
   const video = React.useRef(null);
 
   useEffect(() => {
     setFillterVideos(allVideos);
   }, [allVideos]);
+
   const handleTimeChange = (event, selectedDate) => {
     setShowPicker(false); // Hide the picker after selecting a time
     setSelectedTime(selectedDate);

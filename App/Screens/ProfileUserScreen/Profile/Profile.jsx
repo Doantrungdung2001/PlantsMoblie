@@ -4,7 +4,7 @@ import React from "react";
 import { COLORS } from "../../../Constants";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import styles from "./ProfileUser.Style";
+import styles from "./Profile.Style";
 data = [
   {
     id: 1,
@@ -43,31 +43,16 @@ const user = {
   gmail: "doantrungdung2001@gmail.com",
 };
 
-const ProflieUser = () => {
+const Proflie = () => {
   const navigation = useNavigation();
   return (
     <View>
-      <View
-        style={styles.avatarContainer}
-      >
+      <View style={styles.avatarContainer}>
         <Text style={styles.avatarTitle}>Hồ sơ</Text>
-        <View
-          style={styles.avatarContent}
-        >
-          <Image
-            source={{ uri: user.avatar }}
-            style={styles.avatarImg}
-          />
-          <Text
-            style={styles.nameText}
-          >
-            {user.name}
-          </Text>
-          <Text
-            style={styles.mailText}
-          >
-            {user.gmail}
-          </Text>
+        <View style={styles.avatarContent}>
+          <Image source={{ uri: user.avatar }} style={styles.avatarImg} />
+          <Text style={styles.nameText}>{user.name}</Text>
+          <Text style={styles.mailText}>{user.gmail}</Text>
         </View>
       </View>
       <View style={styles.content}>
@@ -92,4 +77,4 @@ const ProflieUser = () => {
   );
 };
 
-export default ProflieUser;
+export default Proflie;

@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import ProflieUser from "../Screens/ProfileUserScreen/ProfileUser/ProfileUser";
+import Proflie from "../Screens/ProfileUserScreen/Profile/Profile";
 import MyGardenScreen from "../Screens/ProfileUserScreen/MyGarden/MyGardenScreen/MyGardenScreen";
 import UpdateInformation from "../Screens/ProfileUserScreen/UpdateInformation/UpdateInformation";
 import Points from "../Screens/ProfileUserScreen/Points/Points";
@@ -18,18 +18,27 @@ const UserNavigation = () => {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="proflieUser" component={ProflieUser} />
+      <Stack.Screen name="proflie" component={Proflie} />
       <Stack.Screen name="profile/update-info" component={UpdateInformation} />
       <Stack.Screen name="profile/points" component={Points} />
-      <Stack.Screen name="profile/my-garden/detail" component={MyGardenScreen} />
+      <Stack.Screen
+        name="profile/my-garden/detail"
+        component={MyGardenScreen}
+      />
       <Stack.Screen
         name="profile/history-grow-vegetables"
         component={HistoryGrowVegetables}
       />
       <Stack.Screen name="profile/my-garden/request" component={Request} />
       <Stack.Screen name="profile/my-garden/delivery" component={Delivery} />
-      <Stack.Screen name="profile/my-garden/livecamera" component={LiveCamera} />
-      <Stack.Screen name="profile/my-garden/listgarden" component={ListMyGarden} />
+      <Stack.Screen
+        name="profile/my-garden/livecamera"
+        component={LiveCamera}
+      />
+      <Stack.Screen
+        name="profile/my-garden/listgarden"
+        component={ListMyGarden}
+      />
     </Stack.Navigator>
   );
 };
