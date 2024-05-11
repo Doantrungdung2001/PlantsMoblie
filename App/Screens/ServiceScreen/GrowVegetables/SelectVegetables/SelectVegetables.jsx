@@ -16,11 +16,10 @@ import { useRoute } from "@react-navigation/native";
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
 import { COLORS } from "../../../../Constants";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Feather } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
 import styles from "./SelectVegetables.Styles";
 import ToastMessage from "../../../../Components/ToastMessage/ToastMessage";
 import usePlant from "./UsePlant";
+import GARDEN_SERVICE_REQUEST from "../../../../Services/GardenRequestService";
 
 const SelectVegetables = () => {
   const param = useRoute().params;
@@ -71,6 +70,7 @@ const SelectVegetables = () => {
   const countHerb = countTypes(selectedItems, "herbMax");
   const countRoot = countTypes(selectedItems, "rootMax");
   const countFruit = countTypes(selectedItems, "fruitMax");
+
   const addToCart = (plant) => {
     const isExisted = selectedItems.some(
       (item) => item.id === plant.id && item.type === plant.type
@@ -96,6 +96,12 @@ const SelectVegetables = () => {
     setSelectedItems(updatedPlants);
   };
 
+  const onCreate = async (values) => {
+    if (values) {
+      await GARDEN_SERVICE_REQUEST.addGardenServiceRequest(values);
+      refetch();
+    }
+  };
   return (
     <View>
       <ToastMessage
@@ -244,7 +250,17 @@ const SelectVegetables = () => {
             <View style={styles.buttonsContainer}>
               <TouchableOpacity
                 style={[styles.button, styles.login]}
-                //   onPress={() => navigation.push("Login")}
+                onPress={() =>
+                  onCreate({
+                    time: "2023-11-11",
+                    gardenServiceTemplateId: ["65d48bb1b4c8b6de45c88578"],
+                    herbListId: ["65d5c1ee722b35d04cc22424"],
+                    leafyListId: ["65d487b3b4c8b6de45c88529"],
+                    rootListId: ["65d5c1b7722b35d04cc223b4"],
+                    fruitListId: ["65d5c1db722b35d04cc223f1"],
+                    note: "nothing",
+                  })
+                }
               >
                 <Text style={styles.buttonText}>Gửi đăng ký</Text>
               </TouchableOpacity>

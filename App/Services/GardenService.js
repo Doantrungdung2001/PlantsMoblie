@@ -1,4 +1,5 @@
 import publicHttp from "./Http/publicHttp.config";
+import privateHttp from "./Http/privateHttp.config";
 const GARDEN = {
   getAllGardensByFarmId: async (farmId) => {
     return await publicHttp({

@@ -16,8 +16,8 @@ privateHttp.interceptors.request.use(
   (config) => {
     const accessToken = getAccessToken();
     const refreshToken = getRefreshToken();
-    console.log("accessToken: ", accessToken);
-    console.log("refreshToken: ", refreshToken);
+    console.log("accessToken cho Huy xem: ", accessToken);
+    console.log("refreshToken cho Huy xem : ", refreshToken);
     if (accessToken) {
       config.headers["authorization"] = accessToken;
       config.headers["x-rtoken-id"] = refreshToken;

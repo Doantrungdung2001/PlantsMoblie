@@ -42,9 +42,16 @@ const Login = () => {
       if (res.data.status === 200) {
         setLoginStatus("succes");
         UserInfoAsyncStorage.storeUser("UserInfo", res.data.metadata.metadata);
+        UserInfoAsyncStorage.getUserInfo("UserInfo")
+          .then((result) => {
+            console.log("Du lieu nguoi dung:", result);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
       }
       console.log("Login success");
-      navigation.push("Home")
+      navigation.push("Home");
     } catch (error) {
       console.error(error?.response?.data);
       if (error?.response?.data.code) {
