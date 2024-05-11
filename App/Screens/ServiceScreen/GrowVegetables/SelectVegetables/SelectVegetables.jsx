@@ -25,6 +25,14 @@ import usePlant from "./UsePlant";
 const SelectVegetables = () => {
   const param = useRoute().params;
   const [farmId, setFarmId] = useState(param.serviceInfo.farm);
+  const [serviceInfo, setServiceInfo] = useState(param.serviceInfo);
+
+  useEffect(() => {
+    setFarmId(farmId);
+  }, [farmId]);
+  useEffect(() => {
+    setServiceInfo(serviceInfo);
+  }, [serviceInfo]);
 
   const [selectedItems, setSelectedItems] = useState([]);
 
@@ -33,9 +41,7 @@ const SelectVegetables = () => {
   });
   const [selectedHeader, setSelectedHeader] = useState(0);
 
-  const [showModalCart, setShowModalCart] = useState(false);
   const [showModalBtn, setShowModalBtn] = useState(false);
-  const [countItem, setCountItem] = useState(selectedItems.length);
 
   const toastRef = useRef(null);
   const [typeToast, setTypeToast] = useState("success");
@@ -51,20 +57,60 @@ const SelectVegetables = () => {
     }
   };
 
+  const countTypes = (items, typePlants) => {
+    let typeCounts = 0;
+
+    items.forEach((item) => {
+      if (item.type === typePlants) {
+        typeCounts++;
+      }
+    });
+    return typeCounts;
+  };
+  const countLeaf = countTypes(selectedItems, "leafyMax");
+  const countHerb = countTypes(selectedItems, "herbMax");
+  const countRoot = countTypes(selectedItems, "rootMax");
+  const countFruit = countTypes(selectedItems, "fruitMax");
   const addToCart = (plant) => {
     const isExisted = selectedItems.some(
       (item) => item.id === plant.id && item.type === plant.type
     );
     if (!isExisted) {
-      if (selectedItems.length < 4) {
+      if (countLeaf < serviceInfo.leafyMax) {
         setSelectedItems([...selectedItems, plant]);
-        setCountItem(countItem + 1);
         setTypeToast("success");
         setTextToast("Thành công");
         setDescriptionToast("Cây trồng đã được thêm vào");
         handleShowToast();
       } else {
-        Alert.alert("Số cây trồng không được vượt quá 4");
+        Alert.alert("Số cây trồng không được vượt quá ");
+      }
+      if (countHerb < serviceInfo.herbMax) {
+        setSelectedItems([...selectedItems, plant]);
+        setTypeToast("success");
+        setTextToast("Thành công");
+        setDescriptionToast("Cây trồng đã được thêm vào");
+        handleShowToast();
+      } else {
+        Alert.alert("Số cây trồng không được vượt quá ");
+      }
+      if (countRoot < serviceInfo.rootMax) {
+        setSelectedItems([...selectedItems, plant]);
+        setTypeToast("success");
+        setTextToast("Thành công");
+        setDescriptionToast("Cây trồng đã được thêm vào");
+        handleShowToast();
+      } else {
+        Alert.alert("Số cây trồng không được vượt quá ");
+      }
+      if (countFruit < serviceInfo.fruitMax) {
+        setSelectedItems([...selectedItems, plant]);
+        setTypeToast("success");
+        setTextToast("Thành công");
+        setDescriptionToast("Cây trồng đã được thêm vào");
+        handleShowToast();
+      } else {
+        Alert.alert("Số cây trồng không được vượt quá");
       }
     } else {
       setTypeToast("danger");
@@ -79,7 +125,6 @@ const SelectVegetables = () => {
         selectedItem.id !== plant.id || selectedItem.type !== plant.type
     );
     setSelectedItems(updatedPlants);
-    setCountItem(updatedPlants.length);
   };
 
   return (
@@ -115,9 +160,19 @@ const SelectVegetables = () => {
         {isLoadingAllPlant && (
           <ActivityIndicator size="large" color="#00ff00" />
         )}
+        <Text
+          style={{
+            color: "red",
+            fontWeight: 600,
+            fontSize: 17,
+            marginLeft: 10,
+          }}
+        >
+          Chọn tối đa : {serviceInfo.leafyMax} Rau ăn lá, {serviceInfo.herbMax}{" "}
+          Rau thơm, {serviceInfo.rootMax} Củ , {serviceInfo.fruitMax} Quả
+        </Text>
         {selectedItems.length > 0 && (
           <View>
-            {console.log("Cay da chon :", selectedItems)}
             <ScrollView
               horizontal
               contentContainerStyle={{
@@ -137,6 +192,13 @@ const SelectVegetables = () => {
                 </TouchableOpacity>
               ))}
             </ScrollView>
+            <Text
+              style={{ marginLeft: 15, color: COLORS.primary, fontSize: 17 }}
+            >
+              {" "}
+              Đã chọn : {countLeaf} Rau ăn lá,
+              {countHerb} Rau thơm, {countRoot} Củ , {countFruit} Quả
+            </Text>
           </View>
         )}
         {isSuccessAllPlant && (
@@ -152,7 +214,6 @@ const SelectVegetables = () => {
                   style={styles.itemContainer}
                   onPress={() => {
                     addToCart(item.item);
-                    console.log("Cay dang chon : ------", item);
                   }}
                 >
                   <Image
