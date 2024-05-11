@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../../Constants";
@@ -10,6 +10,9 @@ import styles from "./DetailFarm.Styles";
 const DetailFarmGrowVegetables = () => {
   const param = useRoute().params;
   const [farmInformation, setFarmInformation] = useState(param.farmInfo);
+  useEffect(() => {
+    setFarmInformation(farmInformation);
+  }, [farmInformation]);
   const navigation = useNavigation();
   return (
     <View>

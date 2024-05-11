@@ -23,10 +23,11 @@ import ToastMessage from "../../../../Components/ToastMessage/ToastMessage";
 import usePlant from "./UsePlant";
 
 const SelectVegetables = () => {
-  const cartSelectVegetables = [];
   const param = useRoute().params;
   const [farmId, setFarmId] = useState(param.serviceInfo.farm);
-  
+
+  const [selectedItems, setSelectedItems] = useState([]);
+
   const { tabs, isSuccessAllPlant, isLoadingAllPlant } = usePlant({
     farmId: farmId,
   });
@@ -34,7 +35,8 @@ const SelectVegetables = () => {
 
   const [showModalCart, setShowModalCart] = useState(false);
   const [showModalBtn, setShowModalBtn] = useState(false);
-  const [countItem, setCountItem] = useState(cartSelectVegetables.length);
+  const [countItem, setCountItem] = useState(selectedItems.length);
+
   const toastRef = useRef(null);
   const [typeToast, setTypeToast] = useState("success");
   const [textToast, setTextToast] = useState();
@@ -42,6 +44,7 @@ const SelectVegetables = () => {
   const [descriptionToast, setDescriptionToast] = useState();
 
   const [note, setNote] = useState("");
+
   const handleShowToast = () => {
     if (toastRef.current) {
       toastRef.current.show();
@@ -49,13 +52,10 @@ const SelectVegetables = () => {
   };
 
   const addToCart = (vegestables) => {
-    console.log("Insert into cart", vegestables);
-    const isExisted = cartSelectVegetables.some(
-      (item) => item.id === vegestables.id
-    );
+    const isExisted = selectedItems.some((item) => item.id === vegestables.id);
     if (!isExisted) {
-      if (cartSelectVegetables.length < 4) {
-        cartSelectVegetables.push(vegestables);
+      if (selectedItems.length < 4) {
+        setSelectedItems([...selectedItems, vegestables]);
         setCountItem(countItem + 1);
         setTypeToast("success");
         setTextToast("Thành công");
@@ -69,10 +69,13 @@ const SelectVegetables = () => {
       setTextToast("Không thành công");
       setDescriptionToast("Cây trồng đã tồn tại");
       handleShowToast();
-
-      console.log("Item is existed in cart!!");
     }
-    console.log(cartSelectVegetables);
+  };
+  const handleRemovePlant = (plant) => {
+    const updatedPlants = selectedItems.filter(
+      (selectedItems) => selectedItems.id !== plant.id
+    );
+    setSelectedItems(updatedPlants);
   };
 
   return (
@@ -108,73 +111,65 @@ const SelectVegetables = () => {
         {isLoadingAllPlant && (
           <ActivityIndicator size="large" color="#00ff00" />
         )}
+        {selectedItems.length > 0 && (
+          <View>
+            {console.log("Cay da chon :", selectedItems)}
+            <ScrollView
+              horizontal
+              contentContainerStyle={{
+                gap: 5,
+                paddingVertical: 10,
+                marginBottom: 10,
+              }}
+            >
+              {selectedItems.map((plant, index) => (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => handleRemovePlant(plant)}
+                  style={styles.filterContainer}
+                >
+                  <Text style={styles.selectedPlantText}>{plant.title}</Text>
+                  <MaterialIcons name="cancel" size={20} color="black" />
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
+        )}
         {isSuccessAllPlant && (
           <FlatList
-            style={styles.list}
-            contentContainerStyle={styles.listContainer}
             data={tabs[selectedHeader].options}
-            horizontal={false}
-            numColumns={2}
             keyExtractor={(item) => {
               return item.id;
             }}
-            renderItem={(item, index) => {
-              return (
-                <ScrollView>
-                  <TouchableOpacity
-                    style={styles.card}
-                    onPress={() => {
-                      addToCart(item.item);
-                    }}
-                    key={index}
-                  >
-                    <Image
-                      style={styles.cardImage}
-                      source={{ uri: item.item.image }}
-                    />
-                  </TouchableOpacity>
-
-                  <View style={styles.cardHeader}>
-                    <View
-                      style={{ alignItems: "center", justifyContent: "center" }}
-                    >
-                      <Text style={styles.title}>{item.item.title}</Text>
-                    </View>
+            renderItem={(item, index) => (
+              <View>
+                <TouchableOpacity
+                  key={index}
+                  style={styles.itemContainer}
+                  onPress={() => {
+                    addToCart(item.item);
+                    console.log("Cay dang chon : ------", item);
+                  }}
+                >
+                  <Image
+                    style={styles.image}
+                    source={{ uri: item.item.image }}
+                  />
+                  <View style={styles.textContainer}>
+                    <Text style={styles.nameText}>{item.item.title}</Text>
+                    <Text style={styles.phoneText}>{item.phone}</Text>
                   </View>
-                </ScrollView>
-              );
-            }}
+                </TouchableOpacity>
+              </View>
+            )}
           />
         )}
         {isLoadingAllPlant && (
           <ActivityIndicator size="large" color="#00ff00" />
         )}
       </ScrollView>
+      {/* footer */}
       <View style={styles.footer}>
-        <TouchableOpacity>
-          <Feather
-            name="shopping-cart"
-            size={45}
-            color="green"
-            onPress={() => setShowModalCart(!showModalCart)}
-          />
-          <View
-            style={{
-              position: "absolute",
-              top: -5,
-              right: -5,
-              backgroundColor: "red",
-              borderRadius: 10,
-              width: 20,
-              height: 20,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text style={{ color: "white" }}>{countItem}</Text>
-          </View>
-        </TouchableOpacity>
-
         <TouchableOpacity
           style={styles.bookingBtn}
           onPress={() => setShowModalBtn(!showModalBtn)}
@@ -182,39 +177,6 @@ const SelectVegetables = () => {
           <Text style={styles.textBtn}>Xác nhận</Text>
         </TouchableOpacity>
       </View>
-      {/* Modal Cart */}
-      <Modal animationType="slide" visible={showModalCart}>
-        <View style={styles.containerModal}>
-          <TouchableOpacity
-            style={styles.cancelBtn}
-            onPress={() => setShowModalCart(!showModalCart)}
-          >
-            <MaterialIcons name="cancel" size={30} color="red" />
-          </TouchableOpacity>
-          <FlatList
-            data={cartSelectVegetables}
-            renderItem={({ item, index }) => (
-              <ScrollView>
-                <TouchableOpacity style={styles.cardContainerModal} key={index}>
-                  <Image
-                    source={{ uri: item?.image }}
-                    style={styles.imageModal}
-                  />
-                  <View style={styles.subContainerModal}>
-                    <Text style={styles.cardTitle}>{item.title}</Text>
-                  </View>
-                  <AntDesign
-                    name="delete"
-                    size={40}
-                    color="red"
-                    style={styles.deleteBtn}
-                  />
-                </TouchableOpacity>
-              </ScrollView>
-            )}
-          />
-        </View>
-      </Modal>
       {/* Modal Btn */}
       <Modal animationType="slide" visible={showModalBtn}>
         <View style={styles.containerModal}>

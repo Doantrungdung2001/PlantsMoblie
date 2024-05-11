@@ -15,7 +15,6 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 const UpdateInformation = () => {
-  const [open, setOpen] = useState(false);
   const [dobLabel, setDobLabel] = useState("Date of Birth");
 
   const [date, setDate] = useState(new Date());
@@ -105,7 +104,7 @@ const UpdateInformation = () => {
                 ? `${selectedTime.getDate()}/${
                     selectedTime.getMonth() + 1
                   }/${selectedTime.getFullYear()}`
-                : { dobLabel }}
+                : dobLabel}
             </Text>
           </TouchableOpacity>
         </View>
@@ -117,24 +116,6 @@ const UpdateInformation = () => {
             onChange={handleTimeChange}
           />
         )}
-        {/* <DateTimePicker
-          modal
-          open={open}
-          date={date}
-          mode={"date"}
-          value={date}
-          maximumDate={new Date("2005-01-01")}
-          minimumDate={new Date("1980-01-01")}
-          onConfirm={(date) => {
-            setOpen(false);
-            setDate(date);
-            setDobLabel(date.toDateString());
-          }}
-          onCancel={() => {
-            setOpen(false);
-          }}
-        /> */}
-
         <CustomButton label={"Cập nhật"} onPress={() => {}} />
       </ScrollView>
     </SafeAreaView>

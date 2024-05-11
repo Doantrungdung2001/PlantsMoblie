@@ -21,71 +21,30 @@ const styles = StyleSheet.create({
     marginTop: 3,
     borderRadius: 10,
   },
-  container: {
-    height: "90%",
-    marginTop: 40,
-    backgroundColor: "#f6f6f6",
-  },
-  list: {
-    paddingHorizontal: 5,
-    backgroundColor: "#f6f6f6",
-  },
-  listContainer: {
-    alignItems: "center",
-  },
-  /******** card **************/
-  card: {
-    shadowColor: "#474747",
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
-    shadowOpacity: 0.37,
-    shadowRadius: 7.49,
-
-    elevation: 12,
-    marginVertical: 20,
-    marginHorizontal: 40,
-    backgroundColor: "#e2e2e2",
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  cardHeader: {
-    paddingVertical: 17,
-    paddingHorizontal: 16,
-    borderTopLeftRadius: 1,
-    borderTopRightRadius: 1,
+  //list plants
+  itemContainer: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    padding: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: "#eee",
   },
-  cardContent: {
-    paddingVertical: 12.5,
-    paddingHorizontal: 16,
+  image: {
+    width: 60,
+    height: 60,
+    borderRadius: 10,
   },
-  cardFooter: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingTop: 12.5,
-    paddingBottom: 25,
-    paddingHorizontal: 16,
-    borderBottomLeftRadius: 1,
-    borderBottomRightRadius: 1,
+  textContainer: {
+    marginLeft: 16,
   },
-  cardImage: {
-    height: 100,
-    width: 100,
-    alignSelf: "center",
-    borderRadius: 50,
+  nameText: {
+    fontSize: 16,
+    fontWeight: "bold",
   },
-  title: {
-    fontSize: 15,
-    fontWeight: "500",
-    alignSelf: "center",
-    color: "#696969",
+  phoneText: {
+    fontSize: 16,
+    color: "#999",
   },
   bookingBtn: {
     width: "70%",
@@ -199,6 +158,18 @@ const styles = StyleSheet.create({
     shadowColor: COLORS.green,
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.3,
+  },
+  filterContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: COLORS.white,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 10,
+    shadowColor: "#333333",
+    shadowOffset: { width: 1, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
   },
 });
 export default styles;
