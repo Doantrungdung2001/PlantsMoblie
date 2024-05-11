@@ -51,11 +51,13 @@ const SelectVegetables = () => {
     }
   };
 
-  const addToCart = (vegestables) => {
-    const isExisted = selectedItems.some((item) => item.id === vegestables.id);
+  const addToCart = (plant) => {
+    const isExisted = selectedItems.some(
+      (item) => item.id === plant.id && item.type === plant.type
+    );
     if (!isExisted) {
       if (selectedItems.length < 4) {
-        setSelectedItems([...selectedItems, vegestables]);
+        setSelectedItems([...selectedItems, plant]);
         setCountItem(countItem + 1);
         setTypeToast("success");
         setTextToast("Thành công");
@@ -73,9 +75,11 @@ const SelectVegetables = () => {
   };
   const handleRemovePlant = (plant) => {
     const updatedPlants = selectedItems.filter(
-      (selectedItems) => selectedItems.id !== plant.id
+      (selectedItem) =>
+        selectedItem.id !== plant.id || selectedItem.type !== plant.type
     );
     setSelectedItems(updatedPlants);
+    setCountItem(updatedPlants.length);
   };
 
   return (

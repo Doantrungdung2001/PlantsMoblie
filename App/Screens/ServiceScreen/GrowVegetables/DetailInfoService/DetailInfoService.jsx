@@ -1,7 +1,7 @@
 import { Text, View, TouchableOpacity, Image, ScrollView } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Heading from "../../../../Components/Heading/Heading";
 import styles from "./DetailInfoService.Styles";
 const DetailInfoService = () => {
@@ -11,6 +11,15 @@ const DetailInfoService = () => {
     param.serviceInfo
   );
   const [farmInformation, setFarmInformation] = useState(param.farmInfo);
+  
+  useEffect(() => {
+    setServiceInformation(serviceInformation);
+  }, [serviceInformation]);
+
+  useEffect(() => {
+    setFarmInformation(farmInformation);
+  }, [farmInformation]);
+
   return (
     <View>
       <ScrollView style={{ height: "93%" }}>

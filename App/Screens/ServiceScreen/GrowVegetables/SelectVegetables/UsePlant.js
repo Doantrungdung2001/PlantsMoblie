@@ -29,7 +29,7 @@ export default function usePlant({ farmId }) {
             id: tabs[0].options.length + 1,
             title: item.plant_name,
             image: item.plant_thumb,
-            type: item.plant_type,
+            type: "leafyMax",
           });
           break;
         case "herb":
@@ -37,7 +37,7 @@ export default function usePlant({ farmId }) {
             id: tabs[1].options.length + 1,
             title: item.plant_name,
             image: item.plant_thumb,
-            type: item.plant_type,
+            type: "herbMax",
           });
           break;
         case "root":
@@ -45,7 +45,7 @@ export default function usePlant({ farmId }) {
             id: tabs[2].options.length + 1,
             title: item.plant_name,
             image: item.plant_thumb,
-            type: item.plant_type,
+            type: "rootMax",
           });
           break;
         case "fruit":
@@ -53,7 +53,7 @@ export default function usePlant({ farmId }) {
             id: tabs[3].options.length + 1,
             title: item.plant_name,
             image: item.plant_thumb,
-            type: item.plant_type,
+            type: "fruitMax",
           });
           break;
         default:
