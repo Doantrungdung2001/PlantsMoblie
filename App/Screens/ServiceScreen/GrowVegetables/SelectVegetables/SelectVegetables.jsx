@@ -76,42 +76,11 @@ const SelectVegetables = () => {
       (item) => item.id === plant.id && item.type === plant.type
     );
     if (!isExisted) {
-      if (countLeaf < serviceInfo.leafyMax) {
-        setSelectedItems([...selectedItems, plant]);
-        setTypeToast("success");
-        setTextToast("Thành công");
-        setDescriptionToast("Cây trồng đã được thêm vào");
-        handleShowToast();
-      } else {
-        Alert.alert("Số cây trồng không được vượt quá ");
-      }
-      if (countHerb < serviceInfo.herbMax) {
-        setSelectedItems([...selectedItems, plant]);
-        setTypeToast("success");
-        setTextToast("Thành công");
-        setDescriptionToast("Cây trồng đã được thêm vào");
-        handleShowToast();
-      } else {
-        Alert.alert("Số cây trồng không được vượt quá ");
-      }
-      if (countRoot < serviceInfo.rootMax) {
-        setSelectedItems([...selectedItems, plant]);
-        setTypeToast("success");
-        setTextToast("Thành công");
-        setDescriptionToast("Cây trồng đã được thêm vào");
-        handleShowToast();
-      } else {
-        Alert.alert("Số cây trồng không được vượt quá ");
-      }
-      if (countFruit < serviceInfo.fruitMax) {
-        setSelectedItems([...selectedItems, plant]);
-        setTypeToast("success");
-        setTextToast("Thành công");
-        setDescriptionToast("Cây trồng đã được thêm vào");
-        handleShowToast();
-      } else {
-        Alert.alert("Số cây trồng không được vượt quá");
-      }
+      setSelectedItems([...selectedItems, plant]);
+      setTypeToast("success");
+      setTextToast("Thành công");
+      setDescriptionToast("Cây trồng đã được thêm vào");
+      handleShowToast();
     } else {
       setTypeToast("danger");
       setTextToast("Không thành công");
@@ -213,7 +182,16 @@ const SelectVegetables = () => {
                   key={index}
                   style={styles.itemContainer}
                   onPress={() => {
-                    addToCart(item.item);
+                    if (
+                      countLeaf <= serviceInfo.leafyMax &&
+                      countHerb <= serviceInfo.herbMax &&
+                      countRoot <= serviceInfo.rootMax &&
+                      countFruit <= serviceInfo.fruitMax
+                    ) {
+                      addToCart(item.item);
+                    } else {
+                      Alert.alert("Số cây trồng không được vượt quá tối đa ");
+                    }
                   }}
                 >
                   <Image
