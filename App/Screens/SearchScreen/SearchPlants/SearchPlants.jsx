@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   Button,
 } from "react-native";
+import CustomButton from "../../../Components/CustomButton/CustomButton";
 import React, { useState, useEffect } from "react";
 import styles from "./SearchPlants.Styles";
 import PageHeading from "../../../Components/PageHeading/PageHeading";
@@ -160,53 +161,43 @@ const SearchPlants = () => {
             </TouchableOpacity>
           </View>
           <View>
-            <View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                {/* Price */}
-                <Text>Giá từ</Text>
-                <TextInput
-                  placeholder="0"
-                  value={minPrice}
-                  onChangeText={(text) => setMinPrice(text)}
-                  keyboardType="numeric"
-                />
-                <Text>Đến</Text>
-                <TextInput
-                  placeholder="10000"
-                  value={maxPrice}
-                  onChangeText={(text) => setMaxPrice(text)}
-                  keyboardType="numeric"
-                />
-              </View>
-              {/* Area */}
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Text>Diện tích từ</Text>
-                <TextInput
-                  placeholder="0"
-                  value={minArea}
-                  onChangeText={(text) => setMinArea(text)}
-                  keyboardType="numeric"
-                />
-                <Text>Đến</Text>
-                <TextInput
-                  placeholder="0"
-                  value={maxArea}
-                  onChangeText={(text) => setMaxArea(text)}
-                  keyboardType="numeric"
-                />
-              </View>
+            {/* Price */}
+            <View style={styles.inputContainer}>
+              <Text>Giá từ</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="0"
+                value={minPrice}
+                onChangeText={(text) => setMinPrice(text)}
+                keyboardType="numeric"
+              />
+              <Text>Đến</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="10000"
+                value={maxPrice}
+                onChangeText={(text) => setMaxPrice(text)}
+                keyboardType="numeric"
+              />
+            </View>
+            {/* Area */}
+            <View style={styles.inputContainer}>
+              <Text>Diện tích từ</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="0"
+                value={minArea}
+                onChangeText={(text) => setMinArea(text)}
+                keyboardType="numeric"
+              />
+              <Text>Đến</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="0"
+                value={maxArea}
+                onChangeText={(text) => setMaxArea(text)}
+                keyboardType="numeric"
+              />
             </View>
           </View>
 
@@ -235,7 +226,7 @@ const SearchPlants = () => {
               </TouchableOpacity>
             ))}
           </ScrollView>
-          <Button title="Lọc" onPress={() => {}} />
+          <CustomButton label={"Áp dụng "} onPress={() => {}} />
         </View>
       )}
       {/* List plants */}

@@ -44,6 +44,21 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
 
+  inputContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  input: {
+    flex: 1,
+    marginLeft: 5,
+    marginRight: 5,
+    borderWidth: 1,
+    borderColor: "gray",
+    padding: 5,
+  },
+
   // all plants
   result: {
     flexDirection: "row",
