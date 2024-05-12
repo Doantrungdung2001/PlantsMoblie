@@ -25,30 +25,9 @@ const Login = () => {
         email: email,
         password: password,
       });
-      // setLoginSucces(true);
-      // console.log("res: ", res);
-      // const accessToken = res?.data?.metadata?.metadata?.tokens?.accessToken;
-      // const refreshToken = res?.data?.metadata?.metadata?.tokens?.refreshToken;
-      // if (accessToken) {
-      //   setAccessToken(accessToken);
-      // }
-      // if (refreshToken) {
-      //   setRefreshToken(refreshToken);
-      // }
-      // const id = res?.data?.metadata?.metadata?.farm?._id;
-      // if (id) {
-      //   localStorage.setItem("id", id);
-      // }
       if (res.data.status === 200) {
         setLoginStatus("succes");
         UserInfoAsyncStorage.storeUser("UserInfo", res.data.metadata.metadata);
-        UserInfoAsyncStorage.getUserInfo("UserInfo")
-          .then((result) => {
-            console.log("Du lieu nguoi dung:", result);
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
       }
       console.log("Login success");
       navigation.push("Home");

@@ -1,16 +1,16 @@
 // get access token from local storage
 import UserInfoAsyncStorage from "./UserInfoAsyncStorage";
 let inforUser = {};
+
 UserInfoAsyncStorage.getUserInfo("UserInfo")
   .then((result) => {
+    console.log("-------result-tokens------", result.tokens);
     inforUser = result.tokens;
-    console.log("User Info:", inforUser);
   })
   .catch((error) => {
     console.error("Error:", error);
   });
 
-console.log("afsdfa", inforUser);
 const getAccessToken = () => {
   return inforUser.accessToken;
 };

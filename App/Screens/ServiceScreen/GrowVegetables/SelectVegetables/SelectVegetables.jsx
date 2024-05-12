@@ -47,7 +47,6 @@ const SelectVegetables = () => {
   const [textToast, setTextToast] = useState();
 
   const [descriptionToast, setDescriptionToast] = useState();
-
   const [note, setNote] = useState("");
 
   const handleShowToast = () => {
@@ -56,27 +55,12 @@ const SelectVegetables = () => {
     }
   };
 
-  const countTypes = (items, typePlants) => {
-    let typeCounts = 0;
-
-    items.forEach((item) => {
-      if (item.type === typePlants) {
-        typeCounts++;
-      }
-    });
-    return typeCounts;
-  };
-  const countLeaf = countTypes(selectedItems, "leafyMax");
-  const countHerb = countTypes(selectedItems, "herbMax");
-  const countRoot = countTypes(selectedItems, "rootMax");
-  const countFruit = countTypes(selectedItems, "fruitMax");
-
-  const addToCart = (plant) => {
+  const addPlants = (plant) => {
     const isExisted = selectedItems.some(
-      (item) => item.id === plant.id && item.type === plant.type
+      (item) => item.id === plant.id && item.type == plant.type
     );
     if (!isExisted) {
-      setSelectedItems([...selectedItems, plant]);
+      selectedItems.push(plant);
       setTypeToast("success");
       setTextToast("Thành công");
       setDescriptionToast("Cây trồng đã được thêm vào");
@@ -88,6 +72,37 @@ const SelectVegetables = () => {
       handleShowToast();
     }
   };
+
+  const SeparationByType = (data) => {
+    let SelectPlants = {
+      Leaf: [],
+      Herb: [],
+      Root: [],
+      Fruit: [],
+    };
+    data?.forEach((item) => {
+      if (item.type === "leafyMax") {
+        SelectPlants.Leaf.push(item);
+      } else if (item.type === "herbMax") {
+        SelectPlants.Herb.push(item);
+      } else if (item.type === "rootMax") {
+        SelectPlants.Root.push(item);
+      } else {
+        SelectPlants.Fruit.push(item);
+      }
+    });
+    return SelectPlants;
+  };
+
+  let dataSeparationByType = SeparationByType(selectedItems);
+
+  const getPlantId = (data) => {
+    let listId = [];
+    data?.forEach((item) => {
+      return listId.push(item.plant_id);
+    });
+    return listId;
+  };
   const handleRemovePlant = (plant) => {
     const updatedPlants = selectedItems.filter(
       (selectedItem) =>
@@ -97,11 +112,29 @@ const SelectVegetables = () => {
   };
 
   const onCreate = async (values) => {
-    if (values) {
-      await GARDEN_SERVICE_REQUEST.addGardenServiceRequest(values);
-      refetch();
+    try {
+      if (values) {
+        console.log("Du lieu gui ", values);
+        const result = await GARDEN_SERVICE_REQUEST.addGardenServiceRequest(
+          values
+        );
+        console.log("trang thai", result.data.status);
+        if (result.data.status === 200) {
+          setTypeToast("success");
+          setTextToast("Thành công");
+          setDescriptionToast("Đã gửi yêu cầu");
+          handleShowToast();
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      setTypeToast("danger");
+      setTextToast("Không thành công");
+      setDescriptionToast("Gửi yêu cầu thất bại");
+      handleShowToast();
     }
   };
+
   return (
     <View>
       <ToastMessage
@@ -171,8 +204,10 @@ const SelectVegetables = () => {
               style={{ marginLeft: 15, color: COLORS.primary, fontSize: 17 }}
             >
               {" "}
-              Đã chọn : {countLeaf} Rau ăn lá,
-              {countHerb} Rau thơm, {countRoot} Củ , {countFruit} Quả
+              Đã chọn : {dataSeparationByType.Leaf.length} Rau ăn lá,
+              {dataSeparationByType.Herb.length} Rau thơm,{" "}
+              {dataSeparationByType.Root.length} Củ ,{" "}
+              {dataSeparationByType.Fruit.length} Quả
             </Text>
           </View>
         )}
@@ -189,14 +224,14 @@ const SelectVegetables = () => {
                   style={styles.itemContainer}
                   onPress={() => {
                     if (
-                      countLeaf <= serviceInfo.leafyMax &&
-                      countHerb <= serviceInfo.herbMax &&
-                      countRoot <= serviceInfo.rootMax &&
-                      countFruit <= serviceInfo.fruitMax
+                      dataSeparationByType.Leaf.length > serviceInfo.leafyMax &&
+                      dataSeparationByType.Herb.length > serviceInfo.herbMax &&
+                      dataSeparationByType.Root.length > serviceInfo.rootMax &&
+                      dataSeparationByType.Fruit.length > serviceInfo.fruitMax
                     ) {
-                      addToCart(item.item);
-                    } else {
                       Alert.alert("Số cây trồng không được vượt quá tối đa ");
+                    } else {
+                      addPlants(item.item);
                     }
                   }}
                 >
@@ -228,6 +263,12 @@ const SelectVegetables = () => {
       </View>
       {/* Modal Btn */}
       <Modal animationType="slide" visible={showModalBtn}>
+        <ToastMessage
+          type={typeToast}
+          text={textToast}
+          description={descriptionToast}
+          ref={toastRef}
+        />
         <View style={styles.containerModal}>
           <TouchableOpacity
             style={styles.cancelBtn}
@@ -253,12 +294,12 @@ const SelectVegetables = () => {
                 onPress={() =>
                   onCreate({
                     time: "2023-11-11",
-                    gardenServiceTemplateId: ["65d48bb1b4c8b6de45c88578"],
-                    herbListId: ["65d5c1ee722b35d04cc22424"],
-                    leafyListId: ["65d487b3b4c8b6de45c88529"],
-                    rootListId: ["65d5c1b7722b35d04cc223b4"],
-                    fruitListId: ["65d5c1db722b35d04cc223f1"],
-                    note: "nothing",
+                    gardenServiceTemplateId: serviceInfo.id,
+                    herbListId: getPlantId(dataSeparationByType.Leaf),
+                    leafyListId: getPlantId(dataSeparationByType.Herb),
+                    rootListId: getPlantId(dataSeparationByType.Root),
+                    fruitListId: getPlantId(dataSeparationByType.Fruit),
+                    note: note,
                   })
                 }
               >

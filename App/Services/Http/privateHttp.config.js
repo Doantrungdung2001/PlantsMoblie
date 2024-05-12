@@ -16,8 +16,8 @@ privateHttp.interceptors.request.use(
   (config) => {
     const accessToken = getAccessToken();
     const refreshToken = getRefreshToken();
-    console.log("accessToken cho Huy xem: ", accessToken);
-    console.log("refreshToken cho Huy xem : ", refreshToken);
+    console.log("accessToken:", accessToken);
+    console.log("refreshToken:", refreshToken);
     if (accessToken) {
       config.headers["authorization"] = accessToken;
       config.headers["x-rtoken-id"] = refreshToken;
@@ -46,7 +46,6 @@ privateHttp.interceptors.response.use(
         error.response?.data?.message ===
           "Command find requires authentication")
     ) {
-      token.removeAccessToken();
       // alert('Need to login')
       return Promise.reject(error);
     }
