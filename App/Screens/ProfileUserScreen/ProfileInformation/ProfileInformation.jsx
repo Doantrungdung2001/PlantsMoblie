@@ -4,7 +4,6 @@ import styles from "./ProfileInformation.Styles";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import CustomButton from "../../../Components/CustomButton/CustomButton";
-
 const ProfileInformation = () => {
   const navigation = useNavigation();
   return (
