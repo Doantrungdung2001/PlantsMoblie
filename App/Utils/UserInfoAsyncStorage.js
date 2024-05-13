@@ -20,11 +20,9 @@ const UserInfoAsyncStorage = {
   },
 
   clearUserInfo: () => {
-    try {
-      AsyncStorage.clear();
-    } catch (error) {
-      console.error("Error clear data:", error);
-    }
+    return AsyncStorage.clear()
+      .then(() => ({ success: true }))
+      .catch((error) => ({ success: false, error: error.message }));
   },
 };
 export default UserInfoAsyncStorage;
