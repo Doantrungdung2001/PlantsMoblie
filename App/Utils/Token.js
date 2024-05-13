@@ -1,15 +1,21 @@
-// get access token from local storage
+// token.js
 import UserInfoAsyncStorage from "./UserInfoAsyncStorage";
+
 let inforUser = {};
 
-UserInfoAsyncStorage.getUserInfo("UserInfo")
-  .then((result) => {
+const fetchUserInfo = async () => {
+  try {
+    const result = await UserInfoAsyncStorage.getUserInfo("UserInfo");
     console.log("-------result-tokens------", result.tokens);
-    inforUser = result.tokens;
-  })
-  .catch((error) => {
+    Object.assign(inforUser, result.tokens);
+  } catch (error) {
     console.error("Error:", error);
-  });
+  }
+};
+
+const initializeToken = async () => {
+  await fetchUserInfo();
+};
 
 const getAccessToken = () => {
   return inforUser.accessToken;
@@ -20,7 +26,9 @@ const getRefreshToken = () => {
 };
 
 const token = {
+  initializeToken,
   getAccessToken,
   getRefreshToken,
 };
+
 export default token;
