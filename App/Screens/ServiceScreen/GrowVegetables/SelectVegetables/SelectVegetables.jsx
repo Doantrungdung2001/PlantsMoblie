@@ -284,6 +284,8 @@ const SelectVegetables = () => {
                   placeholder="Nhập ghi chú"
                   placeholderTextColor={COLORS.darkgray}
                   style={styles.bodyText}
+                  multiline={true}
+                  numberOfLines={10} 
                   onChangeText={(note) => setNote(note)}
                 />
               </View>
