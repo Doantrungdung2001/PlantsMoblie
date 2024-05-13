@@ -7,7 +7,7 @@ import {
   ScrollView,
   ActivityIndicator,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./ListMyGarden.Style";
@@ -17,13 +17,17 @@ import { formatDate } from "../../../../Utils/helper";
 const ListMyGarden = () => {
   const navigation = useNavigation();
   const [userId, setUserId] = useState(null);
-  UserInfoAsyncStorage.getUserInfo("UserInfo")
-    .then((result) => {
-      setUserId(result.farm._id);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await UserInfoAsyncStorage.getUserInfo("UserInfo");
+        setUserId(result.farm._id);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+    fetchData();
+  }, []);
   const { allGarden, isSuccessAllGarden, isLoadingAllGarden } = useListGarden({
     clientId: userId,
   });
