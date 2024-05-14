@@ -3,7 +3,6 @@ import React from "react";
 import styles from "./Planting.Styles";
 
 const PlantingActivity = ({ dataPlanting }) => {
-  console.log("dataplanting", dataPlanting);
   return (
     <View>
       <View style={styles.detailInfo}>

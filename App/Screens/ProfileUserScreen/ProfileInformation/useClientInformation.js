@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import CLIENT from "../../../Services/ClientService";
 
 export default function useClientInformation({ clientId }) {
-  console.log("clientid---------------------------------", clientId);
   const parseDataClient = useCallback((client) => {
     const dataClient = {
       id: client._id,

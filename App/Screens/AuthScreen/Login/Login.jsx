@@ -32,7 +32,6 @@ const Login = () => {
       console.log("Login success");
       navigation.push("Home");
     } catch (error) {
-      console.error(error?.response?.data);
       if (error?.response?.data.code) {
         setLoginStatus("false");
       }

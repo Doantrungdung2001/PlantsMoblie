@@ -7,7 +7,7 @@ import {
   ScrollView,
   ActivityIndicator,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import styles from "./CultivationProcess.Styles";
 import useListProcess from "./useCultivationProcess";
@@ -20,6 +20,7 @@ import {
 } from "../../../../Utils/helper";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../../Constants";
+
 const renderDisplayTypeProcss = ({ type, info }) => {
   return (
     <View>
@@ -179,10 +180,14 @@ const CultivationProcess = ({ gardenId }) => {
 
   const [showModal, setShowModal] = useState(false);
   const [detailProcess, setDetailProcess] = useState([]);
-  console.log("chi tiet: ", detailProcess);
+  const [listProcess, setListProcess] = useState([]);
+
+  useEffect(() => {
+    setListProcess(allProcess);
+  }, [allProcess, gardenId]);
+
   const renderClassItem = ({ item }) => (
     <View style={styles.classItem}>
-      {console.log("du lieu item: ", item)}
       <View style={styles.timelineContainer}>
         <View style={styles.timelineDot} />
         <View style={styles.timelineLine} />
@@ -198,7 +203,7 @@ const CultivationProcess = ({ gardenId }) => {
           style={styles.cardProcess}
           onPress={() => {
             setDetailProcess(item?.process);
-            console.log("Chat vao day");
+            console.log("Du lieu detailProcess----", detailProcess);
             setShowModal(!showModal);
           }}
         >
@@ -214,14 +219,11 @@ const CultivationProcess = ({ gardenId }) => {
       {isSuccessAllProcess && (
         <FlatList
           contentContainerStyle={{ paddingHorizontal: 16 }}
-          data={allProcess}
+          data={listProcess}
           renderItem={renderClassItem}
           keyExtractor={(index) => index.toString()}
           key={(index) => index.toString()}
         />
-      )}
-      {isLoadingAllProcess && (
-        <ActivityIndicator size="large" color="#00ff00" />
       )}
       <Modal animationType="slide" visible={showModal}>
         <View style={{ padding: 20, paddingTop: 70 }}>
@@ -270,6 +272,9 @@ const CultivationProcess = ({ gardenId }) => {
           </View>
         )}
       </Modal>
+      {isLoadingAllProcess && (
+        <ActivityIndicator size="large" color="#00ff00" />
+      )}
     </View>
   );
 };

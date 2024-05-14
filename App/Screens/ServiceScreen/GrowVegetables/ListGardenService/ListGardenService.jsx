@@ -20,7 +20,6 @@ const ListGardenService = ({ farmId, farmInfo }) => {
     isSuccessAllGardenService,
     isLoadingAllGardenService,
   } = useListGardenService({ farmId });
-  console.log("Du liue", allGardenSerive);
   return (
     <View>
       <Heading text={"Dịch vụ trồng rau"} />

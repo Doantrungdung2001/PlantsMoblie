@@ -15,7 +15,6 @@ import styles from "./Cultivation.Styles";
 const CultivationActivities = ({dataCutivations}) => {
   const [showModal, setShowModal] = useState(false);
   const [selectDetail, setSelectDeatil] = useState(false);
-  console.log(selectDetail);
   showAlert = (viewId) => {
     Alert.alert("alert", "event clicked " + viewId);
   };

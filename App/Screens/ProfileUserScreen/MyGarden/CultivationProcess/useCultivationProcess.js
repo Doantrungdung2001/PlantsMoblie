@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import GARDEN from "../../../../Services/GardenService";
 export default function useListProcess({ gardenId }) {
+  console.log("idgarden---------", gardenId);
   const parseDataCultivation = useCallback((data) => {
     const allprocss = data.map((processInfo) => ({
       id: processInfo?._id,

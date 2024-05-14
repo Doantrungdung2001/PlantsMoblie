@@ -106,11 +106,9 @@ const SearchPlants = () => {
   };
 
   const onCreateFilter = async (values) => {
-    console.log("Gia tri filter ---------", values);
     try {
       if (values) {
         const result = await SEARCH_FARM.getFarmFilter(values);
-        console.log("ket qua tra ve -----", result.data.metadata);
         if (result.data.status === 200) {
           setResultFarm(result.data.metadata);
         }

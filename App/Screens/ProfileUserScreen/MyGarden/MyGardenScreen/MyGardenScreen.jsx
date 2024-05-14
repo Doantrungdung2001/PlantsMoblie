@@ -5,7 +5,7 @@ import {
   Pressable,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
 import { COLORS } from "../../../../Constants";
 import CultivationProcess from "../CultivationProcess/CultivationProcess";
@@ -39,6 +39,12 @@ const MyGardenScreen = () => {
   const param = useRoute().params;
   const [dataGarden, setDataGarden] = useState(param.dataMyGarden);
   const navigation = useNavigation();
+  // Update dataGarden when route params change
+  useEffect(() => {
+    if (param?.dataMyGarden) {
+      setDataGarden(param.dataMyGarden);
+    }
+  }, [param.dataMyGarden]);
   return (
     <View>
       <ScrollView style={{ height: "93%" }}>

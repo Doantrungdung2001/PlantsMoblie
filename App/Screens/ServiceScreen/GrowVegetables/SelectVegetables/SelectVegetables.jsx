@@ -114,7 +114,6 @@ const SelectVegetables = () => {
   const onCreate = async (values) => {
     try {
       if (values) {
-        console.log("Du lieu gui ", values);
         const result = await GARDEN_SERVICE_REQUEST.addGardenServiceRequest(
           values
         );
