@@ -1,87 +1,14 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../../../../Constants";
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
     flex: 1,
   },
-  backgroundImage: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    resizeMode: "cover",
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginTop: 50,
-    marginBottom: 20,
-    color: "#fff",
-    marginHorizontal: 20,
-  },
-  card: {
-    marginHorizontal: 20,
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    padding: 20,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
-    elevation: 2,
-    marginBottom: 20,
-  },
-  item: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  itemImage: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    marginRight: 20,
-  },
-  itemContent: {
-    flex: 1,
-  },
-  itemName: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 3,
-  },
-  itemPrice: {
-    marginTop: 3,
-    fontSize: 14,
-    color: "black",
-  },
-  buttons: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-  },
-  button: {
-    backgroundColor: "red",
-    borderRadius: 5,
-    padding: 10,
-    marginRight: 10,
-  },
-  registerButton: {
-    backgroundColor: "green",
-    borderRadius: 5,
-    padding: 10,
-    marginRight: 10,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-
   ///
-  statusContainer : {
+  statusContainer: {
     marginLeft: 10,
-    flexDirection: "row"
+    flexDirection: "row",
   },
   dot: {
     width: 20,
@@ -115,6 +42,83 @@ const styles = StyleSheet.create({
   },
   defaultText: {
     color: "grey",
+  },
+  //
+  listContainer: {
+    paddingHorizontal: 5,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  searchInput: {
+    height: 50,
+    borderWidth: 2,
+    borderRadius: 5,
+    borderColor: "black",
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    padding: 10,
+    color: "black",
+    fontSize: 17,
+  },
+  card: {
+    flex: 1,
+    marginBottom: 20,
+    padding: 10,
+    borderRadius: 5,
+    marginHorizontal: 10,
+    backgroundColor: COLORS.white,
+    borderRadius: 8,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    paddingVertical: 5,
+  },
+  cardDates: {
+    flexDirection: "row",
+    paddingVertical: 5,
+  },
+  cardDate: {
+    color: "#888",
+  },
+  cardContent: {
+    justifyContent: "space-between",
+    paddingTop: 10,
+  },
+  attendeesContainer: {
+    flexWrap: "wrap",
+    flexDirection: "row",
+    paddingHorizontal: 10,
+  },
+  attendeeImage: {
+    width: 30,
+    height: 30,
+    borderRadius: 20,
+    marginLeft: -10,
+    borderWidth: 0.5,
+    marginTop: 3,
+  },
+  buttonsContainer: {
+    flexDirection: "row",
+  },
+  actionButton: {
+    marginTop: 15,
+    backgroundColor: "#DCDCDC",
+    padding: 8,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "#00008B",
+    marginRight: 10,
+  },
+  buttonText: {
+    color: "#00008B",
   },
 });
 export default styles;

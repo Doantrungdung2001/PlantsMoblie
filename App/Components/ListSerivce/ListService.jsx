@@ -9,36 +9,36 @@ const featureData = [
     icon: icons.send,
     color: COLORS.yellow,
     backgroundColor: COLORS.lightyellow,
-    description: "Transfer",
+    description: "Nông trại",
   },
   {
     id: 2,
     icon: icons.internet,
     color: COLORS.primary,
     backgroundColor: COLORS.lightGreen,
-    description: "Internet",
+    description: "Xã hội",
   },
   {
     id: 3,
     icon: icons.wallet,
     color: COLORS.red,
     backgroundColor: COLORS.lightRed,
-    description: "Wallet",
+    description: "Ví",
   },
   {
     id: 4,
     icon: icons.bill,
     color: COLORS.yellow,
     backgroundColor: COLORS.lightyellow,
-    description: "Bill",
+    description: "Vườn của tôi",
   },
-  {
-    id: 5,
-    icon: icons.more,
-    color: COLORS.purple,
-    backgroundColor: COLORS.lightpurple,
-    description: "More",
-  },
+  // {
+  //   id: 5,
+  //   icon: icons.more,
+  //   color: COLORS.purple,
+  //   backgroundColor: COLORS.lightpurple,
+  //   description: "More",
+  // },
 ];
 const ListService = () => {
   const [feature, setFeatures] = useState(featureData);

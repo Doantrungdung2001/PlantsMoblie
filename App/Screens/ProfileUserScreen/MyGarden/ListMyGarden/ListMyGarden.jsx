@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
   ActivityIndicator,
+  TextInput,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
@@ -18,6 +19,7 @@ import { getStatusText } from "../../../../Utils/helper";
 const ListMyGarden = () => {
   const navigation = useNavigation();
   const [userId, setUserId] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -36,81 +38,109 @@ const ListMyGarden = () => {
   const getStatusStyles = (status) => {
     switch (status) {
       case "started":
-        return { dotStyle: styles.startedDot, textStyle: styles.startedText };
+        return {
+          dotStyle: styles.startedDot,
+          textStyle: styles.startedText,
+          borderTopStyle: "deepskyblue",
+        };
       case "cancel":
-        return { dotStyle: styles.cancelDot, textStyle: styles.cancelText };
+        return {
+          dotStyle: styles.cancelDot,
+          textStyle: styles.cancelText,
+          borderTopStyle: "red",
+        };
       case "completed":
         return {
           dotStyle: styles.completedDot,
           textStyle: styles.completedText,
+          borderTopStyle: "green",
         };
       default:
-        return { dotStyle: styles.defaultDot, textStyle: styles.defaultText };
+        return {
+          dotStyle: styles.defaultDot,
+          textStyle: styles.defaultText,
+          borderTopStyle: "grey",
+        };
     }
+  };
+
+  const searchFilter = (item) => {
+    const query = searchQuery.toLowerCase();
+    return item.farm.name.toLowerCase().includes(query);
   };
 
   return (
     <ScrollView style={styles.container}>
       <PageHeading title={"Danh sách vườn đang ký"} />
-      <View style={{ marginBottom: 20 }}></View>
+      <View style={{ margin: 20 }}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Tên nông trại..."
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
+      </View>
       <View>
         {isSuccessAllGarden && (
           <FlatList
-            data={allGarden}
+            contentContainerStyle={styles.listContainer}
+            data={allGarden.filter(searchFilter)}
             renderItem={({ item }) => {
               const statusStyles = getStatusStyles(item.status);
-
               return (
                 <TouchableOpacity
-                  style={styles.card}
+                  style={[
+                    styles.card,
+                    {
+                      // backgroundColor: item.backgroundColor,
+                      borderTopWidth: 4,
+                      borderTopColor: statusStyles.borderTopStyle,
+                    },
+                  ]}
                   onPress={() =>
                     navigation.push("profile/my-garden/detail", {
                       dataMyGarden: item,
                     })
                   }
                 >
-                  <View style={styles.item}>
-                    <Image
-                      source={{ uri: item.farm.images[0] }}
-                      style={styles.itemImage}
-                    />
-                    <View style={styles.itemContent}>
-                      <Text style={styles.itemName}>{item.farm.name}</Text>
-                      <View
-                        style={{ flexDirection: "row", alignItems: "center" }}
-                      >
-                        <Text style={{ fontSize: 14, color: "gray" }}>
-                          Diện tích:
-                        </Text>
-                        <Text style={{ fontSize: 14, color: "gray" }}>
-                          {item.gardenServiceTemplate.square}(m²)
-                        </Text>
-                      </View>
-                      <View
-                        style={{ flexDirection: "row", alignItems: "center" }}
-                      >
-                        <Text style={{ fontSize: 14, color: "gray" }}>
-                          Giá:
-                        </Text>
-                        <Text style={{ fontSize: 14, color: "gray" }}>
-                          {item.gardenServiceTemplate.price}(VND)
-                        </Text>
-                      </View>
-                      <Text style={styles.itemPrice}>
-                        {formatDate(item.startDate)}
-                      </Text>
+                  <Text style={styles.cardTitle}>{item.farm.name}</Text>
+                  <View style={styles.cardDates}>
+                    <Text style={styles.cardDate}>
+                      Diện tích: {item.gardenServiceTemplate.square}(m²)
+                    </Text>
+                    <Text style={styles.cardDate}>
+                      Giá: {item.gardenServiceTemplate.price}(VND)
+                    </Text>
+                  </View>
+                  <View style={styles.statusContainer}>
+                    <View style={[styles.dot, statusStyles.dotStyle]} />
+                    <Text style={[styles.msgTxt, statusStyles.textStyle]}>
+                      {getStatusText(item.status)}
+                    </Text>
+                  </View>
+                  <View style={styles.cardContent}>
+                    <View style={styles.attendeesContainer}>
+                      {item.listPlants?.map((attendee, index) => (
+                        <Image
+                          key={index}
+                          source={{ uri: attendee.plants_thumb }}
+                          style={styles.attendeeImage}
+                        />
+                      ))}
                     </View>
-                    <View style={styles.statusContainer}>
-                      <View style={[styles.dot, statusStyles.dotStyle]} />
-                      <Text style={[styles.msgTxt, statusStyles.textStyle]}>
-                        {getStatusText(item.status)}
-                      </Text>
+                    <View style={styles.buttonsContainer}>
+                      <TouchableOpacity style={styles.actionButton}>
+                        <Text style={styles.buttonText}>View</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity style={styles.actionButton}>
+                        <Text style={styles.buttonText}>Config</Text>
+                      </TouchableOpacity>
                     </View>
                   </View>
                 </TouchableOpacity>
               );
             }}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.id.toString()}
           />
         )}
         {isLoadingAllGarden && (

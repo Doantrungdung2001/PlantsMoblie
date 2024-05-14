@@ -2,7 +2,6 @@ import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import GARDEN from "../../../../Services/GardenService";
 export default function useListGarden({ clientId }) {
-
   const parseDataAllGarden = useCallback((data) => {
     const allgarden = data.map((garden) => ({
       id: garden?._id,
@@ -11,6 +10,30 @@ export default function useListGarden({ clientId }) {
       projects: garden?.projects,
       gardenServiceTemplate: garden?.gardenServiceTemplate,
       gardenServiceRequest: garden?.gardenServiceRequest,
+      listPlants: garden?.gardenServiceRequest
+        ? [
+            ...garden.gardenServiceRequest.herbList.map((plant) => ({
+              id: plant._id,
+              plants_name: plant.plant_name,
+              plants_thumb: plant.plant_thumb,
+            })),
+            ...garden.gardenServiceRequest.leafyList.map((plant) => ({
+              id: plant._id,
+              plants_name: plant.plant_name,
+              plants_thumb: plant.plant_thumb,
+            })),
+            ...garden.gardenServiceRequest.rootList.map((plant) => ({
+              id: plant._id,
+              plants_name: plant.plant_name,
+              plants_thumb: plant.plant_thumb,
+            })),
+            ...garden.gardenServiceRequest.fruitList.map((plant) => ({
+              id: plant._id,
+              plants_name: plant.plant_name,
+              plants_thumb: plant.plant_thumb,
+            })),
+          ]
+        : [],
       note: garden?.note,
       startDate: garden?.startDate,
       status: garden?.status,
@@ -19,6 +42,7 @@ export default function useListGarden({ clientId }) {
       deliveries: garden?.deliveries,
       createdAt: garden?.createdAt,
     }));
+
     return { allgarden };
   }, []);
 
@@ -31,7 +55,7 @@ export default function useListGarden({ clientId }) {
     queryFn: () => GARDEN.getAllGardenByClient(clientId),
     staleTime: 20 * 1000,
     select: (data) => parseDataAllGarden(data?.data?.metadata),
-    enabled: !!clientId
+    enabled: !!clientId,
   });
 
   return {
