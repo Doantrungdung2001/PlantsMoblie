@@ -222,13 +222,28 @@ const SelectVegetables = () => {
                   key={index}
                   style={styles.itemContainer}
                   onPress={() => {
+                    const { type } = item.item;
+
+                    const isLeafOverLimit =
+                      type === "leafyMax" &&
+                      dataSeparationByType.Leaf.length >= serviceInfo.leafyMax;
+                    const isHerbOverLimit =
+                      type === "herbMax" &&
+                      dataSeparationByType.Herb.length >= serviceInfo.herbMax;
+                    const isRootOverLimit =
+                      type === "rootMax" &&
+                      dataSeparationByType.Root.length >= serviceInfo.rootMax;
+                    const isFruitOverLimit =
+                      type === "fruitMax" &&
+                      dataSeparationByType.Fruit.length >= serviceInfo.fruitMax;
+
                     if (
-                      dataSeparationByType.Leaf.length > serviceInfo.leafyMax &&
-                      dataSeparationByType.Herb.length > serviceInfo.herbMax &&
-                      dataSeparationByType.Root.length > serviceInfo.rootMax &&
-                      dataSeparationByType.Fruit.length > serviceInfo.fruitMax
+                      isLeafOverLimit ||
+                      isHerbOverLimit ||
+                      isRootOverLimit ||
+                      isFruitOverLimit
                     ) {
-                      Alert.alert("Số cây trồng không được vượt quá tối đa ");
+                      Alert.alert("Số cây trồng không được vượt quá tối đa");
                     } else {
                       addPlants(item.item);
                     }
@@ -284,7 +299,7 @@ const SelectVegetables = () => {
                   placeholderTextColor={COLORS.darkgray}
                   style={styles.bodyText}
                   multiline={true}
-                  numberOfLines={10} 
+                  numberOfLines={10}
                   onChangeText={(note) => setNote(note)}
                 />
               </View>
@@ -294,7 +309,7 @@ const SelectVegetables = () => {
                 style={[styles.button, styles.login]}
                 onPress={() =>
                   onCreate({
-                    time: "2023-11-11",
+                    time: new Date(),
                     gardenServiceTemplateId: serviceInfo.id,
                     herbListId: getPlantId(dataSeparationByType.Leaf),
                     leafyListId: getPlantId(dataSeparationByType.Herb),
