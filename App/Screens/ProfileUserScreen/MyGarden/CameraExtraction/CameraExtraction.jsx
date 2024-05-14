@@ -12,6 +12,7 @@ import styles from "./CameraExtraction.Styles";
 import useCameraExtraction from "./useCameraExtraction";
 import { Video, ResizeMode } from "expo-av";
 import { formatDateTime, formatDate } from "../../../../Utils/helper";
+import { COLORS } from "../../../../Constants";
 const CameraExtraction = ({ gardenId }) => {
   const { allVideos, isSuccessCameraExtraction, isLoadingCameraExtraction } =
     useCameraExtraction({
@@ -21,7 +22,7 @@ const CameraExtraction = ({ gardenId }) => {
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
-  
+
   const video = React.useRef(null);
 
   useEffect(() => {
@@ -89,7 +90,7 @@ const CameraExtraction = ({ gardenId }) => {
   );
   return (
     <View>
-      {isSuccessCameraExtraction && (
+      {isSuccessCameraExtraction && fillterVideos?.length > 0 ? (
         <FlatList
           style={styles.container}
           data={fillterVideos}
@@ -97,6 +98,20 @@ const CameraExtraction = ({ gardenId }) => {
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
         />
+      ) : (
+        <View>
+          <Text
+            style={{
+              color: COLORS.gray,
+              fontSize: 30,
+              fontWeight: "600",
+              textAlign: "center",
+              marginTop: 40,
+            }}
+          >
+            Hoạt động chưa cập nhật
+          </Text>
+        </View>
       )}
       {isLoadingCameraExtraction && (
         <ActivityIndicator size="large" color="#00ff00" />

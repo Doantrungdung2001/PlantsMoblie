@@ -203,7 +203,6 @@ const CultivationProcess = ({ gardenId }) => {
           style={styles.cardProcess}
           onPress={() => {
             setDetailProcess(item?.process);
-            console.log("Du lieu detailProcess----", detailProcess);
             setShowModal(!showModal);
           }}
         >
