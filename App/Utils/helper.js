@@ -129,3 +129,15 @@ export function formatLocaleDateStringToNormal(dateString) {
   var formattedDate = day + "/" + month + "/" + year;
   return formattedDate;
 }
+export function getStatusText(status) {
+  switch (status) {
+    case "started":
+      return "Đang thực hiện";
+    case "cancel":
+      return "Đã hủy";
+    case "completed":
+      return "Đã hoàn thành";
+    default:
+      return status;
+  }
+}

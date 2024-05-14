@@ -77,5 +77,44 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
+
+  ///
+  statusContainer : {
+    marginLeft: 10,
+    flexDirection: "row"
+  },
+  dot: {
+    width: 20,
+    height: 20,
+    borderRadius: 20,
+    marginRight: 5,
+  },
+  startedDot: {
+    backgroundColor: "deepskyblue",
+  },
+  cancelDot: {
+    backgroundColor: "red",
+  },
+  completedDot: {
+    backgroundColor: "green",
+  },
+  defaultDot: {
+    backgroundColor: "grey",
+  },
+  msgTxt: {
+    fontSize: 15,
+  },
+  startedText: {
+    color: "deepskyblue",
+  },
+  cancelText: {
+    color: "red",
+  },
+  completedText: {
+    color: "green",
+  },
+  defaultText: {
+    color: "grey",
+  },
 });
 export default styles;
