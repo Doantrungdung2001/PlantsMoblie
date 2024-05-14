@@ -20,6 +20,8 @@ import useAllPlantsRecommend from "./useAllPlantsRecommend";
 import { MaterialIcons } from "@expo/vector-icons";
 import { renderTypePlant } from "../../../Utils/helper";
 import ListFarmResult from "../Result/ListFarmResult";
+import SEARCH_FARM from "../../../Services/SearchFarmService";
+
 const dataFilter = [
   {
     title: "Gần nhất",
@@ -52,6 +54,7 @@ const SearchPlants = () => {
   useEffect(() => {
     setFilteredContacts(dataAllPlantsRecommned);
   }, [dataAllPlantsRecommned]);
+
   const [searchText, setSearchText] = useState("");
   // display filter
   const [displayFilterLocation, setDisplayFilterLocation] = useState(false);
@@ -61,13 +64,16 @@ const SearchPlants = () => {
   // select plants
   const [displayFilterPlants, setDisplayFilterPlants] = useState(false);
   const [selectedPlants, setSelectedPlants] = useState([]);
-
+  const [selectedPlantsName, setSelectedPlantsName] = useState([]);
   const [showListFarmResult, setShowListFarmResult] = useState(false);
 
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
-  const [minArea, setMinArea] = useState("");
-  const [maxArea, setMaxArea] = useState("");
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(100000000);
+  const [minArea, setMinArea] = useState(0);
+  const [maxArea, setMaxArea] = useState(100000);
+
+  //result filter farm
+  const [resultFarm, setResultFarm] = useState([]);
 
   const handleFilterPress = (index) => {
     setSelectedFilterLocation(index);
@@ -88,6 +94,7 @@ const SearchPlants = () => {
     if (!isAlreadySelected) {
       // If the plant is not already selected, add it to the selectedPlants array
       setSelectedPlants([...selectedPlants, plant]);
+      setSelectedPlantsName([...selectedPlantsName, plant.plant_name]);
     }
   };
 
@@ -97,11 +104,39 @@ const SearchPlants = () => {
     );
     setSelectedPlants(updatedPlants);
   };
+
+  const onCreateFilter = async (values) => {
+    console.log("Gia tri filter ---------", values);
+    try {
+      if (values) {
+        const result = await SEARCH_FARM.getFarmFilter(values);
+        console.log("ket qua tra ve -----", result.data.metadata);
+        if (result.data.status === 200) {
+          setResultFarm(result.data.metadata);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleSearchResult = () => {
     setSearchText("");
     setDisplayFilterPlants(false);
     setShowListFarmResult(true);
+    onCreateFilter({
+      priceRange: {
+        min: minPrice,
+        max: maxPrice,
+      },
+      squareRange: {
+        min: minArea,
+        max: maxArea,
+      },
+      plantNames: selectedPlantsName,
+    });
   };
+
   return (
     <ScrollView>
       <PageHeading title={"Tìm kiếm rau trồng"} />
@@ -276,7 +311,7 @@ const SearchPlants = () => {
       {isLoadingAllPlantsRecommned && (
         <ActivityIndicator size="large" color="#00ff00" />
       )}
-      {showListFarmResult && <ListFarmResult />}
+      {showListFarmResult && <ListFarmResult dataListFarmResult={resultFarm} />}
     </ScrollView>
   );
 };
