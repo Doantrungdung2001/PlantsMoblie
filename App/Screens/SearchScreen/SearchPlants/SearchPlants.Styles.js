@@ -31,6 +31,9 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     color: COLORS.black,
   },
+  filterMoreContainer: {
+    marginTop: 15,
+  },
   filterContainer: {
     flexDirection: "row",
     alignItems: "center",
@@ -46,7 +49,7 @@ const styles = StyleSheet.create({
 
   inputContainer: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 10,
   },

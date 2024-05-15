@@ -21,7 +21,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { renderTypePlant } from "../../../Utils/helper";
 import ListFarmResult from "../Result/ListFarmResult";
 import SEARCH_FARM from "../../../Services/SearchFarmService";
-
+import InputFilter from "../../../Components/InputFilter/InputFilter";
 const dataFilter = [
   {
     title: "Gần nhất",
@@ -193,43 +193,36 @@ const SearchPlants = () => {
               <MaterialIcons name="cancel" size={20} color="black" />
             </TouchableOpacity>
           </View>
-          <View>
+          <View style={styles.filterMoreContainer}>
             {/* Price */}
             <View style={styles.inputContainer}>
-              <Text>Giá từ</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="0"
+              <Text style={{marginRight: 35}}>Giá từ:</Text>
+              <InputFilter
+                placeholderText={0}
                 value={minPrice}
-                onChangeText={(text) => setMinPrice(text)}
-                keyboardType="numeric"
+                onChangeFunction={setMinPrice}
               />
-              <Text>Đến</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="10000"
+              <Text>Đến:</Text>
+              <InputFilter
+                placeholderText={10000000}
                 value={maxPrice}
-                onChangeText={(text) => setMaxPrice(text)}
-                keyboardType="numeric"
+                onChangeFunction={setMaxPrice}
               />
             </View>
             {/* Area */}
             <View style={styles.inputContainer}>
-              <Text>Diện tích từ</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="0"
+              <Text>Diện tích từ:</Text>
+              <InputFilter
+                placeholderText={0}
                 value={minArea}
-                onChangeText={(text) => setMinArea(text)}
-                keyboardType="numeric"
+                onChangeFunction={setMinArea}
               />
-              <Text>Đến</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="0"
+
+              <Text>Đến:</Text>
+              <InputFilter
+                placeholderText={1000}
                 value={maxArea}
-                onChangeText={(text) => setMaxArea(text)}
-                keyboardType="numeric"
+                onChangeFunction={setMaxArea}
               />
             </View>
           </View>
