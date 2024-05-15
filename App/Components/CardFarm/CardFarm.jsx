@@ -16,7 +16,7 @@ const CardFarm = ({ farm }) => {
         <Text style={styles.nameFarm}>{farm.name}</Text>
         <Text style={styles.districtFarm}>
           <Ionicons
-            name="ios-location-sharp"
+            name="location-sharp"
             size={24}
             color={COLORS.secondary}
             style={{ marginRight: 14 }}

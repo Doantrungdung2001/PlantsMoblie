@@ -35,7 +35,7 @@ const DetailFarmGrowVegetables = () => {
           </View>
           <Text style={styles.addressFarm}>
             <Ionicons
-              name="ios-location-sharp"
+              name="location-sharp"
               size={24}
               color={COLORS.secondary}
               style={{ marginRight: 14 }}
