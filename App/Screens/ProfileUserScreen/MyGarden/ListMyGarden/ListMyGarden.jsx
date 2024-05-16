@@ -128,13 +128,18 @@ const ListMyGarden = () => {
                         />
                       ))}
                     </View>
-                    <View style={styles.buttonsContainer}>
-                      <TouchableOpacity style={styles.actionButton}>
-                        <Text style={styles.buttonText}>View</Text>
-                      </TouchableOpacity>
-                      <TouchableOpacity style={styles.actionButton}>
-                        <Text style={styles.buttonText}>Config</Text>
-                      </TouchableOpacity>
+                    {console.log("Status", item.status)}
+                    <View style={styles.buttons}>
+                      {item.status === "started" && (
+                        <TouchableOpacity style={styles.button}>
+                          <Text style={styles.buttonText}>Hủy</Text>
+                        </TouchableOpacity>
+                      )}
+                      {item.status === "cancel" && (
+                        <TouchableOpacity style={styles.button}>
+                          <Text style={styles.buttonText}>Xóa</Text>
+                        </TouchableOpacity>
+                      )}
                     </View>
                   </View>
                 </TouchableOpacity>

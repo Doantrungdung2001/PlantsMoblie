@@ -105,20 +105,26 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     marginTop: 3,
   },
-  buttonsContainer: {
+  buttons: {
     flexDirection: "row",
+    justifyContent: "flex-end",
   },
-  actionButton: {
-    marginTop: 15,
-    backgroundColor: "#DCDCDC",
-    padding: 8,
+  button: {
+    backgroundColor: "red",
     borderRadius: 5,
-    borderWidth: 1,
-    borderColor: "#00008B",
+    padding: 10,
+    marginRight: 10,
+  },
+  registerButton: {
+    backgroundColor: "green",
+    borderRadius: 5,
+    padding: 10,
     marginRight: 10,
   },
   buttonText: {
-    color: "#00008B",
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
 export default styles;

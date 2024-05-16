@@ -1,7 +1,7 @@
 import { Text, View, FlatList, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 import styles from "./Service.Styles";
-import { COLORS, icons, SIZES,FONTS } from "../../Constants";
+import { COLORS, icons, SIZES, FONTS } from "../../Constants";
 import { useNavigation } from "@react-navigation/native";
 const featureData = [
   {
@@ -10,6 +10,7 @@ const featureData = [
     color: COLORS.yellow,
     backgroundColor: COLORS.lightyellow,
     description: "Nông trại",
+    param: "Transfer",
   },
   {
     id: 2,
@@ -17,6 +18,7 @@ const featureData = [
     color: COLORS.primary,
     backgroundColor: COLORS.lightGreen,
     description: "Xã hội",
+    param: "Internet",
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ const featureData = [
     color: COLORS.red,
     backgroundColor: COLORS.lightRed,
     description: "Ví",
+    param: "Wallet",
   },
   {
     id: 4,
@@ -31,14 +34,8 @@ const featureData = [
     color: COLORS.yellow,
     backgroundColor: COLORS.lightyellow,
     description: "Vườn của tôi",
+    param: "Bill",
   },
-  // {
-  //   id: 5,
-  //   icon: icons.more,
-  //   color: COLORS.purple,
-  //   backgroundColor: COLORS.lightpurple,
-  //   description: "More",
-  // },
 ];
 const ListService = () => {
   const [feature, setFeatures] = useState(featureData);
@@ -53,7 +50,7 @@ const ListService = () => {
       }}
       key={index}
       onPress={() =>
-        navigation.push(`service-screen/${item.description}`, {
+        navigation.push(`service-screen/${item.param}`, {
           category: item.description,
         })
       }
@@ -92,7 +89,7 @@ const ListService = () => {
   );
   return (
     <View>
-      <View style={{margin: 20}}>
+      <View style={{ margin: 20 }}>
         <View style={{ marginBottom: SIZES.padding * 2 }}>
           <Text style={{ ...FONTS.h3 }}>Dịch vụ</Text>
         </View>
