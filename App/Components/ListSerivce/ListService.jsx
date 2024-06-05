@@ -25,7 +25,7 @@ const featureData = [
     icon: icons.wallet,
     color: COLORS.red,
     backgroundColor: COLORS.lightRed,
-    description: "Ví",
+    description: "Đang chờ",
     param: "Wallet",
   },
   {

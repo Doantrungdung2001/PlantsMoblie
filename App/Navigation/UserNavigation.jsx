@@ -1,5 +1,5 @@
-import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Proflie from "../Screens/ProfileUserScreen/Profile/Profile";
 import MyGardenScreen from "../Screens/ProfileUserScreen/MyGarden/MyGardenScreen/MyGardenScreen";
 import UpdateInformation from "../Screens/ProfileUserScreen/UpdateInformation/UpdateInformation";
@@ -10,7 +10,7 @@ import Request from "../Screens/ProfileUserScreen/MyGarden/Request";
 import LiveCamera from "../Screens/ProfileUserScreen/MyGarden/LiveCamera";
 import Delivery from "../Screens/ProfileUserScreen/MyGarden/Delivery/Delivery";
 import ListMyGarden from "../Screens/ProfileUserScreen/MyGarden/ListMyGarden/ListMyGarden";
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const UserNavigation = () => {
   return (

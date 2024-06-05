@@ -1,5 +1,5 @@
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ListFarmDetail from "../Screens/ServiceScreen/GrowVegetables/ListFarmDetail/ListFarmDetail";
 import Internet from "../Screens/ServiceScreen/Internet/Internet";
 import Bill from "../Screens/ServiceScreen/Bill/Bill";
@@ -11,7 +11,7 @@ import SelectVegetables from "../Screens/ServiceScreen/GrowVegetables/SelectVege
 import Notification from "../Components/NotificationsActivities/Notification";
 import HomeScreen from "../Screens/HomeScreen/HomeScreen";
 import SearchPlants from "../Screens/SearchScreen/SearchPlants/SearchPlants";
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const HomeNavigation = () => {
   return (

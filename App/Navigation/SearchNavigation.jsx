@@ -1,10 +1,11 @@
 import React from "react";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SearchPlants from "../Screens/SearchScreen/SearchPlants/SearchPlants";
 import DetailInfoService from "../Screens/ServiceScreen/GrowVegetables/DetailInfoService/DetailInfoService";
 import SelectVegetables from "../Screens/ServiceScreen/GrowVegetables/SelectVegetables/SelectVegetables";
 import DetailFarmGrowVegetables from "../Screens/ServiceScreen/GrowVegetables/DetailFarm/DetailFarmGrowVegetables";
-import { createStackNavigator } from "@react-navigation/stack";
-const Stack = createStackNavigator();
+
+const Stack = createNativeStackNavigator();
 
 const SearchNavigation = () => {
   return (
