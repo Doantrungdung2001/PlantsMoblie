@@ -15,6 +15,21 @@ const AUTH = {
     console.log("result: ", result);
     return result;
   },
+  register: async ({ name, email, password }) => {
+    role = "CLIENT";
+    let result = await publicHttp({
+      method: "POST",
+      url: "signup",
+      data: {
+        name,
+        email,
+        password,
+        role,
+      },
+    });
+    console.log("result: ", result);
+    return result;
+  },
 
   logout: async () => {
     let result = await privateHttp({

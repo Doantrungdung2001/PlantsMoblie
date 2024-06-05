@@ -1,33 +1,50 @@
 import {
-  StyleSheet,
   Text,
   View,
   SafeAreaView,
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { COLORS } from "../../../Constants";
 import { useNavigation } from "@react-navigation/native";
 import { Entypo } from "@expo/vector-icons";
 import styles from "./Register.Style";
+import AUTH from "../../../Services/AuthService";
+import ToastMessage from "../../../Components/ToastMessage/ToastMessage";
 
 const Register = () => {
   const navigation = useNavigation();
   const [selectDisplayPassword, setSelectDisplayPassowrd] = useState(false);
   const [selectConfirmDisplayPassword, setSelectConfirmDisplayPassowrd] =
     useState(false);
-
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState(true);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const [confirmPasswordClicked, setConfirmPasswordClicked] = useState(false);
+  const [allFieldsFilled, setAllFieldsFilled] = useState(true);
+
+  const toastRef = useRef(null);
+  const [typeToast, setTypeToast] = useState("success");
+  const [textToast, setTextToast] = useState();
+  const [descriptionToast, setDescriptionToast] = useState();
+
+  const handleShowToast = () => {
+    if (toastRef.current) {
+      toastRef.current.show();
+    }
+  };
 
   const isValidEmail = (email) => {
-    // Biểu thức chính quy để kiểm tra định dạng email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
+  };
+
+  const handleNameChange = (text) => {
+    setName(text);
   };
 
   const handleEmailChange = (text) => {
@@ -44,13 +61,76 @@ const Register = () => {
     setConfirmPassword(text);
     setPasswordsMatch(text === password);
   };
+
+  const handleConfirmPasswordFocus = () => {
+    setConfirmPasswordClicked(true);
+  };
+
+  const Register = async (name, email, password) => {
+    try {
+      const res = await AUTH.register({
+        name: name,
+        email: email,
+        password: password,
+      });
+      if (res.data.status === 200 || res.data.status === 201) {
+        setTypeToast("success");
+        setTextToast("Đăng ký thành công");
+        setDescriptionToast(
+          "Bạn sẽ được chuyển đến trang đăng nhập trong giây lát"
+        );
+        handleShowToast();
+        setTimeout(() => {
+          navigation.push("Login");
+        }, 3000);
+      }
+      console.log("Register success");
+    } catch (error) {
+      if (error?.response?.data.code) {
+        setTypeToast("danger");
+        setTextToast("Không thành công");
+        setDescriptionToast("Tài khoản đã tồn tại");
+        handleShowToast();
+      }
+      console.log("Register fail: --", error);
+    }
+  };
+
+  const handleRegisterPress = () => {
+    if (!name || !email || !password || !confirmPassword) {
+      setAllFieldsFilled(false);
+      return;
+    }
+
+    if (emailValid && passwordsMatch) {
+      Register(name, email, password);
+    } else {
+      alert("Vui lòng nhập email hợp lệ và mật khẩu khớp");
+    }
+  };
+
   return (
     <SafeAreaView>
+      <ToastMessage
+        type={typeToast}
+        text={textToast}
+        description={descriptionToast}
+        ref={toastRef}
+      />
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.textHeader}>Đăng ký tài khoản</Text>
         </View>
         <View style={styles.content}>
+          <View>
+            <TextInput
+              placeholder="Tên"
+              placeholderTextColor={COLORS.darkgray}
+              style={styles.textInputEmail}
+              value={name}
+              onChangeText={handleNameChange}
+            />
+          </View>
           <View>
             <TextInput
               placeholder="Email"
@@ -102,6 +182,7 @@ const Register = () => {
               style={styles.textInputPassword}
               value={confirmPassword}
               onChangeText={handleConfirmPasswordChange}
+              onFocus={handleConfirmPasswordFocus}
             />
             <TouchableOpacity
               style={{ justifyContent: "center" }}
@@ -126,19 +207,18 @@ const Register = () => {
               )}
             </TouchableOpacity>
           </View>
-          {!passwordsMatch && (
+          {!passwordsMatch && confirmPasswordClicked && (
             <Text style={styles.errorText}>Mật khẩu không khớp</Text>
           )}
+          {/* {!allFieldsFilled && (
+            <Text style={styles.errorText}>
+              Tất cả các trường phải được điền
+            </Text>
+          )} */}
         </View>
         <TouchableOpacity
           style={styles.btnRegister}
-          onPress={() => {
-            if (emailValid && passwordsMatch) {
-              navigation.navigate("Login");
-            } else {
-              alert("Vui lòng nhập email hợp lệ và mật khẩu khớp");
-            }
-          }}
+          onPress={handleRegisterPress}
         >
           <Text style={styles.textBtnRegister}>Đăng ký</Text>
         </TouchableOpacity>
