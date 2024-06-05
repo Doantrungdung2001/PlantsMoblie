@@ -13,6 +13,7 @@ import AUTH from "../../../Services/AuthService";
 import styles from "./ResetPassword.Styles";
 import ToastMessage from "../../../Components/ToastMessage/ToastMessage";
 import PageHeading from "../../../Components/PageHeading/PageHeading";
+
 const ResetPassword = () => {
   const param = useRoute().params;
   const navigation = useNavigation();
@@ -28,7 +29,6 @@ const ResetPassword = () => {
   const toastRef = useRef(null);
   const [typeToast, setTypeToast] = useState("success");
   const [textToast, setTextToast] = useState();
-
   const [descriptionToast, setDescriptionToast] = useState();
 
   useEffect(() => {
@@ -40,6 +40,7 @@ const ResetPassword = () => {
       toastRef.current.show();
     }
   };
+
   const handleTokenChange = (text) => {
     setToken(text);
   };
@@ -68,6 +69,13 @@ const ResetPassword = () => {
           "Lấy lại mật khẩu thành công, hãy đăng nhập để trải nghiệm dịch vụ"
         );
         handleShowToast();
+        console.log(
+          "Lấy lại mật khẩu thành công, chuẩn bị chuyển hướng sau 3 giây."
+        );
+        setTimeout(() => {
+          console.log("Chuyển hướng đến màn hình đăng nhập.");
+          navigation.push("Login");
+        }, 3000);
       }
       console.log("success", res);
     } catch (error) {
@@ -80,6 +88,7 @@ const ResetPassword = () => {
       console.log("loi", error);
     }
   };
+
   return (
     <SafeAreaView>
       <ToastMessage
@@ -116,7 +125,7 @@ const ResetPassword = () => {
               value={password}
               onChangeText={handlePasswordChange}
             />
-            {/* <TouchableOpacity
+            <TouchableOpacity
               style={{ justifyContent: "center" }}
               onPress={() => setSelectDisplayPassowrd(!selectDisplayPassword)}
             >
@@ -135,7 +144,7 @@ const ResetPassword = () => {
                   style={styles.dispalyPassword}
                 />
               )}
-            </TouchableOpacity> */}
+            </TouchableOpacity>
           </View>
           <View style={styles.password}>
             <TextInput
@@ -146,7 +155,7 @@ const ResetPassword = () => {
               value={confirmPassword}
               onChangeText={handleConfirmPasswordChange}
             />
-            {/* <TouchableOpacity
+            <TouchableOpacity
               style={{ justifyContent: "center" }}
               onPress={() =>
                 setSelectConfirmDisplayPassowrd(!selectConfirmDisplayPassword)
@@ -167,7 +176,7 @@ const ResetPassword = () => {
                   style={styles.dispalyPassword}
                 />
               )}
-            </TouchableOpacity> */}
+            </TouchableOpacity>
           </View>
           {!passwordsMatch && (
             <Text style={styles.errorText}>Mật khẩu không khớp</Text>
@@ -179,17 +188,11 @@ const ResetPassword = () => {
             if (passwordsMatch) {
               ResetPassword(token, email, password);
             } else {
-              alert("Vui lòng nhập email hợp lệ và mật khẩu khớp");
+              alert("Vui lòng nhập mật khẩu khớp");
             }
           }}
         >
           <Text style={styles.textBtnRegister}>Xác nhận</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.btnLogin}
-          onPress={() => navigation.navigate("Login")}
-        >
-          <Text style={styles.textBtnLogin}>Đăng nhập</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
