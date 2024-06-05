@@ -30,7 +30,31 @@ const AUTH = {
     console.log("result: ", result);
     return result;
   },
+  forgetPassword: async ({ email }) => {
+    let result = await publicHttp({
+      method: "POST",
+      url: "forgotPassword",
+      data: {
+        email,
+      },
+    });
+    console.log("result: ", result);
+    return result;
+  },
 
+  resetPassword: async ({ resetToken, email, newPassword }) => {
+    let result = await publicHttp({
+      method: "POST",
+      url: "resetPassword",
+      data: {
+        resetToken,
+        email,
+        newPassword,
+      },
+    });
+    console.log("result: ", result);
+    return result;
+  },
   logout: async () => {
     let result = await privateHttp({
       method: "POST",
