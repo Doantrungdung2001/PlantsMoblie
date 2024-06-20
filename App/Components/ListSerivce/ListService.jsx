@@ -6,35 +6,35 @@ import { useNavigation } from "@react-navigation/native";
 const featureData = [
   {
     id: 1,
-    icon: icons.send,
-    color: COLORS.yellow,
-    backgroundColor: COLORS.lightyellow,
+    icon: icons.farm,
+    // color: COLORS.primary,
+    backgroundColor: COLORS.lightGreen,
     description: "Nông trại",
-    param: "Transfer",
+    param: "farm",
   },
   {
     id: 2,
-    icon: icons.internet,
-    color: COLORS.primary,
-    backgroundColor: COLORS.lightGreen,
-    description: "Xã hội",
-    param: "Internet",
+    icon: icons.delivery,
+    color: COLORS.red,
+    backgroundColor: COLORS.lightRed,
+    description: "Giao hàng",
+    param: "delivery",
   },
   {
     id: 3,
-    icon: icons.wallet,
-    color: COLORS.red,
-    backgroundColor: COLORS.lightRed,
+    icon: icons.waiting,
+    color: COLORS.yellow,
+    backgroundColor: COLORS.lightyellow,
     description: "Đang chờ",
-    param: "Wallet",
+    param: "watting",
   },
   {
     id: 4,
-    icon: icons.bill,
-    color: COLORS.yellow,
-    backgroundColor: COLORS.lightyellow,
+    icon: icons.myfarm,
+    color: COLORS.primary,
+    backgroundColor: COLORS.lightGreen,
     description: "Vườn của tôi",
-    param: "Bill",
+    param: "my-garden",
   },
 ];
 const ListService = () => {
@@ -45,7 +45,7 @@ const ListService = () => {
     <TouchableOpacity
       style={{
         marginBottom: SIZES.padding * 2,
-        width: 60,
+        width: 80,
         alignItems: "center",
       }}
       key={index}
@@ -70,8 +70,8 @@ const ListService = () => {
           source={item.icon}
           resizeMode="contain"
           style={{
-            height: 20,
-            width: 20,
+            height: 35,
+            width: 30,
             tintColor: item.color,
           }}
         />
@@ -89,10 +89,10 @@ const ListService = () => {
   );
   return (
     <View>
-      <View style={{ margin: 20 }}>
-        <View style={{ marginBottom: SIZES.padding * 2 }}>
+      <View style={{ margin: 15 }}>
+        {/* <View style={{ marginBottom: SIZES.padding * 2 }}>
           <Text style={{ ...FONTS.h3 }}>Dịch vụ</Text>
-        </View>
+        </View> */}
         <FlatList
           data={feature}
           numColumns={4}

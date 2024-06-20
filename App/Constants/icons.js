@@ -24,9 +24,12 @@ import left from "../../assets/icons/left.png";
 import heartOutline from "../../assets/icons/heart-ol.png";
 import share from "../../assets/icons/share.png";
 import location from "../../assets/icons/location.png";
+import farm from "../../assets/icons/farm.png";
+import delivery from "../../assets/icons/delivery.png";
+import waiting from "../../assets/icons/watting.png";
+import myfarm from "../../assets/icons/myfarm.png";
 import chevronLeft from "../../assets/icons/chevron-left.png";
 import chevronRight from "../../assets/icons/chevron-right.png";
-
 export default {
   back,
   bell,
@@ -57,4 +60,9 @@ export default {
   location,
   chevronLeft,
   chevronRight,
+
+  farm,
+  delivery,
+  waiting,
+  myfarm,
 };

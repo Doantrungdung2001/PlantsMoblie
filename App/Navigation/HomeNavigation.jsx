@@ -3,7 +3,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ListFarmDetail from "../Screens/ServiceScreen/GrowVegetables/ListFarmDetail/ListFarmDetail";
 import Internet from "../Screens/ServiceScreen/Internet/Internet";
 import Bill from "../Screens/ServiceScreen/Bill/Bill";
-import More from "../Screens/ServiceScreen/More/More";
 import Wallet from "../Screens/ServiceScreen/Wallet/Wallet";
 import DetailFarmGrowVegetables from "../Screens/ServiceScreen/GrowVegetables/DetailFarm/DetailFarmGrowVegetables";
 import DetailInfoService from "../Screens/ServiceScreen/GrowVegetables/DetailInfoService/DetailInfoService";
@@ -21,11 +20,10 @@ const HomeNavigation = () => {
       }}
     >
       <Stack.Screen name="home" component={HomeScreen} />
-      <Stack.Screen name="service-screen/Transfer" component={ListFarmDetail} />
-      <Stack.Screen name="service-screen/Internet" component={Internet} />
-      <Stack.Screen name="service-screen/Wallet" component={Wallet} />
-      <Stack.Screen name="service-screen/Bill" component={Bill} />
-      <Stack.Screen name="service-screen/More" component={More} />
+      <Stack.Screen name="service-screen/farm" component={ListFarmDetail} />
+      <Stack.Screen name="service-screen/delivery" component={Internet} />
+      <Stack.Screen name="service-screen/watting" component={Wallet} />
+      <Stack.Screen name="service-screen/my-garden" component={Bill} />
       <Stack.Screen name="farm-detail" component={DetailFarmGrowVegetables} />
       <Stack.Screen name="service-detail" component={DetailInfoService} />
       <Stack.Screen name="select-vegestables" component={SelectVegetables} />
