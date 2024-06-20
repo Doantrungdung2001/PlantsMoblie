@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   View,
   FlatList,
@@ -5,61 +6,71 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
-import React, { useState, useEffect } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Fontisto } from "@expo/vector-icons";
-import styles from "./CameraExtraction.Styles";
-import useCameraExtraction from "./useCameraExtraction";
 import { Video, ResizeMode } from "expo-av";
 import { formatDateTime, formatDate } from "../../../../Utils/helper";
 import { COLORS } from "../../../../Constants";
+import useCameraExtraction from "./useCameraExtraction";
+import styles from "./CameraExtraction.Styles";
+
 const CameraExtraction = ({ gardenId }) => {
   const { allVideos, isSuccessCameraExtraction, isLoadingCameraExtraction } =
     useCameraExtraction({
       gardenId: gardenId,
     });
-  const [fillterVideos, setFillterVideos] = useState(allVideos);
-  const [date, setDate] = useState(new Date());
-  const [showPicker, setShowPicker] = useState(false);
-  const [selectedTime, setSelectedTime] = useState(null);
 
-  const video = React.useRef(null);
+  const [filteredVideos, setFilteredVideos] = useState(allVideos);
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [showPicker, setShowPicker] = useState(false);
 
   useEffect(() => {
-    setFillterVideos(allVideos);
+    setFilteredVideos(allVideos);
   }, [allVideos]);
 
   const handleTimeChange = (event, selectedDate) => {
-    setShowPicker(false); // Hide the picker after selecting a time
+    setShowPicker(false); // Close the picker after selecting a time
     setSelectedTime(selectedDate);
-    const formatTime = formatDate(selectedDate);
-    setFillterVideos(allVideos.filter((video) => video.date === formatTime));
+
+    const startDate = new Date(2024, 0, 20); // January 20th, 2024
+    const endDate = new Date(2024, 4, 20);   // May 20th, 2024
+
+    if (
+      selectedDate >= startDate &&
+      selectedDate <= endDate
+    ) {
+      const filtered = allVideos.filter(video => {
+        const videoDate = new Date(video.date);
+        return videoDate >= startDate && videoDate <= endDate;
+      });
+      setFilteredVideos(filtered);
+    } else {
+      alert("Please select a date between January 20th, 2024 and May 20th, 2024.");
+    }
   };
 
-  const renderItem = ({ item }) => {
-    return (
-      <TouchableOpacity style={styles.video} onPress={() => {}}>
-        <View>
-          <Video
-            ref={video}
-            style={styles.playvideo}
-            source={{
-              uri: item.video_url,
-            }}
-            useNativeControls
-            resizeMode={ResizeMode.CONTAIN}
-            isLooping
-          />
-        </View>
-
-        <View style={styles.details}>
-          <Text style={styles.title}>{item.date}</Text>
-          <Text style={styles.channel}>{formatDateTime(item.start_time)}</Text>
-          <Text style={styles.channel}>{formatDateTime(item.end_time)}</Text>
-        </View>
-      </TouchableOpacity>
-    );
+  const togglePicker = () => {
+    setShowPicker(!showPicker); // Toggle the state of showPicker
   };
+
+  const renderItem = ({ item }) => (
+    <TouchableOpacity style={styles.video} onPress={() => {}}>
+      <View>
+        <Video
+          style={styles.playvideo}
+          source={{ uri: item.video_url }}
+          useNativeControls
+          resizeMode={ResizeMode.CONTAIN}
+          isLooping
+        />
+      </View>
+      <View style={styles.details}>
+        <Text style={styles.title}>{item.date}</Text>
+        <Text style={styles.channel}>{formatDateTime(item.start_time)}</Text>
+        <Text style={styles.channel}>{formatDateTime(item.end_time)}</Text>
+      </View>
+    </TouchableOpacity>
+  );
 
   const renderHeader = () => (
     <View style={styles.card}>
@@ -74,7 +85,7 @@ const CameraExtraction = ({ gardenId }) => {
               : "Chọn thời gian"}
           </Text>
         </View>
-        <TouchableOpacity onPress={() => setShowPicker(!showPicker)}>
+        <TouchableOpacity onPress={togglePicker}>
           <Fontisto name="date" size={30} color="white" />
         </TouchableOpacity>
       </View>
@@ -82,21 +93,22 @@ const CameraExtraction = ({ gardenId }) => {
         <DateTimePicker
           mode="date"
           display="spinner"
-          value={selectedTime || date} // Pass the selected time or the current time
+          value={selectedTime || new Date()}
           onChange={handleTimeChange}
         />
       )}
     </View>
   );
+
   return (
     <View>
-      {isSuccessCameraExtraction && fillterVideos?.length > 0 ? (
+      {isSuccessCameraExtraction && filteredVideos.length > 0 ? (
         <FlatList
           style={styles.container}
-          data={fillterVideos}
+          data={filteredVideos}
           ListHeaderComponent={renderHeader}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id.toString()}
         />
       ) : (
         <View>

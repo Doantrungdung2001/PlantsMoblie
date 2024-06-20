@@ -23,6 +23,7 @@ export default function useListDelivery({ gardenId }) {
     data: dataAllDelivery,
     isSuccess: isSuccessAllDelivery,
     isLoading: isLoadingAllDelivery,
+    refetch: refetcDelivery,
   } = useQuery({
     queryKey: ["getAllDeliveryByGarden"],
     queryFn: () => GARDEN.getAllDeliveryByGarden(gardenId),
@@ -35,5 +36,6 @@ export default function useListDelivery({ gardenId }) {
     allDelivery: dataAllDelivery?.alldelivery,
     isSuccessAllDelivery,
     isLoadingAllDelivery,
+    refetcDelivery,
   };
 }

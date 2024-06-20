@@ -50,6 +50,7 @@ export default function useListGarden({ clientId }) {
     data: dataAllGarden,
     isSuccess: isSuccessAllGarden,
     isLoading: isLoadingAllGarden,
+    refetch: refetcAllGarden,
   } = useQuery({
     queryKey: ["getAllGarden"],
     queryFn: () => GARDEN.getAllGardenByClient(clientId),
@@ -62,5 +63,6 @@ export default function useListGarden({ clientId }) {
     allGarden: dataAllGarden?.allgarden,
     isSuccessAllGarden,
     isLoadingAllGarden,
+    refetcAllGarden,
   };
 }

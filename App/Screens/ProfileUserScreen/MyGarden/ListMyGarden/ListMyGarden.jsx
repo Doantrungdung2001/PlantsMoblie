@@ -30,9 +30,10 @@ const ListMyGarden = () => {
     };
     fetchData();
   }, []);
-  const { allGarden, isSuccessAllGarden, isLoadingAllGarden } = useListGarden({
-    clientId: userId,
-  });
+  const { allGarden, isSuccessAllGarden, isLoadingAllGarden, refetcAllGarden } =
+    useListGarden({
+      clientId: userId,
+    });
 
   const getStatusStyles = (status) => {
     switch (status) {
@@ -96,11 +97,12 @@ const ListMyGarden = () => {
                       borderTopColor: statusStyles.borderTopStyle,
                     },
                   ]}
-                  onPress={() =>
+                  onPress={() => {
                     navigation.push("profile/my-garden/detail", {
                       dataMyGarden: item,
-                    })
-                  }
+                    });
+                    refetcAllGarden();
+                  }}
                 >
                   <Text style={styles.cardTitle}>{item.farm.name}</Text>
                   <View style={styles.cardDates}>
