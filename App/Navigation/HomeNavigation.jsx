@@ -1,9 +1,9 @@
 import React from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ListFarmDetail from "../Screens/ServiceScreen/GrowVegetables/ListFarmDetail/ListFarmDetail";
-import Internet from "../Screens/ServiceScreen/Internet/Internet";
-import Bill from "../Screens/ServiceScreen/Bill/Bill";
-import Wallet from "../Screens/ServiceScreen/Wallet/Wallet";
+import Delivery from "../Screens/ServiceScreen/Delivery/Delivery";
+import ListMyGarden from "../Screens/ProfileUserScreen/MyGarden/ListMyGarden/ListMyGarden";
+import Watting from "../Screens/ServiceScreen/Watting/Watting";
 import DetailFarmGrowVegetables from "../Screens/ServiceScreen/GrowVegetables/DetailFarm/DetailFarmGrowVegetables";
 import DetailInfoService from "../Screens/ServiceScreen/GrowVegetables/DetailInfoService/DetailInfoService";
 import SelectVegetables from "../Screens/ServiceScreen/GrowVegetables/SelectVegetables/SelectVegetables";
@@ -21,9 +21,9 @@ const HomeNavigation = () => {
     >
       <Stack.Screen name="home" component={HomeScreen} />
       <Stack.Screen name="service-screen/farm" component={ListFarmDetail} />
-      <Stack.Screen name="service-screen/delivery" component={Internet} />
-      <Stack.Screen name="service-screen/watting" component={Wallet} />
-      <Stack.Screen name="service-screen/my-garden" component={Bill} />
+      <Stack.Screen name="service-screen/delivery" component={Delivery} />
+      <Stack.Screen name="service-screen/watting" component={Watting} />
+      <Stack.Screen name="service-screen/my-garden" component={ListMyGarden} />
       <Stack.Screen name="farm-detail" component={DetailFarmGrowVegetables} />
       <Stack.Screen name="service-detail" component={DetailInfoService} />
       <Stack.Screen name="select-vegestables" component={SelectVegetables} />

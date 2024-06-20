@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../../Constants";
-const Wallet = () => {
+const Delivery = () => {
   const param = useRoute().params;
   const navigation = useNavigation();
   useEffect(() => {
@@ -43,4 +43,4 @@ const Wallet = () => {
   );
 };
 
-export default Wallet;
+export default Delivery;
