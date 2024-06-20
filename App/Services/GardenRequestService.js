@@ -15,6 +15,19 @@ const GARDEN_SERVICE_REQUEST = {
       });
   },
 
+  getAllGardenServiceRequestbyClient: async () => {
+    return await privateHttp({
+      method: "GET",
+      url: `/gardenServiceRequest/user/waiting`,
+    })
+      .then((res) => {
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      });
+  },
+
   addGardenServiceRequest: async (data) => {
     return await privateHttp({
       method: "POST",

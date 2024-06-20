@@ -14,7 +14,6 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "./ListMyGarden.Style";
 import UserInfoAsyncStorage from "../../../../Utils/UserInfoAsyncStorage";
 import useListGarden from "./useListMyGarden";
-import { formatDate } from "../../../../Utils/helper";
 import { getStatusText } from "../../../../Utils/helper";
 const ListMyGarden = () => {
   const navigation = useNavigation();
