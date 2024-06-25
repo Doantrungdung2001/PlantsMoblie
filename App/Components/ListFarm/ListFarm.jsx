@@ -6,6 +6,7 @@ import {
   Image,
   FlatList,
   SafeAreaView,
+  ActivityIndicator
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Heading from "../Heading/Heading";
@@ -23,7 +24,7 @@ export default Album = () => {
         <TouchableOpacity
           style={{ alignSelf: "flex-end", marginRight: 10 }}
           onPress={() => {
-            navigation.push("service-screen/Transfer");
+            navigation.push("service-screen/farm");
           }}
         >
           <Text style={{ color: "green" }}>Tất cả</Text>
@@ -68,6 +69,7 @@ export default Album = () => {
           />
         </SafeAreaView>
       )}
+      {isLoadingAllFarm && <ActivityIndicator size="large" color="#00ff00" />}
     </View>
   );
 };

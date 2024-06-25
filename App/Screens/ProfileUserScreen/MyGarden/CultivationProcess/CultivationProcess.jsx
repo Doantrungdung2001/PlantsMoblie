@@ -186,6 +186,7 @@ const CultivationProcess = ({ gardenId }) => {
     setListProcess(allProcess);
   }, [allProcess, gardenId]);
 
+  console.log("Du lieu canh tac", listProcess);
   const renderClassItem = ({ item }) => (
     <View style={styles.classItem}>
       <View style={styles.timelineContainer}>

@@ -23,6 +23,7 @@ export default function useListFarm() {
     data: dataAllFarm,
     isSuccess: isSuccessAllFarm,
     isLoading: isLoadingAllFarm,
+    refetch: refetcListFarm,
   } = useQuery({
     queryKey: ["getAllFarm"],
     queryFn: () => FARM.getAllFarm(),
@@ -34,5 +35,6 @@ export default function useListFarm() {
     allFarm: dataAllFarm?.allfarm,
     isSuccessAllFarm,
     isLoadingAllFarm,
+    refetcListFarm,
   };
 }

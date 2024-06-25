@@ -136,18 +136,6 @@ const GARDEN = {
   },
 
   // not use
-  getPlantCurrentGarden: async (gardenId) => {
-    return await publicHttp({
-      method: "GET",
-      url: `plantCurrentInGarden/${gardenId}`,
-    })
-      .then((res) => {
-        return res;
-      })
-      .catch((err) => {
-        return err;
-      });
-  },
 
   getGardenTemplate: async (gardenId) => {
     return await publicHttp({
