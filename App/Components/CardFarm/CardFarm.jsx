@@ -4,12 +4,15 @@ import { COLORS } from "../../Constants";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./CardFarm.Styles";
+
 const CardFarm = ({ farm }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.push("farm-detail", { farmInfo: farm })}
+      onPress={() => {
+        navigation.push("farm-detail", { farmInfo: farm });
+      }}
     >
       <Image source={{ uri: farm?.avatar }} style={styles.image} />
       <View style={styles.subContainer}>

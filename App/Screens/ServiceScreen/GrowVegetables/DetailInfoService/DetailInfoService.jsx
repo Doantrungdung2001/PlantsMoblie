@@ -38,13 +38,9 @@ const DetailInfoService = () => {
           <Heading text={"Thông tin dịch vụ"} />
           <View style={styles.serviceInformation}>
             <View style={styles.information}>
-              <Text style={styles.nameInformation}>Tên dịch vụ</Text>
-              <Text style={styles.detailInformation}>Combo rau trồng</Text>
-            </View>
-            <View style={styles.information}>
               <Text style={styles.nameInformation}>Giá thành</Text>
               <Text style={styles.detailInformation}>
-                {serviceInformation.price}/1m2
+                {serviceInformation.price}/ 1tháng
               </Text>
             </View>
             <View style={styles.information}>
@@ -78,21 +74,21 @@ const DetailInfoService = () => {
               </Text>
             </View>
             <View style={styles.information}>
-              <Text style={styles.nameInformation}>Số lần giao</Text>
+              <Text style={styles.nameInformation}>Số lần giao hàng</Text>
               <Text style={styles.detailInformation}>
                 {serviceInformation.expectDeliveryPerWeek} lần/tuần
               </Text>
             </View>
             <View style={styles.information}>
-              <Text style={styles.nameInformation}>Đầu ra kỳ vọng</Text>
+              <Text style={styles.nameInformation}>Sản lượng kỳ vọng</Text>
               <Text style={styles.detailInformation}>
                 {serviceInformation.expectedOutput}kg
               </Text>
             </View>
-            <View style={styles.information}>
+            {/* <View style={styles.information}>
               <Text style={styles.nameInformation}>Thời lượng dịch vụ</Text>
               <Text style={styles.detailInformation}>2 tháng</Text>
-            </View>
+            </View> */}
           </View>
         </View>
       </ScrollView>

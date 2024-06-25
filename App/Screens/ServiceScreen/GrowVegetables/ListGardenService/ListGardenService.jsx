@@ -1,71 +1,64 @@
 import {
   FlatList,
-  Image,
   Text,
-  Button,
   View,
   ActivityIndicator,
+  TouchableOpacity,
 } from "react-native";
 import React from "react";
 import Heading from "../../../../Components/Heading/Heading";
-import { COLORS } from "../../../../Constants";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./ListGardenService.Styles";
-import useListGardenService from "./useGardenService";
 
-const ListGardenService = ({ farmId, farmInfo }) => {
+const ListGardenService = ({ serviceInfo, farmInfo }) => {
   const navigation = useNavigation();
-  const {
-    allGardenSerive,
-    isSuccessAllGardenService,
-    isLoadingAllGardenService,
-  } = useListGardenService({ farmId });
+
   return (
     <View>
-      <Heading text={"Dịch vụ trồng rau"} />
-      {isSuccessAllGardenService && (
-        <FlatList
-          data={allGardenSerive}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item, index }) => {
-            return item.status === "active" ? (
-              <View style={styles.container} key={index}>
-                <Image
-                  source={{ uri: item?.avatarGarden }}
-                  style={styles.image}
-                />
-                <View>
-                  <Text style={styles.name}>{item?.name}</Text>
-                  <Text style={styles.name}>{item?.price} VND</Text>
-                  <View style={styles.buttonBtn}>
-                    <Button
-                      onPress={() =>
-                        navigation.push("service-detail", {
-                          serviceInfo: item,
-                          farmInfo: farmInfo,
-                        })
-                      }
-                      title="Chi tiết"
-                      color={COLORS.white}
-                      accessibilityLabel="Learn more about this purple button"
-                    />
-                  </View>
-                </View>
-              </View>
-            ) : (
-              <View key={index}>
-                <Text style={{ color: "#B0C4DE" }}>
-                  Nông trại chưa cập nhật dự án trồng rau hộ
+      <Heading text={"Dịch vụ trồng rau hộ"} />
+      <FlatList
+        data={serviceInfo}
+        renderItem={({ item, index }) => {
+          return item.status === "active" ? (
+            <View style={styles.pricingOption}>
+              <Text style={styles.pricingOptionTitle}>
+                Dịch vụ thứ {index + 1}
+              </Text>
+              <Text style={styles.pricingOptionPrice}>
+                {item?.price} VND / 1tháng
+              </Text>
+              <Text style={styles.pricingOptionDescription}>
+                Diện tích: {item.square}m2
+              </Text>
+              <View style={styles.pricingOptionFeatures}>
+                <Text style={styles.pricingOptionFeature}>
+                  Sản lượng dự kiến: {item.expectedOutput} kg
+                </Text>
+                <Text style={styles.pricingOptionFeature}>
+                  Tần suất: {item.expectDeliveryPerWeek} lần/tuần
                 </Text>
               </View>
-            );
-          }}
-        />
-      )}
-      {isLoadingAllGardenService && (
-        <ActivityIndicator size="large" color="#00ff00" />
-      )}
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.push("service-detail", {
+                    serviceInfo: item,
+                    farmInfo: farmInfo,
+                  })
+                }
+                style={styles.pricingOptionButtonContainer}
+              >
+                <Text style={styles.pricingOptionButton}>Chi tiết</Text>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <View key={index}>
+              <Text style={{ color: "#B0C4DE" }}>
+                Nông trại chưa cập nhật dự án trồng rau hộ
+              </Text>
+            </View>
+          );
+        }}
+      />
     </View>
   );
 };

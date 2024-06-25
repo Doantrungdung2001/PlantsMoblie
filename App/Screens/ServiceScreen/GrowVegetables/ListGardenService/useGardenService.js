@@ -29,6 +29,7 @@ export default function useListGardenService({ farmId }) {
     data: dataAllGardenService,
     isSuccess: isSuccessAllGardenService,
     isLoading: isLoadingAllGardenService,
+    refetch: refetchAllGardenService,
   } = useQuery({
     queryKey: ["getAllGardenService"],
     queryFn: () => GARDEN_SERVICE_TEMPLATE.getServiceTemplate(farmId),
@@ -40,5 +41,6 @@ export default function useListGardenService({ farmId }) {
     allGardenSerive: dataAllGardenService?.allGardenSerive,
     isSuccessAllGardenService,
     isLoadingAllGardenService,
+    refetchAllGardenService,
   };
 }

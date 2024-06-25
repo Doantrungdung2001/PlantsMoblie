@@ -7,25 +7,47 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     borderRadius: 10,
   },
-  image: {
-    width: 160,
-    height: 100,
-    borderRadius: 10,
+  // list service
+
+  pricingOption: {
+    margin: 20,
+    padding: 20,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
   },
-  name: {
-    fontFamily: "Roboto-Medium",
-    marginTop: 15,
-    fontSize: 20,
+  pricingOptionTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 10,
   },
-  count: {
+  pricingOptionPrice: {
     fontSize: 18,
-    flex: 1,
-    color: "#B0C4DE",
+    color: "#333",
+    marginBottom: 10,
   },
-  buttonBtn: {
-    marginTop: 10,
-    backgroundColor: COLORS.green,
-    borderRadius: 15,
+  pricingOptionDescription: {
+    fontSize: 14,
+    color: "#666",
+    marginBottom: 10,
+  },
+  pricingOptionFeatures: {
+    marginBottom: 10,
+  },
+  pricingOptionFeature: {
+    fontSize: 14,
+    color: "#999",
+  },
+  pricingOptionButtonContainer: {
+    backgroundColor: COLORS.primary,
+    borderRadius: 5,
+  },
+  pricingOptionButton: {
+    fontSize: 17,
+    color: "#fff",
+    padding: 10,
+    textAlign: "center",
+    fontWeight: "bold",
   },
 });
 export default styles;
