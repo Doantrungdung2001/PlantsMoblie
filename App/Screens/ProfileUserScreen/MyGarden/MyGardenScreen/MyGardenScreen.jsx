@@ -9,7 +9,7 @@ import {
 import React, { useState, useEffect } from "react";
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
 import { COLORS } from "../../../../Constants";
-import CultivationProcess from "../CultivationProcess/CultivationProcess";
+import ListPlant from "../CultivationProcess/ListPlant/ListPlant";
 import CameraExtraction from "../CameraExtraction/CameraExtraction";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -32,7 +32,7 @@ const tabs = [
   },
   {
     name: "Quá trình",
-    component: CultivationProcess,
+    component: ListPlant,
   },
   {
     name: "Trích xuất",
