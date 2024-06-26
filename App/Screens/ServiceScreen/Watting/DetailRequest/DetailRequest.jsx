@@ -58,7 +58,7 @@ const DetailRequest = () => {
           </Text>
         </View>
         <View style={styles.itemRow}>
-          <Text style={styles.itemText}>Số lượng giao hàng</Text>
+          <Text style={styles.itemText}>Sản lượng giao hàng</Text>
           <Text style={styles.itemText}>
             {detailRequest?.gardenServiceTemplate?.expectDeliveryAmount}/ 1 lần
           </Text>

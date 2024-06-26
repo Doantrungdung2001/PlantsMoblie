@@ -11,7 +11,7 @@ const DetailInfoService = () => {
     param.serviceInfo
   );
   const [farmInformation, setFarmInformation] = useState(param.farmInfo);
-  
+
   useEffect(() => {
     setServiceInformation(serviceInformation);
   }, [serviceInformation]);
@@ -74,21 +74,21 @@ const DetailInfoService = () => {
               </Text>
             </View>
             <View style={styles.information}>
-              <Text style={styles.nameInformation}>Số lần giao hàng</Text>
-              <Text style={styles.detailInformation}>
-                {serviceInformation.expectDeliveryPerWeek} lần/tuần
-              </Text>
-            </View>
-            <View style={styles.information}>
               <Text style={styles.nameInformation}>Sản lượng kỳ vọng</Text>
               <Text style={styles.detailInformation}>
                 {serviceInformation.expectedOutput}kg
               </Text>
             </View>
-            {/* <View style={styles.information}>
-              <Text style={styles.nameInformation}>Thời lượng dịch vụ</Text>
-              <Text style={styles.detailInformation}>2 tháng</Text>
-            </View> */}
+            <View style={styles.information}>
+              <Text style={styles.nameInformation}>Tần suất giao hàng</Text>
+              <Text style={styles.detailInformation}>
+                {serviceInformation.expectDeliveryPerWeek} lần/tuần
+              </Text>
+            </View>
+            <View style={styles.information}>
+              <Text style={styles.nameInformation}>Sản lượng giao hàng</Text>
+              <Text style={styles.detailInformation}>{serviceInformation.expectDeliveryAmount}kg/1lần</Text>
+            </View>
           </View>
         </View>
       </ScrollView>
