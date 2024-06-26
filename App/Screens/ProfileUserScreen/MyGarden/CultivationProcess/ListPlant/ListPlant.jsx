@@ -10,7 +10,7 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./ListPlants";
 import useListProcess from "../useCultivationProcess";
-
+import { renderTypeProcessProject } from "../../../../../Utils/helper";
 const ListPlant = ({ gardenId }) => {
   const navigation = useNavigation();
   const { allProcess, isSuccessAllProcess, isLoadingAllProcess } =
@@ -41,7 +41,7 @@ const ListPlant = ({ gardenId }) => {
               <Text style={styles.mblTxt}>Chi tiết</Text>
             </View>
             <View style={styles.msgContainer}>
-              <Text style={styles.msgTxt}>{item.status}</Text>
+              <Text style={styles.msgTxt}>{renderTypeProcessProject(item.status)}</Text>
             </View>
           </View>
         </View>

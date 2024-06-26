@@ -10,6 +10,7 @@ import Request from "../Screens/ProfileUserScreen/MyGarden/Request";
 import LiveCamera from "../Screens/ProfileUserScreen/MyGarden/LiveCamera";
 import Delivery from "../Screens/ProfileUserScreen/MyGarden/Delivery/Delivery";
 import ListMyGarden from "../Screens/ProfileUserScreen/MyGarden/ListMyGarden/ListMyGarden";
+import CultivationProcess from "../Screens/ProfileUserScreen/MyGarden/CultivationProcess/CultivationProcess/CultivationProcess";
 const Stack = createNativeStackNavigator();
 
 const UserNavigation = () => {
@@ -26,6 +27,10 @@ const UserNavigation = () => {
       <Stack.Screen
         name="profile/my-garden/detail"
         component={MyGardenScreen}
+      />
+      <Stack.Screen
+        name="profile/my-garden/cultivation"
+        component={CultivationProcess}
       />
       <Stack.Screen
         name="profile/history-grow-vegetables"
