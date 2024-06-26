@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
-import GARDEN_SERVICE_REQUEST from "../../../Services/GardenRequestService";
+import GARDEN_SERVICE_REQUEST from "../../../../Services/GardenRequestService";
 
 export default function useGardenRequest() {
   const parseDataGardenRequest = useCallback((data) => {
@@ -49,6 +49,7 @@ export default function useGardenRequest() {
       return {
         id: gardenReqeust?._id,
         time: gardenReqeust?.time,
+        farm: gardenReqeust?.farm,
         farm_name: gardenReqeust?.farm.name,
         gardenServiceTemplate: gardenReqeust?.gardenServiceTemplate,
         note: gardenReqeust.note,

@@ -8,12 +8,12 @@ import {
   ActivityIndicator,
   ScrollView,
 } from "react-native";
-import { useRoute, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import { COLORS } from "../../../Constants";
+import { COLORS } from "../../../../Constants";
 import useGardenRequest from "./useGardenRequestClient";
 import styles from "./Watting.Styles";
-import { formatDateTime } from "../../../Utils/helper";
+import { formatDateTime } from "../../../../Utils/helper";
 
 const Watting = () => {
   const navigation = useNavigation();
@@ -23,12 +23,17 @@ const Watting = () => {
     isLoadingAllGardenRequest,
   } = useGardenRequest();
   const renderClassItem = ({ item }) => {
-    console.log("Data: ", item.listplant); // Logging item data
-
     return (
       <View style={styles.classItem}>
         <View style={styles.classContent}>
-          <View style={styles.card}>
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() => {
+              navigation.push("service-screen/request-detail", {
+                requestInfo: item,
+              });
+            }}
+          >
             <Text style={styles.cardTitle}>{item.farm_name}</Text>
             <Text style={styles.cardDate}>{formatDateTime(item.time)}</Text>
             <FlatList
@@ -36,18 +41,18 @@ const Watting = () => {
               data={item.listplant}
               renderItem={({ item: plant, index }) => (
                 <Image
-                  key={index.toString()} // Ensure key is a string and unique
+                  key={index.toString()}
                   source={{ uri: plant.plant_thumb }}
                   style={styles.studentAvatar}
                 />
               )}
               horizontal
-              keyExtractor={(plant, index) => index.toString()} // KeyExtractor for FlatList
+              keyExtractor={(plant, index) => index.toString()}
             />
             <View style={{ alignItems: "flex-end", paddingRight: 10 }}>
-              <Text style={{ fontSize: 16, color: "#333", fontWeight: "bold" }}>Chi tiết</Text>
+              <Text style={{ fontSize: 16, color: "#333" }}>Chi tiết</Text>
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -76,7 +81,11 @@ const Watting = () => {
           <View>
             {allGardenRequest.length > 0 ? (
               <FlatList
-                contentContainerStyle={{ paddingHorizontal: 16, marginTop: 10, marginBottom: 10 }}
+                contentContainerStyle={{
+                  paddingHorizontal: 16,
+                  marginTop: 10,
+                  marginBottom: 10,
+                }}
                 data={allGardenRequest}
                 renderItem={renderClassItem}
                 keyExtractor={(item, index) => index.toString()}
