@@ -1,10 +1,18 @@
 // rnfe
-import { View, Text, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
+import React, { useState, useEffect } from "react";
 import { COLORS } from "../../../Constants";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./Profile.Style";
+import UserInfoAsyncStorage from "../../../Utils/UserInfoAsyncStorage";
+import useClientInformation from "../ProfileInformation/useClientInformation";
 data = [
   {
     id: 1,
@@ -39,21 +47,40 @@ data = [
 
 const user = {
   avatar: "https://image.pngaaa.com/764/3043764-middle.png",
-  name: "Doan Trung Dung",
-  gmail: "doantrungdung2001@gmail.com",
 };
 
 const Proflie = () => {
+  const [userId, setUserId] = useState(null);
   const navigation = useNavigation();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await UserInfoAsyncStorage.getUserInfo("UserInfo");
+        setUserId(result.farm._id);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+    fetchData();
+  }, []);
+  const { dataClient, isSuccessClientInformation, isLoadingClientInformation } =
+    useClientInformation({
+      clientId: userId,
+    });
   return (
     <View>
       <View style={styles.avatarContainer}>
         <Text style={styles.avatarTitle}>Hồ sơ</Text>
-        <View style={styles.avatarContent}>
-          <Image source={{ uri: user.avatar }} style={styles.avatarImg} />
-          <Text style={styles.nameText}>{user.name}</Text>
-          <Text style={styles.mailText}>{user.gmail}</Text>
-        </View>
+        {isSuccessClientInformation && (
+          <View style={styles.avatarContent}>
+            <Image source={{ uri: user.avatar }} style={styles.avatarImg} />
+            <Text style={styles.nameText}>{dataClient.name}</Text>
+            <Text style={styles.mailText}>{dataClient.email}</Text>
+          </View>
+        )}
+        {isLoadingClientInformation && (
+          <ActivityIndicator size="large" color="#00ff00" />
+        )}
       </View>
       <View style={styles.content}>
         {data.map((item) => (

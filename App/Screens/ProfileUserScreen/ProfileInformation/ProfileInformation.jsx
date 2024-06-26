@@ -58,15 +58,11 @@ const ProfileInformation = () => {
             </View>
             <View style={styles.infoContainer}>
               <Text style={styles.infoLabel}>Số điện thoại:</Text>
-              <Text style={styles.infoValue}>{dataClient.email}</Text>
+              <Text style={styles.infoValue}>{dataClient.phone}</Text>
             </View>
             <View style={styles.infoContainer}>
               <Text style={styles.infoLabel}>Địa chỉ:</Text>
               <Text style={styles.infoValue}>{dataClient.address}</Text>
-            </View>
-            <View style={styles.infoContainer}>
-              <Text style={styles.infoLabel}>Ngay sinh</Text>
-              <Text style={styles.infoValue}>19/10/2001</Text>
             </View>
           </View>
           <View style={styles.updateBtn}>
