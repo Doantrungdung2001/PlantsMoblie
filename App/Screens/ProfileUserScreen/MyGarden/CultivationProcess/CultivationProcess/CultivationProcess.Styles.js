@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../../../../../Constants";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -107,16 +108,31 @@ const styles = StyleSheet.create({
     color: "#00008B",
     marginBottom: 8,
   },
-  studentListContainer: {
-    marginRight: 10,
+  // modol
+  detailInfo: {
+    margin: 10,
+    padding: 10,
+    borderWidth: 2,
+    borderColor: COLORS.green,
+    borderRadius: 10,
   },
-  studentAvatar: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    marginLeft: -3,
-    borderWidth: 1,
-    borderColor: "#fff",
+  subject: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginTop: 20,
+    marginBottom: 20,
+    color: "#222",
+  },
+  body: {
+    marginTop: 5,
+    paddingTop: 10,
+    borderTopWidth: 0.5,
+    borderTopColor: "#b3b3b3",
+  },
+  bodyText: {
+    fontSize: 19,
+    lineHeight: 24,
+    color: "black",
   },
 });
 export default styles;
