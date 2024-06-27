@@ -5,7 +5,7 @@ import MyGardenScreen from "../Screens/ProfileUserScreen/MyGarden/MyGardenScreen
 import UpdateInformation from "../Screens/ProfileUserScreen/UpdateInformation/UpdateInformation";
 import ProfileInformation from "../Screens/ProfileUserScreen/ProfileInformation/ProfileInformation";
 import Points from "../Screens/ProfileUserScreen/Points/Points";
-import HistoryGrowVegetables from "../Screens/ProfileUserScreen/HistoryGrowVegetables/HistoryGrowVegetables";
+import HistoryDelivery from "../Screens/ProfileUserScreen/HistoryDelivery/HistoryDelivery";
 import Request from "../Screens/ProfileUserScreen/MyGarden/Request";
 import LiveCamera from "../Screens/ProfileUserScreen/MyGarden/LiveCamera";
 import ListMyGarden from "../Screens/ProfileUserScreen/MyGarden/ListMyGarden/ListMyGarden";
@@ -32,8 +32,8 @@ const UserNavigation = () => {
         component={CultivationProcess}
       />
       <Stack.Screen
-        name="profile/history-grow-vegetables"
-        component={HistoryGrowVegetables}
+        name="profile/history-delivery"
+        component={HistoryDelivery}
       />
       <Stack.Screen name="profile/my-garden/request" component={Request} />
       <Stack.Screen

@@ -32,14 +32,14 @@ data = [
     param: "my-garden/listgarden",
     icon: "cart-sharp",
   },
-  // {
-  //   id: 4,
-  //   name: "Lịch sử",
-  //   param: "history-grow-vegetables",
-  //   icon: "film",
-  // },
   {
     id: 4,
+    name: "Lịch sử",
+    param: "history-delivery",
+    icon: "film",
+  },
+  {
+    id: 5,
     name: "Đăng xuất",
     icon: "log-out",
   },

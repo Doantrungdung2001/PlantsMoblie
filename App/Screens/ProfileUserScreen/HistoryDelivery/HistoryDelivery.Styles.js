@@ -1,6 +1,37 @@
 import { StyleSheet } from "react-native";
 import { COLORS } from "../../../Constants";
 const styles = StyleSheet.create({
+  filterTitle: {
+    fontSize: 22,
+    fontWeight: "700",
+    color: COLORS.black,
+  },
+  filterContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: COLORS.white,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 10,
+    shadowColor: "#333333",
+    shadowOffset: { width: 1, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+  },
+
+  // content
+  cardContainer: {
+    flex: 1,
+    backgroundColor: "##E0FFFF",
+    borderRadius: 15,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+    marginBottom: 16,
+    padding: 16,
+  },
   cardCanceled: {
     flex: 1,
     backgroundColor: "#ff7f50",
@@ -16,18 +47,6 @@ const styles = StyleSheet.create({
   cardDone: {
     flex: 1,
     backgroundColor: COLORS.primary,
-    borderRadius: 15,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 4,
-    marginBottom: 16,
-    padding: 16,
-  },
-  cardComming: {
-    flex: 1,
-    backgroundColor: COLORS.yellow,
     borderRadius: 15,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
@@ -158,6 +177,29 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontSize: 18,
+  },
+
+  //panigation
+  paginationContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 10,
+  },
+  paginationButton: {
+    paddingHorizontal: 15,
+    paddingVertical: 8,
+    marginHorizontal: 5,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: COLORS.primary,
+    backgroundColor: "#fff",
+  },
+  paginationButtonActive: {
+    backgroundColor: COLORS.primary,
+  },
+  paginationText: {
+    fontSize: 16,
+    color: "white",
   },
 });
 export default styles;
