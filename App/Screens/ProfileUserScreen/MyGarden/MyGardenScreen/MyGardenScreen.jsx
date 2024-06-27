@@ -12,7 +12,6 @@ import { COLORS } from "../../../../Constants";
 import ListPlant from "../CultivationProcess/ListPlant/ListPlant";
 import CameraExtraction from "../CameraExtraction/CameraExtraction";
 import { AntDesign } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import PlantFarming from "../PlantFarming/PlantFarming";
 import InfoMyGarden from "../InforMyGarden/InfoMyGarden";
 import { useRoute, useNavigation } from "@react-navigation/native";
@@ -154,16 +153,6 @@ const MyGardenScreen = () => {
         </View>
       </ScrollView>
       <View style={styles.footer}>
-        <MaterialCommunityIcons
-          name="truck-delivery"
-          size={45}
-          color="green"
-          onPress={() =>
-            navigation.push("profile/my-garden/delivery", {
-              garden: dataGarden,
-            })
-          }
-        />
         <TouchableOpacity
           style={styles.bookingBtn}
           onPress={() => navigation.push("profile/my-garden/request")}

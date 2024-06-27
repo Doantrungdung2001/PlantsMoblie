@@ -186,10 +186,10 @@ const GARDEN = {
         return err;
       });
   },
-  getAllDeliveryByGarden: async (gardenId) => {
+  getAllDeliveryByClient: async (clientId) => {
     return await publicHttp({
       method: "GET",
-      url: `garden/${gardenId}/delivery`,
+      url: `garden/client/${clientId}/delivery`,
     })
       .then((res) => {
         console.log("res;", res);
