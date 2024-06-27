@@ -12,9 +12,11 @@ import { Ionicons } from "@expo/vector-icons";
 import CustomButton from "../../../Components/CustomButton/CustomButton";
 import UserInfoAsyncStorage from "../../../Utils/UserInfoAsyncStorage";
 import useClientInformation from "./useClientInformation";
+
 const ProfileInformation = () => {
   const [userId, setUserId] = useState(null);
   const navigation = useNavigation();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,10 +28,16 @@ const ProfileInformation = () => {
     };
     fetchData();
   }, []);
-  const { dataClient, isSuccessClientInformation, isLoadingClientInformation } =
-    useClientInformation({
-      clientId: userId,
-    });
+
+  const {
+    dataClient,
+    isSuccessClientInformation,
+    isLoadingClientInformation,
+    refetchClientInformation,
+  } = useClientInformation({
+    clientId: userId,
+  });
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -43,7 +51,7 @@ const ProfileInformation = () => {
           <View style={styles.avatarContainer}>
             <Image
               source={{
-                uri: "https://www.bootdey.com/img/Content/avatar/avatar1.png",
+                uri: "https://image.pngaaa.com/764/3043764-middle.png",
               }}
               style={styles.avatar}
             />
@@ -68,7 +76,12 @@ const ProfileInformation = () => {
           <View style={styles.updateBtn}>
             <CustomButton
               label={"Chỉnh sửa thông tin"}
-              onPress={() => navigation.push("profile/update-info")}
+              onPress={() =>
+                navigation.push("profile/update-info", {
+                  dataClient: dataClient,
+                  refetchClientInformation: refetchClientInformation,
+                })
+              }
             />
           </View>
         </View>
