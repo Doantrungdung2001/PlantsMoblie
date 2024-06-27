@@ -1,10 +1,10 @@
-// rnfe
 import {
   View,
   Text,
   Image,
   TouchableOpacity,
   ActivityIndicator,
+  Alert,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { COLORS } from "../../../Constants";
@@ -13,6 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "./Profile.Style";
 import UserInfoAsyncStorage from "../../../Utils/UserInfoAsyncStorage";
 import useClientInformation from "../ProfileInformation/useClientInformation";
+
 data = [
   {
     id: 1,
@@ -52,6 +53,7 @@ const user = {
 const Proflie = () => {
   const [userId, setUserId] = useState(null);
   const navigation = useNavigation();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -63,10 +65,43 @@ const Proflie = () => {
     };
     fetchData();
   }, []);
+
   const { dataClient, isSuccessClientInformation, isLoadingClientInformation } =
     useClientInformation({
       clientId: userId,
     });
+
+  const handleLogout = async () => {
+    try {
+      await UserInfoAsyncStorage.clearUserInfo();
+      navigation.replace("Login");
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
+  const handlePress = (item) => {
+    if (item.id === 5) {
+      Alert.alert(
+        "Xác nhận",
+        "Bạn có chắc chắn muốn đăng xuất không?",
+        [
+          {
+            text: "Không",
+            style: "cancel",
+          },
+          {
+            text: "Có",
+            onPress: handleLogout,
+          },
+        ],
+        { cancelable: false }
+      );
+    } else {
+      navigation.push(`profile/${item.param}`);
+    }
+  };
+
   return (
     <View>
       <View style={styles.avatarContainer}>
@@ -85,8 +120,9 @@ const Proflie = () => {
       <View style={styles.content}>
         {data.map((item) => (
           <TouchableOpacity
+            key={item.id}
             style={styles.service}
-            onPress={() => navigation.push(`profile/${item.param}`)}
+            onPress={() => handlePress(item)}
           >
             <Ionicons name={item.icon} size={44} color={COLORS.primary} />
             <Text
