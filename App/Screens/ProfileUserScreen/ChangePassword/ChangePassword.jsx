@@ -1,5 +1,5 @@
-import { Text, View, ScrollView, SafeAreaView } from "react-native";
-import React, { useState, useRef } from "react";
+import { Text, ScrollView, SafeAreaView } from "react-native";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./ChangePassword.Style";
 import PageHeading from "../../../Components/PageHeading/PageHeading";
 import InputField from "../../../Components/InputField/InputField";
@@ -7,7 +7,12 @@ import CustomButton from "../../../Components/CustomButton/CustomButton";
 import { MaterialIcons } from "@expo/vector-icons";
 import ToastMessage from "../../../Components/ToastMessage/ToastMessage";
 import AUTH from "../../../Services/AuthService";
+import UserInfoAsyncStorage from "../../../Utils/UserInfoAsyncStorage";
+import { useNavigation } from "@react-navigation/native";
+
 const ChangePassword = () => {
+  const navigation = useNavigation();
+  const [isToastVisible, setIsToastVisible] = useState(false);
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -15,13 +20,13 @@ const ChangePassword = () => {
 
   const toastRef = useRef(null);
   const [typeToast, setTypeToast] = useState("success");
-  const [textToast, setTextToast] = useState();
-
-  const [descriptionToast, setDescriptionToast] = useState();
+  const [textToast, setTextToast] = useState("");
+  const [descriptionToast, setDescriptionToast] = useState("");
 
   const handleShowToast = () => {
     if (toastRef.current) {
       toastRef.current.show();
+      setIsToastVisible(true);
     }
   };
 
@@ -34,7 +39,7 @@ const ChangePassword = () => {
     setPasswordsMatch(text === newPassword);
   };
 
-  const ChangePassword = async (oldPassword, newPassword) => {
+  const changePassword = async (oldPassword, newPassword) => {
     try {
       const res = await AUTH.updatePassword({
         oldPassword: oldPassword,
@@ -44,7 +49,7 @@ const ChangePassword = () => {
       if (res.data.status === 200 || res.data.status === 201) {
         setTypeToast("success");
         setTextToast("Thành công");
-        setDescriptionToast("Thay đổi mật khẩu thành công thành công");
+        setDescriptionToast("Thay đổi mật khẩu thành công");
         handleShowToast();
       }
     } catch (error) {
@@ -57,6 +62,24 @@ const ChangePassword = () => {
       console.log("fail: --", error);
     }
   };
+
+  useEffect(() => {
+    const handleLogoutAfterToast = async () => {
+      if (isToastVisible && typeToast === "success") {
+        setTimeout(async () => {
+          try {
+            await UserInfoAsyncStorage.clearUserInfo();
+            navigation.replace("Login");
+          } catch (error) {
+            console.error("Error logging out:", error);
+          }
+          setIsToastVisible(false);
+        }, 3000);
+      }
+    };
+
+    handleLogoutAfterToast();
+  }, [isToastVisible, typeToast]);
 
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: "center" }}>
@@ -121,7 +144,7 @@ const ChangePassword = () => {
         <CustomButton
           label={"Cập nhật"}
           onPress={() => {
-            ChangePassword(oldPassword, newPassword);
+            changePassword(oldPassword, newPassword);
           }}
         />
       </ScrollView>
