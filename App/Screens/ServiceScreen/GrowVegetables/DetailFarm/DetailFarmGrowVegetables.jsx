@@ -29,7 +29,7 @@ const DetailFarmGrowVegetables = () => {
     isLoadingAllGardenService,
     refetchAllGardenService,
   } = useListGardenService({
-    farmId: param.farmInfo.id,
+    farmId: param.farmInfo._id,
   });
   useEffect(() => {
     setFarmInformation(farmInformation);

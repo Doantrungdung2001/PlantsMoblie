@@ -4,7 +4,7 @@ import FARM from "../../Services/FarmService";
 export default function useListFarm() {
   const parseDataAllFarm = useCallback((data) => {
     const allfarm = data.map((farm) => ({
-      id: farm?._id,
+      _id: farm?._id,
       name: farm?.name || "Chưa cập nhật",
       status: farm?.status || "Chưa cập nhật",
       district: farm?.district || "Chưa cập nhật",

@@ -8,7 +8,6 @@ import {
   Text,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { useRoute, useNavigation } from "@react-navigation/native";
 import CardFarm from "../../../../Components/CardFarm/CardFarm";
 import useListFarm from "../../../../Components/ListFarm/useListFarm";
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
@@ -17,8 +16,6 @@ import styles from "./ListFarmDetail.Styles";
 
 const ListFarmDetail = () => {
   const { allFarm, isSuccessAllFarm, isLoadingAllFarm } = useListFarm();
-  const param = useRoute().params;
-  const navigation = useNavigation();
   const [searchText, setSearchText] = useState("");
   const [filteredFarms, setFilteredFarms] = useState([]);
 
