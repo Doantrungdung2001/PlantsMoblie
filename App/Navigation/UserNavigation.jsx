@@ -10,6 +10,7 @@ import Request from "../Screens/ProfileUserScreen/MyGarden/Request";
 import LiveCamera from "../Screens/ProfileUserScreen/MyGarden/LiveCamera";
 import ListMyGarden from "../Screens/ProfileUserScreen/MyGarden/ListMyGarden/ListMyGarden";
 import CultivationProcess from "../Screens/ProfileUserScreen/MyGarden/CultivationProcess/CultivationProcess/CultivationProcess";
+import ChangePassword from "../Screens/ProfileUserScreen/ChangePassword/ChangePassword";
 const Stack = createNativeStackNavigator();
 
 const UserNavigation = () => {
@@ -22,6 +23,7 @@ const UserNavigation = () => {
       <Stack.Screen name="proflie" component={Proflie} />
       <Stack.Screen name="profile/info-view" component={ProfileInformation} />
       <Stack.Screen name="profile/update-info" component={UpdateInformation} />
+      <Stack.Screen name="profile/change-password" component={ChangePassword} />
       <Stack.Screen name="profile/points" component={Points} />
       <Stack.Screen
         name="profile/my-garden/detail"

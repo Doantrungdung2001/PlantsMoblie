@@ -30,6 +30,18 @@ const AUTH = {
     console.log("result: ", result);
     return result;
   },
+  updatePassword: async ({ oldPassword, newPassword }) => {
+    let result = await privateHttp({
+      method: "PATCH",
+      url: "updatePassword",
+      data: {
+        oldPassword,
+        newPassword,
+      },
+    });
+    console.log("result: ", result);
+    return result;
+  },
   forgetPassword: async ({ email }) => {
     let result = await publicHttp({
       method: "POST",
