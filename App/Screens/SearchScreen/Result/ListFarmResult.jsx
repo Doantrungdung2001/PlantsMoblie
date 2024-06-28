@@ -2,11 +2,10 @@ import { Text, View, TouchableOpacity, Image, FlatList } from "react-native";
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./ListFarmResult.Styles";
-
+import NotData from "../../../Components/NotData/NotData";
 const ListFarmResult = ({ dataListFarmResult }) => {
   const navigation = useNavigation();
   const [dataFarm, setDataFarm] = useState(dataListFarmResult);
-  console.log("Data:", dataFarm);
   useEffect(() => {
     setDataFarm(dataListFarmResult);
   }, [dataListFarmResult]);
@@ -50,9 +49,7 @@ const ListFarmResult = ({ dataListFarmResult }) => {
           />
         </View>
       ) : (
-        <View>
-          <Text>Không có nông trại nào phù hợp</Text>
-        </View>
+        <NotData text={"Không tìm thấy nông trại phù hợp"} />
       )}
     </View>
   );
