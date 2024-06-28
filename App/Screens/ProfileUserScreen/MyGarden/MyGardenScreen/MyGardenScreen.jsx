@@ -43,9 +43,9 @@ const MyGardenScreen = () => {
   const [selectedHeader, setSelectedHeader] = useState(0);
   const [loading, setLoading] = useState(false);
   const param = useRoute().params;
-  const [dataGarden, setDataGarden] = useState(param.dataMyGarden);
   const navigation = useNavigation();
-
+  const [dataGarden, setDataGarden] = useState(param.dataMyGarden);
+ 
   // Update dataGarden when route params change
   useEffect(() => {
     if (param?.dataMyGarden) {
@@ -106,7 +106,12 @@ const MyGardenScreen = () => {
           >
             <PageHeading title={"Vườn của tôi"} />
             <TouchableOpacity
-              onPress={() => navigation.push("profile/my-garden/live")}
+              onPress={() =>
+                navigation.push("profile/my-garden/live", {
+                  gardenId: dataGarden.id,
+                })
+              }
+
               // onPress={() => navigation.push("profile/my-garden/livecamera")}
             >
               <AntDesign

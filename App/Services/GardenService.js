@@ -100,6 +100,21 @@ const GARDEN = {
       });
   },
 
+  getLiveCamera: async (gardenId) => {
+    return await publicHttp({
+      method: "GET",
+      url: `garden/${gardenId}/camera`,
+    })
+      .then((res) => {
+        console.log("res;", res);
+        return res;
+      })
+      .catch((err) => {
+        console.log("err: ", err);
+        return err;
+      });
+  },
+
   updateDeliverybyClient: async (gardenId, deliveryId, data) => {
     return await privateHttp({
       method: "PATCH",
