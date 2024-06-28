@@ -41,6 +41,19 @@ const GARDEN_SERVICE_REQUEST = {
         return err;
       });
   },
+  deleteGardenServiceRequest: async (gardenServiceRequestId) => {
+    return await privateHttp({
+      method: "DELETE",
+      url: `/gardenServiceRequest/${gardenServiceRequestId}`,
+      data,
+    })
+      .then((res) => {
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      });
+  },
 };
 
 export default GARDEN_SERVICE_REQUEST;

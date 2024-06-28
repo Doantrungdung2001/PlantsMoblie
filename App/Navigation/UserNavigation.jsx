@@ -7,7 +7,6 @@ import ProfileInformation from "../Screens/ProfileUserScreen/ProfileInformation/
 import Points from "../Screens/ProfileUserScreen/Points/Points";
 import HistoryDelivery from "../Screens/ProfileUserScreen/HistoryDelivery/HistoryDelivery";
 import Request from "../Screens/ProfileUserScreen/MyGarden/Request";
-import LiveCamera from "../Screens/ProfileUserScreen/MyGarden/LiveCamera";
 import ListMyGarden from "../Screens/ProfileUserScreen/MyGarden/ListMyGarden/ListMyGarden";
 import CultivationProcess from "../Screens/ProfileUserScreen/MyGarden/CultivationProcess/CultivationProcess/CultivationProcess";
 import ChangePassword from "../Screens/ProfileUserScreen/ChangePassword/ChangePassword";
@@ -39,10 +38,6 @@ const UserNavigation = () => {
         component={HistoryDelivery}
       />
       <Stack.Screen name="profile/my-garden/request" component={Request} />
-      <Stack.Screen
-        name="profile/my-garden/livecamera"
-        component={LiveCamera}
-      />
       <Stack.Screen name="profile/my-garden/live" component={Live} />
       <Stack.Screen
         name="profile/my-garden/listgarden"

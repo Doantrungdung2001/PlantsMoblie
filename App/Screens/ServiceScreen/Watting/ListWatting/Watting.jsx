@@ -21,6 +21,7 @@ const Watting = () => {
     allGardenRequest,
     isSuccessAllGardenRequest,
     isLoadingAllGardenRequest,
+    refetchAllGardenRequest,
   } = useGardenRequest();
   const renderClassItem = ({ item }) => {
     return (
@@ -31,6 +32,7 @@ const Watting = () => {
             onPress={() => {
               navigation.push("service-screen/request-detail", {
                 requestInfo: item,
+                refetchAllGardenRequest: refetchAllGardenRequest,
               });
             }}
           >

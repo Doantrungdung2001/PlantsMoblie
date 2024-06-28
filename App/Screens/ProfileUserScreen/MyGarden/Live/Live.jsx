@@ -7,7 +7,7 @@ import NotData from "../../../../Components/NotData/NotData";
 
 const Live = () => {
   const [isLive, setIsLive] = useState(false);
-  const liveStreamId = "FanG--ZXdlE"; // Thay {LIVESTREAM_ID} bằng live stream ID của YouTube
+  const liveStreamId = "O25lkvRKmqQ"; // Thay {LIVESTREAM_ID} bằng live stream ID của YouTube
   const apiKey = "AIzaSyC19A5x6_LBr00qaFUOKrh5fscbnFs5znc"; // Thay YOUR_YOUTUBE_API_KEY bằng khóa API của bạn
 
   useEffect(() => {
