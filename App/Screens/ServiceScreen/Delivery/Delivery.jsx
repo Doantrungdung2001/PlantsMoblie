@@ -23,7 +23,7 @@ import GARDEN from "../../../Services/GardenService";
 const Delivery = () => {
   const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState(null);
-  const [isLoading, setIsLoading] = useState(false); // Add this line
+  const [isLoading, setIsLoading] = useState(false);
   let totalAmount = 0;
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const Delivery = () => {
   const [deleveryDetail, setDeleveryDetail] = useState(null);
 
   const handleConfirm = async (gardenId, deliveryId) => {
-    setIsLoading(true); // Set loading to true
+    setIsLoading(true);
     try {
       if (deliveryId) {
         const result = await GARDEN.updateDeliverybyClient(
@@ -88,9 +88,11 @@ const Delivery = () => {
       setDescriptionToast("Xác nhận thất bại");
       handleShowToast();
     } finally {
-      setIsLoading(false); // Set loading to false
+      setIsLoading(false);
     }
   };
+
+  const hasComingDeliveries = allDelivery?.some(delivery => delivery.status === "coming");
 
   return (
     <ScrollView>
@@ -103,7 +105,7 @@ const Delivery = () => {
       <PageHeading title={"Thông tin giao hàng"} />
       {isSuccessAllDelivery && (
         <View style={{ padding: 10, marginTop: 10 }}>
-          {allDelivery?.length > 0 ? (
+          {hasComingDeliveries ? (
             <View>
               {allDelivery?.map(
                 (data, index) =>
