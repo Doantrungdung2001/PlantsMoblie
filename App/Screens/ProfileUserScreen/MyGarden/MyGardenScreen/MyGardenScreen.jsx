@@ -106,7 +106,8 @@ const MyGardenScreen = () => {
           >
             <PageHeading title={"Vườn của tôi"} />
             <TouchableOpacity
-              onPress={() => navigation.push("profile/my-garden/livecamera")}
+              onPress={() => navigation.push("profile/my-garden/live")}
+              // onPress={() => navigation.push("profile/my-garden/livecamera")}
             >
               <AntDesign
                 name="camera"

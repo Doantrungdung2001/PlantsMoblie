@@ -11,6 +11,7 @@ import LiveCamera from "../Screens/ProfileUserScreen/MyGarden/LiveCamera";
 import ListMyGarden from "../Screens/ProfileUserScreen/MyGarden/ListMyGarden/ListMyGarden";
 import CultivationProcess from "../Screens/ProfileUserScreen/MyGarden/CultivationProcess/CultivationProcess/CultivationProcess";
 import ChangePassword from "../Screens/ProfileUserScreen/ChangePassword/ChangePassword";
+import Live from "../Screens/ProfileUserScreen/MyGarden/Live/Live";
 const Stack = createNativeStackNavigator();
 
 const UserNavigation = () => {
@@ -42,6 +43,7 @@ const UserNavigation = () => {
         name="profile/my-garden/livecamera"
         component={LiveCamera}
       />
+      <Stack.Screen name="profile/my-garden/live" component={Live} />
       <Stack.Screen
         name="profile/my-garden/listgarden"
         component={ListMyGarden}
