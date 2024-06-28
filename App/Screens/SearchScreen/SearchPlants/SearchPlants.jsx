@@ -22,24 +22,7 @@ import { renderTypePlant } from "../../../Utils/helper";
 import ListFarmResult from "../Result/ListFarmResult";
 import SEARCH_FARM from "../../../Services/SearchFarmService";
 import InputFilter from "../../../Components/InputFilter/InputFilter";
-const dataFilter = [
-  {
-    title: "Gần nhất",
-    key_code: "nearst",
-  },
-  {
-    title: "Miền bắc",
-    key_code: "north",
-  },
-  {
-    title: "Miền Trung",
-    key_code: "central",
-  },
-  {
-    title: "Miền Nam",
-    key_code: "south",
-  },
-];
+
 const SearchPlants = () => {
   const {
     dataAllPlantsRecommned,
@@ -227,31 +210,7 @@ const SearchPlants = () => {
             </View>
           </View>
 
-          <ScrollView
-            horizontal
-            contentContainerStyle={{
-              gap: 10,
-              paddingVertical: 10,
-              marginBottom: 10,
-            }}
-          >
-            {dataFilter.map((item, index) => (
-              <TouchableOpacity
-                onPress={() => {
-                  handleFilterPress(index);
-                }}
-                style={[
-                  styles.filterContainer,
-                  selectedFilterLocation === index && {
-                    backgroundColor: COLORS.primary,
-                  },
-                ]}
-                key={index}
-              >
-                <Text>{item.title}</Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
+
           <CustomButton label={"Áp dụng "} onPress={() => {}} />
         </View>
       )}
