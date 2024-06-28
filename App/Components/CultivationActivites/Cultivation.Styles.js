@@ -39,13 +39,6 @@ const styles = StyleSheet.create({
     color: "#666",
     marginBottom: 4,
   },
-  detailInfo: {
-    margin: 10,
-    padding: 10,
-    borderWidth: 2,
-    borderColor: COLORS.green,
-    borderRadius: 10,
-  },
   eventList: {
     marginTop: 20,
   },

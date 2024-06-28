@@ -10,7 +10,7 @@
       "expo-font"
     ],
     "name": "Moblie",
-    "slug": "plants",
+    "slug": "moblie",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -34,14 +34,15 @@
       "permissions": [
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
-      ]
+      ],
+      "package": "com.doantrungdung.moblie"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "747124cc-be25-41b7-acff-0ccb20b5d98b"
+        "projectId": "a364cafa-6104-4e48-a184-56d34a7fcf5c"
       }
     },
     "owner": "doantrungdung"

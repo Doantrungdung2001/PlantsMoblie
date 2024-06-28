@@ -1,43 +1,40 @@
 import { Text, View, FlatList, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 import styles from "./Service.Styles";
-import { COLORS, icons, SIZES,FONTS } from "../../Constants";
+import { COLORS, icons, SIZES, FONTS } from "../../Constants";
 import { useNavigation } from "@react-navigation/native";
 const featureData = [
   {
     id: 1,
-    icon: icons.send,
-    color: COLORS.yellow,
-    backgroundColor: COLORS.lightyellow,
-    description: "Transfer",
+    icon: icons.farm,
+    // color: COLORS.primary,
+    backgroundColor: COLORS.lightGreen,
+    description: "Nông trại",
+    param: "farm",
   },
   {
     id: 2,
-    icon: icons.internet,
-    color: COLORS.primary,
-    backgroundColor: COLORS.lightGreen,
-    description: "Internet",
+    icon: icons.delivery,
+    color: COLORS.red,
+    backgroundColor: COLORS.lightRed,
+    description: "Giao hàng",
+    param: "delivery",
   },
   {
     id: 3,
-    icon: icons.wallet,
-    color: COLORS.red,
-    backgroundColor: COLORS.lightRed,
-    description: "Wallet",
+    icon: icons.waiting,
+    color: COLORS.yellow,
+    backgroundColor: COLORS.lightyellow,
+    description: "Đang chờ",
+    param: "watting",
   },
   {
     id: 4,
-    icon: icons.bill,
-    color: COLORS.yellow,
-    backgroundColor: COLORS.lightyellow,
-    description: "Bill",
-  },
-  {
-    id: 5,
-    icon: icons.more,
-    color: COLORS.purple,
-    backgroundColor: COLORS.lightpurple,
-    description: "More",
+    icon: icons.myfarm,
+    color: COLORS.primary,
+    backgroundColor: COLORS.lightGreen,
+    description: "Vườn của tôi",
+    param: "my-garden",
   },
 ];
 const ListService = () => {
@@ -48,12 +45,12 @@ const ListService = () => {
     <TouchableOpacity
       style={{
         marginBottom: SIZES.padding * 2,
-        width: 60,
+        width: 80,
         alignItems: "center",
       }}
       key={index}
       onPress={() =>
-        navigation.push(`service-screen/${item.description}`, {
+        navigation.push(`service-screen/${item.param}`, {
           category: item.description,
         })
       }
@@ -73,8 +70,8 @@ const ListService = () => {
           source={item.icon}
           resizeMode="contain"
           style={{
-            height: 20,
-            width: 20,
+            height: 35,
+            width: 30,
             tintColor: item.color,
           }}
         />
@@ -92,10 +89,10 @@ const ListService = () => {
   );
   return (
     <View>
-      <View style={{margin: 20}}>
-        <View style={{ marginBottom: SIZES.padding * 2 }}>
+      <View style={{ margin: 15 }}>
+        {/* <View style={{ marginBottom: SIZES.padding * 2 }}>
           <Text style={{ ...FONTS.h3 }}>Dịch vụ</Text>
-        </View>
+        </View> */}
         <FlatList
           data={feature}
           numColumns={4}

@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import { COLORS } from "../../../Constants";
@@ -19,39 +20,31 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [selectDisplayPassword, setSelectDisplayPassowrd] = useState();
   const [LoginStatus, setLoginStatus] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // Add this state
+
   const handleLogin = async (email, password) => {
+    setIsLoading(true); // Start loading
     try {
       const res = await AUTH.login({
         email: email,
         password: password,
       });
-      // setLoginSucces(true);
-      // console.log("res: ", res);
-      // const accessToken = res?.data?.metadata?.metadata?.tokens?.accessToken;
-      // const refreshToken = res?.data?.metadata?.metadata?.tokens?.refreshToken;
-      // if (accessToken) {
-      //   setAccessToken(accessToken);
-      // }
-      // if (refreshToken) {
-      //   setRefreshToken(refreshToken);
-      // }
-      // const id = res?.data?.metadata?.metadata?.farm?._id;
-      // if (id) {
-      //   localStorage.setItem("id", id);
-      // }
       if (res.data.status === 200) {
-        setLoginStatus("succes");
+        setLoginStatus("success");
         UserInfoAsyncStorage.storeUser("UserInfo", res.data.metadata.metadata);
+        navigation.push("Home");
+      } else {
+        setLoginStatus("false");
       }
-      console.log("Login success");
-      navigation.push("Home")
     } catch (error) {
-      console.error(error?.response?.data);
       if (error?.response?.data.code) {
         setLoginStatus("false");
       }
+    } finally {
+      setIsLoading(false); // End loading
     }
   };
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -64,6 +57,7 @@ const Login = () => {
             placeholderTextColor={COLORS.darkgray}
             style={styles.textInputEmail}
             onChangeText={(email) => setEmail(email)}
+            value={email}
           />
           <View style={styles.password}>
             <TextInput
@@ -72,6 +66,7 @@ const Login = () => {
               secureTextEntry={!selectDisplayPassword}
               style={styles.textInputPassword}
               onChangeText={(password) => setPassword(password)}
+              value={password}
             />
             <TouchableOpacity
               style={{ justifyContent: "center" }}
@@ -100,14 +95,19 @@ const Login = () => {
             </Text>
           )}
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.push("EmailConfirm")}>
           <Text style={styles.forgetPassword}>Bạn quên mật khẩu?</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.btnLogin}
           onPress={() => handleLogin(email, password)}
+          disabled={isLoading} // Disable button while loading
         >
-          <Text style={styles.textBtnLogin}>Đăng nhập</Text>
+          {isLoading ? ( // Show spinner if loading
+            <ActivityIndicator size="small" color={COLORS.white} />
+          ) : (
+            <Text style={styles.textBtnLogin}>Đăng nhập</Text>
+          )}
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.btnRegister}
@@ -119,4 +119,5 @@ const Login = () => {
     </SafeAreaView>
   );
 };
+
 export default Login;

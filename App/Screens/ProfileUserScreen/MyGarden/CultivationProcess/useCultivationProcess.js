@@ -24,6 +24,7 @@ export default function useListProcess({ gardenId }) {
     data: dataAllProcess,
     isSuccess: isSuccessAllProcess,
     isLoading: isLoadingAllProcess,
+    refetch: refetcAllProcess,
   } = useQuery({
     queryKey: ["getAllProcess"],
     queryFn: () => GARDEN.getAllProcessByGarden(gardenId),
@@ -36,5 +37,6 @@ export default function useListProcess({ gardenId }) {
     allProcess: dataAllProcess?.allprocss,
     isSuccessAllProcess,
     isLoadingAllProcess,
+    refetcAllProcess,
   };
 }

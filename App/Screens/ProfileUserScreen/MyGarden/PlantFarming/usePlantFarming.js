@@ -29,6 +29,7 @@ export default function usePlantFarming({ gardenId }) {
     data: dataPlantFarming,
     isSuccess: isSuccessPlantFarming,
     isLoading: isLoadingPlantFarming,
+    refetch: refetcPlantFarming,
   } = useQuery({
     queryKey: ["getPlantFarming"],
     queryFn: () => GARDEN.getPlanFarmingByGarden(gardenId),
@@ -41,5 +42,6 @@ export default function usePlantFarming({ gardenId }) {
     farmingProcess: dataPlantFarming?.farmingprocess,
     isSuccessPlantFarming,
     isLoadingPlantFarming,
+    refetcPlantFarming,
   };
 }

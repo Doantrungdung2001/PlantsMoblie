@@ -4,7 +4,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { Svg } from "react-native-svg";
 
-import Scan from "../Screens/ScanScreen/Scan";
 import HomeNavigation from "./HomeNavigation";
 import UserNavigation from "./UserNavigation";
 import SearchNavigation from "./SearchNavigation";
@@ -12,7 +11,6 @@ import SearchNavigation from "./SearchNavigation";
 import { COLORS } from "../Constants";
 
 import { FontAwesome } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 const Tab = createBottomTabNavigator();
 

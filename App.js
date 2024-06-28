@@ -1,12 +1,14 @@
 import React, { useCallback } from "react";
 import { useFonts } from "expo-font";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
 import TabScren from "./App/Navigation/TabScren";
 import GetStart from "./App/Screens/GetStart";
 import Login from "./App/Screens/AuthScreen/Login/Login";
 import Register from "./App/Screens/AuthScreen/Register/Register";
+import EmailConfirm from "./App/Screens/AuthScreen/ForgetPassword/EmailConfirm";
+import ResetPassword from "./App/Screens/AuthScreen/ForgetPassword/ResetPassword";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const theme = {
   ...DefaultTheme,
@@ -16,7 +18,7 @@ const theme = {
   },
 };
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 const queryClient = new QueryClient();
 export default function App() {
   const [fontLoaded] = useFonts({
@@ -49,6 +51,8 @@ export default function App() {
           <Stack.Screen name="GetStart" component={GetStart} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="EmailConfirm" component={EmailConfirm} />
+          <Stack.Screen name="ResetPassword" component={ResetPassword} />
 
           {/*Tab*/}
           <Stack.Screen name="Home" component={TabScren} />

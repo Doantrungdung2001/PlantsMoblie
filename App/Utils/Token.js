@@ -1,39 +1,34 @@
-// get access token from local storage
+// token.js
+import UserInfoAsyncStorage from "./UserInfoAsyncStorage";
+
+let inforUser = {};
+
+const fetchUserInfo = async () => {
+  try {
+    const result = await UserInfoAsyncStorage.getUserInfo("UserInfo");
+    console.log("-------result-tokens------", result.tokens);
+    Object.assign(inforUser, result.tokens);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+const initializeToken = async () => {
+  await fetchUserInfo();
+};
+
 const getAccessToken = () => {
-  return localStorage.getItem("accessToken");
+  return inforUser.accessToken;
 };
 
-// set access token to local storage
-const setAccessToken = (accessToken) => {
-  localStorage.setItem("accessToken", accessToken);
-};
-
-// remove access token from local storage
-const removeAccessToken = () => {
-  localStorage.removeItem("accessToken");
-};
-
-// get refresh token from local storage
 const getRefreshToken = () => {
-  return localStorage.getItem("refreshToken");
-};
-
-// set refresh token to local storage
-const setRefreshToken = (refreshToken) => {
-  localStorage.setItem("refreshToken", refreshToken);
-};
-
-// remove refresh token from local storage
-const removeRefreshToken = () => {
-  localStorage.removeItem("refreshToken");
+  return inforUser.refreshToken;
 };
 
 const token = {
+  initializeToken,
   getAccessToken,
-  setAccessToken,
-  removeAccessToken,
   getRefreshToken,
-  setRefreshToken,
-  removeRefreshToken,
 };
+
 export default token;

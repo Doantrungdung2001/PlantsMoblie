@@ -1,7 +1,11 @@
 import React from "react";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SearchPlants from "../Screens/SearchScreen/SearchPlants/SearchPlants";
-import { createStackNavigator } from "@react-navigation/stack";
-const Stack = createStackNavigator();
+import DetailInfoService from "../Screens/ServiceScreen/GrowVegetables/DetailInfoService/DetailInfoService";
+import SelectVegetables from "../Screens/ServiceScreen/GrowVegetables/SelectVegetables/SelectVegetables";
+import DetailFarmGrowVegetables from "../Screens/ServiceScreen/GrowVegetables/DetailFarm/DetailFarmGrowVegetables";
+
+const Stack = createNativeStackNavigator();
 
 const SearchNavigation = () => {
   return (
@@ -11,6 +15,9 @@ const SearchNavigation = () => {
       }}
     >
       <Stack.Screen name="search-plants" component={SearchPlants} />
+      <Stack.Screen name="farm-detail" component={DetailFarmGrowVegetables} />
+      <Stack.Screen name="service-detail" component={DetailInfoService} />
+      <Stack.Screen name="select-vegestables" component={SelectVegetables} />
     </Stack.Navigator>
   );
 };

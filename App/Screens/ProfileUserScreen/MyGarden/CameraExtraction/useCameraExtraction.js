@@ -33,6 +33,7 @@ export default function useCameraExtraction({ gardenId }) {
     data: dataCameraExtraction,
     isSuccess: isSuccessCameraExtraction,
     isLoading: isLoadingCameraExtraction,
+    refetch: refetcCameraExtraction,
   } = useQuery({
     queryKey: ["getCameraExtraction"],
     queryFn: () => GARDEN.getCameraExtraction(gardenId),
@@ -45,5 +46,6 @@ export default function useCameraExtraction({ gardenId }) {
     allVideos: dataCameraExtraction?.allvideo,
     isSuccessCameraExtraction,
     isLoadingCameraExtraction,
+    refetcCameraExtraction,
   };
 }

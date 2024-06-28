@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "../../../../Constants";
+import { COLORS } from "../../../../../Constants";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 10,
+    paddingTop: 60,
   },
   title: {
     fontSize: 24,
@@ -11,9 +11,9 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginLeft: 16,
   },
-  cardProcess: {
+  card: {
     flex: 1,
-    backgroundColor: "#FAFAD2",
+    backgroundColor: "#ff7f50",
     borderRadius: 15,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
@@ -23,13 +23,46 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     padding: 16,
   },
-
+  header: {
+    marginBottom: 8,
+  },
+  headerTitle: {
+    color: "#ffffff",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  headerSubtitle: {
+    fontSize: 12,
+    color: "#ffffff",
+  },
+  body: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 8,
+  },
+  avatar: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    marginRight: 8,
+  },
+  userInfo: {
+    flex: 1,
+  },
+  userName: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#ffffff",
+  },
+  userRole: {
+    fontSize: 12,
+    color: "#ffffff",
+  },
   classItem: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 16,
-    paddingHorizontal: 16,
   },
   timelineContainer: {
     width: 30,
@@ -75,19 +108,7 @@ const styles = StyleSheet.create({
     color: "#00008B",
     marginBottom: 8,
   },
-  studentListContainer: {
-    marginRight: 10,
-  },
-  studentAvatar: {
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    marginLeft: -3,
-    borderWidth: 1,
-    borderColor: "#fff",
-  },
-
-  // Modal
+  // modol
   detailInfo: {
     margin: 10,
     padding: 10,
@@ -112,15 +133,6 @@ const styles = StyleSheet.create({
     fontSize: 19,
     lineHeight: 24,
     color: "black",
-  },
-  modalType: {
-    padding: 10,
-    justifyContent: "center",
-    borderRadius: 10,
-    backgroundColor: COLORS.green,
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: 10,
   },
 });
 export default styles;

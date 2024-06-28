@@ -1,7 +1,6 @@
 import axios from "axios";
 import { baseUrl } from "./baseUrl";
 import token from "../../Utils/Token";
-const { getAccessToken, getRefreshToken } = token;
 
 console.log("Base: ", baseUrl);
 
@@ -12,17 +11,22 @@ const privateHttp = axios.create({
   },
 });
 
+const updateAuthorizationHeader = async (config) => {
+  await token.initializeToken();
+  const accessToken = token.getAccessToken();
+  const refreshToken = token.getRefreshToken();
+  console.log("accessToken:", accessToken);
+  console.log("refreshToken:", refreshToken);
+  if (accessToken) {
+    config.headers["authorization"] = accessToken;
+    config.headers["x-rtoken-id"] = refreshToken;
+  }
+  return config;
+};
+
 privateHttp.interceptors.request.use(
-  (config) => {
-    const accessToken = getAccessToken();
-    const refreshToken = getRefreshToken();
-    console.log("accessToken: ", accessToken);
-    console.log("refreshToken: ", refreshToken);
-    if (accessToken) {
-      config.headers["authorization"] = accessToken;
-      config.headers["x-rtoken-id"] = refreshToken;
-    }
-    return config;
+  async (config) => {
+    return updateAuthorizationHeader(config);
   },
   (error) => {
     return Promise.reject(error);
@@ -46,7 +50,6 @@ privateHttp.interceptors.response.use(
         error.response?.data?.message ===
           "Command find requires authentication")
     ) {
-      token.removeAccessToken();
       // alert('Need to login')
       return Promise.reject(error);
     }

@@ -135,6 +135,12 @@ const styles = StyleSheet.create({
     fontSize: 19,
     lineHeight: 24,
     color: "black",
+    height: 200,
+    borderWidth: 1,
+    borderColor: "black",
+    borderRadius: 5,
+    padding: 10,
+    textAlignVertical: "top",
   },
   buttonsContainer: {
     flex: 2,
