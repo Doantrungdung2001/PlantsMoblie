@@ -90,10 +90,35 @@ const ListMyGarden = () => {
           status: "cancel",
         });
         console.log("Du lieu tra ve:", result?.data?.status);
+        refetcAllGarden();
         if (result?.data?.status === 200 || result?.data?.status === 201) {
           setTypeToast("success");
           setTextToast("Thành công");
           setDescriptionToast("Xác nhận huỷ thành công");
+          handleShowToast();
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      setTypeToast("danger");
+      setTextToast("Không thành công");
+      setDescriptionToast("Xác nhận hủy thất bại");
+      handleShowToast();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleDeleteGarden = async (gardenId) => {
+    try {
+      if (gardenId) {
+        const result = await GARDEN.deleteGardenByClient(gardenId);
+        console.log("Du lieu tra ve:", result?.data?.status);
+        refetcAllGarden();
+        if (result?.data?.status === 200 || result?.data?.status === 201) {
+          setTypeToast("success");
+          setTextToast("Thành công");
+          setDescriptionToast("Xác nhận xóa thành công");
           handleShowToast();
         }
       }
@@ -117,8 +142,29 @@ const ListMyGarden = () => {
       {
         text: "Có",
         onPress: () => {
-          refetcAllGarden();
           handleUpdateGarden(gardenId);
+        },
+      },
+    ]);
+  };
+
+  const confirmDelete = (gardenId, status) => {
+    Alert.alert("Xác nhận", "Bạn có muốn xóa không?", [
+      {
+        text: "Không",
+        style: "cancel",
+      },
+      {
+        text: "Có",
+        onPress: () => {
+          if (status === "cancel") {
+            handleDeleteGarden(gardenId);
+          } else {
+            setTypeToast("danger");
+            setTextToast("Không thành công");
+            setDescriptionToast("Chỉ có thể xóa vườn khi vườn đã hủy");
+            handleShowToast();
+          }
         },
       },
     ]);
@@ -202,7 +248,12 @@ const ListMyGarden = () => {
                         </TouchableOpacity>
                       )}
                       {item.status === "cancel" && (
-                        <TouchableOpacity style={styles.button}>
+                        <TouchableOpacity
+                          style={styles.button}
+                          onPress={() => {
+                            confirmDelete(item.id, item.status);
+                          }}
+                        >
                           <Text style={styles.buttonText}>Xóa</Text>
                         </TouchableOpacity>
                       )}
