@@ -37,7 +37,6 @@ export default function useListGarden({ clientId }) {
       note: garden?.note,
       startDate: garden?.startDate,
       status: garden?.status,
-      status: garden?.status,
       clientRequests: garden?.clientRequests,
       deliveries: garden?.deliveries,
       createdAt: garden?.createdAt,

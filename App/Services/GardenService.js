@@ -115,6 +115,37 @@ const GARDEN = {
         return err;
       });
   },
+
+  updateGardenByClient: async (gardenId, data) => {
+    return await privateHttp({
+      method: "PATCH",
+      url: `garden/client/${gardenId}`,
+      data,
+    })
+      .then((res) => {
+        console.log("res;", res);
+        return res;
+      })
+      .catch((err) => {
+        console.log("err: ", err);
+        return err;
+      });
+  },
+
+  deleteGardenByClient: async (gardenId) => {
+    return await privateHttp({
+      method: "DELETE",
+      url: `garden/client/${gardenId}`,
+    })
+      .then((res) => {
+        console.log("res;", res);
+        return res;
+      })
+      .catch((err) => {
+        console.log("err: ", err);
+        return err;
+      });
+  },
 };
 
 export default GARDEN;

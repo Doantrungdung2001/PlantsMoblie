@@ -7,14 +7,17 @@ import {
   ScrollView,
   ActivityIndicator,
   TextInput,
+  Alert,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./ListMyGarden.Style";
 import UserInfoAsyncStorage from "../../../../Utils/UserInfoAsyncStorage";
 import useListGarden from "./useListMyGarden";
 import { getStatusText } from "../../../../Utils/helper";
+import ToastMessage from "../../../../Components/ToastMessage/ToastMessage";
+import GARDEN from "../../../../Services/GardenService";
 const ListMyGarden = () => {
   const navigation = useNavigation();
   const [userId, setUserId] = useState(null);
@@ -64,13 +67,71 @@ const ListMyGarden = () => {
     }
   };
 
+  const toastRef = useRef(null);
+  const [typeToast, setTypeToast] = useState("success");
+  const [textToast, setTextToast] = useState();
+  const [descriptionToast, setDescriptionToast] = useState();
+
+  const handleShowToast = () => {
+    if (toastRef.current) {
+      toastRef.current.show();
+    }
+  };
+
   const searchFilter = (item) => {
     const query = searchQuery.toLowerCase();
     return item.farm.name.toLowerCase().includes(query);
   };
 
+  const handleUpdateGarden = async (gardenId) => {
+    try {
+      if (gardenId) {
+        const result = await GARDEN.updateGardenByClient(gardenId, {
+          status: "cancel",
+        });
+        console.log("Du lieu tra ve:", result?.data?.status);
+        if (result?.data?.status === 200 || result?.data?.status === 201) {
+          setTypeToast("success");
+          setTextToast("Thành công");
+          setDescriptionToast("Xác nhận huỷ thành công");
+          handleShowToast();
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      setTypeToast("danger");
+      setTextToast("Không thành công");
+      setDescriptionToast("Xác nhận hủy thất bại");
+      handleShowToast();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const confirmCancel = (gardenId) => {
+    Alert.alert("Xác nhận", "Bạn có muốn hủy không?", [
+      {
+        text: "Không",
+        style: "cancel",
+      },
+      {
+        text: "Có",
+        onPress: () => {
+          refetcAllGarden();
+          handleUpdateGarden(gardenId);
+        },
+      },
+    ]);
+  };
+
   return (
     <ScrollView style={styles.container}>
+      <ToastMessage
+        type={typeToast}
+        text={textToast}
+        description={descriptionToast}
+        ref={toastRef}
+      />
       <PageHeading title={"Danh sách vườn đang ký"} />
       <View style={{ margin: 20 }}>
         <TextInput
@@ -129,10 +190,14 @@ const ListMyGarden = () => {
                         />
                       ))}
                     </View>
-                    {console.log("Status", item.status)}
                     <View style={styles.buttons}>
                       {item.status === "started" && (
-                        <TouchableOpacity style={styles.button}>
+                        <TouchableOpacity
+                          style={styles.button}
+                          onPress={() => {
+                            confirmCancel(item.id);
+                          }}
+                        >
                           <Text style={styles.buttonText}>Hủy</Text>
                         </TouchableOpacity>
                       )}
