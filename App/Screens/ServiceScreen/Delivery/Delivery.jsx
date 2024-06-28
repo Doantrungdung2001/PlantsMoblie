@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PageHeading from "../../../Components/PageHeading/PageHeading";
 import { MaterialIcons } from "@expo/vector-icons";
 import UserInfoAsyncStorage from "../../../Utils/UserInfoAsyncStorage";
@@ -17,10 +17,15 @@ import {
 } from "../../../Utils/helper";
 import useListDelivery from "./useDelivery";
 import NotData from "../../../Components/NotData/NotData";
+import ToastMessage from "../../../Components/ToastMessage/ToastMessage";
+import GARDEN from "../../../Services/GardenService";
+
 const Delivery = () => {
   const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [isLoading, setIsLoading] = useState(false); // Add this line
   let totalAmount = 0;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,6 +37,7 @@ const Delivery = () => {
     };
     fetchData();
   }, []);
+
   const {
     allDelivery,
     isSuccessAllDelivery,
@@ -40,9 +46,60 @@ const Delivery = () => {
   } = useListDelivery({
     clientId: userId,
   });
+
+  const toastRef = useRef(null);
+  const [typeToast, setTypeToast] = useState("success");
+  const [textToast, setTextToast] = useState();
+  const [descriptionToast, setDescriptionToast] = useState();
+
+  const handleShowToast = () => {
+    if (toastRef.current) {
+      toastRef.current.show();
+    }
+  };
+
   const [deleveryDetail, setDeleveryDetail] = useState(null);
+
+  const handleConfirm = async (gardenId, deliveryId) => {
+    setIsLoading(true); // Set loading to true
+    try {
+      if (deliveryId) {
+        const result = await GARDEN.updateDeliverybyClient(
+          gardenId,
+          deliveryId,
+          { status: "done" }
+        );
+        console.log("Du lieu tra ve:", result?.data?.status);
+        if (result?.data?.status === 200 || result?.data?.status === 201) {
+          setTypeToast("success");
+          setTextToast("Thành công");
+          setDescriptionToast("Xác nhận thành công");
+          handleShowToast();
+          refetchDelivery();
+          setTimeout(() => {
+            setShowModal(!showModal);
+          }, 3000);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      setTypeToast("danger");
+      setTextToast("Không thành công");
+      setDescriptionToast("Xác nhận thất bại");
+      handleShowToast();
+    } finally {
+      setIsLoading(false); // Set loading to false
+    }
+  };
+
   return (
     <ScrollView>
+      <ToastMessage
+        type={typeToast}
+        text={textToast}
+        description={descriptionToast}
+        ref={toastRef}
+      />
       <PageHeading title={"Thông tin giao hàng"} />
       {isSuccessAllDelivery && (
         <View style={{ padding: 10, marginTop: 10 }}>
@@ -147,17 +204,22 @@ const Delivery = () => {
                 })}
 
                 <View style={styles.divider} />
-                {/* <View style={styles.itemRow}>
-                  <Text style={styles.itemText}>Tổng số lượng</Text>
-                  <Text style={styles.itemText}>$10,300.00</Text>
-                </View> */}
-
-                {/* <View style={styles.divider} /> */}
                 <View style={styles.totalRow}>
                   <Text style={styles.totalText}>Tổng số lượng</Text>
                   <Text style={styles.totalText}>{totalAmount} kg</Text>
                 </View>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => {
+                    handleConfirm(
+                      deleveryDetail.gardenId,
+                      deleveryDetail.deliveryId
+                    );
+                  }}
+                >
+                  {isLoading && ( // Show loading indicator if isLoading is true
+                    <ActivityIndicator size="large" color="white" />
+                  )}
                   <Text style={styles.buttonText}>Đã nhận hàng</Text>
                 </TouchableOpacity>
               </ScrollView>

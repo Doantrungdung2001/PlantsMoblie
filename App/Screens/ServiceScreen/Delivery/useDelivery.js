@@ -10,14 +10,14 @@ export default function useListDelivery({ clientId }) {
       if (delivery?.deliveries?.length > 0) {
         delivery.deliveries.forEach((item) => {
           const infoDelivery = {
-            id : item._id,
+            gardenId: delivery._id,
+            deliveryId: item._id,
             time: item.time,
             infoDetail: item.deliveryDetails,
             status: item.status,
             farm: delivery.farm,
             client: delivery.client,
             note: delivery.note,
-            
           };
 
           allDelivery.push(infoDelivery);
