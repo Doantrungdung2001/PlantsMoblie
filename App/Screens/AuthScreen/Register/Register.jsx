@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState, useRef } from "react";
 import { COLORS } from "../../../Constants";
@@ -26,6 +27,7 @@ const Register = () => {
   const [passwordsMatch, setPasswordsMatch] = useState(true);
   const [confirmPasswordClicked, setConfirmPasswordClicked] = useState(false);
   const [allFieldsFilled, setAllFieldsFilled] = useState(true);
+  const [loading, setLoading] = useState(false); // Loading state
 
   const toastRef = useRef(null);
   const [typeToast, setTypeToast] = useState("success");
@@ -93,6 +95,8 @@ const Register = () => {
         handleShowToast();
       }
       console.log("Register fail: --", error);
+    } finally {
+      setLoading(false); // Stop loading after the registration process
     }
   };
 
@@ -103,6 +107,7 @@ const Register = () => {
     }
 
     if (emailValid && passwordsMatch) {
+      setLoading(true); // Start loading when the registration process starts
       Register(name, email, password);
     } else {
       alert("Vui lòng nhập email hợp lệ và mật khẩu khớp");
@@ -219,8 +224,13 @@ const Register = () => {
         <TouchableOpacity
           style={styles.btnRegister}
           onPress={handleRegisterPress}
+          disabled={loading} // Disable button while loading
         >
-          <Text style={styles.textBtnRegister}>Đăng ký</Text>
+          {loading ? (
+            <ActivityIndicator size="small" color={COLORS.white} />
+          ) : (
+            <Text style={styles.textBtnRegister}>Đăng ký</Text>
+          )}
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.btnLogin}

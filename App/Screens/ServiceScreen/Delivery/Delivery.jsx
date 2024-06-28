@@ -90,7 +90,7 @@ const Delivery = () => {
         <ActivityIndicator size="large" color="#00ff00" />
       )}
       <Modal animationType="slide" visible={showModal}>
-        <View style={{ padding: 20, marginTop: 20 }}>
+        <ScrollView style={{ padding: 20, marginTop: 20 }}>
           <TouchableOpacity
             style={{
               display: "flex",
@@ -165,7 +165,7 @@ const Delivery = () => {
           ) : (
             <NotData text={"Không có dữ liệu"} />
           )}
-        </View>
+        </ScrollView>
       </Modal>
     </ScrollView>
   );

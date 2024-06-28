@@ -1,3 +1,4 @@
+import React, { useState, useRef, useEffect } from "react";
 import {
   FlatList,
   Pressable,
@@ -11,8 +12,7 @@ import {
   TextInput,
   ActivityIndicator,
 } from "react-native";
-import React, { useState, useRef, useEffect } from "react";
-import { useRoute } from "@react-navigation/native";
+import { useRoute, useNavigation } from "@react-navigation/native"; // Import useNavigation hook
 import PageHeading from "../../../../Components/PageHeading/PageHeading";
 import { COLORS } from "../../../../Constants";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -22,6 +22,7 @@ import usePlant from "./UsePlant";
 import GARDEN_SERVICE_REQUEST from "../../../../Services/GardenRequestService";
 
 const SelectVegetables = () => {
+  const navigation = useNavigation(); // Initialize useNavigation hook
   const param = useRoute().params;
   const [farmId, setFarmId] = useState(param.serviceInfo.farm);
   const [serviceInfo, setServiceInfo] = useState(param.serviceInfo);
@@ -34,6 +35,7 @@ const SelectVegetables = () => {
   }, [serviceInfo]);
 
   const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedPlantName, setSelectedPlantName] = useState(""); // State to store the selected plant name
 
   const { tabs, isSuccessAllPlant, isLoadingAllPlant } = usePlant({
     farmId: farmId,
@@ -60,7 +62,8 @@ const SelectVegetables = () => {
       (item) => item.id === plant.id && item.type == plant.type
     );
     if (!isExisted) {
-      selectedItems.push(plant);
+      setSelectedItems([...selectedItems, plant]); // Update selectedItems state
+      setSelectedPlantName(plant.title); // Update selected plant name
       setTypeToast("success");
       setTextToast("Thành công");
       setDescriptionToast("Cây trồng đã được thêm vào");
@@ -103,12 +106,14 @@ const SelectVegetables = () => {
     });
     return listId;
   };
+
   const handleRemovePlant = (plant) => {
     const updatedPlants = selectedItems.filter(
       (selectedItem) =>
         selectedItem.id !== plant.id || selectedItem.type !== plant.type
     );
     setSelectedItems(updatedPlants);
+    setSelectedPlantName(""); // Clear selected plant name when removing plant
   };
 
   const onCreate = async (values) => {
@@ -121,8 +126,15 @@ const SelectVegetables = () => {
         if (result.data.status === 200) {
           setTypeToast("success");
           setTextToast("Thành công");
-          setDescriptionToast("Đã gửi yêu cầu");
+          setDescriptionToast("Đã gửi yêu cầu thành công");
           handleShowToast();
+
+          // Navigate to home screen after 3 seconds
+
+          setTimeout(() => {
+            setShowModalBtn(!showModalBtn);
+            navigation.push("home");
+          }, 3000);
         }
       }
     } catch (error) {
@@ -142,7 +154,7 @@ const SelectVegetables = () => {
         description={descriptionToast}
         ref={toastRef}
       />
-      <ScrollView style={{ height: "93%" }}>
+      <ScrollView style={{ height: "91%" }}>
         <View>
           <PageHeading title={"Lựa chọn rau trồng"} />
         </View>
@@ -203,7 +215,7 @@ const SelectVegetables = () => {
               style={{ marginLeft: 15, color: COLORS.primary, fontSize: 17 }}
             >
               {" "}
-              Đã chọn : {dataSeparationByType.Leaf.length} Rau ăn lá,
+              Đã chọn : {dataSeparationByType.Leaf.length} Rau ăn lá,{" "}
               {dataSeparationByType.Herb.length} Rau thơm,{" "}
               {dataSeparationByType.Root.length} Củ ,{" "}
               {dataSeparationByType.Fruit.length} Quả
@@ -304,6 +316,12 @@ const SelectVegetables = () => {
                 />
               </View>
             </View>
+            {/* Selected Plant Name Display */}
+            {/* {selectedPlantName !== "" && (
+              <Text style={styles.selectedPlantText}>
+                Đã chọn: {selectedPlantName}
+              </Text>
+            )} */}
             <View style={styles.buttonsContainer}>
               <TouchableOpacity
                 style={[styles.button, styles.login]}

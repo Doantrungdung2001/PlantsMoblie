@@ -94,7 +94,7 @@ const MyGardenScreen = () => {
 
   return (
     <View>
-      <ScrollView style={{ height: "93%" }}>
+      <ScrollView style={{ height: "91%" }}>
         <View>
           <View
             style={{
