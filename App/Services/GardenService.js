@@ -161,6 +161,22 @@ const GARDEN = {
         return err;
       });
   },
+
+  addRequestInGarden: async (gardenId, data) => {
+    return await privateHttp({
+      method: "POST",
+      url: `garden/${gardenId}/request`,
+      data,
+    })
+      .then((res) => {
+        console.log("res;", res);
+        return res;
+      })
+      .catch((err) => {
+        console.log("err: ", err);
+        return err;
+      });
+  },
 };
 
 export default GARDEN;

@@ -45,7 +45,7 @@ const MyGardenScreen = () => {
   const param = useRoute().params;
   const navigation = useNavigation();
   const [dataGarden, setDataGarden] = useState(param.dataMyGarden);
- 
+
   // Update dataGarden when route params change
   useEffect(() => {
     if (param?.dataMyGarden) {
@@ -111,8 +111,6 @@ const MyGardenScreen = () => {
                   gardenId: dataGarden.id,
                 })
               }
-
-              // onPress={() => navigation.push("profile/my-garden/livecamera")}
             >
               <AntDesign
                 name="camera"
@@ -161,7 +159,11 @@ const MyGardenScreen = () => {
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.bookingBtn}
-          onPress={() => navigation.push("profile/my-garden/request")}
+          onPress={() =>
+            navigation.push("profile/my-garden/request", {
+              dataMyGarden: dataGarden,
+            })
+          }
         >
           <Text
             style={{
