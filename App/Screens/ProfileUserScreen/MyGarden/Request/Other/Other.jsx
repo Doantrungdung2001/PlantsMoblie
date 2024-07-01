@@ -71,7 +71,7 @@ const Other = ({ gardenId }) => {
       )}
       <TouchableOpacity
         style={styles.btnSubmit}
-        onPress={() => handleRequestOther(note)}
+        onPress={() => handleRequestOther()}
       >
         {isLoading ? (
           <ActivityIndicator size="small" color={COLORS.white} />
