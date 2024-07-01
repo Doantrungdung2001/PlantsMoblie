@@ -38,7 +38,6 @@ const SearchPlants = () => {
 
   const [searchText, setSearchText] = useState("");
   const [displayFilterLocation, setDisplayFilterLocation] = useState(false);
-  const [selectedFilterLocation, setSelectedFilterLocation] = useState(null);
   const [displayFilterPlants, setDisplayFilterPlants] = useState(false);
   const [selectedPlants, setSelectedPlants] = useState([]);
   const [selectedPlantsName, setSelectedPlantsName] = useState([]);
@@ -49,10 +48,6 @@ const SearchPlants = () => {
   const [maxArea, setMaxArea] = useState(100000);
   const [resultFarm, setResultFarm] = useState([]);
   const [isSearching, setIsSearching] = useState(false); // State để theo dõi trạng thái tìm kiếm
-
-  const handleFilterPress = (index) => {
-    setSelectedFilterLocation(index);
-  };
 
   const handleSearch = async (text) => {
     setSearchText(text);
@@ -98,6 +93,7 @@ const SearchPlants = () => {
   };
 
   const handleSearchResult = () => {
+    setDisplayFilterLocation(false)
     setSearchText("");
     setDisplayFilterPlants(false);
     setShowListFarmResult(false); // Reset showListFarmResult
