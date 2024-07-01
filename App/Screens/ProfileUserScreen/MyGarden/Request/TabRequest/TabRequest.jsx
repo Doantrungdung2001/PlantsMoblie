@@ -4,24 +4,18 @@ import {
   View,
   TouchableOpacity,
   TextInput,
+  ScrollView
 } from "react-native";
 import React from "react";
-import PageHeading from "../../../Components/PageHeading/PageHeading";
-import Heading from "../../../Components/Heading/Heading";
-import { COLORS } from "../../../Constants";
-const Request = () => {
+import PageHeading from "../../../../../Components/PageHeading/PageHeading";
+import { COLORS } from "../../../../../Constants";
+import styles from "./TabRequest.Styles";
+const TabRequest = () => {
   return (
-    <View style={{ padding: 20 }}>
+    <ScrollView style={{ padding: 20 }}>
       <PageHeading title={" Yêu cầu "} />
-      <View style={{ paddingTop: 20 }}>
+      {/* <View style={{ paddingTop: 20 }}>
         <Heading text={"Thời gian"} />
-        <TextInput
-          placeholder="90 ngày,..."
-          numberOfLines={1}
-          multiline={true}
-          style={styles.noteTextArea}
-          onChange={(text) => setTime(text)}
-        />
       </View>
       <View style={{ paddingTop: 20 }}>
         <Heading text={"Ghi chú"} />
@@ -32,15 +26,15 @@ const Request = () => {
           style={styles.noteTextArea}
           onChange={(text) => setNote(text)}
         />
-      </View>
+      </View> */}
       <TouchableOpacity style={{ marginTop: 15 }}>
         <Text style={styles.confirmBtn}>Gửi yêu cầu</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 
-export default Request;
+export default TabRequest;
 
 const styles = StyleSheet.create({
   noteTextArea: {
