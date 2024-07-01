@@ -1,5 +1,4 @@
 import publicHttp from "./Http/publicHttp.config";
-import privateHttp from "./Http/privateHttp.config";
 
 const PLANT = {
   getPlantFromFarm: async (farmId) => {

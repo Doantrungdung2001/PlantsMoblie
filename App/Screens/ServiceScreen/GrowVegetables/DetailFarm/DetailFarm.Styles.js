@@ -47,6 +47,22 @@ const styles = StyleSheet.create({
     borderColor: COLORS.secondary,
     marginTop: 15,
   },
+
+  studentListContainer: {
+    marginRight: 10,
+  },
+  studentAvatar: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    marginLeft: -3,
+    borderWidth: 1,
+    borderColor: "#fff",
+  },
+  centerContent: {
+    justifyContent: "center", // Thêm thuộc tính này để căn giữa theo chiều dọc
+    alignItems: "center", // Thêm thuộc tính này để căn giữa theo chiều ngang
+  },
 });
 
 export default styles;
