@@ -7,7 +7,7 @@ const NotData = ({ text }) => {
       <Text
         style={{
           color: COLORS.gray,
-          fontSize: 30,
+          fontSize: 24,
           fontWeight: "600",
           textAlign: "center",
           marginTop: 40,

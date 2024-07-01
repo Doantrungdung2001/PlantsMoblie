@@ -154,6 +154,7 @@ const styles = StyleSheet.create({
     padding: 15,
     alignItems: "center",
     marginTop: 20,
+    marginBottom: 60,
   },
   buttonText: {
     color: "#fff",

@@ -154,7 +154,7 @@ const SelectVegetables = () => {
         description={descriptionToast}
         ref={toastRef}
       />
-      <ScrollView style={{ height: "91%" }}>
+      <ScrollView style={{ height: "92%" }}>
         <View>
           <PageHeading title={"Lựa chọn rau trồng"} />
         </View>
