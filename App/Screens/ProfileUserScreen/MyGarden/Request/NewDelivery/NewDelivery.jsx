@@ -13,7 +13,6 @@ import { MaterialIcons } from "@expo/vector-icons";
 import React, { useState, useEffect } from "react";
 import styles from "./NewDelivery.Styles";
 import { COLORS } from "../../../../../Constants";
-
 import GARDEN from "../../../../../Services/GardenService";
 
 const ProductCard = ({ item, onIncrement, onDecrement }) => {
@@ -36,20 +35,20 @@ const ProductCard = ({ item, onIncrement, onDecrement }) => {
   );
 };
 
-const NewDelivery = ({ infor }) => {
+const NewDelivery = ({ infor, refetch }) => {
   const [showModalBtn, setShowModalBtn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [note, setNote] = useState("");
   const [message, setMessage] = useState({ text: "", color: "" });
 
-  const [plants, setPlants] = useState(
-    infor.listPlants.map((plant) => ({
-      plant: plant.id,
-      name: plant.plants_name,
-      url: plant.plants_thumb,
-      amount: 0,
-    }))
-  );
+  const initialPlantsState = infor.listPlants.map((plant) => ({
+    plant: plant.id,
+    name: plant.plants_name,
+    url: plant.plants_thumb,
+    amount: 0,
+  }));
+
+  const [plants, setPlants] = useState(initialPlantsState);
 
   const handleIncrement = (item) => {
     setPlants((prevPlants) =>
@@ -91,6 +90,9 @@ const NewDelivery = ({ infor }) => {
       if (res.data.status === 200 || res.data.status === 201) {
         setNote("");
         setMessage({ text: "Gửi yêu cầu thành công", color: "green" });
+        setPlants(initialPlantsState); // Reset plants
+        setShowModalBtn(false); // Đóng modal
+        refetch(); // Gọi hàm refetch
       } else {
         setMessage({ text: "Gửi yêu cầu thất bại", color: "red" });
       }
@@ -123,7 +125,7 @@ const NewDelivery = ({ infor }) => {
 
       <TouchableOpacity
         style={styles.continueButton}
-        onPress={() => setShowModalBtn(!showModalBtn)}
+        onPress={() => setShowModalBtn(true)}
       >
         <Text style={styles.continueButtonText}>Gửi yêu cầu</Text>
       </TouchableOpacity>
@@ -133,7 +135,7 @@ const NewDelivery = ({ infor }) => {
           <View style={styles.containerModal}>
             <TouchableOpacity
               style={styles.cancelBtn}
-              onPress={() => setShowModalBtn(!showModalBtn)}
+              onPress={() => setShowModalBtn(false)}
             >
               <MaterialIcons name="cancel" size={30} color="red" />
             </TouchableOpacity>
@@ -148,6 +150,7 @@ const NewDelivery = ({ infor }) => {
                     multiline={true}
                     numberOfLines={10}
                     onChangeText={(note) => setNote(note)}
+                    value={note}
                   />
                 </View>
               </View>
