@@ -137,7 +137,7 @@ const NewPlants = ({ infor }) => {
       </View>
 
       <View>
-        <Modal animationType="slide" visible={!showModalBtn}>
+        <Modal animationType="slide" visible={showModalBtn}>
           <View style={styles.containerModal}>
             <TouchableOpacity
               style={styles.cancelBtn}

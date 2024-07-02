@@ -106,7 +106,7 @@ const CameraExtraction = ({ gardenId }) => {
         <FlatList
           style={styles.container}
           data={filteredVideos}
-          ListHeaderComponent={renderHeader}
+          // ListHeaderComponent={renderHeader}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
         />
