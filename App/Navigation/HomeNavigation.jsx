@@ -10,10 +10,9 @@ import DetailInfoService from "../Screens/ServiceScreen/GrowVegetables/DetailInf
 import SelectVegetables from "../Screens/ServiceScreen/GrowVegetables/SelectVegetables/SelectVegetables";
 import HomeScreen from "../Screens/HomeScreen/HomeScreen";
 import SearchPlants from "../Screens/SearchScreen/SearchPlants/SearchPlants";
-
+import TabRequest from "../Screens/ProfileUserScreen/MyGarden/Request/TabRequest/TabRequest";
 import MyGardenScreen from "../Screens/ProfileUserScreen/MyGarden/MyGardenScreen/MyGardenScreen";
 import CultivationProcess from "../Screens/ProfileUserScreen/MyGarden/CultivationProcess/CultivationProcess/CultivationProcess";
-import Request from "../Screens/ProfileUserScreen/MyGarden/Request";
 import Live from "../Screens/ProfileUserScreen/MyGarden/Live/Live";
 const Stack = createNativeStackNavigator();
 
@@ -46,7 +45,7 @@ const HomeNavigation = () => {
         name="profile/my-garden/cultivation"
         component={CultivationProcess}
       />
-      <Stack.Screen name="profile/my-garden/request" component={Request} />
+      <Stack.Screen name="profile/my-garden/request" component={TabRequest} />
       <Stack.Screen name="profile/my-garden/live" component={Live} />
       <Stack.Screen
         name="profile/my-garden/listgarden"

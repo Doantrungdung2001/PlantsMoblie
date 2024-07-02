@@ -49,7 +49,9 @@ const ListFarmResult = ({ dataListFarmResult }) => {
           />
         </View>
       ) : (
-        <NotData text={"Không tìm thấy nông trại phù hợp"} />
+        <View style={{marginLeft: 5, marginRight: 5}}>
+          <NotData text={"Không tìm thấy nông trại phù hợp"} />
+        </View>
       )}
     </View>
   );

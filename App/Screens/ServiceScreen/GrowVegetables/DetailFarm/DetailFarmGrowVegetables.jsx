@@ -3,6 +3,7 @@ import {
   Text,
   Image,
   TouchableOpacity,
+  FlatList,
   ScrollView,
   ActivityIndicator,
 } from "react-native";
@@ -18,6 +19,7 @@ import IntruductionProject from "../IntruductionFarm/IntruductionFarm";
 import ListGardenService from "../ListGardenService/ListGardenService";
 import styles from "./DetailFarm.Styles";
 import useListGardenService from "../ListGardenService/useGardenService";
+import useListPlantFarm from "./useListPlantFarm";
 
 const DetailFarmGrowVegetables = () => {
   const navigation = useNavigation();
@@ -31,9 +33,14 @@ const DetailFarmGrowVegetables = () => {
   } = useListGardenService({
     farmId: param.farmInfo._id,
   });
-  useEffect(() => {
-    setFarmInformation(farmInformation);
-  }, [farmInformation]);
+  const {
+    dataAllPlantFarm,
+    isSuccessAllPlantFarm,
+    isLoadingAllPlantFarm,
+    refetcListPlantFarm,
+  } = useListPlantFarm({
+    farmId: param.farmInfo._id,
+  });
 
   useFocusEffect(
     useCallback(() => {
@@ -41,6 +48,11 @@ const DetailFarmGrowVegetables = () => {
     }, [refetchAllGardenService])
   );
 
+  useFocusEffect(
+    useCallback(() => {
+      refetcListPlantFarm();
+    }, [refetcListPlantFarm])
+  );
   return (
     <View>
       <ScrollView>
@@ -69,13 +81,30 @@ const DetailFarmGrowVegetables = () => {
             />
             {farmInformation.address}
           </Text>
+          <View style={styles.centerContent}>
+            {isSuccessAllPlantFarm && (
+              <FlatList
+                contentContainerStyle={styles.studentListContainer}
+                data={dataAllPlantFarm}
+                renderItem={({ item, index }) => (
+                  <Image
+                    source={{ uri: item?.plant_thumb  }}
+                    style={styles.studentAvatar}
+                  />
+                )}
+                horizontal
+              />
+            )}
 
-          {/* Horizontal Line */}
+            {isLoadingAllPlantFarm && (
+              <ActivityIndicator size="large" color="#00ff00" />
+            )}
+          </View>
+
           <View style={styles.line}></View>
 
           <IntruductionProject Info={farmInformation} />
 
-          {/* Horizontal Line */}
           <View style={styles.line}></View>
         </View>
         {/* slider service */}

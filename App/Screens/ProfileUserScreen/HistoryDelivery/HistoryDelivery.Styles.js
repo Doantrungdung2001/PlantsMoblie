@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
   },
   paginationText: {
     fontSize: 16,
-    color: "white",
+    color: COLORS.black,
   },
 });
 export default styles;

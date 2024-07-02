@@ -22,7 +22,7 @@ const DetailInfoService = () => {
 
   return (
     <View>
-      <ScrollView style={{ height: "91%" }}>
+      <ScrollView style={{ height: "92%" }}>
         <TouchableOpacity
           style={styles.backBtnContainer}
           onPress={() => navigation.goBack()}
