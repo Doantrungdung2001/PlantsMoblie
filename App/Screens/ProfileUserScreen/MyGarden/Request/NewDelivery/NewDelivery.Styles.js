@@ -1,11 +1,6 @@
 import { StyleSheet } from "react-native";
 import { COLORS } from "../../../../../Constants";
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#f7f7f7",
-    paddingTop: 10,
-  },
   productList: {
     flex: 1,
     paddingTop: 16,
@@ -88,6 +83,17 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  footer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 8,
+    alignItems: "center",
+    backgroundColor: COLORS.white,
+    borderRadius: 99,
+    borderBlockColor: COLORS.white,
+    paddingLeft: 25,
+    elevation: 4, // Add elevation for shadow
   },
 
   /**************** Modal *****************/

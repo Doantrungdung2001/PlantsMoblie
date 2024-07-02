@@ -91,8 +91,6 @@ const NewDelivery = ({ infor, refetch }) => {
         setNote("");
         setMessage({ text: "Gửi yêu cầu thành công", color: "green" });
         setPlants(initialPlantsState); // Reset plants
-        setShowModalBtn(false); // Đóng modal
-        refetch(); // Gọi hàm refetch
       } else {
         setMessage({ text: "Gửi yêu cầu thất bại", color: "red" });
       }
@@ -113,29 +111,42 @@ const NewDelivery = ({ infor, refetch }) => {
   }, [message]);
 
   return (
-    <ScrollView style={styles.container}>
-      <View>
-        <FlatList
-          data={plants}
-          style={styles.productList}
-          renderItem={renderProductItem}
-          contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 100 }}
-        />
-      </View>
-
-      <TouchableOpacity
-        style={styles.continueButton}
-        onPress={() => setShowModalBtn(true)}
+    <View>
+      <ScrollView
+        style={{
+          height: "92%",
+          flex: 1,
+          backgroundColor: "#f7f7f7",
+          paddingTop: 10,
+        }}
       >
-        <Text style={styles.continueButtonText}>Gửi yêu cầu</Text>
-      </TouchableOpacity>
+        <View>
+          <FlatList
+            data={plants}
+            style={styles.productList}
+            renderItem={renderProductItem}
+            contentContainerStyle={{
+              paddingHorizontal: 16,
+              paddingBottom: 100,
+            }}
+          />
+        </View>
+      </ScrollView>
+      <View style={styles.footer}>
+        <TouchableOpacity
+          style={styles.continueButton}
+          onPress={() => setShowModalBtn(!showModalBtn)}
+        >
+          <Text style={styles.continueButtonText}>Gửi yêu cầu</Text>
+        </TouchableOpacity>
+      </View>
 
       <View>
         <Modal animationType="slide" visible={showModalBtn}>
           <View style={styles.containerModal}>
             <TouchableOpacity
               style={styles.cancelBtn}
-              onPress={() => setShowModalBtn(false)}
+              onPress={() => setShowModalBtn(!showModalBtn)}
             >
               <MaterialIcons name="cancel" size={30} color="red" />
             </TouchableOpacity>
@@ -156,7 +167,11 @@ const NewDelivery = ({ infor, refetch }) => {
               </View>
               {message.text !== "" && (
                 <Text
-                  style={{ color: message.color, marginTop: 10, fontSize: 20 }}
+                  style={{
+                    color: message.color,
+                    marginTop: 10,
+                    fontSize: 20,
+                  }}
                 >
                   {message.text}
                 </Text>
@@ -175,7 +190,7 @@ const NewDelivery = ({ infor, refetch }) => {
           </View>
         </Modal>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
