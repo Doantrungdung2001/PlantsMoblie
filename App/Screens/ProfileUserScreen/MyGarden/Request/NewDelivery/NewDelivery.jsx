@@ -105,6 +105,7 @@ const NewDelivery = ({ infor, refetch }) => {
     if (message.text !== "") {
       const timer = setTimeout(() => {
         setMessage({ text: "", color: "" });
+        setShowModalBtn(false);
       }, 3000);
       return () => clearTimeout(timer);
     }
@@ -132,14 +133,12 @@ const NewDelivery = ({ infor, refetch }) => {
           />
         </View>
       </ScrollView>
-      <View style={styles.footer}>
-        <TouchableOpacity
-          style={styles.continueButton}
-          onPress={() => setShowModalBtn(!showModalBtn)}
-        >
-          <Text style={styles.continueButtonText}>Gửi yêu cầu</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        style={styles.continueButton}
+        onPress={() => setShowModalBtn(!showModalBtn)}
+      >
+        <Text style={styles.continueButtonText}>Gửi yêu cầu</Text>
+      </TouchableOpacity>
 
       <View>
         <Modal animationType="slide" visible={showModalBtn}>

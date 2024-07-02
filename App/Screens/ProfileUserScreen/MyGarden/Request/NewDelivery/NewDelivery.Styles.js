@@ -78,22 +78,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 16,
     alignItems: "center",
+    marginBottom: 30,
   },
   continueButtonText: {
     color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
-  },
-  footer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginHorizontal: 8,
-    alignItems: "center",
-    backgroundColor: COLORS.white,
-    borderRadius: 99,
-    borderBlockColor: COLORS.white,
-    paddingLeft: 25,
-    elevation: 4, // Add elevation for shadow
   },
 
   /**************** Modal *****************/

@@ -40,35 +40,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#999",
   },
-
-  continueButton: {
-    position: "absolute",
-    bottom: 16,
-    left: 16,
-    right: 16,
-    backgroundColor: "#4caf50",
-    borderRadius: 8,
-    padding: 16,
-    alignItems: "center",
-  },
-  continueButtonText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-
-  footer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginHorizontal: 8,
-    alignItems: "center",
-    backgroundColor: COLORS.white,
-    borderRadius: 99,
-    borderBlockColor: COLORS.white,
-    paddingLeft: 25,
-    elevation: 4, // Add elevation for shadow
-  },
-
   /**************** Modal *****************/
   containerModal: {
     padding: 20,

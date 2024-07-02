@@ -16,6 +16,7 @@ import useAllPlantsRecommend from "../../../../SearchScreen/SearchPlants/useAllP
 import { renderTypePlant } from "../../../../../Utils/helper";
 import { COLORS } from "../../../../../Constants";
 import GARDEN from "../../../../../Services/GardenService";
+import Heading from "../../../../../Components/Heading/Heading";
 
 const NewPlants = ({ infor }) => {
   const {
@@ -52,6 +53,8 @@ const NewPlants = ({ infor }) => {
     setIsDropdownVisible(false);
   };
 
+  console.log("cay chon", selectedPlant);
+
   const handleRequestNewPlants = async () => {
     setIsLoading(true);
     const data = {
@@ -80,15 +83,17 @@ const NewPlants = ({ infor }) => {
     if (message.text !== "") {
       const timer = setTimeout(() => {
         setMessage({ text: "", color: "" });
+        setShowModalBtn(false);
       }, 3000);
       return () => clearTimeout(timer);
     }
   }, [message]);
 
   return (
-    <View>
-      <ScrollView style={{ height: "92%" }}>
-        <View style={styles.searchContainer}>
+    <ScrollView>
+      <Heading text={"Hãy chọn thêm một cây trồng"} />
+      <View style={styles.searchContainer}>
+        <View>
           <TextInput
             style={styles.searchInput}
             placeholder="Tìm kiếm cây"
@@ -97,13 +102,16 @@ const NewPlants = ({ infor }) => {
             onFocus={() => setIsDropdownVisible(true)}
           />
           {isDropdownVisible && isSuccessAllPlantsRecommned && (
-            <ScrollView style={{ marginBottom: 15 }}>
+            <View style={{ marginBottom: 15 }}>
               <FlatList
                 data={filteredContacts}
                 renderItem={({ item }) => (
                   <TouchableOpacity
                     style={styles.itemContainer}
-                    onPress={() => handlePlantSelect(item)}
+                    onPress={() => {
+                      handlePlantSelect(item);
+                      setShowModalBtn(!showModalBtn);
+                    }}
                   >
                     <Image
                       style={styles.image}
@@ -119,21 +127,12 @@ const NewPlants = ({ infor }) => {
                 )}
                 keyExtractor={(item) => item.id.toString()}
               />
-            </ScrollView>
+            </View>
           )}
           {isLoadingAllPlantsRecommned && (
             <ActivityIndicator size="large" color="#00ff00" />
           )}
         </View>
-      </ScrollView>
-
-      <View style={styles.footer}>
-        <TouchableOpacity
-          style={styles.continueButton}
-          onPress={() => setShowModalBtn(!showModalBtn)}
-        >
-          <Text style={styles.continueButtonText}>Gửi yêu cầu</Text>
-        </TouchableOpacity>
       </View>
 
       <View>
@@ -147,10 +146,12 @@ const NewPlants = ({ infor }) => {
             </TouchableOpacity>
             <View>
               <View style={styles.detailInfo}>
-                <Text style={styles.subject}>Ghi chú</Text>
+                <Text style={styles.subject}>
+                  Yêu cầu thêm trồng {selectedPlant?.plant_name}
+                </Text>
                 <View style={styles.body}>
                   <TextInput
-                    placeholder="Nhập ghi chú"
+                    placeholder="Ghi chú thêm cho nông trại"
                     placeholderTextColor={COLORS.darkgray}
                     style={styles.bodyText}
                     multiline={true}
@@ -169,7 +170,9 @@ const NewPlants = ({ infor }) => {
               )}
               <TouchableOpacity
                 style={styles.btnSubmit}
-                onPress={() => handleRequestNewPlants()}
+                onPress={() => {
+                  handleRequestNewPlants();
+                }}
               >
                 {isLoading ? (
                   <ActivityIndicator size="small" color={COLORS.white} />
@@ -181,7 +184,7 @@ const NewPlants = ({ infor }) => {
           </View>
         </Modal>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
