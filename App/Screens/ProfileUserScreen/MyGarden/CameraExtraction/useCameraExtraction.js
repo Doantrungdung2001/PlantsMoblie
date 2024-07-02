@@ -17,7 +17,9 @@ export default function useCameraExtraction({ gardenId }) {
           camera_id: videos?.camera_id || "",
           start_time: videos.start_time || "",
           end_time: videos.end_time || "",
-          video_url: videos.video_url.replace(/\.webm$/, ".mp4"),
+          video_url: videos.video_url
+            .replace(/\.webm$/, ".mp4")
+            .replace(/\.avi$/, ".mp4"),
         };
         allvideo.push(newData);
       });
