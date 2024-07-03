@@ -52,7 +52,7 @@ const ListMyGarden = () => {
           textStyle: styles.cancelText,
           borderTopStyle: "red",
         };
-      case "completed":
+      case "end":
         return {
           dotStyle: styles.completedDot,
           textStyle: styles.completedText,
