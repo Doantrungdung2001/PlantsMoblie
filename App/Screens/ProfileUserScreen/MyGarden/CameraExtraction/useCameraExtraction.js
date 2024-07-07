@@ -4,9 +4,9 @@ import { formatLocaleDateStringToNormal } from "../../../../Utils/helper";
 import GARDEN from "../../../../Services/GardenService";
 
 export default function useCameraExtraction({ gardenId }) {
+  console.log("Garden ID",gardenId)
   const parseDataAllCameraExtraction = useCallback((data) => {
     let allvideo = [];
-
     data.forEach((objectDetec) => {
       let date = objectDetec?.date || "";
 
@@ -24,6 +24,7 @@ export default function useCameraExtraction({ gardenId }) {
         allvideo.push(newData);
       });
     });
+    console.log("Danh sach video,",allvideo)
     allvideo.sort((a, b) => {
       // Sử dụng toán tử so sánh để sắp xếp từ cũ đến mới
       return new Date(b.date) - new Date(a.date);

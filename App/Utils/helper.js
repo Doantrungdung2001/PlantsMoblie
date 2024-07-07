@@ -103,8 +103,14 @@ export function renderTypeProcessProject(type) {
       return "Đang thực hiện";
     case "finished":
       return "Hoàn thành";
-    default:
+    case "harvesting":
+      return "Đang thu hoạch";
+    case "almostFinished":
+      return "Sắp thu hoạch xong";
+    case "cancel":
       return "Đã hủy";
+    default:
+      return "Đang chờ phê duyệt";
   }
 }
 export function renderTypeStatusDelivery(type) {
@@ -135,7 +141,7 @@ export function getStatusText(status) {
       return "Đang thực hiện";
     case "cancel":
       return "Đã hủy";
-    case "completed":
+    case "end":
       return "Đã hoàn thành";
     default:
       return status;

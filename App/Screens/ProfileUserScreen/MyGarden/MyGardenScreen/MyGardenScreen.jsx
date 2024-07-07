@@ -156,27 +156,29 @@ const MyGardenScreen = () => {
           )}
         </View>
       </ScrollView>
-      <View style={styles.footer}>
-        <TouchableOpacity
-          style={styles.bookingBtn}
-          onPress={() =>
-            navigation.push("profile/my-garden/request", {
-              dataMyGarden: dataGarden,
-            })
-          }
-        >
-          <Text
-            style={{
-              textAlign: "center",
-              fontFamily: "RobotoCondensed-Bold",
-              color: COLORS.white,
-              fontSize: 20,
-            }}
+      {dataGarden.status === "started" && (
+        <View style={styles.footer}>
+          <TouchableOpacity
+            style={styles.bookingBtn}
+            onPress={() =>
+              navigation.push("profile/my-garden/request", {
+                dataMyGarden: dataGarden,
+              })
+            }
           >
-            Yêu cầu
-          </Text>
-        </TouchableOpacity>
-      </View>
+            <Text
+              style={{
+                textAlign: "center",
+                fontFamily: "RobotoCondensed-Bold",
+                color: COLORS.white,
+                fontSize: 20,
+              }}
+            >
+              Yêu cầu
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };

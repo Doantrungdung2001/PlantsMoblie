@@ -157,12 +157,12 @@ const ListMyGarden = () => {
       {
         text: "Có",
         onPress: () => {
-          if (status === "cancel") {
+          if (status === "cancel" || status === "end") {
             handleDeleteGarden(gardenId);
           } else {
             setTypeToast("danger");
             setTextToast("Không thành công");
-            setDescriptionToast("Chỉ có thể xóa vườn khi vườn đã hủy");
+            setDescriptionToast("Chỉ có thể xóa vườn khi vườn đã hủy hoặc khi hoàn thành");
             handleShowToast();
           }
         },
@@ -199,7 +199,6 @@ const ListMyGarden = () => {
                   style={[
                     styles.card,
                     {
-                      // backgroundColor: item.backgroundColor,
                       borderTopWidth: 4,
                       borderTopColor: statusStyles.borderTopStyle,
                     },
@@ -248,6 +247,16 @@ const ListMyGarden = () => {
                         </TouchableOpacity>
                       )}
                       {item.status === "cancel" && (
+                        <TouchableOpacity
+                          style={styles.button}
+                          onPress={() => {
+                            confirmDelete(item.id, item.status);
+                          }}
+                        >
+                          <Text style={styles.buttonText}>Xóa</Text>
+                        </TouchableOpacity>
+                      )}
+                      {item.status === "end" && (
                         <TouchableOpacity
                           style={styles.button}
                           onPress={() => {
